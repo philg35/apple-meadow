@@ -14,7 +14,6 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
     }
 
     @IBAction func buttonPressed(_ sender: Any) {
@@ -35,18 +34,14 @@ class ViewController: UIViewController {
         }
         task.resume()
     }
-    
 }
 
-class SessionDelegate:NSObject, URLSessionDelegate
-{
+class SessionDelegate:NSObject, URLSessionDelegate {
     func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        if(challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust)
-        {
+        if(challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust) {
             print("in session delegate")
             print(challenge.protectionSpace.host)
-            if(challenge.protectionSpace.host == "10.0.0.251")
-            {
+            if(challenge.protectionSpace.host == "10.0.0.251") {
                 let credential = URLCredential(trust: challenge.protectionSpace.serverTrust!)
                 completionHandler(URLSession.AuthChallengeDisposition.useCredential, credential)
             }
