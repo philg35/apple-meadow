@@ -85,6 +85,12 @@ class ParseXml: NSObject, XMLParserDelegate
             inItem = true
             item = DevXml(deviceID: attributeDict["ID"] ?? "", model: attributeDict["Model"] ?? "", label: "", parent: "", port: "")
         }
+        
+        if elementName == "Parent"
+        {
+            item.parent = attributeDict["ID"] ?? ""
+            item.port = attributeDict["Port"] ?? ""
+        }
     }
     
     func parser(_ parser: XMLParser, foundCDATA CDATABlock: Data)
@@ -94,21 +100,10 @@ class ParseXml: NSObject, XMLParserDelegate
             return
         }
         
-        let s = String(data: CDATABlock, encoding: .utf8)!
-        
         switch currentElementName.lowercased()
         {
-        case "id":
-            item.deviceID = s
-            break
-        case "model":
-            item.model = s
-            break
-        case "parent":
-            item.parent = s
-            break
         case "label":
-            item.label = s
+            item.label = String(data: CDATABlock, encoding: .utf8)!
             break
         default:
             break

@@ -3,6 +3,17 @@
    version = "1.0">
    <ContextStates>
       <ContextState
+         contextName = "ParseXml.parserDidEndDocument(_:):ParseXml.swift">
+      </ContextState>
+      <ContextState
+         contextName = "ParseXml.parser(_:didStartElement:namespaceURI:qualifiedName:attributes:):ParseXml.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "item">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
          contextName = "ParseXml.parser(_:didEndElement:namespaceURI:qualifiedName:):ParseXml.swift">
          <PersistentStrings>
             <PersistentString
