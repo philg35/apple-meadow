@@ -83,7 +83,7 @@ class ParseXml: NSObject, XMLParserDelegate
         if elementName == "Device"
         {
             inItem = true
-            item = DevXml(deviceID: "", model: "", label: "", parent: "", port: "")
+            item = DevXml(deviceID: attributeDict["ID"] ?? "", model: attributeDict["Model"] ?? "", label: "", parent: "", port: "")
         }
     }
     
