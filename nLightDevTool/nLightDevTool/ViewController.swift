@@ -31,7 +31,13 @@ class ViewController: UIViewController
             (data, response, error) in
             
             contents = (String(data: data!, encoding: String.Encoding.utf8) as String?)!
+            contents = contents.replacingOccurrences(of: "\r", with: "\n")
             print(contents)
+            
+            let p = ParseXml()
+            p.setData(data: data)
+            p.parse()
+            
             DispatchQueue.main.async
             {
                 self.xmlLabel.text = contents

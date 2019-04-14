@@ -13,6 +13,8 @@ struct DevXml
     var deviceID: String
     var model: String
     var label: String
+    var parent: String
+    var port: String
 }
 
 class ParseXml: NSObject, XMLParserDelegate
@@ -31,7 +33,7 @@ class ParseXml: NSObject, XMLParserDelegate
     override init()
     {
         myData = "".data(using: .ascii)!
-        header = DevXml(deviceID: "", model: "", label: "")
+        header = DevXml(deviceID: "", model: "", label: "", parent: "", port: "")
         items = []
         item = header
     }
@@ -67,7 +69,8 @@ class ParseXml: NSObject, XMLParserDelegate
     
     func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
     {
-        if elementName == "Device ID"
+        currentElementName = elementName
+        if elementName == "Device"
         {
             inItem = false
             items.append(item)
@@ -76,10 +79,11 @@ class ParseXml: NSObject, XMLParserDelegate
     
     func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:])
     {
-        if elementName == "Device ID"
+        currentElementName = elementName
+        if elementName == "Device"
         {
             inItem = true
-            item = DevXml(deviceID: "", model: "", label: "")
+            item = DevXml(deviceID: "", model: "", label: "", parent: "", port: "")
         }
     }
     
@@ -90,12 +94,51 @@ class ParseXml: NSObject, XMLParserDelegate
             return
         }
         
+        let s = String(data: CDATABlock, encoding: .utf8)!
+        
         switch currentElementName.lowercased()
         {
-        case "":
+        case "id":
+            item.deviceID = s
+            break
+        case "model":
+            item.model = s
+            break
+        case "parent":
+            item.parent = s
+            break
+        case "label":
+            item.label = s
             break
         default:
             break
         }
+    }
+    
+    func parser(_ parser: XMLParser, foundCharacters string: String)
+    {
+        if !inItem
+        {
+            return
+        }
+        
+        switch currentElementName.lowercased()
+        {
+        case "id":
+            item.deviceID += string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            break
+        case "parent":
+            item.parent += string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            break
+        case "label":
+            item.label += string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            break
+        case "model":
+            item.model += string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            break
+        default:
+            break
+        }
+        
     }
 }
