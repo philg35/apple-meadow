@@ -103,20 +103,28 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let text = rooms[indexPath.row]
         
-        if indexPath.row % 2 == 0
-        {
-            cell.contentView.backgroundColor = UIColor.white
-        }
-        else
-        {
-            cell.contentView.backgroundColor = UIColor.lightGray
-        }
+        
         
         cell.roomLabel.text = text.label
         cell.deviceID.text = text.deviceID
         cell.model.text = text.model
         cell.parentPort.text = text.parent + " : " + text.port
-        
+        if cell.model.text?.contains("POD") ?? false
+        {
+            cell.contentView.backgroundColor = UIColor.yellow
+        }
+        else if cell.model.text?.prefix(1) == "r"
+        {
+            cell.contentView.backgroundColor = UIColor.orange
+        }
+        else if cell.model.text?.prefix(1) == "n"
+        {
+            cell.contentView.backgroundColor = UIColor.green
+        }
+        else
+        {
+            cell.contentView.backgroundColor = UIColor.lightGray
+        }
         return cell
     }
 }
