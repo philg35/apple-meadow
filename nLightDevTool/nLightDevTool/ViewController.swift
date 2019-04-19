@@ -8,16 +8,39 @@
 
 import UIKit
 
-class ViewController: UIViewController
+/*extension RangeReplaceableCollection where Element: Equatable
 {
-    @IBOutlet weak var xmlLabel: UILabel!
+    @discardableResult
+    mutating func appendIfNotContains(_ element: Element) -> (appended: Bool, memberAfterAppend: Element)
+    {
+        if let index = firstIndex(of: element)
+        {
+            return (false, self[index])
+        }
+        else
+        {
+            append(element)
+            return (true, element)
+        }
+    }
+}*/
+
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
+{
+    
+    @IBOutlet weak var tableview: UITableView!
+    
+    private var rooms: [DevXml] = []
     
     override func viewDidLoad()
     {
         super.viewDidLoad()
+        
+        tableview.dataSource = self
+        tableview.delegate = self
     }
-
-    @IBAction func buttonPressed(_ sender: Any)
+    
+    @IBAction func refreshPressed(_ sender: Any)
     {
         print("button pressed")
         var contents = ""
@@ -38,12 +61,63 @@ class ViewController: UIViewController
             p.setData(data: data)
             p.parse()
             
+            for item in p.items
+            {
+                //if self.rooms.contains(where: <#T##(DevXml) throws -> Bool#>)
+                //{
+                    self.rooms.append(item)
+                //}
+            }
             DispatchQueue.main.async
             {
-                self.xmlLabel.text = contents
+                self.tableview.reloadData()
             }
+            
         }
         task.resume()
+    }
+    
+    
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
+    {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let alertController = UIAlertController(title: "Hint", message: "You have selected \(indexPath.row)", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        
+        alertController.addAction(alertAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
+    {
+        return rooms.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
+    {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")! as! CustomTableViewCell
+        
+        let text = rooms[indexPath.row]
+        
+        if indexPath.row % 2 == 0
+        {
+            cell.contentView.backgroundColor = UIColor.white
+        }
+        else
+        {
+            cell.contentView.backgroundColor = UIColor.lightGray
+        }
+        
+        cell.roomLabel.text = text.label
+        cell.deviceID.text = text.deviceID
+        cell.model.text = text.model
+        cell.parentPort.text = text.parent + " : " + text.port
+        
+        return cell
     }
 }
 
@@ -63,3 +137,5 @@ class SessionDelegate:NSObject, URLSessionDelegate
         }
     }
 }
+
+

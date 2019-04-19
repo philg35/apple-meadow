@@ -3,7 +3,37 @@
    version = "1.0">
    <ContextStates>
       <ContextState
-         contextName = "ParseXml.parserDidEndDocument(_:):ParseXml.swift">
+         contextName = "ParseXml.parser(_:foundCharacters:):ParseXml.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "string">
+            </PersistentString>
+            <PersistentString
+               value = "items">
+            </PersistentString>
+            <PersistentString
+               value = "currentElementName">
+            </PersistentString>
+            <PersistentString
+               value = "currentElementName.lowercased()">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "mach_msg_trap:(null)">
+         <PersistentStrings>
+            <PersistentString
+               value = "rooms">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "closure #1 in ViewController.refreshPressed(_:):ViewController.swift">
+         <PersistentStrings>
+            <PersistentString
+               value = "rooms">
+            </PersistentString>
+         </PersistentStrings>
       </ContextState>
       <ContextState
          contextName = "ParseXml.parser(_:didStartElement:namespaceURI:qualifiedName:attributes:):ParseXml.swift">
@@ -25,21 +55,7 @@
          </PersistentStrings>
       </ContextState>
       <ContextState
-         contextName = "ParseXml.parser(_:foundCharacters:):ParseXml.swift">
-         <PersistentStrings>
-            <PersistentString
-               value = "string">
-            </PersistentString>
-            <PersistentString
-               value = "items">
-            </PersistentString>
-            <PersistentString
-               value = "currentElementName">
-            </PersistentString>
-            <PersistentString
-               value = "currentElementName.lowercased()">
-            </PersistentString>
-         </PersistentStrings>
+         contextName = "ParseXml.parserDidEndDocument(_:):ParseXml.swift">
       </ContextState>
    </ContextStates>
 </VariablesViewState>

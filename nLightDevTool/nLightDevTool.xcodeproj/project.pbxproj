@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D9610F082269509B0058CE1D /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9610F072269509B0058CE1D /* CustomTableViewCell.swift */; };
 		D96A888622622B7F00084230 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96A888522622B7F00084230 /* AppDelegate.swift */; };
 		D96A888822622B7F00084230 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96A888722622B7F00084230 /* ViewController.swift */; };
 		D96A888B22622B7F00084230 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D96A888922622B7F00084230 /* Main.storyboard */; };
@@ -16,6 +17,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D9610F072269509B0058CE1D /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		D96A888222622B7F00084230 /* nLightDevTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nLightDevTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D96A888522622B7F00084230 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D96A888722622B7F00084230 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -60,6 +62,7 @@
 				D96A888722622B7F00084230 /* ViewController.swift */,
 				D96A88972262432300084230 /* ParseXml.swift */,
 				D96A888922622B7F00084230 /* Main.storyboard */,
+				D9610F072269509B0058CE1D /* CustomTableViewCell.swift */,
 				D96A888C22622B8000084230 /* Assets.xcassets */,
 				D96A888E22622B8000084230 /* LaunchScreen.storyboard */,
 				D96A889122622B8000084230 /* Info.plist */,
@@ -140,6 +143,7 @@
 			files = (
 				D96A88982262432300084230 /* ParseXml.swift in Sources */,
 				D96A888822622B7F00084230 /* ViewController.swift in Sources */,
+				D9610F082269509B0058CE1D /* CustomTableViewCell.swift in Sources */,
 				D96A888622622B7F00084230 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
