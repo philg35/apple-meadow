@@ -29,8 +29,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 {
     
     @IBOutlet weak var tableview: UITableView!
+    @IBOutlet weak var parentLabel: UILabel!
     
-    private var rooms: [DevXml] = []
+    private var deviceList: [DevXml] = []
+    private var parentList: [String] = []
     
     override func viewDidLoad()
     {
@@ -61,20 +63,40 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             p.setData(data: data)
             p.parse()
             
+            p.items.sort {
+                $0.model.localizedCaseInsensitiveCompare($1.model) == ComparisonResult.orderedAscending
+            }
+            
             for item in p.items
             {
                 //if self.rooms.contains(where: <#T##(DevXml) throws -> Bool#>)
                 //{
-                    self.rooms.append(item)
+                    self.deviceList.append(item)
                 //}
+                let parentPort = item.parent + " : " + item.port
+                if !self.parentList.contains(parentPort)
+                {
+                    self.parentList.append(parentPort)
+                }
             }
+            self.parentList.sort {
+                $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending
+            }
+            print(self.parentList)
+            
             DispatchQueue.main.async
             {
+                
                 self.tableview.reloadData()
             }
             
         }
         task.resume()
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int
+    {
+        return (parentList.count)
     }
     
     
@@ -93,7 +115,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return rooms.count
+        return deviceList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -101,7 +123,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")! as! CustomTableViewCell
         
-        let text = rooms[indexPath.row]
+        let text = deviceList[indexPath.row]
         
         
         
