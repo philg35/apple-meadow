@@ -23,7 +23,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     private var deviceList: [DevXml] = []
     private var parentList: [String] = []
     private var deviceArray: [PortDevices] = []
-    
+    private var groupLabels: [DevXml] = []
+    private var groupDict: [String : String] = [:]
     
     
     override func viewDidLoad()
@@ -49,7 +50,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             contents = (String(data: data!, encoding: String.Encoding.utf8) as String?)!
             contents = contents.replacingOccurrences(of: "\r", with: "\n")
-            //print(contents)
             
             let p = ParseXml()
             p.setData(data: data)
@@ -62,7 +62,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             for item in p.items
             {
-                //self.deviceList.append(item)
                 let parentPort = item.parentPort
                 if !self.parentList.contains(parentPort)
                 {
@@ -80,7 +79,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 {
                     if device.parentPort == parent
                     {
-                        if device.model != "" && !device.model.contains("POD") && !device.model.contains("ECYD")
+                        if device.groupLabel != ""
+                        {
+                           self.groupLabels.append(device)
+                        }
+                        else if !device.model.contains("POD") && !device.model.contains("ECYD")
                         {
                             devs.append(device)
                         }
@@ -95,10 +98,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                     self.deviceArray.append(devicesPort)
                 }
             }
-            
+            for group in self.groupLabels
+            {
+                self.groupDict[group.parentPort] = group.groupLabel
+            }
             print(self.deviceArray)
-            //print(self.deviceList.count)
-            //print(self.parentList)
             
             DispatchQueue.main.async
             {
@@ -115,11 +119,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return deviceArray.count
     }
     
-    
-    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
     {
-        
         tableView.deselectRow(at: indexPath, animated: true)
         
         let alertController = UIAlertController(title: "Hint", message: "You have selected \(indexPath.row)", preferredStyle: .alert)
@@ -136,38 +137,41 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
-        return deviceArray[section].parentPort
+        return ((self.groupDict[deviceArray[section].parentPort] ?? "nWifi") + " (" + String(deviceArray[section].devicesOnPort.count) + " devices)")
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        (view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = UIColor.green.withAlphaComponent(0.7)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
-        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")! as! CustomTableViewCell
         
         let text = deviceArray[indexPath.section].devicesOnPort[indexPath.row]
-        
-        
         
         cell.roomLabel.text = text.label
         cell.deviceID.text = text.deviceID
         cell.model.text = text.model
         cell.parentPort.text = text.parentPort
-        if cell.model.text?.contains("POD") ?? false
-        {
-            cell.contentView.backgroundColor = UIColor.yellow
-        }
-        else if cell.model.text?.prefix(1) == "r"
-        {
-            cell.contentView.backgroundColor = UIColor.orange
-        }
-        else if cell.model.text?.prefix(1) == "n"
-        {
-            cell.contentView.backgroundColor = UIColor.green
-        }
-        else
-        {
-            cell.contentView.backgroundColor = UIColor.lightGray
-        }
+        
+        cell.contentView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
+//        if cell.model.text?.contains("POD") ?? false
+//        {
+//            cell.contentView.backgroundColor = UIColor.yellow
+//        }
+//        else if cell.model.text?.prefix(1) == "r"
+//        {
+//            cell.contentView.backgroundColor = UIColor.orange
+//        }
+//        else if cell.model.text?.prefix(1) == "n"
+//        {
+//            cell.contentView.backgroundColor = UIColor.green
+//        }
+//        else
+//        {
+//            cell.contentView.backgroundColor = UIColor.lightGray
+//        }
         return cell
     }
 }
