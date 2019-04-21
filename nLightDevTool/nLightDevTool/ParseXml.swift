@@ -13,15 +13,16 @@ struct DevXml
     var deviceID: String
     var model: String
     var label: String
-    var parent: String
-    var port: String
+    var parentPort: String
+    var groupLabel : String
 }
 
 class ParseXml: NSObject, XMLParserDelegate
 {
     private var myData: Data
     private var currentElementName = ""
-    private var inItem = false
+    private var inItemDevice = false
+    private var inItemGroup = false
     private var item: DevXml
     
     var ready = false
@@ -33,7 +34,7 @@ class ParseXml: NSObject, XMLParserDelegate
     override init()
     {
         myData = "".data(using: .ascii)!
-        header = DevXml(deviceID: "", model: "", label: "", parent: "", port: "")
+        header = DevXml(deviceID: "", model: "", label: "", parentPort: "", groupLabel: "")
         items = []
         item = header
     }
@@ -72,7 +73,12 @@ class ParseXml: NSObject, XMLParserDelegate
         currentElementName = elementName
         if elementName == "Device"
         {
-            inItem = false
+            inItemDevice = false
+            items.append(item)
+        }
+        else if elementName == "Group"
+        {
+            inItemGroup = false
             items.append(item)
         }
     }
@@ -82,29 +88,31 @@ class ParseXml: NSObject, XMLParserDelegate
         currentElementName = elementName
         if elementName == "Device"
         {
-            inItem = true
-            item = DevXml(deviceID: attributeDict["ID"] ?? "", model: attributeDict["Model"] ?? "", label: "", parent: "", port: "")
+            inItemDevice = true
+            item = DevXml(deviceID: attributeDict["ID"] ?? "", model: attributeDict["Model"] ?? "", label: "", parentPort: "", groupLabel: "")
+        }
+        else if elementName == "Group"
+        {
+            inItemGroup = true
+            item = DevXml(deviceID: "", model: "", label: "", parentPort: (attributeDict["ID"] ?? "") + ":" + (attributeDict["Port"] ?? ""), groupLabel: "")
         }
         
         if elementName == "Parent"
         {
-            item.parent = attributeDict["ID"] ?? ""
-            item.port = attributeDict["Port"] ?? ""
+            item.parentPort = (attributeDict["ID"] ?? "") + ":" + (attributeDict["Port"] ?? "")
         }
+        
     }
     
     func parser(_ parser: XMLParser, foundCDATA CDATABlock: Data)
     {
-        if !inItem
+        if !inItemDevice
         {
             return
         }
         
         switch currentElementName.lowercased()
         {
-        case "label":
-            item.label = String(data: CDATABlock, encoding: .utf8)!
-            break
         default:
             break
         }
@@ -112,24 +120,22 @@ class ParseXml: NSObject, XMLParserDelegate
     
     func parser(_ parser: XMLParser, foundCharacters string: String)
     {
-        if !inItem
+        if !inItemDevice && !inItemGroup
         {
             return
         }
         
         switch currentElementName.lowercased()
         {
-        case "id":
-            item.deviceID += string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            break
-        case "parent":
-            item.parent += string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            break
         case "label":
-            item.label += string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            break
-        case "model":
-            item.model += string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            if inItemDevice == true
+            {
+                item.label += string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            }
+            else if inItemGroup == true
+            {
+                item.groupLabel += string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            }
             break
         default:
             break

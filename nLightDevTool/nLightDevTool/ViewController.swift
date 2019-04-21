@@ -8,31 +8,23 @@
 
 import UIKit
 
-/*extension RangeReplaceableCollection where Element: Equatable
-{
-    @discardableResult
-    mutating func appendIfNotContains(_ element: Element) -> (appended: Bool, memberAfterAppend: Element)
-    {
-        if let index = firstIndex(of: element)
-        {
-            return (false, self[index])
-        }
-        else
-        {
-            append(element)
-            return (true, element)
-        }
-    }
-}*/
-
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var parentLabel: UILabel!
     
+    struct PortDevices
+    {
+        var parentPort: String
+        var devicesOnPort: [DevXml]
+    }
+    
     private var deviceList: [DevXml] = []
     private var parentList: [String] = []
+    private var deviceArray: [PortDevices] = []
+    
+    
     
     override func viewDidLoad()
     {
@@ -57,7 +49,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             
             contents = (String(data: data!, encoding: String.Encoding.utf8) as String?)!
             contents = contents.replacingOccurrences(of: "\r", with: "\n")
-            print(contents)
+            //print(contents)
             
             let p = ParseXml()
             p.setData(data: data)
@@ -66,14 +58,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             p.items.sort {
                 $0.model.localizedCaseInsensitiveCompare($1.model) == ComparisonResult.orderedAscending
             }
+            self.deviceList.removeAll()
             
             for item in p.items
             {
-                //if self.rooms.contains(where: <#T##(DevXml) throws -> Bool#>)
-                //{
-                    self.deviceList.append(item)
-                //}
-                let parentPort = item.parent + " : " + item.port
+                //self.deviceList.append(item)
+                let parentPort = item.parentPort
                 if !self.parentList.contains(parentPort)
                 {
                     self.parentList.append(parentPort)
@@ -82,7 +72,33 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             self.parentList.sort {
                 $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending
             }
-            print(self.parentList)
+            
+            for parent in self.parentList
+            {
+                var devs: [DevXml] = []
+                for device in p.items
+                {
+                    if device.parentPort == parent
+                    {
+                        if device.model != "" && !device.model.contains("POD") && !device.model.contains("ECYD")
+                        {
+                            devs.append(device)
+                        }
+                    }
+                }
+                if devs.count > 0
+                {
+                    devs.sort {
+                        $0.model.localizedCaseInsensitiveCompare($1.model) == ComparisonResult.orderedAscending
+                    }
+                    let devicesPort = PortDevices(parentPort: parent, devicesOnPort: devs)
+                    self.deviceArray.append(devicesPort)
+                }
+            }
+            
+            print(self.deviceArray)
+            //print(self.deviceList.count)
+            //print(self.parentList)
             
             DispatchQueue.main.async
             {
@@ -96,7 +112,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func numberOfSections(in tableView: UITableView) -> Int
     {
-        return (parentList.count)
+        return deviceArray.count
     }
     
     
@@ -115,7 +131,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
     {
-        return deviceList.count
+        return deviceArray[section].devicesOnPort.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
+    {
+        return deviceArray[section].parentPort
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
@@ -123,14 +144,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")! as! CustomTableViewCell
         
-        let text = deviceList[indexPath.row]
+        let text = deviceArray[indexPath.section].devicesOnPort[indexPath.row]
         
         
         
         cell.roomLabel.text = text.label
         cell.deviceID.text = text.deviceID
         cell.model.text = text.model
-        cell.parentPort.text = text.parent + " : " + text.port
+        cell.parentPort.text = text.parentPort
         if cell.model.text?.contains("POD") ?? false
         {
             cell.contentView.backgroundColor = UIColor.yellow
