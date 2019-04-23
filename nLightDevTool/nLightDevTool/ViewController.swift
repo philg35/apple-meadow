@@ -7,12 +7,14 @@
 //
 
 import UIKit
+public var ipAddress = "10.0.0.1"
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
     
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var parentLabel: UILabel!
+    @IBOutlet weak var ipAddressField: UITextField!
     
     struct PortDevices
     {
@@ -26,7 +28,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     private var groupLabels: [DevXml] = []
     private var groupDict: [String : String] = [:]
     
-    
     override func viewDidLoad()
     {
         super.viewDidLoad()
@@ -37,9 +38,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     @IBAction func refreshPressed(_ sender: Any)
     {
-        print("button pressed")
+        if ipAddressField.endEditing(false)
+        {
+            print("ending editting, button pressed")
+            ipAddress = ipAddressField.text ?? "10.0.0.251"
+        }
+        else
+        {
+            print("button pressed")
+        }
         var contents = ""
-        let url = URL(string: "https://10.0.0.251/ngw/devices.xml")!
+        let urlField = "https:" + ipAddress + "/ngw/devices.xml"
+        let url = URL(string: urlField)!
         let request = URLRequest(url: url)
         
         let sessionDelegate = SessionDelegate()
@@ -140,7 +150,8 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return ((self.groupDict[deviceArray[section].parentPort] ?? "nWifi") + " (" + String(deviceArray[section].devicesOnPort.count) + " devices)")
     }
     
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
+    {
         (view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = UIColor.green.withAlphaComponent(0.7)
     }
     
@@ -156,22 +167,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.parentPort.text = text.parentPort
         
         cell.contentView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
-//        if cell.model.text?.contains("POD") ?? false
-//        {
-//            cell.contentView.backgroundColor = UIColor.yellow
-//        }
-//        else if cell.model.text?.prefix(1) == "r"
-//        {
-//            cell.contentView.backgroundColor = UIColor.orange
-//        }
-//        else if cell.model.text?.prefix(1) == "n"
-//        {
-//            cell.contentView.backgroundColor = UIColor.green
-//        }
-//        else
-//        {
-//            cell.contentView.backgroundColor = UIColor.lightGray
-//        }
         return cell
     }
 }
@@ -184,7 +179,7 @@ class SessionDelegate:NSObject, URLSessionDelegate
         {
             print("in session delegate")
             print(challenge.protectionSpace.host)
-            if(challenge.protectionSpace.host == "10.0.0.251")
+            if(challenge.protectionSpace.host == ipAddress)
             {
                 let credential = URLCredential(trust: challenge.protectionSpace.serverTrust!)
                 completionHandler(URLSession.AuthChallengeDisposition.useCredential, credential)
