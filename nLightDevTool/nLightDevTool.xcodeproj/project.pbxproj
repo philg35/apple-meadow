@@ -7,6 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D94478912294D13300D2CDD9 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D944788F2294D13300D2CDD9 /* Interface.storyboard */; };
+		D94478932294D13400D2CDD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D94478922294D13400D2CDD9 /* Assets.xcassets */; };
+		D944789A2294D13400D2CDD9 /* watchNlightDev Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D94478992294D13400D2CDD9 /* watchNlightDev Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		D944789F2294D13400D2CDD9 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D944789E2294D13400D2CDD9 /* InterfaceController.swift */; };
+		D94478A12294D13400D2CDD9 /* ExtensionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94478A02294D13400D2CDD9 /* ExtensionDelegate.swift */; };
+		D94478A32294D13400D2CDD9 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D94478A22294D13400D2CDD9 /* NotificationController.swift */; };
+		D94478A52294D13500D2CDD9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D94478A42294D13500D2CDD9 /* Assets.xcassets */; };
+		D94478AA2294D13500D2CDD9 /* watchNlightDev.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D944788D2294D13300D2CDD9 /* watchNlightDev.app */; };
 		D9610F082269509B0058CE1D /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9610F072269509B0058CE1D /* CustomTableViewCell.swift */; };
 		D96934BD226E6FD0003D0665 /* nlight.png in Resources */ = {isa = PBXBuildFile; fileRef = D96934BC226E6FD0003D0665 /* nlight.png */; };
 		D96A888622622B7F00084230 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96A888522622B7F00084230 /* AppDelegate.swift */; };
@@ -17,7 +25,60 @@
 		D96A88982262432300084230 /* ParseXml.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96A88972262432300084230 /* ParseXml.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		D944789B2294D13400D2CDD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D96A887A22622B7F00084230 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D94478982294D13400D2CDD9;
+			remoteInfo = "watchNlightDev Extension";
+		};
+		D94478A82294D13500D2CDD9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D96A887A22622B7F00084230 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D944788C2294D13300D2CDD9;
+			remoteInfo = watchNlightDev;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		D94478B02294D13500D2CDD9 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				D944789A2294D13400D2CDD9 /* watchNlightDev Extension.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D94478B22294D13500D2CDD9 /* Embed Watch Content */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
+			dstSubfolderSpec = 16;
+			files = (
+				D94478AA2294D13500D2CDD9 /* watchNlightDev.app in Embed Watch Content */,
+			);
+			name = "Embed Watch Content";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		D944788D2294D13300D2CDD9 /* watchNlightDev.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = watchNlightDev.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D94478902294D13300D2CDD9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
+		D94478922294D13400D2CDD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D94478942294D13400D2CDD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D94478992294D13400D2CDD9 /* watchNlightDev Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "watchNlightDev Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D944789E2294D13400D2CDD9 /* InterfaceController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterfaceController.swift; sourceTree = "<group>"; };
+		D94478A02294D13400D2CDD9 /* ExtensionDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDelegate.swift; sourceTree = "<group>"; };
+		D94478A22294D13400D2CDD9 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
+		D94478A42294D13500D2CDD9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D94478A62294D13500D2CDD9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D94478A72294D13500D2CDD9 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		D9610F072269509B0058CE1D /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		D96934BC226E6FD0003D0665 /* nlight.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = nlight.png; sourceTree = "<group>"; };
 		D96A888222622B7F00084230 /* nLightDevTool.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = nLightDevTool.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -31,6 +92,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		D94478962294D13400D2CDD9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D96A887F22622B7F00084230 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -41,10 +109,35 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D944788E2294D13300D2CDD9 /* watchNlightDev */ = {
+			isa = PBXGroup;
+			children = (
+				D944788F2294D13300D2CDD9 /* Interface.storyboard */,
+				D94478922294D13400D2CDD9 /* Assets.xcassets */,
+				D94478942294D13400D2CDD9 /* Info.plist */,
+			);
+			path = watchNlightDev;
+			sourceTree = "<group>";
+		};
+		D944789D2294D13400D2CDD9 /* watchNlightDev Extension */ = {
+			isa = PBXGroup;
+			children = (
+				D944789E2294D13400D2CDD9 /* InterfaceController.swift */,
+				D94478A02294D13400D2CDD9 /* ExtensionDelegate.swift */,
+				D94478A22294D13400D2CDD9 /* NotificationController.swift */,
+				D94478A42294D13500D2CDD9 /* Assets.xcassets */,
+				D94478A62294D13500D2CDD9 /* Info.plist */,
+				D94478A72294D13500D2CDD9 /* PushNotificationPayload.apns */,
+			);
+			path = "watchNlightDev Extension";
+			sourceTree = "<group>";
+		};
 		D96A887922622B7F00084230 = {
 			isa = PBXGroup;
 			children = (
 				D96A888422622B7F00084230 /* nLightDevTool */,
+				D944788E2294D13300D2CDD9 /* watchNlightDev */,
+				D944789D2294D13400D2CDD9 /* watchNlightDev Extension */,
 				D96A888322622B7F00084230 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -53,6 +146,8 @@
 			isa = PBXGroup;
 			children = (
 				D96A888222622B7F00084230 /* nLightDevTool.app */,
+				D944788D2294D13300D2CDD9 /* watchNlightDev.app */,
+				D94478992294D13400D2CDD9 /* watchNlightDev Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -76,6 +171,40 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		D944788C2294D13300D2CDD9 /* watchNlightDev */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D94478B12294D13500D2CDD9 /* Build configuration list for PBXNativeTarget "watchNlightDev" */;
+			buildPhases = (
+				D944788B2294D13300D2CDD9 /* Resources */,
+				D94478B02294D13500D2CDD9 /* Embed App Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D944789C2294D13400D2CDD9 /* PBXTargetDependency */,
+			);
+			name = watchNlightDev;
+			productName = watchNlightDev;
+			productReference = D944788D2294D13300D2CDD9 /* watchNlightDev.app */;
+			productType = "com.apple.product-type.application.watchapp2";
+		};
+		D94478982294D13400D2CDD9 /* watchNlightDev Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D94478AF2294D13500D2CDD9 /* Build configuration list for PBXNativeTarget "watchNlightDev Extension" */;
+			buildPhases = (
+				D94478952294D13400D2CDD9 /* Sources */,
+				D94478962294D13400D2CDD9 /* Frameworks */,
+				D94478972294D13400D2CDD9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "watchNlightDev Extension";
+			productName = "watchNlightDev Extension";
+			productReference = D94478992294D13400D2CDD9 /* watchNlightDev Extension.appex */;
+			productType = "com.apple.product-type.watchkit2-extension";
+		};
 		D96A888122622B7F00084230 /* nLightDevTool */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = D96A889422622B8000084230 /* Build configuration list for PBXNativeTarget "nLightDevTool" */;
@@ -83,10 +212,12 @@
 				D96A887E22622B7F00084230 /* Sources */,
 				D96A887F22622B7F00084230 /* Frameworks */,
 				D96A888022622B7F00084230 /* Resources */,
+				D94478B22294D13500D2CDD9 /* Embed Watch Content */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				D94478A92294D13500D2CDD9 /* PBXTargetDependency */,
 			);
 			name = nLightDevTool;
 			productName = nLightDevTool;
@@ -103,6 +234,12 @@
 				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = "Philip Gross";
 				TargetAttributes = {
+					D944788C2294D13300D2CDD9 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					D94478982294D13400D2CDD9 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
 					D96A888122622B7F00084230 = {
 						CreatedOnToolsVersion = 10.2;
 					};
@@ -122,11 +259,30 @@
 			projectRoot = "";
 			targets = (
 				D96A888122622B7F00084230 /* nLightDevTool */,
+				D944788C2294D13300D2CDD9 /* watchNlightDev */,
+				D94478982294D13400D2CDD9 /* watchNlightDev Extension */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		D944788B2294D13300D2CDD9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D94478932294D13400D2CDD9 /* Assets.xcassets in Resources */,
+				D94478912294D13300D2CDD9 /* Interface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D94478972294D13400D2CDD9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D94478A52294D13500D2CDD9 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D96A888022622B7F00084230 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -141,6 +297,16 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		D94478952294D13400D2CDD9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D94478A32294D13400D2CDD9 /* NotificationController.swift in Sources */,
+				D94478A12294D13400D2CDD9 /* ExtensionDelegate.swift in Sources */,
+				D944789F2294D13400D2CDD9 /* InterfaceController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D96A887E22622B7F00084230 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -154,7 +320,28 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		D944789C2294D13400D2CDD9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D94478982294D13400D2CDD9 /* watchNlightDev Extension */;
+			targetProxy = D944789B2294D13400D2CDD9 /* PBXContainerItemProxy */;
+		};
+		D94478A92294D13500D2CDD9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D944788C2294D13300D2CDD9 /* watchNlightDev */;
+			targetProxy = D94478A82294D13500D2CDD9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
+		D944788F2294D13300D2CDD9 /* Interface.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D94478902294D13300D2CDD9 /* Base */,
+			);
+			name = Interface.storyboard;
+			sourceTree = "<group>";
+		};
 		D96A888922622B7F00084230 /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -174,6 +361,88 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		D94478AB2294D13500D2CDD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A44VX47B87;
+				IBSC_MODULE = watchNlightDev_Extension;
+				INFOPLIST_FILE = watchNlightDev/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "psg35-yahoo.com.nLightDevTool.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.2;
+			};
+			name = Debug;
+		};
+		D94478AC2294D13500D2CDD9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A44VX47B87;
+				IBSC_MODULE = watchNlightDev_Extension;
+				INFOPLIST_FILE = watchNlightDev/Info.plist;
+				PRODUCT_BUNDLE_IDENTIFIER = "psg35-yahoo.com.nLightDevTool.watchkitapp";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.2;
+			};
+			name = Release;
+		};
+		D94478AD2294D13500D2CDD9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A44VX47B87;
+				INFOPLIST_FILE = "watchNlightDev Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "psg35-yahoo.com.nLightDevTool.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.2;
+			};
+			name = Debug;
+		};
+		D94478AE2294D13500D2CDD9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = A44VX47B87;
+				INFOPLIST_FILE = "watchNlightDev Extension/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "psg35-yahoo.com.nLightDevTool.watchkitapp.watchkitextension";
+				PRODUCT_NAME = "${TARGET_NAME}";
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 4;
+				WATCHOS_DEPLOYMENT_TARGET = 5.2;
+			};
+			name = Release;
+		};
 		D96A889222622B8000084230 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -329,6 +598,24 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		D94478AF2294D13500D2CDD9 /* Build configuration list for PBXNativeTarget "watchNlightDev Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D94478AD2294D13500D2CDD9 /* Debug */,
+				D94478AE2294D13500D2CDD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D94478B12294D13500D2CDD9 /* Build configuration list for PBXNativeTarget "watchNlightDev" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D94478AB2294D13500D2CDD9 /* Debug */,
+				D94478AC2294D13500D2CDD9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		D96A887D22622B7F00084230 /* Build configuration list for PBXProject "nLightDevTool" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

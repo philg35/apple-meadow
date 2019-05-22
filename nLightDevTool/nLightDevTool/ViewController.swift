@@ -7,7 +7,7 @@
 //
 
 import UIKit
-public var ipAddress = "10.0.0.1"
+public var ipAddress = "10.0.0.251"
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate
 {
@@ -147,12 +147,16 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
     {
-        return ((self.groupDict[deviceArray[section].parentPort] ?? "nWifi") + " (" + String(deviceArray[section].devicesOnPort.count) + " devices)")
+        return ((self.groupDict[deviceArray[section].parentPort] ?? "nLWired") + " (" + String(deviceArray[section].devicesOnPort.count) + " devices)")
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
     {
-        (view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = UIColor.green.withAlphaComponent(0.7)
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textColor = UIColor.white
+        header.backgroundView?.backgroundColor = UIColor.blue.withAlphaComponent(1)
+        
+        //(view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = UIColor.cyan.withAlphaComponent(0.5)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
