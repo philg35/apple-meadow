@@ -23,6 +23,7 @@
 		D96A888D22622B8000084230 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D96A888C22622B8000084230 /* Assets.xcassets */; };
 		D96A889022622B8000084230 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D96A888E22622B8000084230 /* LaunchScreen.storyboard */; };
 		D96A88982262432300084230 /* ParseXml.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96A88972262432300084230 /* ParseXml.swift */; };
+		D9997BAB22A7296D004A81F5 /* nlight-logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D9997BAA22A7296D004A81F5 /* nlight-logo.jpg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		D96A888F22622B8000084230 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D96A889122622B8000084230 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D96A88972262432300084230 /* ParseXml.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseXml.swift; sourceTree = "<group>"; };
+		D9997BAA22A7296D004A81F5 /* nlight-logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "nlight-logo.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 				D96A888C22622B8000084230 /* Assets.xcassets */,
 				D96934BC226E6FD0003D0665 /* nlight.png */,
 				D96A888E22622B8000084230 /* LaunchScreen.storyboard */,
+				D9997BAA22A7296D004A81F5 /* nlight-logo.jpg */,
 				D96A889122622B8000084230 /* Info.plist */,
 			);
 			path = nLightDevTool;
@@ -288,6 +291,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D96A889022622B8000084230 /* LaunchScreen.storyboard in Resources */,
+				D9997BAB22A7296D004A81F5 /* nlight-logo.jpg in Resources */,
 				D96A888D22622B8000084230 /* Assets.xcassets in Resources */,
 				D96A888B22622B7F00084230 /* Main.storyboard in Resources */,
 				D96934BD226E6FD0003D0665 /* nlight.png in Resources */,

@@ -23,7 +23,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                 <items>
                                     <navigationItem title="Devices.xml" id="Mtg-GX-0Yt">
-                                        <barButtonItem key="leftBarButtonItem" style="plain" id="KW7-0y-CLv">
+                                        <barButtonItem key="leftBarButtonItem" id="KW7-0y-CLv">
                                             <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="10.0.0.251" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" id="Nx1-0p-wl4">
                                                 <rect key="frame" x="20" y="7" width="97" height="30"/>
                                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
