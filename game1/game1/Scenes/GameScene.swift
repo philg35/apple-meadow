@@ -88,6 +88,7 @@ class GameScene: SKScene {
         } else {
             switchState = .red
         }
+        run(SKAction.playSoundFileNamed("Button-click-sound", waitForCompletion: false))
         
         colorSwitch.run(SKAction.rotate(byAngle: .pi/2, duration: 0.25))
     }
@@ -99,7 +100,8 @@ class GameScene: SKScene {
         }
         
         let menuScene = MenuScene(size: view!.bounds.size)
-        view!.presentScene(menuScene)
+        let transition = SKTransition.flipVertical(withDuration: 1.0)
+        view!.presentScene(menuScene, transition: transition)
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {

@@ -13,6 +13,7 @@ class MenuScene: SKScene {
         backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha: 1.0)
         addLogo()
         addLabels()
+        run(SKAction.playSoundFileNamed("Game-over-robotic-voice", waitForCompletion: false))
     }
     
     func addLogo() {
