@@ -17,6 +17,9 @@
 		D988709722D9464D005857AC /* MenuScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D988709622D9464D005857AC /* MenuScene.swift */; };
 		D9D41C2822DE9960001EFB8D /* Game-over-robotic-voice.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D41C2722DE9960001EFB8D /* Game-over-robotic-voice.mp3 */; };
 		D9D41C2A22DE9969001EFB8D /* Button-click-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9D41C2922DE9969001EFB8D /* Button-click-sound.mp3 */; };
+		D9D41C2C22DE9C9A001EFB8D /* IMG_0006.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D9D41C2B22DE9C9A001EFB8D /* IMG_0006.jpg */; };
+		D9D41C3022DFF94C001EFB8D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9D41C2E22DFF94C001EFB8D /* Assets.xcassets */; };
+		D9D41C3822DFFB6A001EFB8D /* starfield.sks in Resources */ = {isa = PBXBuildFile; fileRef = D9D41C3722DFFB6A001EFB8D /* starfield.sks */; };
 		D9F440AD22D94EE600F147FD /* Mario-coin-sound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9F440AC22D94EE600F147FD /* Mario-coin-sound.mp3 */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +36,9 @@
 		D988709622D9464D005857AC /* MenuScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuScene.swift; sourceTree = "<group>"; };
 		D9D41C2722DE9960001EFB8D /* Game-over-robotic-voice.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Game-over-robotic-voice.mp3"; sourceTree = "<group>"; };
 		D9D41C2922DE9969001EFB8D /* Button-click-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Button-click-sound.mp3"; sourceTree = "<group>"; };
+		D9D41C2B22DE9C9A001EFB8D /* IMG_0006.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = IMG_0006.jpg; sourceTree = "<group>"; };
+		D9D41C2E22DFF94C001EFB8D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D9D41C3722DFFB6A001EFB8D /* starfield.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = starfield.sks; sourceTree = "<group>"; };
 		D9F440AC22D94EE600F147FD /* Mario-coin-sound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mario-coin-sound.mp3"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -53,6 +59,7 @@
 				D9F440AC22D94EE600F147FD /* Mario-coin-sound.mp3 */,
 				D9D41C2722DE9960001EFB8D /* Game-over-robotic-voice.mp3 */,
 				D9D41C2922DE9969001EFB8D /* Button-click-sound.mp3 */,
+				D9D41C2B22DE9C9A001EFB8D /* IMG_0006.jpg */,
 				D988707722D7EE7D005857AC /* game1 */,
 				D988707622D7EE7D005857AC /* Products */,
 			);
@@ -110,6 +117,8 @@
 		D988709322D936C4005857AC /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				D9D41C2E22DFF94C001EFB8D /* Assets.xcassets */,
+				D9D41C3722DFFB6A001EFB8D /* starfield.sks */,
 			);
 			path = Assets;
 			sourceTree = "<group>";
@@ -176,8 +185,11 @@
 				D9D41C2A22DE9969001EFB8D /* Button-click-sound.mp3 in Resources */,
 				D988708422D7EE7D005857AC /* Main.storyboard in Resources */,
 				D988708622D7EE7E005857AC /* Assets.xcassets in Resources */,
+				D9D41C2C22DE9C9A001EFB8D /* IMG_0006.jpg in Resources */,
+				D9D41C3822DFFB6A001EFB8D /* starfield.sks in Resources */,
 				D9F440AD22D94EE600F147FD /* Mario-coin-sound.mp3 in Resources */,
 				D988708922D7EE7E005857AC /* LaunchScreen.storyboard in Resources */,
+				D9D41C3022DFF94C001EFB8D /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

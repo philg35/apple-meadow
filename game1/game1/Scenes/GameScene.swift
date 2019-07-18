@@ -30,6 +30,8 @@ class GameScene: SKScene {
     let scoreLabel = SKLabelNode(text: "0")
     var score = 0
     
+    var starfield: SKEmitterNode!
+    
     override func didMove(to view: SKView) {
         setupPhysics()
         layoutScene()
@@ -37,12 +39,18 @@ class GameScene: SKScene {
     }
     
     func setupPhysics() {
-        physicsWorld.gravity = CGVector(dx: 0.0, dy: -4.0)
+        physicsWorld.gravity = CGVector(dx: 0.0, dy: -3.0)
         physicsWorld.contactDelegate = self
     }
     
     func layoutScene() {
         backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha: 1.0)
+        starfield = SKEmitterNode(fileNamed: "starfield")
+        starfield.position = CGPoint(x: frame.minX, y: frame.maxY)
+        starfield.advanceSimulationTime(10)
+        addChild(starfield)
+        
+        starfield.zPosition = ZPositions.label
         
         colorSwitch = SKSpriteNode(imageNamed: "ColorCircle")
         colorSwitch.size = CGSize(width: frame.size.width/3, height: frame.size.width/3)
@@ -103,11 +111,10 @@ class GameScene: SKScene {
         let transition = SKTransition.flipVertical(withDuration: 1.0)
         view!.presentScene(menuScene, transition: transition)
     }
-    
+        
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         turnWheel()
     }
-    
 }
 
 extension GameScene: SKPhysicsContactDelegate {
