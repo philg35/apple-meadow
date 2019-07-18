@@ -39,7 +39,7 @@ class GameScene: SKScene {
     }
     
     func setupPhysics() {
-        physicsWorld.gravity = CGVector(dx: 0.0, dy: -3.0)
+        physicsWorld.gravity = CGVector(dx: 0.0, dy: -2.0)
         physicsWorld.contactDelegate = self
     }
     
@@ -111,6 +111,13 @@ class GameScene: SKScene {
         let transition = SKTransition.flipVertical(withDuration: 1.0)
         view!.presentScene(menuScene, transition: transition)
     }
+    
+    func animate(sprite: SKSpriteNode) {
+        let fadeOut = SKAction.fadeOut(withDuration: 0.25)
+        let fadeIn = SKAction.fadeIn(withDuration: 0.25)
+        let sequence = SKAction.sequence([fadeOut, fadeIn])
+        sprite.run(SKAction.repeatForever(sequence))
+    }
         
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         turnWheel()
@@ -126,6 +133,31 @@ extension GameScene: SKPhysicsContactDelegate {
                 if currentColorIndex == switchState.rawValue {
                     run(SKAction.playSoundFileNamed("Mario-coin-sound", waitForCompletion: false))
                     score += 1
+                    
+                    if score == 5 {
+                        physicsWorld.gravity = CGVector(dx: 0.0, dy: -3.0)
+                    }
+                    
+                    if score == 10 {
+                        physicsWorld.gravity = CGVector(dx: 0.0, dy: -4.0)
+                    }
+                    
+                    if score == 15 {
+                        animate(sprite: colorSwitch)
+                    }
+                    
+                    if score == 20 {
+                        physicsWorld.gravity = CGVector(dx: 0.0, dy: -5.0)
+                    }
+                    
+                    if score == 25 {
+                        physicsWorld.gravity = CGVector(dx: 0.0, dy: -6.0)
+                    }
+                    
+                    if score == 25 {
+                        physicsWorld.gravity = CGVector(dx: 0.0, dy: -7.0)
+                    }
+                    
                     updateScoreLabel()
                     ball.run(SKAction.fadeOut(withDuration: 0.25), completion: {
                         ball.removeFromParent()
