@@ -20,8 +20,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             scoreLabel.text = "Score: \(score)"
         }
     }
+    var shotsLabel: SKLabelNode!
+    var shots: Int = 0 {
+        didSet {
+            shotsLabel.text = "Shots: \(shots)"
+        }
+    }
     var gameTimer: Timer!
-    var possibleAliens = ["alien", "alien2", "alien3"]
+    var possibleAliens = ["alien", "alien2", "alien3", "spaceship"]
     
     let motionManager = CMMotionManager()
     var xAcceleration: CGFloat = 0
@@ -47,10 +53,18 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         scoreLabel = SKLabelNode(text: "Score: 0")
         scoreLabel.position = CGPoint(x: 100, y: self.frame.size.height - 60)
         scoreLabel.fontName = "AmericanTypewriter-Bold"
-        scoreLabel.fontSize = 36
+        scoreLabel.fontSize = 24
         scoreLabel.fontColor = UIColor.white
         score = 0
         self.addChild(scoreLabel)
+        
+        shotsLabel = SKLabelNode(text: "Shots: 0")
+        shotsLabel.position = CGPoint(x: 270, y: self.frame.size.height - 60)
+        shotsLabel.fontName = "AmericanTypewriter-Bold"
+        shotsLabel.fontSize = 24
+        shotsLabel.fontColor = UIColor.white
+        shots = 0
+        self.addChild(shotsLabel)
         
         gameTimer = Timer.scheduledTimer(timeInterval: 0.75, target: self, selector: #selector(addAlien), userInfo: nil, repeats: true)
         
@@ -88,6 +102,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func fireTorpedo() {
+        shots += 1
         self.run(SKAction.playSoundFileNamed("torpedo.mp3", waitForCompletion: false))
         let torpedoNode = SKSpriteNode(imageNamed: "torpedo")
         torpedoNode.position = player.position
@@ -138,7 +153,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.run(SKAction.wait(forDuration: 2)) {
             explosion.removeFromParent()
         }
-        score += 5
+        score += 1
         
     }
     

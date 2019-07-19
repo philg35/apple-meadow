@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "spaceShooter/GameScene.swift"
-            timestampString = "585193057.528522"
+            timestampString = "585270859.559538"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "123"
-            endingLineNumber = "123"
+            startingLineNumber = "138"
+            endingLineNumber = "138"
             landmarkName = "didBegin(_:)"
             landmarkType = "7">
          </BreakpointContent>
