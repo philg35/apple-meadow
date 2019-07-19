@@ -8,6 +8,7 @@
 
 import SpriteKit
 import GameplayKit
+import CoreMotion
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
@@ -22,6 +23,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var gameTimer: Timer!
     var possibleAliens = ["alien", "alien2", "alien3"]
     
+    let motionManager = CMMotionManager()
+    var xAcceleration: CGFloat = 0
+        
     override func didMove(to view: SKView) {
         layoutScene()
     }
@@ -50,6 +54,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         gameTimer = Timer.scheduledTimer(timeInterval: 0.75, target: self, selector: #selector(addAlien), userInfo: nil, repeats: true)
         
+        motionManager.accelerometerUpdateInterval = 0.2
+        motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data: CMAccelerometerData?, error: Error?) in
+            if let accelerometerData = data {
+                let acceleration = accelerometerData.acceleration
+                self.xAcceleration = CGFloat(acceleration.x) * 0.75 + self.xAcceleration * 0.25
+            }
+        }
     }
     
     @objc func addAlien() {
@@ -98,7 +109,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func didBegin(_ contact: SKPhysicsContact) {
-        print("physics contact")
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
         
@@ -130,6 +140,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         score += 5
         
+    }
+    
+    override func didSimulatePhysics() {
+        player.position.x += xAcceleration * 50
+        if player.position.x < 0 {
+            player.position.x = 0
+            //player.position = CGPoint(x: self.size.width + 20, y: player.position.y)
+        }else if player.position.x > self.size.width {
+            player.position.x = self.size.width
+            //player.position = CGPoint(x: -20, y: player.position.y)
+        }
     }
     
     override func update(_ currentTime: TimeInterval) {
