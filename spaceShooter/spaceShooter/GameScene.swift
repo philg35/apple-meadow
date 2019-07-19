@@ -27,7 +27,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func layoutScene() {
-        starfield = SKEmitterNode(fileNamed: "Starfield")
+        starfield = SKEmitterNode(fileNamed: "starfield.sks")
         starfield.position = CGPoint(x: frame.minX, y: frame.maxY)
         starfield.advanceSimulationTime(10)
         self.addChild(starfield)
@@ -98,10 +98,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     
     func didBegin(_ contact: SKPhysicsContact) {
+        print("physics contact")
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
         
-        if contact.bodyA.categoryBitMask < contact.bodyB.categoryBitMask {
+        if contact.bodyA.categoryBitMask > contact.bodyB.categoryBitMask {
             firstBody = contact.bodyA
             secondBody = contact.bodyB
         } else {
