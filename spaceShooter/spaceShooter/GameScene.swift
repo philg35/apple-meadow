@@ -10,6 +10,20 @@ import SpriteKit
 import GameplayKit
 import CoreMotion
 
+enum PhysicsCategories {
+    static let none: UInt32 = 0
+    static let alienCategory: UInt32 = 0x1 << 1
+    static let photonTorpedoCategory: UInt32 = 0x1 << 2
+    static let playerShipCategory: UInt32 = 0x1 << 3
+}
+
+enum ZPositions {
+    static let background: CGFloat = -1
+    static let label: CGFloat = 0
+    static let ball: CGFloat = 1
+    static let colorSwitch: CGFloat = 2
+}
+
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var starfield: SKEmitterNode!
@@ -37,18 +51,26 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func layoutScene() {
-        starfield = SKEmitterNode(fileNamed: "starfield.sks")
-        starfield.position = CGPoint(x: frame.minX, y: frame.maxY)
-        starfield.advanceSimulationTime(10)
-        self.addChild(starfield)
-        starfield.zPosition = ZPositions.background
-        
-        player = SKSpriteNode(imageNamed: "shuttle")
-        player.position = CGPoint(x: self.frame.size.width / 2, y: player.size.height / 2 + 20)
-        self.addChild(player)
-        
         self.physicsWorld.gravity = CGVector(dx: 0, dy: 0)
         self.physicsWorld.contactDelegate = self
+        
+//        starfield = SKEmitterNode(fileNamed: "starfield.sks")
+//        starfield.position = CGPoint(x: frame.minX, y: frame.maxY)
+//        starfield.advanceSimulationTime(10)
+//        self.addChild(starfield)
+//        starfield.zPosition = ZPositions.background
+        
+        player = SKSpriteNode(imageNamed: "shuttle")
+        player.position = CGPoint(x: self.frame.size.width / 2, y: player.size.height / 2 + 50)
+        
+        player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
+        player.physicsBody?.isDynamic = true
+        player.physicsBody?.categoryBitMask = PhysicsCategories.playerShipCategory
+        player.physicsBody?.contactTestBitMask = PhysicsCategories.alienCategory
+        player.physicsBody?.collisionBitMask = 0
+        self.addChild(player)
+        
+        
         
         scoreLabel = SKLabelNode(text: "Score: 0")
         scoreLabel.position = CGPoint(x: 100, y: self.frame.size.height - 60)
@@ -66,7 +88,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         shots = 0
         self.addChild(shotsLabel)
         
-        gameTimer = Timer.scheduledTimer(timeInterval: 0.75, target: self, selector: #selector(addAlien), userInfo: nil, repeats: true)
+        gameTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(addAlien), userInfo: nil, repeats: true)
         
         motionManager.accelerometerUpdateInterval = 0.2
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data: CMAccelerometerData?, error: Error?) in
@@ -87,7 +109,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         alien.physicsBody?.isDynamic = true
         alien.physicsBody?.categoryBitMask = PhysicsCategories.alienCategory
         alien.physicsBody?.contactTestBitMask = PhysicsCategories.photonTorpedoCategory
-        alien.physicsBody?.collisionBitMask = 0
+        alien.physicsBody?.collisionBitMask = PhysicsCategories.playerShipCategory
         self.addChild(alien)
         let animationDuration: TimeInterval = 6
         var actionArray = [SKAction]()

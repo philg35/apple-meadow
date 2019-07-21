@@ -27,8 +27,19 @@ class GameScene: SKScene {
     var switchState = SwitchState.red
     var currentColorIndex: Int?
     
-    let scoreLabel = SKLabelNode(text: "0")
-    var score = 0
+    var scoreLabel: SKLabelNode!
+    var score: Int = 0 {
+        didSet {
+            scoreLabel.text = "\(score)"
+        }
+    }
+    
+    var levelLabel: SKLabelNode!
+    var level: Int = 1 {
+        didSet {
+            levelLabel.text = "Level: \(level)"
+        }
+    }
     
     var starfield: SKEmitterNode!
     
@@ -45,12 +56,12 @@ class GameScene: SKScene {
     
     func layoutScene() {
         backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha: 1.0)
-        starfield = SKEmitterNode(fileNamed: "starfield")
-        starfield.position = CGPoint(x: frame.minX, y: frame.maxY)
-        starfield.advanceSimulationTime(10)
-        addChild(starfield)
-        
-        starfield.zPosition = ZPositions.label
+//        starfield = SKEmitterNode(fileNamed: "starfield")
+//        starfield.position = CGPoint(x: frame.minX, y: frame.maxY)
+//        starfield.advanceSimulationTime(10)
+//        addChild(starfield)
+//
+//        starfield.zPosition = ZPositions.label
         
         colorSwitch = SKSpriteNode(imageNamed: "ColorCircle")
         colorSwitch.size = CGSize(width: frame.size.width/3, height: frame.size.width/3)
@@ -61,6 +72,7 @@ class GameScene: SKScene {
         colorSwitch.physicsBody?.isDynamic = false
         addChild(colorSwitch)
         
+        scoreLabel = SKLabelNode(text: "0")
         scoreLabel.fontName = "AvenirNext-Bold"
         scoreLabel.fontSize = 60.0
         scoreLabel.fontColor = UIColor.white
@@ -68,11 +80,15 @@ class GameScene: SKScene {
         scoreLabel.zPosition = ZPositions.label
         addChild(scoreLabel)
         
+        levelLabel = SKLabelNode(text: "Shots: 0")
+        levelLabel.position = CGPoint(x: 270, y: self.frame.size.height - 60)
+        levelLabel.fontName = "AvenirNext-Bold"
+        levelLabel.fontSize = 24
+        levelLabel.fontColor = UIColor.white
+        level = 1
+        self.addChild(levelLabel)
+        
         spawnBall()
-    }
-    
-    func updateScoreLabel() {
-        scoreLabel.text = "\(score)"
     }
     
     func spawnBall() {
@@ -118,6 +134,15 @@ class GameScene: SKScene {
         let sequence = SKAction.sequence([fadeOut, fadeIn])
         sprite.run(SKAction.repeatForever(sequence))
     }
+    
+    func updateLabel(label: SKLabelNode) {
+        let moveCenter = SKAction.move(to: CGPoint(x: frame.midX, y: frame.midY + 100), duration: 0.25)
+        let moveBack = SKAction.move(to: CGPoint(x: 270, y: self.frame.size.height - 60), duration: 0.25)
+        let scaleUp = SKAction.scale(to: 3.0, duration: 0.25)
+        let scaleDown = SKAction.scale(to: 1.0, duration: 0.1)
+        let sequence1 = SKAction.sequence([moveCenter, scaleUp, scaleDown, moveBack])
+        label.run(SKAction.repeat(sequence1, count: 1))
+    }
         
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         turnWheel()
@@ -136,29 +161,40 @@ extension GameScene: SKPhysicsContactDelegate {
                     
                     if score == 5 {
                         physicsWorld.gravity = CGVector(dx: 0.0, dy: -3.0)
+                        level += 1
+                        updateLabel(label: levelLabel)
                     }
                     
                     if score == 10 {
                         physicsWorld.gravity = CGVector(dx: 0.0, dy: -4.0)
+                        level += 1
+                        updateLabel(label: levelLabel)
                     }
                     
                     if score == 15 {
                         animate(sprite: colorSwitch)
+                        level += 1
+                        updateLabel(label: levelLabel)
                     }
                     
                     if score == 20 {
                         physicsWorld.gravity = CGVector(dx: 0.0, dy: -5.0)
+                        level += 1
+                        updateLabel(label: levelLabel)
                     }
                     
                     if score == 25 {
                         physicsWorld.gravity = CGVector(dx: 0.0, dy: -6.0)
+                        level += 1
+                        updateLabel(label: levelLabel)
                     }
                     
-                    if score == 25 {
+                    if score == 30 {
                         physicsWorld.gravity = CGVector(dx: 0.0, dy: -7.0)
+                        level += 1
+                        updateLabel(label: levelLabel)
                     }
                     
-                    updateScoreLabel()
                     ball.run(SKAction.fadeOut(withDuration: 0.25), completion: {
                         ball.removeFromParent()
                         self.spawnBall()
