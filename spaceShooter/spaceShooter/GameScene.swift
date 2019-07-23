@@ -199,11 +199,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if (firstBody.categoryBitMask & PhysicsCategories.photonTorpedoCategory) != 0 && (secondBody.categoryBitMask & PhysicsCategories.alienCategory) != 0 {
-            torpedoDidCollideWithAlien(torpedoNode: firstBody.node as! SKSpriteNode, alienNode: secondBody.node as! SKSpriteNode)
-        }
-        
-        if (firstBody.categoryBitMask & PhysicsCategories.playerShipCategory) != 0 && (secondBody.categoryBitMask & PhysicsCategories.alienCategory) != 0 {
-            shipDidCollideWithAlien(shipNode: firstBody.node as! SKSpriteNode, alienNode: secondBody.node as! SKSpriteNode)
+            if let torpedoTest = firstBody.node as! SKSpriteNode?
+            {
+                if let alienTest = secondBody.node as! SKSpriteNode?
+                {
+                    torpedoDidCollideWithAlien(torpedoNode: torpedoTest, alienNode: alienTest)
+                }
+            }
+        } else if (firstBody.categoryBitMask & PhysicsCategories.playerShipCategory) != 0 && (secondBody.categoryBitMask & PhysicsCategories.alienCategory) != 0 {
+            if let shipTest = firstBody.node as! SKSpriteNode?
+            {
+                if let alienTest = secondBody.node as! SKSpriteNode?
+                {
+                    shipDidCollideWithAlien(shipNode: shipTest, alienNode: alienTest)
+                }
+            }
         }
     }
     
@@ -242,12 +252,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func didSimulatePhysics() {
         player.position.x += xAcceleration * 50
-        if player.position.x < -20 {
-            //player.position.x = 0
-            player.position = CGPoint(x: self.size.width + 20, y: player.position.y)
+        if player.position.x < 0 {
+            player.position.x = 0
+            //player.position = CGPoint(x: self.size.width + 20, y: player.position.y)
         }else if player.position.x > self.size.width {
-            //player.position.x = self.size.width
-            player.position = CGPoint(x: -20, y: player.position.y)
+            player.position.x = self.size.width
+            //player.position = CGPoint(x: -20, y: player.position.y)
         }
     }
     
