@@ -54,7 +54,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     var gameTimer: Timer!
-    var possibleAliens = ["alien", "alien2", "alien3", "spaceship"]
+    var possibleAliens = ["starwars1", "starwars2", "deathstar", "deathstar2", "spaceship"]
     
     let motionManager = CMMotionManager()
     var xAcceleration: CGFloat = 0
@@ -73,7 +73,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.addChild(starfield)
         starfield.zPosition = ZPositions.background
         
-        player = SKSpriteNode(imageNamed: "shuttle")
+        player = SKSpriteNode(imageNamed: "spaceship4")
         player.position = CGPoint(x: self.frame.size.width / 2, y: player.size.height / 2 + 50)
         
         player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
