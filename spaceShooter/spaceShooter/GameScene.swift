@@ -52,6 +52,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             crashesLabel.text = "Crashes: \(crashes)"
         }
     }
+    var timeSeconds: Int = 0
+    var score: Int = 0
     
     var gameTimer: Timer!
     var possibleAliens = ["starwars1", "starwars2", "deathstar", "deathstar2", "spaceship"]
@@ -133,6 +135,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     @objc func addAlien() {
+        timeSeconds += 1
+
         possibleAliens = GKRandomSource.sharedRandom().arrayByShufflingObjects(in: possibleAliens) as! [String]
         let alien = SKSpriteNode(imageNamed: possibleAliens[0])
         let randomAlienPosition = GKRandomDistribution(lowestValue: 0, highestValue: Int(frame.maxX))
@@ -263,5 +267,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        if (timeSeconds > 25)
+        {
+            UserDefaults.standard.set(hits, forKey: "Hits")
+            UserDefaults.standard.set(shots, forKey: "Shots")
+            UserDefaults.standard.set(misses, forKey: "Misses")
+            UserDefaults.standard.set(crashes, forKey: "Crashes")
+            
+            let endScene = EndScene(size: view!.bounds.size)
+            let transition = SKTransition.flipVertical(withDuration: 1.0)
+            view!.presentScene(endScene, transition: transition)
+        }
     }
 }
