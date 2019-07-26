@@ -125,11 +125,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         gameTimer = Timer.scheduledTimer(timeInterval: 1.0, target: self, selector: #selector(addAlien), userInfo: nil, repeats: true)
         
-        motionManager.accelerometerUpdateInterval = 0.2
+        motionManager.accelerometerUpdateInterval = 0.1
         motionManager.startAccelerometerUpdates(to: OperationQueue.current!) { (data: CMAccelerometerData?, error: Error?) in
             if let accelerometerData = data {
                 let acceleration = accelerometerData.acceleration
-                self.xAcceleration = CGFloat(acceleration.x) * 0.75 + self.xAcceleration * 0.25
+                self.xAcceleration = CGFloat(acceleration.x) * 0.90 + self.xAcceleration * 0.10
             }
         }
     }
@@ -255,7 +255,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didSimulatePhysics() {
-        player.position.x += xAcceleration * 50
+        player.position.x += xAcceleration * 75
         if player.position.x < 0 {
             player.position.x = 0
             //player.position = CGPoint(x: self.size.width + 20, y: player.position.y)
