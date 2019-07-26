@@ -20,14 +20,15 @@ enum PhysicsCategories {
 enum ZPositions {
     static let background: CGFloat = -1
     static let label: CGFloat = 0
-    static let ball: CGFloat = 1
-    static let colorSwitch: CGFloat = 2
+    static let torpedo: CGFloat = 1
+    static let player: CGFloat = 2
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var starfield: SKEmitterNode!
     var player: SKSpriteNode!
+    var jetstream: SKEmitterNode!
     var hitsLabel: SKLabelNode!
     var hits: Int = 0 {
         didSet {
@@ -76,7 +77,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         starfield.zPosition = ZPositions.background
         
         player = SKSpriteNode(imageNamed: "spaceship4")
-        player.position = CGPoint(x: self.frame.size.width / 2, y: player.size.height / 2 + 50)
+        player.position = CGPoint(x: self.frame.size.width / 2, y: player.size.height / 2 + 60)
         
         player.physicsBody = SKPhysicsBody(rectangleOf: player.size)
         player.physicsBody?.isDynamic = true
@@ -84,7 +85,12 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         player.physicsBody?.contactTestBitMask = PhysicsCategories.alienCategory
         player.physicsBody?.collisionBitMask = 0
         self.addChild(player)
+        player.zPosition = ZPositions.player
         
+        jetstream = SKEmitterNode(fileNamed: "jetstream.sks")
+        jetstream.position = CGPoint(x: 0, y: -player.size.height/2)
+        player.addChild(jetstream)
+        jetstream.zPosition = ZPositions.torpedo
         
         
         hitsLabel = SKLabelNode(text: "Hits: 0")
@@ -171,22 +177,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func fireTorpedo() {
         shots += 1
         self.run(SKAction.playSoundFileNamed("torpedo.mp3", waitForCompletion: false))
-        let torpedoNode = SKSpriteNode(imageNamed: "torpedo")
-        torpedoNode.position = player.position
-        torpedoNode.position.y += 5
-        torpedoNode.physicsBody = SKPhysicsBody(circleOfRadius: torpedoNode.size.width / 2)
-        torpedoNode.physicsBody?.isDynamic = true
-        torpedoNode.physicsBody?.categoryBitMask = PhysicsCategories.photonTorpedoCategory
-        torpedoNode.physicsBody?.contactTestBitMask = PhysicsCategories.alienCategory
-        torpedoNode.physicsBody?.collisionBitMask = 0
-        torpedoNode.physicsBody?.usesPreciseCollisionDetection = true
-        self.addChild(torpedoNode)
-        let animationDuration: TimeInterval = 0.3
-        var actionArray = [SKAction]()
-        
-        actionArray.append(SKAction.move(to: CGPoint(x: player.position.x, y: self.frame.size.height + 10), duration: animationDuration))
-        actionArray.append(SKAction.removeFromParent())
-        torpedoNode.run(SKAction.sequence(actionArray))
+        let positions = [-50, 0, 50]
+        for p in positions
+        {
+            let torpedoNode = SKSpriteNode(imageNamed: "torpedo")
+            torpedoNode.position = self.player.position
+            torpedoNode.position.y += 5
+            torpedoNode.physicsBody = SKPhysicsBody(circleOfRadius: torpedoNode.size.width / 2)
+            torpedoNode.physicsBody?.isDynamic = true
+            torpedoNode.physicsBody?.categoryBitMask = PhysicsCategories.photonTorpedoCategory
+            torpedoNode.physicsBody?.contactTestBitMask = PhysicsCategories.alienCategory
+            torpedoNode.physicsBody?.collisionBitMask = 0
+            torpedoNode.physicsBody?.usesPreciseCollisionDetection = true
+            self.addChild(torpedoNode)
+            let animationDuration: TimeInterval = 0.3
+            var actionArray = [SKAction]()
+            actionArray.append(SKAction.move(to: CGPoint(x: self.player.position.x + CGFloat(p), y: self.frame.size.height + 10), duration: animationDuration))
+            actionArray.append(SKAction.removeFromParent())
+            torpedoNode.run(SKAction.sequence(actionArray))
+        }
     }
     
     
