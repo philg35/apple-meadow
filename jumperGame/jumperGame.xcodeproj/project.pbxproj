@@ -17,6 +17,7 @@
 		D9210A4F22EC73B300F1B1D2 /* mario.png in Resources */ = {isa = PBXBuildFile; fileRef = D9210A4E22EC73B300F1B1D2 /* mario.png */; };
 		D9210A5122EC747E00F1B1D2 /* block.png in Resources */ = {isa = PBXBuildFile; fileRef = D9210A5022EC747E00F1B1D2 /* block.png */; };
 		D93D31E922ECA7CF006AB79F /* peach.png in Resources */ = {isa = PBXBuildFile; fileRef = D93D31E822ECA7CF006AB79F /* peach.png */; };
+		D93D31ED22ECE8A4006AB79F /* zoom.png in Resources */ = {isa = PBXBuildFile; fileRef = D93D31EC22ECE8A4006AB79F /* zoom.png */; };
 		D9B5188722ECA2E200A452FF /* SnowParticle.sks in Resources */ = {isa = PBXBuildFile; fileRef = D9B5188522ECA2E200A452FF /* SnowParticle.sks */; };
 		D9B5188822ECA2E200A452FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9B5188622ECA2E200A452FF /* Assets.xcassets */; };
 		D9D9940722EC7B090042B219 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D9D9940622EC7B090042B219 /* arrow.png */; };
@@ -35,6 +36,7 @@
 		D9210A4E22EC73B300F1B1D2 /* mario.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = mario.png; sourceTree = "<group>"; };
 		D9210A5022EC747E00F1B1D2 /* block.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = block.png; sourceTree = "<group>"; };
 		D93D31E822ECA7CF006AB79F /* peach.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = peach.png; sourceTree = "<group>"; };
+		D93D31EC22ECE8A4006AB79F /* zoom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = zoom.png; sourceTree = "<group>"; };
 		D9B5188522ECA2E200A452FF /* SnowParticle.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = SnowParticle.sks; sourceTree = "<group>"; };
 		D9B5188622ECA2E200A452FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D9D9940622EC7B090042B219 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
@@ -76,6 +78,7 @@
 				D93D31E822ECA7CF006AB79F /* peach.png */,
 				D9210A5022EC747E00F1B1D2 /* block.png */,
 				D9D9940622EC7B090042B219 /* arrow.png */,
+				D93D31EC22ECE8A4006AB79F /* zoom.png */,
 				D9210A3622EC6F8F00F1B1D2 /* AppDelegate.swift */,
 				D9210A3822EC6F8F00F1B1D2 /* GameScene.sks */,
 				D9210A3C22EC6F8F00F1B1D2 /* GameScene.swift */,
@@ -151,6 +154,7 @@
 				D9210A5122EC747E00F1B1D2 /* block.png in Resources */,
 				D9210A3922EC6F8F00F1B1D2 /* GameScene.sks in Resources */,
 				D9D9940722EC7B090042B219 /* arrow.png in Resources */,
+				D93D31ED22ECE8A4006AB79F /* zoom.png in Resources */,
 				D9B5188822ECA2E200A452FF /* Assets.xcassets in Resources */,
 				D9210A4F22EC73B300F1B1D2 /* mario.png in Resources */,
 				D9210A4422EC6F9000F1B1D2 /* Assets.xcassets in Resources */,

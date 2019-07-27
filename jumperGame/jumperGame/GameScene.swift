@@ -50,19 +50,32 @@ class GameScene: SKScene {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch:UITouch = touches.first!
         let positionInScene = touch.location(in: self)
-        let pl = player
-        let deltaX = positionInScene.x - (pl?.position.x)!
-        let deltaY = positionInScene.y - (pl?.position.y)!
-        if (deltaX > frame.maxX / 2) {
-            startMovingPlayerRight()
-            if (deltaY > frame.maxY / 2) {
-                jumpPlayer()
+        let touchedNode = self.atPoint(positionInScene)
+        if touchedNode.name == "player"{
+            if Int(camera!.xScale) < 2 {
+                camera?.xScale += 0.2
+                camera?.yScale += 0.2
+            }
+            else {
+                camera?.xScale = 0.8
+                camera?.yScale = 0.8
             }
         }
         else {
-            startMovingPlayerLeft()
-            if (deltaY > frame.maxY / 2) {
-                jumpPlayer()
+            let pl = player
+            let deltaX = positionInScene.x - (pl?.position.x)!
+            let deltaY = positionInScene.y - (pl?.position.y)!
+            if (deltaX > frame.maxX / 2) {
+                startMovingPlayerRight()
+                if (deltaY > frame.maxY / 2) {
+                    jumpPlayer()
+                }
+            }
+            else {
+                startMovingPlayerLeft()
+                if (deltaY > frame.maxY / 2) {
+                    jumpPlayer()
+                }
             }
         }
     }
