@@ -9,7 +9,7 @@
 import SpriteKit
 import GameplayKit
 
-class GameScene: SKScene {
+class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var entities = [GKEntity]()
     var jumped = false
@@ -21,6 +21,7 @@ class GameScene: SKScene {
         self.lastUpdateTime = 0
         player = self.childNode(withName: "player") as? SKSpriteNode
         cam = self.childNode(withName: "cameraSprite") as? SKCameraNode
+        self.physicsWorld.contactDelegate = self
     }
     
     func startMovingPlayerLeft () {
@@ -84,6 +85,52 @@ class GameScene: SKScene {
         endMovingPlayer()
     }
     
+    func didBegin(_ contact: SKPhysicsContact) {
+        var firstBody: SKPhysicsBody
+        var secondBody: SKPhysicsBody
+        print(contact.bodyA.categoryBitMask, contact.bodyB.categoryBitMask)
+        if contact.bodyA.categoryBitMask > contact.bodyB.categoryBitMask {
+            firstBody = contact.bodyA
+            secondBody = contact.bodyB
+        } else {
+            firstBody = contact.bodyB
+            secondBody = contact.bodyA
+        }
+        
+        if (firstBody.categoryBitMask & 2) != 0 && (secondBody.categoryBitMask & 1) != 0 {
+            print("got star")
+//            let endScene = WinScene(size: view!.bounds.size)
+//            let transition = SKTransition.flipVertical(withDuration: 1.0)
+//            view!.presentScene(endScene, transition: transition)
+            // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
+            // including entities and graphs.
+            if let scene = GKScene(fileNamed: "WinScene") {
+                
+                // Get the SKScene from the loaded GKScene
+                if let sceneNode = scene.rootNode as! WinScene? {
+                    
+                    // Copy gameplay related content over to the scene
+//                    sceneNode.entities = scene.entities
+                    //sceneNode.graphs = scene.graphs
+                    
+                    // Set the scale mode to scale to fit the window
+                    sceneNode.scaleMode = .aspectFill
+                    
+                    // Present the scene
+                    if let view = self.view {
+                        view.presentScene(sceneNode)
+                        
+                        view.ignoresSiblingOrder = true
+                        
+                        view.showsFPS = true
+                        view.showsNodeCount = true
+                    }
+                }
+            }
+        }
+    }
+
+    
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
         
@@ -113,3 +160,5 @@ class GameScene: SKScene {
         self.lastUpdateTime = currentTime
     }
 }
+
+
