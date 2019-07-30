@@ -88,7 +88,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     func didBegin(_ contact: SKPhysicsContact) {
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
-        print(contact.bodyA.categoryBitMask, contact.bodyB.categoryBitMask)
         if contact.bodyA.categoryBitMask > contact.bodyB.categoryBitMask {
             firstBody = contact.bodyA
             secondBody = contact.bodyB
@@ -96,37 +95,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             firstBody = contact.bodyB
             secondBody = contact.bodyA
         }
+        //print("contact", firstBody.categoryBitMask, secondBody.categoryBitMask, Date().timeIntervalSince1970)
         
         if (firstBody.categoryBitMask & 2) != 0 && (secondBody.categoryBitMask & 1) != 0 {
-            print("got star")
-//            let endScene = WinScene(size: view!.bounds.size)
-//            let transition = SKTransition.flipVertical(withDuration: 1.0)
-//            view!.presentScene(endScene, transition: transition)
-            // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
-            // including entities and graphs.
             if let scene = GKScene(fileNamed: "WinScene") {
-                
-                // Get the SKScene from the loaded GKScene
                 if let sceneNode = scene.rootNode as! WinScene? {
-                    
-                    // Copy gameplay related content over to the scene
-//                    sceneNode.entities = scene.entities
-                    //sceneNode.graphs = scene.graphs
-                    
-                    // Set the scale mode to scale to fit the window
                     sceneNode.scaleMode = .aspectFill
-                    
-                    // Present the scene
                     if let view = self.view {
                         view.presentScene(sceneNode)
-                        
                         view.ignoresSiblingOrder = true
-                        
                         view.showsFPS = true
                         view.showsNodeCount = true
                     }
                 }
             }
+        }
+        else if ((firstBody.categoryBitMask & 4) != 0 && (secondBody.categoryBitMask & 4294967295) != 0) {
+            //print("landed")
+            jumped = false
         }
     }
 
@@ -145,11 +131,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         // Update entities
         for entity in self.entities {
             entity.update(deltaTime: dt)
-        }
-        
-        if (player?.physicsBody?.velocity.dy == 0)
-        {
-            jumped = false
         }
         
         if let camera = cam, let pl = player {
