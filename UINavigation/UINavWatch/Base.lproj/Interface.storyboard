@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="14490.70" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="AgC-eL-Hgc">
+    <device id="watch38" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="watchOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="14490.21"/>
+    </dependencies>
+    <scenes>
+        <!--Interface Controller-->
+        <scene sceneID="aou-V4-d1y">
+            <objects>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="UINavWatch" customModuleProvider="target">
+                    <items>
+                        <button width="1" alignment="left" title="Next Screen" id="ic7-nN-kC6">
+                            <connections>
+                                <segue destination="6qd-EM-lmv" kind="push" identifier="hierarchical" id="Yge-Jt-89Y"/>
+                            </connections>
+                        </button>
+                        <button width="1" alignment="left" title="Display Screen" id="ITL-Sm-cEx">
+                            <connections>
+                                <segue destination="6qd-EM-lmv" kind="modal" identifier="pagebased" id="hpv-Fq-k26"/>
+                            </connections>
+                        </button>
+                    </items>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="70" y="292"/>
+        </scene>
+        <!--Second Interface Controller-->
+        <scene sceneID="Lxa-vt-I3v">
+            <objects>
+                <controller id="6qd-EM-lmv" customClass="SecondInterfaceController" customModule="UINavWatch_Extension">
+                    <items>
+                        <label alignment="left" text="Label" numberOfLines="0" id="usR-Gn-ZFY"/>
+                    </items>
+                    <connections>
+                        <outlet property="label" destination="usR-Gn-ZFY" id="SQt-03-BAp"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="445" y="292"/>
+        </scene>
+    </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="hpv-Fq-k26"/>
+    </inferredMetricsTieBreakers>
+</document>

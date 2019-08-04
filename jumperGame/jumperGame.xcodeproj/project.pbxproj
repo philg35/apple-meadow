@@ -25,6 +25,7 @@
 		D99C300B22EDE0A9000EC43B /* peach.png in Resources */ = {isa = PBXBuildFile; fileRef = D99C300D22EDE0A9000EC43B /* peach.png */; };
 		D99C300E22EDE0AE000EC43B /* mario.png in Resources */ = {isa = PBXBuildFile; fileRef = D99C301022EDE0AE000EC43B /* mario.png */; };
 		D9B5188822ECA2E200A452FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9B5188622ECA2E200A452FF /* Assets.xcassets */; };
+		D9BFEAAD22F4E7240037D078 /* MyTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = D9BFEAAC22F4E7240037D078 /* MyTileSet.sks */; };
 		D9D9940722EC7B090042B219 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D9D9940622EC7B090042B219 /* arrow.png */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		D99C300C22EDE0A9000EC43B /* Base */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Base; path = Base.lproj/peach.png; sourceTree = "<group>"; };
 		D99C300F22EDE0AE000EC43B /* Base */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Base; path = Base.lproj/mario.png; sourceTree = "<group>"; };
 		D9B5188622ECA2E200A452FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D9BFEAAC22F4E7240037D078 /* MyTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyTileSet.sks; sourceTree = "<group>"; };
 		D9D9940622EC7B090042B219 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -66,6 +68,7 @@
 		D9210A2A22EC6F8F00F1B1D2 = {
 			isa = PBXGroup;
 			children = (
+				D9BFEAAC22F4E7240037D078 /* MyTileSet.sks */,
 				D9B5188622ECA2E200A452FF /* Assets.xcassets */,
 				D9210A3522EC6F8F00F1B1D2 /* jumperGame */,
 				D9210A3422EC6F8F00F1B1D2 /* Products */,
@@ -176,6 +179,7 @@
 				D99C300E22EDE0AE000EC43B /* mario.png in Resources */,
 				D9210A4422EC6F9000F1B1D2 /* Assets.xcassets in Resources */,
 				D99C300A22ED347C000EC43B /* honeyHive.mp3 in Resources */,
+				D9BFEAAD22F4E7240037D078 /* MyTileSet.sks in Resources */,
 				D9210A4722EC6F9000F1B1D2 /* LaunchScreen.storyboard in Resources */,
 				D93D31F322ED1C9A006AB79F /* star3.png in Resources */,
 				D93D31F722ED244E006AB79F /* marioIcon.png in Resources */,
