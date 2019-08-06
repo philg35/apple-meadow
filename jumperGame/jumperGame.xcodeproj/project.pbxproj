@@ -19,6 +19,7 @@
 		D93D31F322ED1C9A006AB79F /* star3.png in Resources */ = {isa = PBXBuildFile; fileRef = D93D31F222ED1C9A006AB79F /* star3.png */; };
 		D93D31F522ED23FC006AB79F /* WinScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D93D31F422ED23FC006AB79F /* WinScene.sks */; };
 		D93D31F722ED244E006AB79F /* marioIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D93D31F622ED244E006AB79F /* marioIcon.png */; };
+		D993B80A22F9245D00260B02 /* vortex.png in Resources */ = {isa = PBXBuildFile; fileRef = D993B80922F9245D00260B02 /* vortex.png */; };
 		D99C300622ED2DBD000EC43B /* WinScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99C300522ED2DBD000EC43B /* WinScene.swift */; };
 		D99C300822ED31D0000EC43B /* starMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99C300722ED31D0000EC43B /* starMusic.mp3 */; };
 		D99C300A22ED347C000EC43B /* honeyHive.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99C300922ED347C000EC43B /* honeyHive.mp3 */; };
@@ -44,6 +45,7 @@
 		D93D31F222ED1C9A006AB79F /* star3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star3.png; sourceTree = "<group>"; };
 		D93D31F422ED23FC006AB79F /* WinScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = WinScene.sks; sourceTree = "<group>"; };
 		D93D31F622ED244E006AB79F /* marioIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marioIcon.png; sourceTree = "<group>"; };
+		D993B80922F9245D00260B02 /* vortex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vortex.png; sourceTree = "<group>"; };
 		D99C300522ED2DBD000EC43B /* WinScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinScene.swift; sourceTree = "<group>"; };
 		D99C300722ED31D0000EC43B /* starMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = starMusic.mp3; sourceTree = "<group>"; };
 		D99C300922ED347C000EC43B /* honeyHive.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = honeyHive.mp3; sourceTree = "<group>"; };
@@ -86,6 +88,7 @@
 		D9210A3522EC6F8F00F1B1D2 /* jumperGame */ = {
 			isa = PBXGroup;
 			children = (
+				D993B80922F9245D00260B02 /* vortex.png */,
 				D9301A4122EE56B500A79F8F /* greenplanet.png */,
 				D99C300722ED31D0000EC43B /* starMusic.mp3 */,
 				D99C300922ED347C000EC43B /* honeyHive.mp3 */,
@@ -169,6 +172,7 @@
 			files = (
 				D93D31F522ED23FC006AB79F /* WinScene.sks in Resources */,
 				D99C300B22EDE0A9000EC43B /* peach.png in Resources */,
+				D993B80A22F9245D00260B02 /* vortex.png in Resources */,
 				D9210A4222EC6F8F00F1B1D2 /* Main.storyboard in Resources */,
 				D99C300822ED31D0000EC43B /* starMusic.mp3 in Resources */,
 				D9210A5122EC747E00F1B1D2 /* block.png in Resources */,
