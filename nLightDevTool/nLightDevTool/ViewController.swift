@@ -201,6 +201,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 $0.localizedCaseInsensitiveCompare($1) == ComparisonResult.orderedAscending
             }
             
+            self.deviceArray.removeAll()    // clear all to start
             for parent in self.parentList {
                 var devs: [DevXml] = []
                 for device in p.items {
