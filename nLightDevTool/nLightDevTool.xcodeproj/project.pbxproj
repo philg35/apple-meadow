@@ -23,6 +23,7 @@
 		D96A888D22622B8000084230 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D96A888C22622B8000084230 /* Assets.xcassets */; };
 		D96A889022622B8000084230 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D96A888E22622B8000084230 /* LaunchScreen.storyboard */; };
 		D96A88982262432300084230 /* ParseXml.swift in Sources */ = {isa = PBXBuildFile; fileRef = D96A88972262432300084230 /* ParseXml.swift */; };
+		D99101CF22FA46BF006E4711 /* TcpSocketConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99101CE22FA46BF006E4711 /* TcpSocketConnection.swift */; };
 		D9997BAB22A7296D004A81F5 /* nlight-logo.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D9997BAA22A7296D004A81F5 /* nlight-logo.jpg */; };
 /* End PBXBuildFile section */
 
@@ -90,6 +91,7 @@
 		D96A888F22622B8000084230 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D96A889122622B8000084230 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D96A88972262432300084230 /* ParseXml.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseXml.swift; sourceTree = "<group>"; };
+		D99101CE22FA46BF006E4711 /* TcpSocketConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TcpSocketConnection.swift; sourceTree = "<group>"; };
 		D9997BAA22A7296D004A81F5 /* nlight-logo.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "nlight-logo.jpg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -159,6 +161,7 @@
 			children = (
 				D96A888522622B7F00084230 /* AppDelegate.swift */,
 				D96A888722622B7F00084230 /* ViewController.swift */,
+				D99101CE22FA46BF006E4711 /* TcpSocketConnection.swift */,
 				D96A88972262432300084230 /* ParseXml.swift */,
 				D96A888922622B7F00084230 /* Main.storyboard */,
 				D9610F072269509B0058CE1D /* CustomTableViewCell.swift */,
@@ -317,6 +320,7 @@
 			files = (
 				D96A88982262432300084230 /* ParseXml.swift in Sources */,
 				D96A888822622B7F00084230 /* ViewController.swift in Sources */,
+				D99101CF22FA46BF006E4711 /* TcpSocketConnection.swift in Sources */,
 				D9610F082269509B0058CE1D /* CustomTableViewCell.swift in Sources */,
 				D96A888622622B7F00084230 /* AppDelegate.swift in Sources */,
 			);
