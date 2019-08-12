@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		3207CE1FD15D8E320A28436D /* Pods_tableviewSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36851AE2FF547D0C1BE575FB /* Pods_tableviewSwift.framework */; };
+		D93B79E42300DE24008DAA00 /* certBBD465.pem in Resources */ = {isa = PBXBuildFile; fileRef = D93B79E32300DE24008DAA00 /* certBBD465.pem */; };
+		D93B79E62300EA08008DAA00 /* caCertificate.crt in Resources */ = {isa = PBXBuildFile; fileRef = D93B79E52300EA08008DAA00 /* caCertificate.crt */; };
 		D9A59D1B22432F4A00BF31D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A59D1A22432F4A00BF31D6 /* AppDelegate.swift */; };
 		D9A59D1D22432F4A00BF31D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A59D1C22432F4A00BF31D6 /* ViewController.swift */; };
 		D9A59D2022432F4A00BF31D6 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9A59D1E22432F4A00BF31D6 /* Main.storyboard */; };
@@ -19,6 +21,8 @@
 /* Begin PBXFileReference section */
 		03ACF8DDD2651DAAD0262C3C /* Pods-tableviewSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tableviewSwift.debug.xcconfig"; path = "Target Support Files/Pods-tableviewSwift/Pods-tableviewSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		36851AE2FF547D0C1BE575FB /* Pods_tableviewSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tableviewSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D93B79E32300DE24008DAA00 /* certBBD465.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = certBBD465.pem; sourceTree = "<group>"; };
+		D93B79E52300EA08008DAA00 /* caCertificate.crt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = caCertificate.crt; sourceTree = "<group>"; };
 		D9A59D1722432F4A00BF31D6 /* tableviewSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tableviewSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9A59D1A22432F4A00BF31D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9A59D1C22432F4A00BF31D6 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -48,7 +52,6 @@
 				03ACF8DDD2651DAAD0262C3C /* Pods-tableviewSwift.debug.xcconfig */,
 				FB478F591DA29F009F75C510 /* Pods-tableviewSwift.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -81,6 +84,8 @@
 		D9A59D1922432F4A00BF31D6 /* tableviewSwift */ = {
 			isa = PBXGroup;
 			children = (
+				D93B79E32300DE24008DAA00 /* certBBD465.pem */,
+				D93B79E52300EA08008DAA00 /* caCertificate.crt */,
 				D9A59D1A22432F4A00BF31D6 /* AppDelegate.swift */,
 				D9A59D1C22432F4A00BF31D6 /* ViewController.swift */,
 				D9A59D1E22432F4A00BF31D6 /* Main.storyboard */,
@@ -152,9 +157,11 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D93B79E62300EA08008DAA00 /* caCertificate.crt in Resources */,
 				D9A59D2522432F4A00BF31D6 /* LaunchScreen.storyboard in Resources */,
 				D9A59D2222432F4A00BF31D6 /* Assets.xcassets in Resources */,
 				D9A59D2022432F4A00BF31D6 /* Main.storyboard in Resources */,
+				D93B79E42300DE24008DAA00 /* certBBD465.pem in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

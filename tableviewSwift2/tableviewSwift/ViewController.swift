@@ -14,6 +14,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet var labelMqtt: UILabel!
 
+    @IBAction func OnButtonPressed(_ sender: Any) {
+        mqtt.publish("nLight/version/2/status/device/00000020/pole/1/relay-state", withString: "{\"state\":true}", qos: .qos1, retained: false, dup: false)
+    }
+    
+    @IBAction func OffButtonPressed(_ sender: Any) {
+        mqtt.publish("nLight/version/2/status/device/00000020/pole/1/relay-state", withString: "{\"state\":false}", qos: .qos1, retained: false, dup: false)
+    }
     
     @IBOutlet weak var textView: UITextView!
     
@@ -65,6 +72,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         return cell
     }
     
+    
     func setUpMQTT() {
         let clientID = "CocoaMQTT-" //+ String(ProcessInfo().processIdentifier)
         mqtt = CocoaMQTT(clientID: clientID, host: "10.0.0.251", port: 8883)
@@ -73,13 +81,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         mqtt.willMessage = CocoaMQTTWill(topic: "/will", message: "dieout")
         mqtt.keepAlive = 60
         mqtt.enableSSL = true
-        mqtt.allowUntrustCACertificate = true
+        
+        //let clientCertArray = NSArray(contentsOfFile: "certBBD465.pem")
+        let clientCertArray = NSArray(contentsOfFile: "caCertificate.crt")
+        
+        var sslSettings: [String: NSObject] = [:]
+        sslSettings[kCFStreamSSLCertificates as String] = clientCertArray
+        
+        mqtt!.sslSettings = sslSettings
+        
+        //mqtt.allowUntrustCACertificate = true
         mqtt.connect()
         
         mqtt.delegate = self
     }
-
-
+    
 }
 
 extension ViewController: CocoaMQTTDelegate {
@@ -87,22 +103,18 @@ extension ViewController: CocoaMQTTDelegate {
     func mqtt(_ mqtt: CocoaMQTT, didConnect host: String, port: Int) {
         print("didConnect, yay")
         mqtt.subscribe("nLight/version/2/status/device/#", qos: CocoaMQTTQOS.qos1)
-        //mqtt.subscribe("#", qos: CocoaMQTTQOS.qos1)
-        
     }
     
     func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16 ) {
-        print("received message")
-        //print(message.string)
-        //if let msgTopic = message.topic {
-            if let msgString = message.string {
-                textView.text?.append(message.topic + " = " + msgString)
-            }
-        //}
+        print(message.topic, message.string as Any)
+        if let msgString = message.string {
+            textView.text?.append(message.topic + " = " + msgString)
+        }
     }
     
     // Other required methods for CocoaMQTTDelegate
     func mqtt(_ mqtt: CocoaMQTT, didReceive trust: SecTrust, completionHandler: @escaping (Bool) -> Void) {
+        print("didReceive trust!!!")
         completionHandler(true)
     }
     
@@ -112,13 +124,14 @@ extension ViewController: CocoaMQTTDelegate {
     }
     
     func mqtt(_ mqtt: CocoaMQTT, didPublishMessage message: CocoaMQTTMessage, id: UInt16) {
+        print("published ok")
     }
     
     func mqtt(_ mqtt: CocoaMQTT, didPublishAck id: UInt16) {
+        print("published ack ok")
     }
     
     func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopic topic: String) {
-        
     }
     
     func mqtt(_ mqtt: CocoaMQTT, didUnsubscribeTopic topic: String) {
