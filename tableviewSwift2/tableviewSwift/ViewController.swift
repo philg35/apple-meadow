@@ -15,11 +15,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     @IBOutlet var labelMqtt: UILabel!
 
     @IBAction func OnButtonPressed(_ sender: Any) {
-        mqtt.publish("nLight/version/2/status/device/00000020/pole/1/relay-state", withString: "{\"state\":true}", qos: .qos1, retained: false, dup: false)
+        mqtt.publish("nLight/version/2/control/device/00000020/pole/1/relay-state", withString: "{\"state\":true}", qos: .qos1, retained: false, dup: false)
     }
     
     @IBAction func OffButtonPressed(_ sender: Any) {
-        mqtt.publish("nLight/version/2/status/device/00000020/pole/1/relay-state", withString: "{\"state\":false}", qos: .qos1, retained: false, dup: false)
+        mqtt.publish("nLight/version/2/control/device/00000020/pole/1/relay-state", withString: "{\"state\":false}", qos: .qos1, retained: false, dup: false)
     }
     
     @IBOutlet weak var textView: UITextView!
@@ -74,7 +74,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     func setUpMQTT() {
-        let clientID = "CocoaMQTT-" //+ String(ProcessInfo().processIdentifier)
+        let clientID = "CocoaMQTT-" + String(ProcessInfo().processIdentifier)
         mqtt = CocoaMQTT(clientID: clientID, host: "10.0.0.251", port: 8883)
         mqtt.username = ""
         mqtt.password = ""
@@ -82,15 +82,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         mqtt.keepAlive = 60
         mqtt.enableSSL = true
         
-        //let clientCertArray = NSArray(contentsOfFile: "certBBD465.pem")
-        let clientCertArray = NSArray(contentsOfFile: "caCertificate.crt")
+//        let clientCertArray = NSArray(contentsOfFile: "caCertificate.crt")
+//
+//        var sslSettings: [String: NSObject] = [:]
+//        sslSettings[kCFStreamSSLCertificates as String] = clientCertArray
+//
+//        mqtt!.sslSettings = sslSettings
         
-        var sslSettings: [String: NSObject] = [:]
-        sslSettings[kCFStreamSSLCertificates as String] = clientCertArray
-        
-        mqtt!.sslSettings = sslSettings
-        
-        //mqtt.allowUntrustCACertificate = true
+        mqtt.allowUntrustCACertificate = true
         mqtt.connect()
         
         mqtt.delegate = self
