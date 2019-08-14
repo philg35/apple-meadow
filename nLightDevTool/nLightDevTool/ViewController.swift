@@ -31,8 +31,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     private var groupLabels: [DevXml] = []
     private var groupDict: [String : String] = [:]
     
-    override func viewDidLoad()
-    {
+    override func viewDidLoad() {
         super.viewDidLoad()
         tableview.dataSource = self
         tableview.delegate = self
@@ -43,12 +42,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         self.ipAddressField.delegate = self
         
-        // Input the data into the array
-        //pickerData = ["10.0.0.251", "10.38.64.249"]
         //read
         let defaults = UserDefaults.standard
         pickerData = defaults.stringArray(forKey: "pickerData") ?? [String]()
     }
+    
     
     @IBAction func removePressed(_ sender: Any) {
         let selectedValue = pickerView.selectedRow(inComponent: 0)
@@ -83,13 +81,11 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         doXmlRead()
     }
     
-    func numberOfSections(in tableView: UITableView) -> Int
-    {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return deviceArray.count
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath)
-    {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
         let alertController = UIAlertController(title: "Hint", message: "You have selected \(indexPath.row)", preferredStyle: .alert)
@@ -99,27 +95,21 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         present(alertController, animated: true, completion: nil)
     }
     
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
-    {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return deviceArray[section].devicesOnPort.count
     }
     
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String?
-    {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         return ((self.groupDict[deviceArray[section].parentPort] ?? "nLWired") + " (" + String(deviceArray[section].devicesOnPort.count) + " devices)")
     }
     
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int)
-    {
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = UIColor.white
         header.backgroundView?.backgroundColor = UIColor.blue.withAlphaComponent(1)
-        
-        //(view as! UITableViewHeaderFooterView).backgroundView?.backgroundColor = UIColor.cyan.withAlphaComponent(0.5)
     }
     
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
-    {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")! as! CustomTableViewCell
         
         let text = deviceArray[indexPath.section].devicesOnPort[indexPath.row]
@@ -128,7 +118,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.deviceID.text = text.deviceID
         cell.model.text = text.model
         cell.parentPort.text = text.parentPort
-        
+        cell.delegate = self
         cell.contentView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         return cell
     }
@@ -173,8 +163,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         
         let sessionDelegate = SessionDelegate()
         let session = URLSession(configuration: .default, delegate: sessionDelegate, delegateQueue: nil)
-        let task = session.dataTask(with: request)
-        {
+        let task = session.dataTask(with: request) {
             (data, response, error) in
             
             if data != nil {
@@ -238,6 +227,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         //save
         let defaults = UserDefaults.standard
         defaults.set(pickerData, forKey: "pickerData")
+    }
+}
+
+extension ViewController: PressSwitchDelegate {
+    func didPressSwitch(deviceID: String, newState: Bool) {
+        print("switch \(deviceID) goto \(newState)")
     }
 }
 

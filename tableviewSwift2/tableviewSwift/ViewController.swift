@@ -69,6 +69,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             cell.contentView.backgroundColor = UIColor.lightGray
         }
         cell.RoomLabel.text = text
+        
         return cell
     }
     
@@ -90,6 +91,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
 //        mqtt!.sslSettings = sslSettings
         
         mqtt.allowUntrustCACertificate = true
+        
         mqtt.connect()
         
         mqtt.delegate = self
