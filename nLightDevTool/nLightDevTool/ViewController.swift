@@ -9,7 +9,7 @@
 import UIKit
 public var ipAddress = "10.0.0.251"
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIPickerViewDelegate, UIPickerViewDataSource, UITextFieldDelegate
+class ViewController: UIViewController
 {
     
     @IBOutlet weak var tableview: UITableView!
@@ -79,80 +79,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             print("button pressed")
         }
         doXmlRead()
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return deviceArray.count
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        let alertController = UIAlertController(title: "Hint", message: "You have selected \(indexPath.row)", preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        
-        alertController.addAction(alertAction)
-        present(alertController, animated: true, completion: nil)
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return deviceArray[section].devicesOnPort.count
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return ((self.groupDict[deviceArray[section].parentPort] ?? "nLWired") + " (" + String(deviceArray[section].devicesOnPort.count) + " devices)")
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        let header = view as! UITableViewHeaderFooterView
-        header.textLabel?.textColor = UIColor.white
-        header.backgroundView?.backgroundColor = UIColor.blue.withAlphaComponent(1)
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")! as! CustomTableViewCell
-        
-        let text = deviceArray[indexPath.section].devicesOnPort[indexPath.row]
-        
-        cell.roomLabel.text = text.label
-        cell.deviceID.text = text.deviceID
-        cell.model.text = text.model
-        cell.parentPort.text = text.parentPort
-        cell.delegate = self
-        cell.contentView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
-        return cell
-    }
-    
-    // Number of columns of data
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-
-    // The number of rows of data
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
-    }
-
-    // The data to return for the row and component (column) that's being passed in
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]
-    }
-    
-    // Capture the picker view selection
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        // This method is triggered whenever the user makes a change to the picker selection.
-        // The parameter named row and component represents what was selected.
-        print(pickerData[row], row, component)
-        ipAddress = pickerData[row]
-        doXmlRead()
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print("done editing")
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("began editing")
     }
     
     func doXmlRead() {
@@ -230,11 +156,93 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
 }
 
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return deviceArray.count
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let alertController = UIAlertController(title: "Hint", message: "You have selected \(indexPath.row)", preferredStyle: .alert)
+        let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        
+        alertController.addAction(alertAction)
+        present(alertController, animated: true, completion: nil)
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return deviceArray[section].devicesOnPort.count
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return ((self.groupDict[deviceArray[section].parentPort] ?? "nLWired") + " (" + String(deviceArray[section].devicesOnPort.count) + " devices)")
+    }
+    
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        let header = view as! UITableViewHeaderFooterView
+        header.textLabel?.textColor = UIColor.white
+        header.backgroundView?.backgroundColor = UIColor.blue.withAlphaComponent(1)
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellReuseIdentifier")! as! CustomTableViewCell
+        
+        let text = deviceArray[indexPath.section].devicesOnPort[indexPath.row]
+        
+        cell.roomLabel.text = text.label
+        cell.deviceID.text = text.deviceID
+        cell.model.text = text.model
+        cell.parentPort.text = text.parentPort
+        cell.delegate = self
+        cell.contentView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
+        return cell
+    }
+}
+
+extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+    // The number of rows of data
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        return pickerData.count
+    }
+    
+    // Number of columns of data
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
+    }
+    
+    // The data to return for the row and component (column) that's being passed in
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        return pickerData[row]
+    }
+    
+    // Capture the picker view selection
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        // This method is triggered whenever the user makes a change to the picker selection.
+        // The parameter named row and component represents what was selected.
+        print(pickerData[row], row, component)
+        ipAddress = pickerData[row]
+        doXmlRead()
+    }
+}
+
+extension ViewController: UITextFieldDelegate {
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        print("done editing")
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        print("began editing")
+    }
+}
+
 extension ViewController: PressSwitchDelegate {
     func didPressSwitch(deviceID: String, newState: Bool) {
         print("switch \(deviceID) goto \(newState)")
     }
 }
+
+
 
 class SessionDelegate:NSObject, URLSessionDelegate
 {
