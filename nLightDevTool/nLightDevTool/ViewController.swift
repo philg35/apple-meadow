@@ -33,16 +33,14 @@ class ViewController: UIViewController
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableview.dataSource = self
-        tableview.delegate = self
         
-        // Connect data:
+        self.tableview.dataSource = self
+        self.tableview.delegate = self
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
-        
         self.ipAddressField.delegate = self
         
-        //read
+        //read in saved ip addresses
         let defaults = UserDefaults.standard
         pickerData = defaults.stringArray(forKey: "pickerData") ?? [String]()
     }
@@ -140,7 +138,7 @@ class ViewController: UIViewController
             for group in self.groupLabels {
                 self.groupDict[group.parentPort] = group.groupLabel
             }
-            print(self.deviceArray)
+            //print(self.deviceArray)
             
             DispatchQueue.main.async {
                 self.tableview.reloadData()
@@ -150,7 +148,7 @@ class ViewController: UIViewController
     }
     
     func savePickerData() {
-        //save
+        //save ip addresses
         let defaults = UserDefaults.standard
         defaults.set(pickerData, forKey: "pickerData")
     }
@@ -191,10 +189,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         let text = deviceArray[indexPath.section].devicesOnPort[indexPath.row]
         
         cell.roomLabel.text = text.label
-        cell.deviceID.text = text.deviceID
-        cell.model.text = text.model
-        cell.parentPort.text = text.parentPort
+        cell.model.text = text.model + "(\(text.deviceID))"
         cell.delegate = self
+        cell.deviceSN = text.deviceID
         cell.contentView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         return cell
     }

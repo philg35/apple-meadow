@@ -20,9 +20,10 @@ class CustomTableViewCell: UITableViewCell
     @IBOutlet weak var parentPort: UILabel!
     
     var delegate: PressSwitchDelegate?
+    var deviceSN: String?
     
     @IBAction func switchPressed(_ sender: UISwitch) {
-        delegate?.didPressSwitch(deviceID: deviceID.text!, newState: sender.isOn)
+        delegate?.didPressSwitch(deviceID: deviceSN!, newState: sender.isOn)
     }
     
     override func awakeFromNib()
