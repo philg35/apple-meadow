@@ -16,6 +16,7 @@
 		D9A59D2222432F4A00BF31D6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9A59D2122432F4A00BF31D6 /* Assets.xcassets */; };
 		D9A59D2522432F4A00BF31D6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D9A59D2322432F4A00BF31D6 /* LaunchScreen.storyboard */; };
 		D9A59D2D224333FD00BF31D6 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A59D2C224333FD00BF31D6 /* CustomTableViewCell.swift */; };
+		D9FD9FA42304EA7100B71832 /* ParseXml.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9FD9FA32304EA7100B71832 /* ParseXml.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		D9A59D2422432F4A00BF31D6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D9A59D2622432F4A00BF31D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9A59D2C224333FD00BF31D6 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		D9FD9FA32304EA7100B71832 /* ParseXml.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseXml.swift; sourceTree = "<group>"; };
 		FB478F591DA29F009F75C510 /* Pods-tableviewSwift.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tableviewSwift.release.xcconfig"; path = "Target Support Files/Pods-tableviewSwift/Pods-tableviewSwift.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -87,6 +89,7 @@
 				D93B79E32300DE24008DAA00 /* certBBD465.pem */,
 				D93B79E52300EA08008DAA00 /* caCertificate.crt */,
 				D9A59D1A22432F4A00BF31D6 /* AppDelegate.swift */,
+				D9FD9FA32304EA7100B71832 /* ParseXml.swift */,
 				D9A59D1C22432F4A00BF31D6 /* ViewController.swift */,
 				D9A59D1E22432F4A00BF31D6 /* Main.storyboard */,
 				D9A59D2C224333FD00BF31D6 /* CustomTableViewCell.swift */,
@@ -222,6 +225,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9A59D2D224333FD00BF31D6 /* CustomTableViewCell.swift in Sources */,
+				D9FD9FA42304EA7100B71832 /* ParseXml.swift in Sources */,
 				D9A59D1D22432F4A00BF31D6 /* ViewController.swift in Sources */,
 				D9A59D1B22432F4A00BF31D6 /* AppDelegate.swift in Sources */,
 			);

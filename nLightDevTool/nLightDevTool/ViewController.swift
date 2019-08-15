@@ -11,7 +11,6 @@ public var ipAddress = "10.0.0.251"
 
 class ViewController: UIViewController
 {
-    
     @IBOutlet weak var tableview: UITableView!
     @IBOutlet weak var parentLabel: UILabel!
     @IBOutlet weak var ipAddressField: UITextField!
@@ -44,7 +43,6 @@ class ViewController: UIViewController
         let defaults = UserDefaults.standard
         pickerData = defaults.stringArray(forKey: "pickerData") ?? [String]()
     }
-    
     
     @IBAction func removePressed(_ sender: Any) {
         let selectedValue = pickerView.selectedRow(inComponent: 0)
