@@ -18,6 +18,7 @@ class CustomTableViewCell: UITableViewCell
     @IBOutlet weak var roomLabel: UILabel!
     @IBOutlet weak var model: UILabel!
     @IBOutlet weak var parentPort: UILabel!
+    @IBOutlet weak var Switch: UISwitch!
     
     var delegate: PressSwitchDelegate?
     var deviceSN: String?

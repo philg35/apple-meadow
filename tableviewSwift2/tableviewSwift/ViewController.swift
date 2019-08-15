@@ -10,6 +10,7 @@ import UIKit
 import CocoaMQTT
 
 public var ipAddress = "10.0.0.251"
+var mqttStarted = false
 
 class ViewController: UIViewController {
     
@@ -44,8 +45,10 @@ class ViewController: UIViewController {
         //read in saved ip addresses
         let defaults = UserDefaults.standard
         pickerData = defaults.stringArray(forKey: "pickerData") ?? [String]()
-        
-        setUpMQTT()
+        let selectedValue = pickerView.selectedRow(inComponent: 0)
+        ipAddress = pickerData[selectedValue]
+        doXmlRead()
+        //setUpMQTT()
     }
     
     @IBAction func removePressed(_ sender: Any) {
@@ -145,6 +148,10 @@ class ViewController: UIViewController {
             
             DispatchQueue.main.async {
                 self.tableview.reloadData()
+                if mqttStarted == false {
+                    mqttStarted = true
+                    self.setUpMQTT()
+                }
             }
         }
         task.resume()
@@ -189,6 +196,7 @@ extension ViewController: CocoaMQTTDelegate {
         //print(message.topic, message.string as Any)
         if let msgString = message.string {
             textview.text?.append(message.topic + " = " + msgString)
+            processMqttMessage(topic: message.topic, message: msgString)
         }
     }
     
@@ -231,6 +239,32 @@ extension ViewController: CocoaMQTTDelegate {
     
     func _console(_ info: String) {
     }
+    
+    func processMqttMessage(topic: String, message: String) {
+        if topic.contains("pole/1/relay-state") {
+            let t = topic.components(separatedBy: "/")
+            let (pIndex, dIndex) = findDeviceParentIndexes(device: t[5])
+            self.deviceArray[pIndex].devicesOnPort[dIndex].hasOutput = true
+            self.deviceArray[pIndex].devicesOnPort[dIndex].outputState = message.contains("true")
+            self.tableview.reloadData()
+        } else if topic.contains("pole/1/occupied") {
+            let t = topic.components(separatedBy: "/")
+            let (pIndex, dIndex) = findDeviceParentIndexes(device: t[5])
+            self.deviceArray[pIndex].devicesOnPort[dIndex].hasOccupany = true
+            self.deviceArray[pIndex].devicesOnPort[dIndex].occupiedState = message.contains("true")
+        }
+    }
+    
+    func findDeviceParentIndexes(device: String) -> (Int, Int) {
+        for (index, element) in self.deviceArray.enumerated() {
+            for (index2, element2) in element.devicesOnPort.enumerated() {
+                if element2.deviceID == device {
+                    return (index, index2)
+                }
+            }
+        }
+        return (0, 0)
+    }
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
@@ -272,6 +306,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         cell.delegate = self
         cell.deviceSN = text.deviceID
         cell.contentView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
+        cell.Switch.setOn(self.deviceArray[indexPath.section].devicesOnPort[indexPath.row].outputState, animated: false)
         return cell
     }
 }

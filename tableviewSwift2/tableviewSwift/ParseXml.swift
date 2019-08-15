@@ -15,6 +15,10 @@ struct DevXml
     var label: String
     var parentPort: String
     var groupLabel : String
+    var hasOutput : Bool
+    var outputState : Bool
+    var hasOccupany : Bool
+    var occupiedState : Bool
 }
 
 class ParseXml: NSObject, XMLParserDelegate
@@ -34,7 +38,7 @@ class ParseXml: NSObject, XMLParserDelegate
     override init()
     {
         myData = "".data(using: .ascii)!
-        header = DevXml(deviceID: "", model: "", label: "", parentPort: "", groupLabel: "")
+        header = DevXml(deviceID: "", model: "", label: "", parentPort: "", groupLabel: "", hasOutput: false, outputState: false, hasOccupany: false, occupiedState: false)
         items = []
         item = header
     }
@@ -89,12 +93,12 @@ class ParseXml: NSObject, XMLParserDelegate
         if elementName == "Device"
         {
             inItemDevice = true
-            item = DevXml(deviceID: attributeDict["ID"] ?? "", model: attributeDict["Model"] ?? "", label: "", parentPort: "", groupLabel: "")
+            item = DevXml(deviceID: attributeDict["ID"] ?? "", model: attributeDict["Model"] ?? "", label: "", parentPort: "", groupLabel: "", hasOutput: false, outputState: false, hasOccupany: false, occupiedState: false)
         }
         else if elementName == "Group"
         {
             inItemGroup = true
-            item = DevXml(deviceID: "", model: "", label: "", parentPort: (attributeDict["ID"] ?? "") + ":" + (attributeDict["Port"] ?? ""), groupLabel: "")
+            item = DevXml(deviceID: "", model: "", label: "", parentPort: (attributeDict["ID"] ?? "") + ":" + (attributeDict["Port"] ?? ""), groupLabel: "", hasOutput: false, outputState: false, hasOccupany: false, occupiedState: false)
         }
         
         if elementName == "Parent"
