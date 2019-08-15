@@ -12,6 +12,8 @@ import CocoaMQTT
 public var ipAddress = "10.0.0.251"
 var mqttStarted = false
 
+// https://10.0.0.251/api/rest/v1/system/web-server/protocols/https/certificate/document
+
 class ViewController: UIViewController {
     
     @IBOutlet weak var tableview: UITableView!
