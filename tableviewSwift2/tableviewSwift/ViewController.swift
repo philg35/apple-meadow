@@ -293,7 +293,15 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = UIColor.white
-        header.backgroundView?.backgroundColor = UIColor.blue.withAlphaComponent(1)
+        header.backgroundView?.backgroundColor = UIColorFromHex(rgbValue: 0x941100, alpha: 1)//UIColor.blue.withAlphaComponent(1)
+    }
+    
+    func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
+        let red = CGFloat((rgbValue & 0xFF0000) >> 16)/256.0
+        let green = CGFloat((rgbValue & 0xFF00) >> 8)/256.0
+        let blue = CGFloat(rgbValue & 0xFF)/256.0
+        
+        return UIColor(red:red, green:green, blue:blue, alpha:CGFloat(alpha))
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -307,6 +315,13 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         cell.deviceSN = text.deviceID
         cell.contentView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
         cell.Switch.setOn(self.deviceArray[indexPath.section].devicesOnPort[indexPath.row].outputState, animated: false)
+        if self.deviceArray[indexPath.section].devicesOnPort[indexPath.row].hasOccupany == true {
+            if self.deviceArray[indexPath.section].devicesOnPort[indexPath.row].occupiedState == true {
+                cell.occPicture.image = UIImage(named: "occupied2")
+            } else {
+                cell.occPicture.image = UIImage(named: "vacant2")
+            }
+        }
         return cell
     }
 }

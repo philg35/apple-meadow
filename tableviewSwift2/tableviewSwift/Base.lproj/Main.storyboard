@@ -84,11 +84,16 @@
                                                         <action selector="switchPressed:" destination="LgX-F3-azG" eventType="valueChanged" id="0gi-6d-lfs"/>
                                                     </connections>
                                                 </switch>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QH2-Oh-4Tb" userLabel="OccPicture">
+                                                    <rect key="frame" x="205" y="1" width="66" height="40"/>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                </imageView>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="Switch" destination="MCi-I5-MWW" id="Q7m-mf-1yQ"/>
                                             <outlet property="model" destination="iOv-H0-EjM" id="P6X-Vg-gdF"/>
+                                            <outlet property="occPicture" destination="QH2-Oh-4Tb" id="gtk-uu-EwH"/>
                                             <outlet property="roomLabel" destination="nyk-lt-8j4" id="E1m-LP-mtJ"/>
                                         </connections>
                                     </tableViewCell>

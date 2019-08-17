@@ -19,6 +19,7 @@ class CustomTableViewCell: UITableViewCell
     @IBOutlet weak var model: UILabel!
     @IBOutlet weak var parentPort: UILabel!
     @IBOutlet weak var Switch: UISwitch!
+    @IBOutlet weak var occPicture: UIImageView!
     
     var delegate: PressSwitchDelegate?
     var deviceSN: String?
