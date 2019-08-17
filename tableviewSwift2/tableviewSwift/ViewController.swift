@@ -47,10 +47,12 @@ class ViewController: UIViewController {
         //read in saved ip addresses
         let defaults = UserDefaults.standard
         pickerData = defaults.stringArray(forKey: "pickerData") ?? [String]()
+        if !pickerData.contains("10.0.0.251") {
+            pickerData.append("10.0.0.251")
+        }
         let selectedValue = pickerView.selectedRow(inComponent: 0)
         ipAddress = pickerData[selectedValue]
         doXmlRead()
-        //setUpMQTT()
     }
     
     @IBAction func removePressed(_ sender: Any) {
@@ -135,18 +137,15 @@ class ViewController: UIViewController {
                 }
             }
             
-            // determine groupLabel dictionary
             for group in self.groupLabels {
-                self.groupDict[group.parentPort] = group.groupLabel
+                self.groupDict[group.parentPort] = group.groupLabel     // determine groupLabel dictionary
             }
             
-            // add in parentName (now that groupLabels dictionary is set
-            for index in 0...(self.deviceArray.count - 1) {
+            for index in 0...(self.deviceArray.count - 1) {             // add in parentName (now that groupLabels dictionary is set)
                 self.deviceArray[index].parentName = self.groupDict[self.deviceArray[index].parentPort] ?? "none"
             }
             
-            // sort sections by parentName
-            self.deviceArray.sort { $0.parentName < $1.parentName}
+            self.deviceArray.sort { $0.parentName < $1.parentName}      // sort sections by parentName
             
             DispatchQueue.main.async {
                 self.tableview.reloadData()
@@ -167,7 +166,7 @@ class ViewController: UIViewController {
     
     func setUpMQTT() {
         let clientID = "CocoaMQTT-" + String(ProcessInfo().processIdentifier)
-        mqtt = CocoaMQTT(clientID: clientID, host: "10.0.0.251", port: 8883)
+        mqtt = CocoaMQTT(clientID: clientID, host: ipAddress, port: 8883)
         mqtt.username = ""
         mqtt.password = ""
         mqtt.willMessage = CocoaMQTTWill(topic: "/will", message: "dieout")
@@ -175,11 +174,10 @@ class ViewController: UIViewController {
         mqtt.enableSSL = true
         
 //        let clientCertArray = NSArray(contentsOfFile: "caCertificate.crt")
-//
 //        var sslSettings: [String: NSObject] = [:]
 //        sslSettings[kCFStreamSSLCertificates as String] = clientCertArray
-//
 //        mqtt!.sslSettings = sslSettings
+        
         mqtt.allowUntrustCACertificate = true
         
         mqtt.connect()
@@ -197,7 +195,7 @@ extension ViewController: CocoaMQTTDelegate {
     func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16 ) {
         //print(message.topic, message.string as Any)
         if let msgString = message.string {
-            textview.text?.append(message.topic + " = " + msgString)
+            textview.text?.append("***" + message.topic + " = " + msgString + "\r\n")
             processMqttMessage(topic: message.topic, message: msgString)
         }
     }
