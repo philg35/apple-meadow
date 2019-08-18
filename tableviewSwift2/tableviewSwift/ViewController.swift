@@ -88,6 +88,24 @@ class ViewController: UIViewController {
         doXmlRead()
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let vc = segue.destination as! DeviceViewController
+        let row = tableview.indexPathForSelectedRow?.row
+        let section = tableview.indexPathForSelectedRow?.section
+        vc.events = GetEventsForDevice(device: self.deviceArray[section ?? 0].devicesOnPort[row ?? 0].deviceID)
+    }
+    
+    func GetEventsForDevice(device: String) -> [String] {
+        var events : [String] = []
+        let lines = textview.text.components(separatedBy: "\n")
+        for line in lines {
+            if line.contains(device) {
+                events.append(line)
+            }
+        }
+        return events
+    }
+    
     func doXmlRead() {
         var contents = ""
         let urlField = "https:" + ipAddress + "/ngw/devices.xml"
@@ -274,7 +292,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
 //        let alertController = UIAlertController(title: "Future State", message: "This will do something \(indexPath.row)", preferredStyle: .alert)
 //        let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
 //
@@ -323,11 +340,6 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             }
         }
         return cell
-    }
-    
-    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        var vc = seque.destination as! DeviceViewController
-        
     }
 }
 
