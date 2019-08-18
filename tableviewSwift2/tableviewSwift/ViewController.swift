@@ -275,11 +275,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         
-        let alertController = UIAlertController(title: "Future State", message: "This will do something \(indexPath.row)", preferredStyle: .alert)
-        let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
-        
-        alertController.addAction(alertAction)
-        present(alertController, animated: true, completion: nil)
+//        let alertController = UIAlertController(title: "Future State", message: "This will do something \(indexPath.row)", preferredStyle: .alert)
+//        let alertAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+//
+//        alertController.addAction(alertAction)
+//        present(alertController, animated: true, completion: nil)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -323,6 +323,11 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
             }
         }
         return cell
+    }
+    
+    func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        var vc = seque.destination as! DeviceViewController
+        
     }
 }
 
