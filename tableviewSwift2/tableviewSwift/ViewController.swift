@@ -47,7 +47,7 @@ class ViewController: UIViewController {
         //read in saved ip addresses
         let defaults = UserDefaults.standard
         pickerData = defaults.stringArray(forKey: "pickerData") ?? [String]()
-        if !pickerData.contains("10.0.0.251") {
+        if pickerData == [] {
             pickerData.append("10.0.0.251")
         }
         let selectedValue = pickerView.selectedRow(inComponent: 0)
@@ -107,6 +107,9 @@ class ViewController: UIViewController {
     }
     
     func doXmlRead() {
+        if mqttStarted == true {
+            mqtt.disconnect()
+        }
         var contents = ""
         let urlField = "https:" + ipAddress + "/ngw/devices.xml"
         let url = URL(string: urlField)!
@@ -159,8 +162,10 @@ class ViewController: UIViewController {
                 self.groupDict[group.parentPort] = group.groupLabel     // determine groupLabel dictionary
             }
             
-            for index in 0...(self.deviceArray.count - 1) {             // add in parentName (now that groupLabels dictionary is set)
-                self.deviceArray[index].parentName = self.groupDict[self.deviceArray[index].parentPort] ?? "none"
+            if (self.deviceArray.count > 0) {
+                for index in 0...(self.deviceArray.count - 1) {             // add in parentName (now that groupLabels dictionary is set)
+                    self.deviceArray[index].parentName = self.groupDict[self.deviceArray[index].parentPort] ?? "none"
+                }
             }
             
             self.deviceArray.sort { $0.parentName < $1.parentName}      // sort sections by parentName
@@ -251,7 +256,8 @@ extension ViewController: CocoaMQTTDelegate {
     }
     
     func mqttDidDisconnect(_ mqtt: CocoaMQTT, withError err: Error?) {
-        print("got error")
+        print("disconnected")
+        mqttStarted = false
         print("\(err.debugDescription)")
     }
     

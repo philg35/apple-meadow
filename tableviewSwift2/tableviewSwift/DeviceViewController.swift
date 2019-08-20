@@ -11,6 +11,7 @@ import UIKit
 
 class DeviceViewController : UIViewController {
     @IBOutlet weak var eventsTextView: UITextView!
+    @IBOutlet weak var statesTextView: UITextView!
     
     var events: [String?] = []
     
@@ -18,6 +19,10 @@ class DeviceViewController : UIViewController {
         print("in the new class")
         for event in events {
             eventsTextView.text += event ?? "" + "\r\n"
+            
+            if (event?.contains("relay-state"))! {
+                statesTextView.text += event ?? "" + "\r\n"
+            }
         }
         
     }
