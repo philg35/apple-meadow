@@ -165,7 +165,7 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pkc-gd-h2a">
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Pkc-gd-h2a">
                                         <rect key="frame" x="0.0" y="282" width="375" height="250"/>
                                         <color key="backgroundColor" red="0.91809435150950092" green="0.91809435150950092" blue="0.91809435150950092" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                         <constraints>

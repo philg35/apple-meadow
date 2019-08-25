@@ -39,23 +39,17 @@ class DeviceViewController : UIViewController {
                         }
                         
                         if let state = myDictionary["occupied"] {
-                            occupancyTextView.text += "\(timeStamp) = \(state) \r\n"
+                            if m[7] == "1" {
+                                occupancyTextView.text += "\(timeStamp) = \(state) \r\n"
+                            }
                         }
-//                        if (event?.contains("relay-state"))! {
-//                            statesTextView.text += timeStamp + "=" + myDictionary["relay-state"] + "\r\n"
-//                        }
-                        
                     }
                 } catch let error as NSError {
                     print(error)
                 }
             }
-            
             eventsTextView.text += timeStamp + "=" + m.last! + t![1] + "\r\n"
-            
-            
         }
-        
     }
     
     func convertDateFormatter(date: String) -> String {
