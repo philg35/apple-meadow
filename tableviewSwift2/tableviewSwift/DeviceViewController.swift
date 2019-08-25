@@ -12,6 +12,7 @@ import UIKit
 class DeviceViewController : UIViewController {
     @IBOutlet weak var eventsTextView: UITextView!
     @IBOutlet weak var statesTextView: UITextView!
+    @IBOutlet weak var occupancyTextView: UITextView!
     
     var events: [String?] = []
     
@@ -35,6 +36,10 @@ class DeviceViewController : UIViewController {
                         
                         if let state = myDictionary["relay-state"] {
                             statesTextView.text += "\(timeStamp) = \(state) \r\n"
+                        }
+                        
+                        if let state = myDictionary["occupied"] {
+                            occupancyTextView.text += "\(timeStamp) = \(state) \r\n"
                         }
 //                        if (event?.contains("relay-state"))! {
 //                            statesTextView.text += timeStamp + "=" + myDictionary["relay-state"] + "\r\n"
