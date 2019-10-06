@@ -316,7 +316,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         let header = view as! UITableViewHeaderFooterView
         header.textLabel?.textColor = UIColor.white
-        header.backgroundView?.backgroundColor = UIColorFromHex(rgbValue: 0x941100, alpha: 1)//UIColor.blue.withAlphaComponent(1)
+        header.contentView.backgroundColor = UIColorFromHex(rgbValue: 0x941100, alpha: 1)//UIColor.blue.withAlphaComponent(1)
     }
     
     func UIColorFromHex(rgbValue:UInt32, alpha:Double=1.0)->UIColor {
