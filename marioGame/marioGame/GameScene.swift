@@ -1,8 +1,8 @@
 //
 //  GameScene.swift
-//  jumperGame
+//  marioGame
 //
-//  Created by Philip Gross on 7/27/19.
+//  Created by Philip Gross on 10/19/19.
 //  Copyright © 2019 Philip Gross. All rights reserved.
 //
 
@@ -15,76 +15,47 @@ enum PhysicsCategories {
     static let ground: UInt32 = 0x1 << 2    // 4
     static let peach: UInt32 = 0x1 << 3     // 8
     static let star: UInt32 = 0x1 << 4      // 16
-    static let radial: UInt32 = 0x1 << 5    // 32
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var entities = [GKEntity]()
+    var graphs = [String : GKGraph]()
+    
     var jumped = false
-    var lastUpdateTime : TimeInterval = 0
     var player : SKSpriteNode?
-    var peach : SKSpriteNode?
-    var star : SKSpriteNode?
     var cam : SKCameraNode?
-    var tileMap : SKTileMapNode?
+    
+    
+    private var lastUpdateTime : TimeInterval = 0
     
     override func sceneDidLoad() {
+        print("started loading5")
         self.lastUpdateTime = 0
+        
         player = self.childNode(withName: "player") as? SKSpriteNode
         player?.physicsBody?.categoryBitMask = PhysicsCategories.player
         player?.physicsBody?.collisionBitMask = PhysicsCategories.ground | PhysicsCategories.peach | PhysicsCategories.star
-        player?.physicsBody?.fieldBitMask = PhysicsCategories.radial
         
-        peach = self.childNode(withName: "peach") as? SKSpriteNode
-        peach?.physicsBody?.categoryBitMask = PhysicsCategories.peach
-        peach?.physicsBody?.collisionBitMask = PhysicsCategories.ground
         
-        star = self.childNode(withName: "star") as? SKSpriteNode
-        star?.physicsBody?.categoryBitMask = PhysicsCategories.star
-        star?.physicsBody?.collisionBitMask = PhysicsCategories.player
         
         cam = self.childNode(withName: "cameraSprite") as? SKCameraNode
         self.physicsWorld.contactDelegate = self
         
-//        self.tileMap = self.childNode(withName: "Tile Map Node") as? SKTileMapNode
-//        guard let tileMap = self.tileMap else { fatalError("Missing tile map for the level") }
-//        self.tileMap?.zPosition = -1
-//        
-//        let tileSize = tileMap.tileSize
-//        let halfWidth = CGFloat(tileMap.numberOfColumns) / 2.0 * tileSize.width
-//        let halfHeight = CGFloat(tileMap.numberOfRows) / 2.0 * tileSize.height
-//        for col in 0..<tileMap.numberOfColumns {
-//            for row in 0..<tileMap.numberOfRows {
-//                let tileDefinition = tileMap.tileDefinition(atColumn: col, row: row)
-//                let isEdgeTile = tileDefinition?.userData?["groundTile"] as? Bool
-//                if (isEdgeTile ?? false) {
-//                    let x = CGFloat(col) * tileSize.width - halfWidth
-//                    let y = CGFloat(row) * tileSize.height - halfHeight
-//                    let rect = CGRect(x: 0, y: 0, width: tileSize.width, height: tileSize.height)
-//                    let tileNode = SKShapeNode(rect: rect)
-//                    tileNode.position = CGPoint(x: x, y: y)
-//                    tileNode.physicsBody = SKPhysicsBody.init(rectangleOf: tileSize, center: CGPoint(x: tileSize.width / 2.0, y: tileSize.height / 2.0))
-//                    //tileNode.physicsBody?.restitution = 1
-//                    tileNode.physicsBody?.isDynamic = false
-//                    tileNode.physicsBody?.collisionBitMask = PhysicsCategories.player
-//                    tileNode.physicsBody?.categoryBitMask = PhysicsCategories.ground
-//                    tileMap.addChild(tileNode)
-//                }
-//            }
-//        }
+        
     }
+    
     
     func startMovingPlayerLeft () {
         let moveAction = SKAction.move(by: CGVector(dx: -1000, dy: 0), duration: 2)
-        player?.xScale = -0.5
+        player?.xScale = -1
         player?.run(moveAction)
 
     }
     
     func startMovingPlayerRight() {
         let moveAction = SKAction.move(by: CGVector(dx: 1000, dy: 0), duration: 2)
-        player?.xScale = 0.5
+        player?.xScale = 1
         player?.run(moveAction)
     }
     
@@ -96,6 +67,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if (jumped == false) {
             jumped = true
             player?.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 150))
+            print("jumped")
         }
     }
     
@@ -136,6 +108,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         endMovingPlayer()
     }
     
+    
     func didBegin(_ contact: SKPhysicsContact) {
         var firstBody: SKPhysicsBody
         var secondBody: SKPhysicsBody
@@ -148,25 +121,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         print("contact", firstBody.categoryBitMask, secondBody.categoryBitMask, Date().timeIntervalSince1970)
         
-        if (firstBody.categoryBitMask & PhysicsCategories.star) != 0 && (secondBody.categoryBitMask & PhysicsCategories.player) != 0 {
-            if let scene = GKScene(fileNamed: "WinScene") {
-                if let sceneNode = scene.rootNode as! WinScene? {
-                    sceneNode.scaleMode = .aspectFill
-                    if let view = self.view {
-                        view.presentScene(sceneNode)
-                        view.ignoresSiblingOrder = true
-                        view.showsFPS = true
-                        view.showsNodeCount = true
-                    }
-                }
-            }
-        }
-        else if ((firstBody.categoryBitMask & PhysicsCategories.ground) != 0 && (secondBody.categoryBitMask & PhysicsCategories.player) != 0) {
+        
+        if ((firstBody.categoryBitMask & PhysicsCategories.ground) != 0 && (secondBody.categoryBitMask & PhysicsCategories.player) != 0) {
             print("landed")
             jumped = false
         }
     }
-
+    
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
@@ -192,5 +153,3 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.lastUpdateTime = currentTime
     }
 }
-
-

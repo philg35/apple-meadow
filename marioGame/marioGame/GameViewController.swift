@@ -1,8 +1,8 @@
 //
 //  GameViewController.swift
-//  jumperGame
+//  marioGame
 //
-//  Created by Philip Gross on 7/27/19.
+//  Created by Philip Gross on 10/19/19.
 //  Copyright © 2019 Philip Gross. All rights reserved.
 //
 
@@ -29,7 +29,7 @@ class GameViewController: UIViewController {
 
         // Copy gameplay related content over to the scene
         sceneNode.entities = scene.entities
-        //sceneNode.graphs = scene.graphs
+        sceneNode.graphs = scene.graphs
 
         // Set the scale mode to scale to fit the window
         sceneNode.scaleMode = .aspectFill
