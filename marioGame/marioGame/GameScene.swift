@@ -11,10 +11,11 @@ import GameplayKit
 
 enum PhysicsCategories {
     static let none: UInt32 = 0
-    static let player: UInt32 = 0x1 << 1    // 2
-    static let ground: UInt32 = 0x1 << 2    // 4
-    static let peach: UInt32 = 0x1 << 3     // 8
-    static let star: UInt32 = 0x1 << 4      // 16
+    static let player: UInt32 = 2
+    static let ground: UInt32 = 4
+    static let peach: UInt32 = 8
+    static let star: UInt32 = 16
+    static let goomba: UInt32 = 32
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -25,6 +26,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var jumped = false
     var player : SKSpriteNode?
     var cam : SKCameraNode?
+    
+    var gameTimer: Timer!
     
     
     private var lastUpdateTime : TimeInterval = 0
@@ -42,7 +45,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         cam = self.childNode(withName: "cameraSprite") as? SKCameraNode
         self.physicsWorld.contactDelegate = self
         
+        gameTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(addGoomba), userInfo: nil, repeats: true)
+    }
+    
+    @objc func addGoomba() {
+
+        let alien = SKSpriteNode(imageNamed: "goomba")
+        alien.position = CGPoint(x: 1100, y: 320)
+        let size = CGSize(width: 100, height: 100)
+        alien.scale(to: size)
+        alien.physicsBody = SKPhysicsBody(rectangleOf: alien.size)
+        alien.physicsBody?.isDynamic = true
+        alien.physicsBody?.allowsRotation = false
+        alien.physicsBody?.categoryBitMask = PhysicsCategories.goomba
+        alien.physicsBody?.contactTestBitMask = PhysicsCategories.player
+        alien.physicsBody?.collisionBitMask = PhysicsCategories.player | PhysicsCategories.ground | PhysicsCategories.goomba
+        self.addChild(alien)
+        var actionArray = [SKAction]()
         
+        actionArray.append(SKAction.move(by: CGVector(dx: -5000, dy: 0), duration: 30))
+        actionArray.append(SKAction.removeFromParent())
+        alien.run(SKAction.sequence(actionArray))
     }
     
     
