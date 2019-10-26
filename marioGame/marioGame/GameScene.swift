@@ -37,9 +37,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         self.lastUpdateTime = 0
         
         player = self.childNode(withName: "player") as? SKSpriteNode
+        player!.physicsBody = SKPhysicsBody(texture: (player?.texture!)!,
+                                           size: (player?.texture!.size())!)
         player?.physicsBody?.categoryBitMask = PhysicsCategories.player
         player?.physicsBody?.collisionBitMask = PhysicsCategories.ground | PhysicsCategories.peach | PhysicsCategories.star
-        
+        player?.physicsBody?.allowsRotation = false
+        player?.physicsBody?.affectedByGravity = true
+        player?.physicsBody?.isDynamic = true
         
         
         cam = self.childNode(withName: "cameraSprite") as? SKCameraNode
@@ -142,15 +146,43 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             firstBody = contact.bodyB
             secondBody = contact.bodyA
         }
-        print("contact", firstBody.categoryBitMask, secondBody.categoryBitMask, Date().timeIntervalSince1970)
+        //print("contact", firstBody.categoryBitMask, secondBody.categoryBitMask, Date().timeIntervalSince1970)
         
         
         if ((firstBody.categoryBitMask & PhysicsCategories.ground) != 0 && (secondBody.categoryBitMask & PhysicsCategories.player) != 0) {
             print("landed")
             jumped = false
         }
+        else if ((firstBody.categoryBitMask & PhysicsCategories.goomba) != 0 && (secondBody.categoryBitMask & PhysicsCategories.player) != 0) {
+                if contact.contactNormal.dy < 0 {
+                    print("got goomba", contact.contactNormal)
+                    if let goombaTest = firstBody.node as! SKSpriteNode?
+                    {
+                        if let playerTest = secondBody.node as! SKSpriteNode?
+                        {
+                            playerDidCollideWithGoomba(goombaNode: goombaTest, playerNode: playerTest)
+                        }
+                    }
+                }
+        }
     }
     
+    func playerDidCollideWithGoomba (goombaNode: SKSpriteNode, playerNode: SKSpriteNode) {
+        let explosion = SKEmitterNode(fileNamed: "Explosion")!
+        explosion.position = goombaNode.position
+        self.addChild(explosion)
+        
+        self.run(SKAction.playSoundFileNamed("explosion.mp3", waitForCompletion: false))
+        
+        goombaNode.removeFromParent()
+        
+        self.run(SKAction.wait(forDuration: 2)) {
+            explosion.removeFromParent()
+        }
+        
+        playerNode.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 300))
+        
+    }
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
