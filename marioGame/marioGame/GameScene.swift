@@ -29,6 +29,19 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     var gameTimer: Timer!
     
+    var hitsLabel: SKLabelNode!
+    var hits: Int = 0 {
+        didSet {
+            hitsLabel.text = "Hits: \(hits)"
+        }
+    }
+    
+    var highScoreLabel: SKLabelNode!
+    var highScore: Int = 0 {
+        didSet {
+            highScoreLabel.text = "High Score: \(highScore)"
+        }
+    }
     
     private var lastUpdateTime : TimeInterval = 0
     
@@ -48,6 +61,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         cam = self.childNode(withName: "cameraSprite") as? SKCameraNode
         self.physicsWorld.contactDelegate = self
+        
+        hitsLabel = SKLabelNode(text: "Hits: 0")
+        hitsLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
+        hitsLabel.position = CGPoint(x: 20, y: self.frame.size.height - 60)
+        hitsLabel.fontName = "AmericanTypewriter-Bold"
+        hitsLabel.fontSize = 24
+        hitsLabel.fontColor = UIColor.white
+        hits = 0
+        self.addChild(hitsLabel)
+        
+        highScoreLabel = SKLabelNode(text: "High Score: 0")
+        highScoreLabel.horizontalAlignmentMode = SKLabelHorizontalAlignmentMode.left
+        highScoreLabel.position = CGPoint(x: 20, y: self.frame.size.height - 60)
+        highScoreLabel.fontName = "AmericanTypewriter-Bold"
+        highScoreLabel.fontSize = 24
+        highScoreLabel.fontColor = UIColor.white
+        highScore = 0
+        self.addChild(highScoreLabel)
         
         gameTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(addGoomba), userInfo: nil, repeats: true)
     }
@@ -152,6 +183,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if ((firstBody.categoryBitMask & PhysicsCategories.ground) != 0 && (secondBody.categoryBitMask & PhysicsCategories.player) != 0) {
             print("landed")
             jumped = false
+            if hits > highScore {
+                highScore = hits
+            }
+            hits = 0
         }
         else if ((firstBody.categoryBitMask & PhysicsCategories.goomba) != 0 && (secondBody.categoryBitMask & PhysicsCategories.player) != 0) {
                 if contact.contactNormal.dy < 0 {
@@ -180,7 +215,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             explosion.removeFromParent()
         }
         
-        playerNode.physicsBody?.applyImpulse(CGVector(dx: 0, dy: 300))
+        hits += 1
+        
+        var impulse = Int((playerNode.physicsBody?.velocity.dy)!) - Int(hits) * 30
+        if impulse < -1200 {
+            impulse = -1200
+        }
+        print(impulse)
+        
+        playerNode.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -impulse/3))
+        
+        
         
     }
     
@@ -203,7 +248,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         if let camera = cam, let pl = player {
             camera.position.x = pl.position.x + 100
             camera.position.y = pl.position.y + 100
+            hitsLabel.position.x = pl.position.x
+            hitsLabel.position.y = pl.position.y + 300
+            highScoreLabel.position.x = pl.position.x
+            highScoreLabel.position.y = pl.position.y + 250
         }
+        
+    
         
         self.lastUpdateTime = currentTime
     }
