@@ -203,23 +203,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func playerDidCollideWithGoomba (goombaNode: SKSpriteNode, playerNode: SKSpriteNode) {
+        
         let explosion = SKEmitterNode(fileNamed: "Explosion")!
         explosion.position = goombaNode.position
         self.addChild(explosion)
         
-        self.run(SKAction.playSoundFileNamed("explosion.mp3", waitForCompletion: false))
+        self.run(SKAction.playSoundFileNamed("stomp.wav", waitForCompletion: false))
+        
         
         goombaNode.removeFromParent()
         
-        self.run(SKAction.wait(forDuration: 2)) {
+        self.run(SKAction.wait(forDuration: 0.9)) {
             explosion.removeFromParent()
         }
         
         hits += 1
         
         var impulse = Int((playerNode.physicsBody?.velocity.dy)!) - Int(hits) * 30
-        if impulse < -1200 {
-            impulse = -1200
+        if impulse < -1000 {
+            impulse = -1000
         }
         print(impulse)
         

@@ -18,6 +18,9 @@
 		D9083B122363BF4F0039C69D /* explosion.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9083B112363BF4F0039C69D /* explosion.mp3 */; };
 		D9083B142363BF560039C69D /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = D9083B132363BF550039C69D /* Explosion.sks */; };
 		D985E5D32364833500C9EA8F /* 1-07 Egg Planet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D985E5D22364833500C9EA8F /* 1-07 Egg Planet.mp3 */; };
+		D985E5D523809B3800C9EA8F /* stomp.wav in Resources */ = {isa = PBXBuildFile; fileRef = D985E5D423809B3800C9EA8F /* stomp.wav */; };
+		D985E5D723809B3F00C9EA8F /* 1up.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D985E5D623809B3F00C9EA8F /* 1up.mp3 */; };
+		D985E5D923809B4400C9EA8F /* over.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D985E5D823809B4400C9EA8F /* over.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +37,9 @@
 		D9083B112363BF4F0039C69D /* explosion.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = explosion.mp3; sourceTree = "<group>"; };
 		D9083B132363BF550039C69D /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
 		D985E5D22364833500C9EA8F /* 1-07 Egg Planet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "1-07 Egg Planet.mp3"; sourceTree = "<group>"; };
+		D985E5D423809B3800C9EA8F /* stomp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = stomp.wav; sourceTree = "<group>"; };
+		D985E5D623809B3F00C9EA8F /* 1up.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 1up.mp3; sourceTree = "<group>"; };
+		D985E5D823809B4400C9EA8F /* over.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = over.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -67,6 +73,9 @@
 			isa = PBXGroup;
 			children = (
 				D985E5D22364833500C9EA8F /* 1-07 Egg Planet.mp3 */,
+				D985E5D423809B3800C9EA8F /* stomp.wav */,
+				D985E5D623809B3F00C9EA8F /* 1up.mp3 */,
+				D985E5D823809B4400C9EA8F /* over.mp3 */,
 				D9083B112363BF4F0039C69D /* explosion.mp3 */,
 				D9083B132363BF550039C69D /* Explosion.sks */,
 				D9083AF9235BB4200039C69D /* AppDelegate.swift */,
@@ -140,7 +149,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D985E5D923809B4400C9EA8F /* over.mp3 in Resources */,
 				D9083B122363BF4F0039C69D /* explosion.mp3 in Resources */,
+				D985E5D523809B3800C9EA8F /* stomp.wav in Resources */,
 				D9083B05235BB4200039C69D /* Main.storyboard in Resources */,
 				D9083AFC235BB4200039C69D /* GameScene.sks in Resources */,
 				D9083B07235BB4210039C69D /* Assets.xcassets in Resources */,
@@ -148,6 +159,7 @@
 				D985E5D32364833500C9EA8F /* 1-07 Egg Planet.mp3 in Resources */,
 				D9083B142363BF560039C69D /* Explosion.sks in Resources */,
 				D9083AFE235BB4200039C69D /* Actions.sks in Resources */,
+				D985E5D723809B3F00C9EA8F /* 1up.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
