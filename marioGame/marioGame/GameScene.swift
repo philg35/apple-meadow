@@ -28,6 +28,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var cam : SKCameraNode?
     
     var gameTimer: Timer!
+    private var lastUpdateTime : TimeInterval = 0
     
     var hitsLabel: SKLabelNode!
     var hits: Int = 0 {
@@ -35,7 +36,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             hitsLabel.text = "Hits: \(hits)"
         }
     }
-    
     var highScoreLabel: SKLabelNode!
     var highScore: Int = 0 {
         didSet {
@@ -43,21 +43,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
     }
     
-    private var lastUpdateTime : TimeInterval = 0
     
     override func sceneDidLoad() {
-        print("started loading5")
         self.lastUpdateTime = 0
         
         player = self.childNode(withName: "player") as? SKSpriteNode
-        player!.physicsBody = SKPhysicsBody(texture: (player?.texture!)!,
-                                           size: (player?.texture!.size())!)
+        player!.physicsBody = SKPhysicsBody(texture: (player?.texture!)!, size: (player?.texture!.size())!)
         player?.physicsBody?.categoryBitMask = PhysicsCategories.player
         player?.physicsBody?.collisionBitMask = PhysicsCategories.ground | PhysicsCategories.peach | PhysicsCategories.star
         player?.physicsBody?.allowsRotation = false
         player?.physicsBody?.affectedByGravity = true
         player?.physicsBody?.isDynamic = true
-        
         
         cam = self.childNode(withName: "cameraSprite") as? SKCameraNode
         self.physicsWorld.contactDelegate = self
@@ -84,31 +80,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     @objc func addGoomba() {
-
-        let alien = SKSpriteNode(imageNamed: "goomba")
-        alien.position = CGPoint(x: 1100, y: 320)
+        let goomba = SKSpriteNode(imageNamed: "goomba")
+        goomba.position = CGPoint(x: 1100, y: 320)
         let size = CGSize(width: 100, height: 100)
-        alien.scale(to: size)
-        alien.physicsBody = SKPhysicsBody(rectangleOf: alien.size)
-        alien.physicsBody?.isDynamic = true
-        alien.physicsBody?.allowsRotation = false
-        alien.physicsBody?.categoryBitMask = PhysicsCategories.goomba
-        alien.physicsBody?.contactTestBitMask = PhysicsCategories.player
-        alien.physicsBody?.collisionBitMask = PhysicsCategories.player | PhysicsCategories.ground | PhysicsCategories.goomba
-        self.addChild(alien)
+        goomba.scale(to: size)
+        goomba.physicsBody = SKPhysicsBody(rectangleOf: goomba.size)
+        goomba.physicsBody?.isDynamic = true
+        goomba.physicsBody?.allowsRotation = false
+        goomba.physicsBody?.categoryBitMask = PhysicsCategories.goomba
+        goomba.physicsBody?.contactTestBitMask = PhysicsCategories.player
+        goomba.physicsBody?.collisionBitMask = PhysicsCategories.player | PhysicsCategories.ground | PhysicsCategories.goomba
+        self.addChild(goomba)
         var actionArray = [SKAction]()
-        
         actionArray.append(SKAction.move(by: CGVector(dx: -5000, dy: 0), duration: 30))
         actionArray.append(SKAction.removeFromParent())
-        alien.run(SKAction.sequence(actionArray))
+        goomba.run(SKAction.sequence(actionArray))
     }
-    
     
     func startMovingPlayerLeft () {
         let moveAction = SKAction.move(by: CGVector(dx: -1000, dy: 0), duration: 2)
         player?.xScale = -1
         player?.run(moveAction)
-
     }
     
     func startMovingPlayerRight() {
@@ -191,10 +183,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         else if ((firstBody.categoryBitMask & PhysicsCategories.goomba) != 0 && (secondBody.categoryBitMask & PhysicsCategories.player) != 0) {
                 if contact.contactNormal.dy < 0 {
                     print("got goomba", contact.contactNormal)
-                    if let goombaTest = firstBody.node as! SKSpriteNode?
-                    {
-                        if let playerTest = secondBody.node as! SKSpriteNode?
-                        {
+                    if let goombaTest = firstBody.node as! SKSpriteNode? {
+                        if let playerTest = secondBody.node as! SKSpriteNode? {
                             playerDidCollideWithGoomba(goombaNode: goombaTest, playerNode: playerTest)
                         }
                     }
@@ -203,61 +193,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func playerDidCollideWithGoomba (goombaNode: SKSpriteNode, playerNode: SKSpriteNode) {
-        
         let explosion = SKEmitterNode(fileNamed: "Explosion")!
         explosion.position = goombaNode.position
         self.addChild(explosion)
-        
         self.run(SKAction.playSoundFileNamed("stomp.wav", waitForCompletion: false))
-        
-        
         goombaNode.removeFromParent()
-        
         self.run(SKAction.wait(forDuration: 0.9)) {
             explosion.removeFromParent()
         }
-        
         hits += 1
-        
         var impulse = Int((playerNode.physicsBody?.velocity.dy)!) - Int(hits) * 30
         if impulse < -1000 {
             impulse = -1000
         }
-        print(impulse)
-        
         playerNode.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -impulse/3))
-        
-        
-        
     }
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
-        
         // Initialize _lastUpdateTime if it has not already been
         if (self.lastUpdateTime == 0) {
             self.lastUpdateTime = currentTime
         }
-        
         // Calculate time since last update
         let dt = currentTime - self.lastUpdateTime
-        
         // Update entities
         for entity in self.entities {
             entity.update(deltaTime: dt)
         }
-        
         if let camera = cam, let pl = player {
             camera.position.x = pl.position.x + 100
             camera.position.y = pl.position.y + 100
             hitsLabel.position.x = pl.position.x
-            hitsLabel.position.y = pl.position.y + 300
+            hitsLabel.position.y = pl.position.y + 200
             highScoreLabel.position.x = pl.position.x
-            highScoreLabel.position.y = pl.position.y + 250
+            highScoreLabel.position.y = pl.position.y + 150
         }
-        
-    
-        
         self.lastUpdateTime = currentTime
     }
 }
