@@ -87,9 +87,13 @@ class ViewController: UIViewController {
         }
         doXmlRead()
     }
-    
+        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        let vc = segue.destination as! DeviceViewController
+        print("preparing segue???")
+        guard let vc = segue.destination as? DeviceViewController else {
+            print("not a device!!!")
+            return
+        }
         let row = tableview.indexPathForSelectedRow?.row
         let section = tableview.indexPathForSelectedRow?.section
         vc.events = GetEventsForDevice(device: self.deviceArray[section ?? 0].devicesOnPort[row ?? 0].deviceID)
