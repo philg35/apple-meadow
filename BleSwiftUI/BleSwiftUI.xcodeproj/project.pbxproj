@@ -7,29 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		D937A30723D48C5E005EDBA0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937A30623D48C5E005EDBA0 /* AppDelegate.swift */; };
-		D937A30923D48C5E005EDBA0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937A30823D48C5E005EDBA0 /* SceneDelegate.swift */; };
-		D937A30B23D48C5E005EDBA0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D937A30A23D48C5E005EDBA0 /* ViewController.swift */; };
-		D937A30E23D48C5E005EDBA0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D937A30C23D48C5E005EDBA0 /* Main.storyboard */; };
-		D937A31023D48C5E005EDBA0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D937A30F23D48C5E005EDBA0 /* Assets.xcassets */; };
-		D937A31323D48C5E005EDBA0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D937A31123D48C5E005EDBA0 /* LaunchScreen.storyboard */; };
-		D99305B523D523A600852586 /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99305B423D523A600852586 /* CustomTableViewCell.swift */; };
+		D99305A123D50DFA00852586 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99305A023D50DFA00852586 /* AppDelegate.swift */; };
+		D99305A323D50DFA00852586 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99305A223D50DFA00852586 /* SceneDelegate.swift */; };
+		D99305A523D50DFA00852586 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99305A423D50DFA00852586 /* ContentView.swift */; };
+		D99305A723D50DFB00852586 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D99305A623D50DFB00852586 /* Assets.xcassets */; };
+		D99305AA23D50DFB00852586 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D99305A923D50DFB00852586 /* Preview Assets.xcassets */; };
+		D99305AD23D50DFB00852586 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D99305AB23D50DFB00852586 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		D937A30323D48C5E005EDBA0 /* BleSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BleSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		D937A30623D48C5E005EDBA0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D937A30823D48C5E005EDBA0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		D937A30A23D48C5E005EDBA0 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		D937A30D23D48C5E005EDBA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		D937A30F23D48C5E005EDBA0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D937A31223D48C5E005EDBA0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		D937A31423D48C5E005EDBA0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D99305B423D523A600852586 /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		D993059D23D50DFA00852586 /* BleSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BleSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D99305A023D50DFA00852586 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D99305A223D50DFA00852586 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		D99305A423D50DFA00852586 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		D99305A623D50DFB00852586 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D99305A923D50DFB00852586 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		D99305AC23D50DFB00852586 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D99305AE23D50DFB00852586 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		D937A30023D48C5E005EDBA0 /* Frameworks */ = {
+		D993059A23D50DFA00852586 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -39,73 +37,80 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		D937A2FA23D48C5E005EDBA0 = {
+		D993059423D50DFA00852586 = {
 			isa = PBXGroup;
 			children = (
-				D937A30523D48C5E005EDBA0 /* BleSwift */,
-				D937A30423D48C5E005EDBA0 /* Products */,
+				D993059F23D50DFA00852586 /* BleSwiftUI */,
+				D993059E23D50DFA00852586 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
-		D937A30423D48C5E005EDBA0 /* Products */ = {
+		D993059E23D50DFA00852586 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D937A30323D48C5E005EDBA0 /* BleSwift.app */,
+				D993059D23D50DFA00852586 /* BleSwiftUI.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		D937A30523D48C5E005EDBA0 /* BleSwift */ = {
+		D993059F23D50DFA00852586 /* BleSwiftUI */ = {
 			isa = PBXGroup;
 			children = (
-				D937A30623D48C5E005EDBA0 /* AppDelegate.swift */,
-				D937A30823D48C5E005EDBA0 /* SceneDelegate.swift */,
-				D937A30A23D48C5E005EDBA0 /* ViewController.swift */,
-				D937A30C23D48C5E005EDBA0 /* Main.storyboard */,
-				D99305B423D523A600852586 /* CustomTableViewCell.swift */,
-				D937A30F23D48C5E005EDBA0 /* Assets.xcassets */,
-				D937A31123D48C5E005EDBA0 /* LaunchScreen.storyboard */,
-				D937A31423D48C5E005EDBA0 /* Info.plist */,
+				D99305A023D50DFA00852586 /* AppDelegate.swift */,
+				D99305A223D50DFA00852586 /* SceneDelegate.swift */,
+				D99305A423D50DFA00852586 /* ContentView.swift */,
+				D99305A623D50DFB00852586 /* Assets.xcassets */,
+				D99305AB23D50DFB00852586 /* LaunchScreen.storyboard */,
+				D99305AE23D50DFB00852586 /* Info.plist */,
+				D99305A823D50DFB00852586 /* Preview Content */,
 			);
-			path = BleSwift;
+			path = BleSwiftUI;
+			sourceTree = "<group>";
+		};
+		D99305A823D50DFB00852586 /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				D99305A923D50DFB00852586 /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		D937A30223D48C5E005EDBA0 /* BleSwift */ = {
+		D993059C23D50DFA00852586 /* BleSwiftUI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = D937A31723D48C5E005EDBA0 /* Build configuration list for PBXNativeTarget "BleSwift" */;
+			buildConfigurationList = D99305B123D50DFB00852586 /* Build configuration list for PBXNativeTarget "BleSwiftUI" */;
 			buildPhases = (
-				D937A2FF23D48C5E005EDBA0 /* Sources */,
-				D937A30023D48C5E005EDBA0 /* Frameworks */,
-				D937A30123D48C5E005EDBA0 /* Resources */,
+				D993059923D50DFA00852586 /* Sources */,
+				D993059A23D50DFA00852586 /* Frameworks */,
+				D993059B23D50DFA00852586 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
-			name = BleSwift;
-			productName = BleSwift;
-			productReference = D937A30323D48C5E005EDBA0 /* BleSwift.app */;
+			name = BleSwiftUI;
+			productName = BleSwiftUI;
+			productReference = D993059D23D50DFA00852586 /* BleSwiftUI.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		D937A2FB23D48C5E005EDBA0 /* Project object */ = {
+		D993059523D50DFA00852586 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1130;
 				ORGANIZATIONNAME = "Philip Gross";
 				TargetAttributes = {
-					D937A30223D48C5E005EDBA0 = {
+					D993059C23D50DFA00852586 = {
 						CreatedOnToolsVersion = 11.3.1;
 					};
 				};
 			};
-			buildConfigurationList = D937A2FE23D48C5E005EDBA0 /* Build configuration list for PBXProject "BleSwift" */;
+			buildConfigurationList = D993059823D50DFA00852586 /* Build configuration list for PBXProject "BleSwiftUI" */;
 			compatibilityVersion = "Xcode 9.3";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -113,56 +118,47 @@
 				en,
 				Base,
 			);
-			mainGroup = D937A2FA23D48C5E005EDBA0;
-			productRefGroup = D937A30423D48C5E005EDBA0 /* Products */;
+			mainGroup = D993059423D50DFA00852586;
+			productRefGroup = D993059E23D50DFA00852586 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				D937A30223D48C5E005EDBA0 /* BleSwift */,
+				D993059C23D50DFA00852586 /* BleSwiftUI */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		D937A30123D48C5E005EDBA0 /* Resources */ = {
+		D993059B23D50DFA00852586 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D937A31323D48C5E005EDBA0 /* LaunchScreen.storyboard in Resources */,
-				D937A31023D48C5E005EDBA0 /* Assets.xcassets in Resources */,
-				D937A30E23D48C5E005EDBA0 /* Main.storyboard in Resources */,
+				D99305AD23D50DFB00852586 /* LaunchScreen.storyboard in Resources */,
+				D99305AA23D50DFB00852586 /* Preview Assets.xcassets in Resources */,
+				D99305A723D50DFB00852586 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		D937A2FF23D48C5E005EDBA0 /* Sources */ = {
+		D993059923D50DFA00852586 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D937A30B23D48C5E005EDBA0 /* ViewController.swift in Sources */,
-				D99305B523D523A600852586 /* CustomTableViewCell.swift in Sources */,
-				D937A30723D48C5E005EDBA0 /* AppDelegate.swift in Sources */,
-				D937A30923D48C5E005EDBA0 /* SceneDelegate.swift in Sources */,
+				D99305A123D50DFA00852586 /* AppDelegate.swift in Sources */,
+				D99305A323D50DFA00852586 /* SceneDelegate.swift in Sources */,
+				D99305A523D50DFA00852586 /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		D937A30C23D48C5E005EDBA0 /* Main.storyboard */ = {
+		D99305AB23D50DFB00852586 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
-				D937A30D23D48C5E005EDBA0 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		D937A31123D48C5E005EDBA0 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				D937A31223D48C5E005EDBA0 /* Base */,
+				D99305AC23D50DFB00852586 /* Base */,
 			);
 			name = LaunchScreen.storyboard;
 			sourceTree = "<group>";
@@ -170,7 +166,7 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		D937A31523D48C5E005EDBA0 /* Debug */ = {
+		D99305AF23D50DFB00852586 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -230,7 +226,7 @@
 			};
 			name = Debug;
 		};
-		D937A31623D48C5E005EDBA0 /* Release */ = {
+		D99305B023D50DFB00852586 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -284,36 +280,40 @@
 			};
 			name = Release;
 		};
-		D937A31823D48C5E005EDBA0 /* Debug */ = {
+		D99305B223D50DFB00852586 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"BleSwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = A44VX47B87;
-				INFOPLIST_FILE = BleSwift/Info.plist;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = BleSwiftUI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "psg35-yahoo.com.BleSwift";
+				PRODUCT_BUNDLE_IDENTIFIER = "psg35-yahoo.com.BleSwiftUI";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		D937A31923D48C5E005EDBA0 /* Release */ = {
+		D99305B323D50DFB00852586 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"BleSwiftUI/Preview Content\"";
 				DEVELOPMENT_TEAM = A44VX47B87;
-				INFOPLIST_FILE = BleSwift/Info.plist;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = BleSwiftUI/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "psg35-yahoo.com.BleSwift";
+				PRODUCT_BUNDLE_IDENTIFIER = "psg35-yahoo.com.BleSwiftUI";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -323,25 +323,25 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		D937A2FE23D48C5E005EDBA0 /* Build configuration list for PBXProject "BleSwift" */ = {
+		D993059823D50DFA00852586 /* Build configuration list for PBXProject "BleSwiftUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D937A31523D48C5E005EDBA0 /* Debug */,
-				D937A31623D48C5E005EDBA0 /* Release */,
+				D99305AF23D50DFB00852586 /* Debug */,
+				D99305B023D50DFB00852586 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		D937A31723D48C5E005EDBA0 /* Build configuration list for PBXNativeTarget "BleSwift" */ = {
+		D99305B123D50DFB00852586 /* Build configuration list for PBXNativeTarget "BleSwiftUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				D937A31823D48C5E005EDBA0 /* Debug */,
-				D937A31923D48C5E005EDBA0 /* Release */,
+				D99305B223D50DFB00852586 /* Debug */,
+				D99305B323D50DFB00852586 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = D937A2FB23D48C5E005EDBA0 /* Project object */;
+	rootObject = D993059523D50DFA00852586 /* Project object */;
 }
