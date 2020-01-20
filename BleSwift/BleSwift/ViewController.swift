@@ -46,28 +46,37 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
 
 
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        print("\nName   : \(peripheral.name ?? "(No name)")")
-        print("RSSI   : \(RSSI)")
-        for ad in advertisementData {
-            print("AD Data: \(ad)")
-        }
-        
-        var dev : bleDevice
-        dev = bleDevice(bleName: peripheral.name ?? "(No name)", bleIdentifier: peripheral.identifier.uuidString, bleRssi: RSSI.stringValue)
-        
-        var found = false
-        for device in deviceArray {
-            if device.bleIdentifier == peripheral.identifier.uuidString {
-                found = true
+        if Int(RSSI) > -70 {
+            
+            print("\nName   : \(peripheral.name ?? "(No name)")")
+            print("RSSI   : \(RSSI)")
+            for ad in advertisementData {
+                print("AD Data: \(ad)")
             }
-        }
         
-        if found == false {
-            deviceArray.append(dev)
+        
+            var dev : bleDevice
+            dev = bleDevice(bleName: peripheral.name ?? "(No name)", bleIdentifier: peripheral.identifier.uuidString, bleRssi: RSSI.stringValue)
+            
+            var found = false
+            for (index, device) in deviceArray.enumerated() {
+                if device.bleIdentifier == peripheral.identifier.uuidString {
+                    deviceArray[index] = device
+                    found = true
+                    print("updating...", index)
+                }
+            }
+            
+            if found == false {
+                deviceArray.append(dev)
+            }
+            
+            deviceArray.sort {
+                $0.bleRssi.localizedCaseInsensitiveCompare($1.bleRssi) == ComparisonResult.orderedAscending
+            }
+            
             self.tableView.reloadData()
         }
-            
-        
     }
 }
 
