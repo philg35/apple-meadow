@@ -14,6 +14,8 @@ class CustomTableViewCell: UITableViewCell
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var rssiLabel: UILabel!
     @IBOutlet weak var macLabel: UILabel!
+    @IBOutlet weak var updateLabel: UILabel!
+    @IBOutlet weak var mfgdataLabel: UILabel!
     
     override func awakeFromNib()
     {

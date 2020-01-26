@@ -11,23 +11,39 @@ import CoreBluetooth
 
 
 
-class ViewController: UIViewController, CBCentralManagerDelegate {
+class ViewController: UIViewController, CBCentralManagerDelegate, UITextFieldDelegate {
     private var centralManager : CBCentralManager!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var countLabel: UILabel!
     
+    @IBAction func stopTapped(_ sender: Any) {
+        centralManager.stopScan()
+    }
+    
+    @IBAction func scanTapped(_ sender: Any) {
+        centralManager.scanForPeripherals(withServices: nil, options: [CBCentralManagerScanOptionAllowDuplicatesKey : NSNumber(value: true)])
+        rssiLimit.endEditing(true)
+    }
+    
+    @IBAction func clearTapped(_ sender: Any) {
+        deviceArray.removeAll()
+        self.tableView.reloadData()
+    }
     
     struct bleDevice
     {
         var bleName: String = ""
         var bleIdentifier: String = ""
         var bleRssi: String = ""
+        var updateNum: Int = 0
+        var mfgData: String = ""
     }
     private var deviceArray : [bleDevice] = []
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
             print("Bluetooth is On")
-            centralManager.scanForPeripherals(withServices: nil, options: nil)
+            
         }
         else {
             print("Bluetooth is not active")
@@ -42,28 +58,47 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
         // Do any additional setup after loading the view.
         tableView.dataSource = self
         tableView.delegate = self
+        rssiLimit.delegate = self
     }
 
-
+    @IBOutlet weak var rssiLimit: UITextField!
+    
     public func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
-        if Int(RSSI) > -70 {
+        
+        let rssiNum = Int(rssiLimit.text ?? "-70") ?? -70
+        if Int(truncating: RSSI) > rssiNum {
             
+            var mfgDataValue = ""
             print("\nName   : \(peripheral.name ?? "(No name)")")
             print("RSSI   : \(RSSI)")
             for ad in advertisementData {
-                print("AD Data: \(ad)")
+                if ad.key == "kCBAdvDataManufacturerData"
+                {
+                    //let str = String(decoding: ad.value, as: UTF8.self)
+                    
+                    if let data = ad.value  as? Data {
+                        let dataStr = String(data: data, encoding: .utf8)
+                        mfgDataValue = dataStr ?? "strange nLAir data type"
+                    }
+                    
+                    print(ad.value)
+                    print(mfgDataValue)
+                    
+                }
+                
+                    print(ad)
+                
             }
         
-        
             var dev : bleDevice
-            dev = bleDevice(bleName: peripheral.name ?? "(No name)", bleIdentifier: peripheral.identifier.uuidString, bleRssi: RSSI.stringValue)
+            dev = bleDevice(bleName: peripheral.name ?? "(No name)", bleIdentifier: peripheral.identifier.uuidString, bleRssi: RSSI.stringValue, mfgData: mfgDataValue)
             
             var found = false
             for (index, device) in deviceArray.enumerated() {
                 if device.bleIdentifier == peripheral.identifier.uuidString {
-                    deviceArray[index] = device
+                    dev.updateNum = device.updateNum + 1
+                    deviceArray[index] = dev
                     found = true
-                    print("updating...", index)
                 }
             }
             
@@ -74,10 +109,37 @@ class ViewController: UIViewController, CBCentralManagerDelegate {
             deviceArray.sort {
                 $0.bleRssi.localizedCaseInsensitiveCompare($1.bleRssi) == ComparisonResult.orderedAscending
             }
-            
+            countLabel.text = String(deviceArray.count)
             self.tableView.reloadData()
         }
     }
+    
+    func centralManager(_ central: CBCentralManager, connectionEventDidOccur event: CBConnectionEvent, for peripheral: CBPeripheral) {
+        print("connected")
+    }
+    
+    func centralManager(_ central: CBCentralManager, didUpdateANCSAuthorizationFor peripheral: CBPeripheral) {
+        print("update")
+    }
+    
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        print("connect")
+    }
+    
+    func centralManager(_ central: CBCentralManager, willRestoreState dict: [String : Any]) {
+        print("restore")
+    }
+    
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        print("fail")
+    }
+    
+    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
+        print("disconnect")
+    }
+    
+    
+    
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
@@ -119,9 +181,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
         cell.nameLabel.text = text.bleName
         cell.macLabel.text = text.bleIdentifier
         cell.rssiLabel.text = text.bleRssi
-        
+        cell.updateLabel.text = String(text.updateNum)
         cell.contentView.backgroundColor = UIColor.gray.withAlphaComponent(0.2)
-        
+        cell.mfgdataLabel.text = text.mfgData
         return cell
     }
 }
