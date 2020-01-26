@@ -27,6 +27,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, UITextFieldDel
     
     @IBAction func clearTapped(_ sender: Any) {
         deviceArray.removeAll()
+        countLabel.text = "0"
         self.tableView.reloadData()
     }
     
