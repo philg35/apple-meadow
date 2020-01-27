@@ -10,11 +10,11 @@ import UIKit
 import CoreBluetooth
 
 
-
 class ViewController: UIViewController, CBCentralManagerDelegate, UITextFieldDelegate {
     private var centralManager : CBCentralManager!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var countLabel: UILabel!
+    @IBOutlet weak var switchType: UISwitch!
     
     @IBAction func stopTapped(_ sender: Any) {
         centralManager.stopScan()
@@ -44,14 +44,12 @@ class ViewController: UIViewController, CBCentralManagerDelegate, UITextFieldDel
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
             print("Bluetooth is On")
-            
         }
         else {
             print("Bluetooth is not active")
         }
     }
     
-
     override func viewDidLoad() {
         centralManager = CBCentralManager(delegate: self, queue: nil)
         
@@ -75,20 +73,14 @@ class ViewController: UIViewController, CBCentralManagerDelegate, UITextFieldDel
             for ad in advertisementData {
                 if ad.key == "kCBAdvDataManufacturerData"
                 {
-                    //let str = String(decoding: ad.value, as: UTF8.self)
-                    
                     if let data = ad.value  as? Data {
                         let dataStr = String(data: data, encoding: .utf8)
                         mfgDataValue = dataStr ?? "strange nLAir data type"
                     }
-                    
                     print(ad.value)
                     print(mfgDataValue)
-                    
                 }
-                
-                    print(ad)
-                
+                print(ad)
             }
         
             var dev : bleDevice
@@ -104,7 +96,17 @@ class ViewController: UIViewController, CBCentralManagerDelegate, UITextFieldDel
             }
             
             if found == false {
-                deviceArray.append(dev)
+                if switchType.isOn {
+                    if (dev.mfgData != "") {
+                        deviceArray.append(dev)
+                    }
+                }
+                else {
+                    if (dev.mfgData == "") {
+                        deviceArray.append(dev)
+                    }
+                }
+                
             }
             
             deviceArray.sort {
@@ -114,33 +116,6 @@ class ViewController: UIViewController, CBCentralManagerDelegate, UITextFieldDel
             self.tableView.reloadData()
         }
     }
-    
-    func centralManager(_ central: CBCentralManager, connectionEventDidOccur event: CBConnectionEvent, for peripheral: CBPeripheral) {
-        print("connected")
-    }
-    
-    func centralManager(_ central: CBCentralManager, didUpdateANCSAuthorizationFor peripheral: CBPeripheral) {
-        print("update")
-    }
-    
-    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
-        print("connect")
-    }
-    
-    func centralManager(_ central: CBCentralManager, willRestoreState dict: [String : Any]) {
-        print("restore")
-    }
-    
-    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
-        print("fail")
-    }
-    
-    func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
-        print("disconnect")
-    }
-    
-    
-    
 }
 
 extension ViewController: UITableViewDataSource, UITableViewDelegate {
