@@ -8,6 +8,7 @@
 
 import SpriteKit
 import GameplayKit
+import MediaPlayer
 
 enum PhysicsCategories {
     static let none: UInt32 = 0
@@ -26,15 +27,35 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var player : SKSpriteNode?
     var peach : SKSpriteNode?
     var star : SKSpriteNode?
+    var ground : SKSpriteNode?
     var cam : SKCameraNode?
     var tileMap : SKTileMapNode?
     
+    var playerr: AVAudioPlayer?
+    
     override func sceneDidLoad() {
+        let path = Bundle.main.path(forResource:"honeyHive", ofType: "mp3")
+
+        do{
+            try playerr = AVAudioPlayer(contentsOf: URL(fileURLWithPath: path!))
+        } catch {
+            print("File is not Loaded")
+        }
+        let session = AVAudioSession.sharedInstance()
+        do{
+            try session.setCategory(AVAudioSession.Category.playback)
+        }
+        catch{
+        }
+
+        playerr!.play()
+        
         self.lastUpdateTime = 0
         player = self.childNode(withName: "player") as? SKSpriteNode
         player?.physicsBody?.categoryBitMask = PhysicsCategories.player
         player?.physicsBody?.collisionBitMask = PhysicsCategories.ground | PhysicsCategories.peach | PhysicsCategories.star
-        player?.physicsBody?.fieldBitMask = PhysicsCategories.radial
+        player?.physicsBody?.contactTestBitMask = PhysicsCategories.ground | PhysicsCategories.star
+        //player?.physicsBody?.fieldBitMask = PhysicsCategories.radial
         
         peach = self.childNode(withName: "peach") as? SKSpriteNode
         peach?.physicsBody?.categoryBitMask = PhysicsCategories.peach
@@ -43,6 +64,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         star = self.childNode(withName: "star") as? SKSpriteNode
         star?.physicsBody?.categoryBitMask = PhysicsCategories.star
         star?.physicsBody?.collisionBitMask = PhysicsCategories.player
+        
+        ground = self.childNode(withName: "greenGround") as? SKSpriteNode
+        ground?.physicsBody?.categoryBitMask = PhysicsCategories.ground
+        ground?.physicsBody?.collisionBitMask = PhysicsCategories.player
         
         cam = self.childNode(withName: "cameraSprite") as? SKCameraNode
         self.physicsWorld.contactDelegate = self
@@ -79,7 +104,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let moveAction = SKAction.move(by: CGVector(dx: -1000, dy: 0), duration: 2)
         player?.xScale = -0.5
         player?.run(moveAction)
-
     }
     
     func startMovingPlayerRight() {
@@ -149,6 +173,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         print("contact", firstBody.categoryBitMask, secondBody.categoryBitMask, Date().timeIntervalSince1970)
         
         if (firstBody.categoryBitMask & PhysicsCategories.star) != 0 && (secondBody.categoryBitMask & PhysicsCategories.player) != 0 {
+            playerr!.stop()
             if let scene = GKScene(fileNamed: "WinScene") {
                 if let sceneNode = scene.rootNode as! WinScene? {
                     sceneNode.scaleMode = .aspectFill
