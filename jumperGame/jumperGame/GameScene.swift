@@ -59,7 +59,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         peach = self.childNode(withName: "peach") as? SKSpriteNode
         peach?.physicsBody?.categoryBitMask = PhysicsCategories.peach
-        peach?.physicsBody?.collisionBitMask = PhysicsCategories.ground
+        peach?.physicsBody?.collisionBitMask = PhysicsCategories.ground | PhysicsCategories.player
         
         star = self.childNode(withName: "star") as? SKSpriteNode
         star?.physicsBody?.categoryBitMask = PhysicsCategories.star
@@ -67,7 +67,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         ground = self.childNode(withName: "greenGround") as? SKSpriteNode
         ground?.physicsBody?.categoryBitMask = PhysicsCategories.ground
-        ground?.physicsBody?.collisionBitMask = PhysicsCategories.player
+        ground?.physicsBody?.collisionBitMask = PhysicsCategories.player | PhysicsCategories.peach
         
         cam = self.childNode(withName: "cameraSprite") as? SKCameraNode
         self.physicsWorld.contactDelegate = self
