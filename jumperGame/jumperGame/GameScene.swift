@@ -101,14 +101,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func startMovingPlayerLeft () {
-        let moveAction = SKAction.move(by: CGVector(dx: -1000, dy: 0), duration: 2)
-        player?.xScale = -0.5
+        let moveAction = SKAction.move(by: CGVector(dx: -10000, dy: 0), duration: 20)
+        player?.xScale = -10
         player?.run(moveAction)
     }
     
     func startMovingPlayerRight() {
-        let moveAction = SKAction.move(by: CGVector(dx: 1000, dy: 0), duration: 2)
-        player?.xScale = 0.5
+        let moveAction = SKAction.move(by: CGVector(dx: 10000, dy: 0), duration: 20)
+        player?.xScale = 10
         player?.run(moveAction)
     }
     

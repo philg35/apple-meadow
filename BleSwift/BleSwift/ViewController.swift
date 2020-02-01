@@ -38,8 +38,9 @@ class ViewController: UIViewController, CBCentralManagerDelegate, UITextFieldDel
         var bleRssi: String = ""
         var updateNum: Int = 0
         var mfgData: String = ""
+        var perif: CBPeripheral?
     }
-    private var deviceArray : [bleDevice] = []
+    var deviceArray : [bleDevice] = []
     
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         if central.state == .poweredOn {
@@ -84,7 +85,7 @@ class ViewController: UIViewController, CBCentralManagerDelegate, UITextFieldDel
             }
         
             var dev : bleDevice
-            dev = bleDevice(bleName: peripheral.name ?? "(No name)", bleIdentifier: peripheral.identifier.uuidString, bleRssi: RSSI.stringValue, mfgData: mfgDataValue)
+            dev = bleDevice(bleName: peripheral.name ?? "(No name)", bleIdentifier: peripheral.identifier.uuidString, bleRssi: RSSI.stringValue, mfgData: mfgDataValue, perif: peripheral)
             
             var found = false
             for (index, device) in deviceArray.enumerated() {
@@ -125,6 +126,7 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
+        print(indexPath)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
