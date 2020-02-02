@@ -19,6 +19,7 @@
 		D93D31F322ED1C9A006AB79F /* star3.png in Resources */ = {isa = PBXBuildFile; fileRef = D93D31F222ED1C9A006AB79F /* star3.png */; };
 		D93D31F522ED23FC006AB79F /* WinScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D93D31F422ED23FC006AB79F /* WinScene.sks */; };
 		D93D31F722ED244E006AB79F /* marioIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D93D31F622ED244E006AB79F /* marioIcon.png */; };
+		D970394B23E66DFB0014E135 /* GameScene2.sks in Resources */ = {isa = PBXBuildFile; fileRef = D970394A23E66DFB0014E135 /* GameScene2.sks */; };
 		D993B80A22F9245D00260B02 /* vortex.png in Resources */ = {isa = PBXBuildFile; fileRef = D993B80922F9245D00260B02 /* vortex.png */; };
 		D99C300622ED2DBD000EC43B /* WinScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99C300522ED2DBD000EC43B /* WinScene.swift */; };
 		D99C300822ED31D0000EC43B /* starMusic.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D99C300722ED31D0000EC43B /* starMusic.mp3 */; };
@@ -45,6 +46,7 @@
 		D93D31F222ED1C9A006AB79F /* star3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star3.png; sourceTree = "<group>"; };
 		D93D31F422ED23FC006AB79F /* WinScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = WinScene.sks; sourceTree = "<group>"; };
 		D93D31F622ED244E006AB79F /* marioIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marioIcon.png; sourceTree = "<group>"; };
+		D970394A23E66DFB0014E135 /* GameScene2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene2.sks; sourceTree = "<group>"; };
 		D993B80922F9245D00260B02 /* vortex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vortex.png; sourceTree = "<group>"; };
 		D99C300522ED2DBD000EC43B /* WinScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinScene.swift; sourceTree = "<group>"; };
 		D99C300722ED31D0000EC43B /* starMusic.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = starMusic.mp3; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 				D99C300522ED2DBD000EC43B /* WinScene.swift */,
 				D9210A3822EC6F8F00F1B1D2 /* GameScene.sks */,
 				D9210A3C22EC6F8F00F1B1D2 /* GameScene.swift */,
+				D970394A23E66DFB0014E135 /* GameScene2.sks */,
 				D9210A3E22EC6F8F00F1B1D2 /* GameViewController.swift */,
 				D9210A4022EC6F8F00F1B1D2 /* Main.storyboard */,
 				D9210A4322EC6F9000F1B1D2 /* Assets.xcassets */,
@@ -187,6 +190,7 @@
 				D9210A4722EC6F9000F1B1D2 /* LaunchScreen.storyboard in Resources */,
 				D93D31F322ED1C9A006AB79F /* star3.png in Resources */,
 				D93D31F722ED244E006AB79F /* marioIcon.png in Resources */,
+				D970394B23E66DFB0014E135 /* GameScene2.sks in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -24,7 +24,7 @@ class WinScene: SKScene {
         print("touches began")
         
         if allowTouchToExit == true {
-            let fileName = "GameScene"
+            let fileName = "GameScene2"
 
             // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
             // including entities and graphs.

@@ -34,8 +34,8 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playerr: AVAudioPlayer?
     
     override func sceneDidLoad() {
+        
         let path = Bundle.main.path(forResource:"honeyHive", ofType: "mp3")
-
         do{
             try playerr = AVAudioPlayer(contentsOf: URL(fileURLWithPath: path!))
         } catch {
@@ -47,10 +47,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         catch{
         }
-
         playerr!.play()
         
         self.lastUpdateTime = 0
+        
         player = self.childNode(withName: "player") as? SKSpriteNode
         player?.physicsBody?.categoryBitMask = PhysicsCategories.player
         player?.physicsBody?.collisionBitMask = PhysicsCategories.ground | PhysicsCategories.peach | PhysicsCategories.star
@@ -71,33 +71,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         
         cam = self.childNode(withName: "cameraSprite") as? SKCameraNode
         self.physicsWorld.contactDelegate = self
-        
-//        self.tileMap = self.childNode(withName: "Tile Map Node") as? SKTileMapNode
-//        guard let tileMap = self.tileMap else { fatalError("Missing tile map for the level") }
-//        self.tileMap?.zPosition = -1
-//        
-//        let tileSize = tileMap.tileSize
-//        let halfWidth = CGFloat(tileMap.numberOfColumns) / 2.0 * tileSize.width
-//        let halfHeight = CGFloat(tileMap.numberOfRows) / 2.0 * tileSize.height
-//        for col in 0..<tileMap.numberOfColumns {
-//            for row in 0..<tileMap.numberOfRows {
-//                let tileDefinition = tileMap.tileDefinition(atColumn: col, row: row)
-//                let isEdgeTile = tileDefinition?.userData?["groundTile"] as? Bool
-//                if (isEdgeTile ?? false) {
-//                    let x = CGFloat(col) * tileSize.width - halfWidth
-//                    let y = CGFloat(row) * tileSize.height - halfHeight
-//                    let rect = CGRect(x: 0, y: 0, width: tileSize.width, height: tileSize.height)
-//                    let tileNode = SKShapeNode(rect: rect)
-//                    tileNode.position = CGPoint(x: x, y: y)
-//                    tileNode.physicsBody = SKPhysicsBody.init(rectangleOf: tileSize, center: CGPoint(x: tileSize.width / 2.0, y: tileSize.height / 2.0))
-//                    //tileNode.physicsBody?.restitution = 1
-//                    tileNode.physicsBody?.isDynamic = false
-//                    tileNode.physicsBody?.collisionBitMask = PhysicsCategories.player
-//                    tileNode.physicsBody?.categoryBitMask = PhysicsCategories.ground
-//                    tileMap.addChild(tileNode)
-//                }
-//            }
-//        }
     }
     
     func startMovingPlayerLeft () {
