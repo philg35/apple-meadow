@@ -36,6 +36,8 @@ class WinScene: SKScene {
                 fileName = "GameScene3"
             }
             else {
+                level = 1
+                UserDefaults.standard.set(level, forKey: "Level")
                 fileName = "GameScene"
             }
             
