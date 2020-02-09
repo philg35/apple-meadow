@@ -12,6 +12,7 @@ import GameplayKit
 class WinScene: SKScene {
     var startDateTime: TimeInterval!
     var allowTouchToExit : Bool!
+    var level : Int = 0
     
     override func didMove(to view: SKView) {
         backgroundColor = UIColor(red: 44/255, green: 62/255, blue: 80/255, alpha: 1.0)
@@ -21,10 +22,23 @@ class WinScene: SKScene {
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         
-        print("touches began")
-        
+        var fileName : String!
         if allowTouchToExit == true {
-            let fileName = "GameScene2"
+            level = UserDefaults.standard.integer(forKey: "Level")
+            level += 1
+            UserDefaults.standard.set(level, forKey: "Level")
+            print("touches began, level=", level)
+            
+            if level == 2 {
+                fileName = "GameScene2"
+            }
+            else if level == 3 {
+                fileName = "GameScene3"
+            }
+            else {
+                fileName = "GameScene"
+            }
+            
 
             // Load 'GameScene.sks' as a GKScene. This provides gameplay related content
             // including entities and graphs.

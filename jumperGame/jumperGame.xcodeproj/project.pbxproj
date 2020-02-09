@@ -29,6 +29,7 @@
 		D9B5188822ECA2E200A452FF /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9B5188622ECA2E200A452FF /* Assets.xcassets */; };
 		D9BFEAAD22F4E7240037D078 /* MyTileSet.sks in Resources */ = {isa = PBXBuildFile; fileRef = D9BFEAAC22F4E7240037D078 /* MyTileSet.sks */; };
 		D9D9940722EC7B090042B219 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D9D9940622EC7B090042B219 /* arrow.png */; };
+		D9E486D023F03BF20025CE41 /* GameScene3.sks in Resources */ = {isa = PBXBuildFile; fileRef = D9E486CF23F03BF20025CE41 /* GameScene3.sks */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -56,6 +57,7 @@
 		D9B5188622ECA2E200A452FF /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D9BFEAAC22F4E7240037D078 /* MyTileSet.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = MyTileSet.sks; sourceTree = "<group>"; };
 		D9D9940622EC7B090042B219 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
+		D9E486CF23F03BF20025CE41 /* GameScene3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene3.sks; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,9 +105,10 @@
 				D9210A3622EC6F8F00F1B1D2 /* AppDelegate.swift */,
 				D93D31F422ED23FC006AB79F /* WinScene.sks */,
 				D99C300522ED2DBD000EC43B /* WinScene.swift */,
-				D9210A3822EC6F8F00F1B1D2 /* GameScene.sks */,
 				D9210A3C22EC6F8F00F1B1D2 /* GameScene.swift */,
+				D9210A3822EC6F8F00F1B1D2 /* GameScene.sks */,
 				D970394A23E66DFB0014E135 /* GameScene2.sks */,
+				D9E486CF23F03BF20025CE41 /* GameScene3.sks */,
 				D9210A3E22EC6F8F00F1B1D2 /* GameViewController.swift */,
 				D9210A4022EC6F8F00F1B1D2 /* Main.storyboard */,
 				D9210A4322EC6F9000F1B1D2 /* Assets.xcassets */,
@@ -178,6 +181,7 @@
 				D993B80A22F9245D00260B02 /* vortex.png in Resources */,
 				D9210A4222EC6F8F00F1B1D2 /* Main.storyboard in Resources */,
 				D99C300822ED31D0000EC43B /* starMusic.mp3 in Resources */,
+				D9E486D023F03BF20025CE41 /* GameScene3.sks in Resources */,
 				D9210A5122EC747E00F1B1D2 /* block.png in Resources */,
 				D9301A4222EE56B500A79F8F /* greenplanet.png in Resources */,
 				D9210A3922EC6F8F00F1B1D2 /* GameScene.sks in Resources */,
