@@ -21,6 +21,8 @@
 		D985E5D523809B3800C9EA8F /* stomp.wav in Resources */ = {isa = PBXBuildFile; fileRef = D985E5D423809B3800C9EA8F /* stomp.wav */; };
 		D985E5D723809B3F00C9EA8F /* 1up.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D985E5D623809B3F00C9EA8F /* 1up.mp3 */; };
 		D985E5D923809B4400C9EA8F /* over.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D985E5D823809B4400C9EA8F /* over.mp3 */; };
+		D9E486D223F0CD710025CE41 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = D9E486D123F0CD710025CE41 /* Explosion.sks */; };
+		D9E486D423F0CD770025CE41 /* stomp.wav in Resources */ = {isa = PBXBuildFile; fileRef = D9E486D323F0CD770025CE41 /* stomp.wav */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		D985E5D423809B3800C9EA8F /* stomp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = stomp.wav; sourceTree = "<group>"; };
 		D985E5D623809B3F00C9EA8F /* 1up.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 1up.mp3; sourceTree = "<group>"; };
 		D985E5D823809B4400C9EA8F /* over.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = over.mp3; sourceTree = "<group>"; };
+		D9E486D123F0CD710025CE41 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = Explosion.sks; sourceTree = "<group>"; };
+		D9E486D323F0CD770025CE41 /* stomp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = stomp.wav; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,8 @@
 				D9083AF9235BB4200039C69D /* AppDelegate.swift */,
 				D9083AFB235BB4200039C69D /* GameScene.sks */,
 				D9083AFD235BB4200039C69D /* Actions.sks */,
+				D9E486D123F0CD710025CE41 /* Explosion.sks */,
+				D9E486D323F0CD770025CE41 /* stomp.wav */,
 				D9083AFF235BB4200039C69D /* GameScene.swift */,
 				D9083B01235BB4200039C69D /* GameViewController.swift */,
 				D9083B03235BB4200039C69D /* Main.storyboard */,
@@ -154,12 +160,14 @@
 				D985E5D523809B3800C9EA8F /* stomp.wav in Resources */,
 				D9083B05235BB4200039C69D /* Main.storyboard in Resources */,
 				D9083AFC235BB4200039C69D /* GameScene.sks in Resources */,
+				D9E486D223F0CD710025CE41 /* Explosion.sks in Resources */,
 				D9083B07235BB4210039C69D /* Assets.xcassets in Resources */,
 				D9083B0A235BB4210039C69D /* LaunchScreen.storyboard in Resources */,
 				D985E5D32364833500C9EA8F /* 1-07 Egg Planet.mp3 in Resources */,
 				D9083B142363BF560039C69D /* Explosion.sks in Resources */,
 				D9083AFE235BB4200039C69D /* Actions.sks in Resources */,
 				D985E5D723809B3F00C9EA8F /* 1up.mp3 in Resources */,
+				D9E486D423F0CD770025CE41 /* stomp.wav in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
