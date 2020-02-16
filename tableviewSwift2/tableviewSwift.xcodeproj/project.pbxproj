@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3207CE1FD15D8E320A28436D /* Pods_tableviewSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 36851AE2FF547D0C1BE575FB /* Pods_tableviewSwift.framework */; };
+		D90D4FEA23F9B332009CFDDF /* ConfigViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D90D4FE923F9B332009CFDDF /* ConfigViewController.swift */; };
 		D9904ED92309A09300A8D7F6 /* DeviceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9904ED82309A09300A8D7F6 /* DeviceViewController.swift */; };
 		D9A59D1B22432F4A00BF31D6 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A59D1A22432F4A00BF31D6 /* AppDelegate.swift */; };
 		D9A59D1D22432F4A00BF31D6 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A59D1C22432F4A00BF31D6 /* ViewController.swift */; };
@@ -23,6 +24,7 @@
 /* Begin PBXFileReference section */
 		03ACF8DDD2651DAAD0262C3C /* Pods-tableviewSwift.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-tableviewSwift.debug.xcconfig"; path = "Target Support Files/Pods-tableviewSwift/Pods-tableviewSwift.debug.xcconfig"; sourceTree = "<group>"; };
 		36851AE2FF547D0C1BE575FB /* Pods_tableviewSwift.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_tableviewSwift.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D90D4FE923F9B332009CFDDF /* ConfigViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigViewController.swift; sourceTree = "<group>"; };
 		D9904ED82309A09300A8D7F6 /* DeviceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeviceViewController.swift; sourceTree = "<group>"; };
 		D9A59D1722432F4A00BF31D6 /* tableviewSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tableviewSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9A59D1A22432F4A00BF31D6 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				D9A59D1A22432F4A00BF31D6 /* AppDelegate.swift */,
 				D9FD9FA32304EA7100B71832 /* ParseXml.swift */,
 				D9A59D1C22432F4A00BF31D6 /* ViewController.swift */,
+				D90D4FE923F9B332009CFDDF /* ConfigViewController.swift */,
 				D9904ED82309A09300A8D7F6 /* DeviceViewController.swift */,
 				D9A59D1E22432F4A00BF31D6 /* Main.storyboard */,
 				D9A59D2C224333FD00BF31D6 /* CustomTableViewCell.swift */,
@@ -229,6 +232,7 @@
 			files = (
 				D9A59D2D224333FD00BF31D6 /* CustomTableViewCell.swift in Sources */,
 				D9FD9FA42304EA7100B71832 /* ParseXml.swift in Sources */,
+				D90D4FEA23F9B332009CFDDF /* ConfigViewController.swift in Sources */,
 				D9904ED92309A09300A8D7F6 /* DeviceViewController.swift in Sources */,
 				D9A59D1D22432F4A00BF31D6 /* ViewController.swift in Sources */,
 				D9A59D1B22432F4A00BF31D6 /* AppDelegate.swift in Sources */,

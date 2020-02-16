@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gSd-NN-vOB">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="gSd-NN-vOB">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -17,15 +17,15 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="vYX-FG-xnj">
-                                <rect key="frame" x="7" y="131" width="359" height="449"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellReuseIdentifier" id="LgX-F3-azG" customClass="CustomTableViewCell" customModule="tableviewSwift" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="359" height="44"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="LgX-F3-azG" id="Exk-SU-fha">
-                                            <rect key="frame" x="0.0" y="0.0" width="359" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nyk-lt-8j4">
@@ -65,74 +65,27 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
-                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="soC-PP-2FM">
-                                <rect key="frame" x="0.0" y="64" width="195" height="73"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                            </pickerView>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="uFN-qI-b3l">
-                                <rect key="frame" x="7" y="577" width="359" height="90"/>
+                                <rect key="frame" x="7" y="660" width="352" height="7"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VjT-Su-vSd">
-                                <rect key="frame" x="304" y="85" width="55" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                                <state key="normal" title="Remove"/>
-                                <connections>
-                                    <action selector="removePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jDs-R9-fa9"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zIb-0r-qrP">
-                                <rect key="frame" x="225" y="85" width="53" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
-                                <state key="normal" title="Refresh"/>
-                                <connections>
-                                    <action selector="refreshPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sri-rj-wET"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="Mbo-IS-R8A"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="Aya-di-ZHY">
-                        <barButtonItem key="leftBarButtonItem" title="Config" id="a4X-Uh-tXX">
+                        <barButtonItem key="rightBarButtonItem" title="Config" id="a4X-Uh-tXX">
                             <connections>
                                 <segue destination="rPp-RK-qcA" kind="show" id="yYl-hc-6j1"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem id="e9l-DL-s58">
-                                <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="IlX-mB-L3B">
-                                    <rect key="frame" x="329" y="7" width="30" height="30"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <state key="normal" title="Add"/>
-                                    <connections>
-                                        <action selector="addPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="LPG-Bl-hy0"/>
-                                    </connections>
-                                </button>
-                            </barButtonItem>
-                            <barButtonItem id="g2H-fM-zCh">
-                                <textField key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" usesAttributedText="YES" borderStyle="roundedRect" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" clearButtonMode="whileEditing" id="NcM-SU-bY8">
-                                    <rect key="frame" x="150" y="5" width="171" height="34"/>
-                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                    <attributedString key="attributedText">
-                                        <fragment content="10.0.0.251">
-                                            <attributes>
-                                                <font key="NSFont" metaFont="system" size="20"/>
-                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                            </attributes>
-                                        </fragment>
-                                    </attributedString>
-                                    <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" enablesReturnKeyAutomatically="YES"/>
-                                </textField>
-                            </barButtonItem>
-                        </rightBarButtonItems>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="ipAddressField" destination="NcM-SU-bY8" id="wJ0-pK-ktt"/>
-                        <outlet property="pickerView" destination="soC-PP-2FM" id="cFW-ry-04w"/>
                         <outlet property="tableview" destination="vYX-FG-xnj" id="pbD-mw-Jn7"/>
                         <outlet property="textview" destination="uFN-qI-b3l" id="4kz-lt-xw5"/>
                     </connections>
@@ -150,7 +103,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z7T-Tp-FgK">
-                                <rect key="frame" x="0.0" y="44" width="375" height="623"/>
+                                <rect key="frame" x="0.0" y="44" width="375" height="574"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" editable="NO" textAlignment="center" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pbN-Hc-nxD" userLabel="States">
                                         <rect key="frame" x="0.0" y="34" width="375" height="80"/>
@@ -259,21 +212,72 @@
             </objects>
             <point key="canvasLocation" x="175" y="27"/>
         </scene>
-        <!--View Controller-->
+        <!--Config View Controller-->
         <scene sceneID="XkZ-zZ-oUy">
             <objects>
-                <viewController id="rPp-RK-qcA" sceneMemberID="viewController">
+                <viewController id="rPp-RK-qcA" customClass="ConfigViewController" customModule="tableviewSwift" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="RZF-wf-xgM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="fill" contentVerticalAlignment="fill" usesAttributedText="YES" borderStyle="roundedRect" adjustsFontForContentSizeCategory="YES" minimumFontSize="17" clearButtonMode="whileEditing" id="YV5-Et-Ycd" userLabel="Ip Address Field">
+                                <rect key="frame" x="16" y="93" width="212" height="34"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="10.0.0.251">
+                                        <attributes>
+                                            <font key="NSFont" metaFont="system" size="20"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <textInputTraits key="textInputTraits" keyboardType="numbersAndPunctuation" enablesReturnKeyAutomatically="YES"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" id="I8U-kc-CbL">
+                                <rect key="frame" x="283" y="95" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Add"/>
+                                <connections>
+                                    <action selector="addPressed:" destination="rPp-RK-qcA" eventType="touchUpInside" id="fTY-4o-Xo7"/>
+                                </connections>
+                            </button>
+                            <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="soC-PP-2FM">
+                                <rect key="frame" x="25" y="157" width="195" height="267"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                            </pickerView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zIb-0r-qrP">
+                                <rect key="frame" x="272" y="178" width="53" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                                <state key="normal" title="Refresh"/>
+                                <connections>
+                                    <action selector="refreshPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Sri-rj-wET"/>
+                                    <action selector="refreshedPressed:" destination="rPp-RK-qcA" eventType="touchUpInside" id="a9i-ac-coS"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VjT-Su-vSd">
+                                <rect key="frame" x="270" y="133" width="55" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
+                                <state key="normal" title="Remove"/>
+                                <connections>
+                                    <action selector="removePressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="jDs-R9-fa9"/>
+                                    <action selector="removePressed:" destination="rPp-RK-qcA" eventType="touchUpInside" id="lLV-LC-W3w"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="beB-Vt-YMh"/>
                     </view>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" id="KHC-Ky-ydQ"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="ipAddressField" destination="YV5-Et-Ycd" id="mVO-Fv-vQb"/>
+                        <outlet property="pickerView" destination="soC-PP-2FM" id="6d2-MR-wuE"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2n0-cG-8WM" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1966" y="-327"/>
+            <point key="canvasLocation" x="1965.5999999999999" y="-327.88605697151428"/>
         </scene>
     </scenes>
 </document>

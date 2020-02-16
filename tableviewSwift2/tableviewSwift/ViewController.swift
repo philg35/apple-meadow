@@ -17,8 +17,6 @@ var mqttStarted = false
 class ViewController: UIViewController {
     
     @IBOutlet weak var tableview: UITableView!
-    @IBOutlet weak var ipAddressField: UITextField!
-    @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var textview: UITextView!
     
     struct PortDevices
@@ -28,7 +26,6 @@ class ViewController: UIViewController {
         var devicesOnPort: [DevXml]
     }
     
-    var pickerData: [String] = [String]()
     var mqtt: CocoaMQTT!
     private var parentList: [String] = []
     private var deviceArray: [PortDevices] = []
@@ -37,66 +34,41 @@ class ViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        ipAddress = UserDefaults.standard.string(forKey: "defaultIP") ?? "10.0.0.251"
         tableview.dataSource = self
         tableview.delegate = self
-        self.pickerView.delegate = self
-        self.pickerView.dataSource = self
-        self.ipAddressField.delegate = self
-        
-        //read in saved ip addresses
+        doXmlRead()
+        self.title = ipAddress
+    }
+    
+    func loadAll(ipAddr: String)
+    {
+        print("loading all", ipAddr)
+        ipAddress = ipAddr
+        self.title = ipAddress
         let defaults = UserDefaults.standard
-        pickerData = defaults.stringArray(forKey: "pickerData") ?? [String]()
-        if pickerData == [] {
-            pickerData.append("10.0.0.251")
-        }
-        let selectedValue = pickerView.selectedRow(inComponent: 0)
-        ipAddress = pickerData[selectedValue]
+        defaults.set(ipAddress, forKey: "defaultIP")
         doXmlRead()
     }
     
-    @IBAction func removePressed(_ sender: Any) {
-        let selectedValue = pickerView.selectedRow(inComponent: 0)
-        print("selected", selectedValue)
-        pickerData.remove(at: selectedValue)
-        self.pickerView.reloadAllComponents()
-        savePickerData()
-    }
-    
-    @IBAction func refreshPressed(_ sender: Any) {
-        let selectedValue = pickerView.selectedRow(inComponent: 0)
-        print("selected", selectedValue)
-        ipAddress = pickerData[selectedValue]
-        doXmlRead()
-    }
-    
-    @IBAction func addPressed(_ sender: Any) {
-        if ipAddressField.endEditing(false) {
-            print("ending editting, button pressed")
-            ipAddress = ipAddressField.text ?? "10.0.0.251"
-            if !pickerData.contains(ipAddress) {
-                print("add it")
-                pickerData.append(ipAddress)
-                pickerData.sort()
-                self.pickerView.reloadAllComponents()
-            }
-            savePickerData()
-        }
-        else {
-            print("button pressed")
-        }
-        doXmlRead()
-    }
-        
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         print("preparing segue???")
-        guard let vc = segue.destination as? DeviceViewController else {
-            print("not a device!!!")
-            return
+        if let vc = segue.destination as? DeviceViewController
+        {
+            let row = tableview.indexPathForSelectedRow?.row
+            let section = tableview.indexPathForSelectedRow?.section
+            vc.events = GetEventsForDevice(device: self.deviceArray[section ?? 0].devicesOnPort[row ?? 0].deviceID)
         }
-        let row = tableview.indexPathForSelectedRow?.row
-        let section = tableview.indexPathForSelectedRow?.section
-        vc.events = GetEventsForDevice(device: self.deviceArray[section ?? 0].devicesOnPort[row ?? 0].deviceID)
+        else if let vc = segue.destination as? ConfigViewController
+        {
+            print("config view controller")
+            vc.mainVc = self
+        }
+        else
+        {
+            print("some other view controller")
+        }
+        
     }
     
     func GetEventsForDevice(device: String) -> [String] {
@@ -183,12 +155,6 @@ class ViewController: UIViewController {
             }
         }
         task.resume()
-    }
-    
-    func savePickerData() {
-        //save ip addresses
-        let defaults = UserDefaults.standard
-        defaults.set(pickerData, forKey: "pickerData")
     }
     
     func setUpMQTT() {
@@ -280,6 +246,7 @@ extension ViewController: CocoaMQTTDelegate {
             let (pIndex, dIndex) = findDeviceParentIndexes(device: t[5])
             self.deviceArray[pIndex].devicesOnPort[dIndex].hasOccupany = true
             self.deviceArray[pIndex].devicesOnPort[dIndex].occupiedState = message.contains("true")
+            self.tableview.reloadData()
         }
     }
     
@@ -353,50 +320,12 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
-    // The number of rows of data
-    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-        return pickerData.count
-    }
-    
-    // Number of columns of data
-    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-        return 1
-    }
-    
-    // The data to return for the row and component (column) that's being passed in
-    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-        return pickerData[row]
-    }
-    
-    // Capture the picker view selection
-    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-        // This method is triggered whenever the user makes a change to the picker selection.
-        // The parameter named row and component represents what was selected.
-        print(pickerData[row], row, component)
-        ipAddress = pickerData[row]
-        doXmlRead()
-    }
-}
-
-extension ViewController: UITextFieldDelegate {
-    func textFieldDidEndEditing(_ textField: UITextField) {
-        print("done editing")
-    }
-    
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        print("began editing")
-    }
-}
-
 extension ViewController: PressSwitchDelegate {
     func didPressSwitch(deviceID: String, newState: Bool) {
         print("switch \(deviceID) goto \(newState)")
         mqtt.publish("nLight/version/2/control/device/\(deviceID)/pole/1/relay-state", withString: "{\"state\":\(newState)}", qos: .qos1, retained: false, dup: false)
     }
 }
-
-
 
 class SessionDelegate:NSObject, URLSessionDelegate
 {
