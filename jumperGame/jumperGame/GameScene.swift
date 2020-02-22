@@ -52,20 +52,42 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func sceneDidLoad() {
+        level = UserDefaults.standard.integer(forKey: "Level")
         
-        let path = Bundle.main.path(forResource:"honeyHive", ofType: "mp3")
-        do{
-            try playerr = AVAudioPlayer(contentsOf: URL(fileURLWithPath: path!))
-        } catch {
-            print("File is not Loaded")
+        if level == 2
+        {
+            let path = Bundle.main.path(forResource:"honeyHive", ofType: "mp3")
+            do{
+                try playerr = AVAudioPlayer(contentsOf: URL(fileURLWithPath: path!))
+            } catch {
+                print("File is not Loaded")
+            }
+            let session = AVAudioSession.sharedInstance()
+            do{
+                try session.setCategory(AVAudioSession.Category.playback)
+            }
+            catch{
+            }
+            playerr!.play()
         }
-        let session = AVAudioSession.sharedInstance()
-        do{
-            try session.setCategory(AVAudioSession.Category.playback)
+        else //if level == 1
+        {
+            let path = Bundle.main.path(forResource:"eggPlanet", ofType: "mp3")
+            do{
+                try playerr = AVAudioPlayer(contentsOf: URL(fileURLWithPath: path!))
+            } catch {
+                print("File is not Loaded")
+            }
+            let session = AVAudioSession.sharedInstance()
+            do{
+                try session.setCategory(AVAudioSession.Category.playback)
+            }
+            catch{
+            }
+            playerr!.play()
         }
-        catch{
-        }
-        playerr!.play()
+        
+        
         
         self.lastUpdateTime = 0
         
@@ -90,7 +112,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         cam = self.childNode(withName: "cameraSprite") as? SKCameraNode
         self.physicsWorld.contactDelegate = self
         
-        level = UserDefaults.standard.integer(forKey: "Level")
+        
         
         if level == 2 {
             hitsLabel = SKLabelNode(text: "Hits: 0")

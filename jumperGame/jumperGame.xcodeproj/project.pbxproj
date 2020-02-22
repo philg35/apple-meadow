@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D90D4FEE24009098009CFDDF /* finalBowser.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90D4FEB24009097009CFDDF /* finalBowser.mp3 */; };
+		D90D4FEF24009098009CFDDF /* airShips.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90D4FEC24009098009CFDDF /* airShips.mp3 */; };
+		D90D4FF024009098009CFDDF /* moltenGalaxy.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D90D4FED24009098009CFDDF /* moltenGalaxy.mp3 */; };
 		D9210A3722EC6F8F00F1B1D2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9210A3622EC6F8F00F1B1D2 /* AppDelegate.swift */; };
 		D9210A3922EC6F8F00F1B1D2 /* GameScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D9210A3822EC6F8F00F1B1D2 /* GameScene.sks */; };
 		D9210A3D22EC6F8F00F1B1D2 /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9210A3C22EC6F8F00F1B1D2 /* GameScene.swift */; };
@@ -32,10 +35,13 @@
 		D9E486D023F03BF20025CE41 /* GameScene3.sks in Resources */ = {isa = PBXBuildFile; fileRef = D9E486CF23F03BF20025CE41 /* GameScene3.sks */; };
 		D9E486D623F0CD9D0025CE41 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = D9E486D523F0CD9D0025CE41 /* Explosion.sks */; };
 		D9E486D823F0CDA50025CE41 /* stomp.wav in Resources */ = {isa = PBXBuildFile; fileRef = D9E486D723F0CDA50025CE41 /* stomp.wav */; };
-		D9E486DA23F0CDC20025CE41 /* 1-07 Egg Planet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E486D923F0CDC20025CE41 /* 1-07 Egg Planet.mp3 */; };
+		D9E486DA23F0CDC20025CE41 /* eggPlanet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E486D923F0CDC20025CE41 /* eggPlanet.mp3 */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D90D4FEB24009097009CFDDF /* finalBowser.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = finalBowser.mp3; sourceTree = "<group>"; };
+		D90D4FEC24009098009CFDDF /* airShips.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = airShips.mp3; sourceTree = "<group>"; };
+		D90D4FED24009098009CFDDF /* moltenGalaxy.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = moltenGalaxy.mp3; sourceTree = "<group>"; };
 		D9210A3322EC6F8F00F1B1D2 /* jumperGame.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jumperGame.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9210A3622EC6F8F00F1B1D2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D9210A3822EC6F8F00F1B1D2 /* GameScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene.sks; sourceTree = "<group>"; };
@@ -63,7 +69,7 @@
 		D9E486CF23F03BF20025CE41 /* GameScene3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene3.sks; sourceTree = "<group>"; };
 		D9E486D523F0CD9D0025CE41 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Explosion.sks; path = ../../marioGame/marioGame/Explosion.sks; sourceTree = "<group>"; };
 		D9E486D723F0CDA50025CE41 /* stomp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = stomp.wav; path = ../../marioGame/marioGame/stomp.wav; sourceTree = "<group>"; };
-		D9E486D923F0CDC20025CE41 /* 1-07 Egg Planet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = "1-07 Egg Planet.mp3"; path = "../../marioGame/marioGame/1-07 Egg Planet.mp3"; sourceTree = "<group>"; };
+		D9E486D923F0CDC20025CE41 /* eggPlanet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = eggPlanet.mp3; path = ../../marioGame/marioGame/eggPlanet.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,7 +108,10 @@
 				D9301A4122EE56B500A79F8F /* greenplanet.png */,
 				D99C300722ED31D0000EC43B /* starMusic.mp3 */,
 				D99C300922ED347C000EC43B /* honeyHive.mp3 */,
-				D9E486D923F0CDC20025CE41 /* 1-07 Egg Planet.mp3 */,
+				D9E486D923F0CDC20025CE41 /* eggPlanet.mp3 */,
+				D90D4FEC24009098009CFDDF /* airShips.mp3 */,
+				D90D4FEB24009097009CFDDF /* finalBowser.mp3 */,
+				D90D4FED24009098009CFDDF /* moltenGalaxy.mp3 */,
 				D99C301022EDE0AE000EC43B /* mario.png */,
 				D99C300D22EDE0A9000EC43B /* peach.png */,
 				D9210A5022EC747E00F1B1D2 /* block.png */,
@@ -186,12 +195,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				D93D31F522ED23FC006AB79F /* WinScene.sks in Resources */,
-				D9E486DA23F0CDC20025CE41 /* 1-07 Egg Planet.mp3 in Resources */,
+				D9E486DA23F0CDC20025CE41 /* eggPlanet.mp3 in Resources */,
 				D99C300B22EDE0A9000EC43B /* peach.png in Resources */,
+				D90D4FEE24009098009CFDDF /* finalBowser.mp3 in Resources */,
 				D993B80A22F9245D00260B02 /* vortex.png in Resources */,
 				D9210A4222EC6F8F00F1B1D2 /* Main.storyboard in Resources */,
 				D9E486D823F0CDA50025CE41 /* stomp.wav in Resources */,
 				D99C300822ED31D0000EC43B /* starMusic.mp3 in Resources */,
+				D90D4FF024009098009CFDDF /* moltenGalaxy.mp3 in Resources */,
 				D9E486D023F03BF20025CE41 /* GameScene3.sks in Resources */,
 				D9210A5122EC747E00F1B1D2 /* block.png in Resources */,
 				D9301A4222EE56B500A79F8F /* greenplanet.png in Resources */,
@@ -205,6 +216,7 @@
 				D9210A4722EC6F9000F1B1D2 /* LaunchScreen.storyboard in Resources */,
 				D93D31F322ED1C9A006AB79F /* star3.png in Resources */,
 				D9E486D623F0CD9D0025CE41 /* Explosion.sks in Resources */,
+				D90D4FEF24009098009CFDDF /* airShips.mp3 in Resources */,
 				D93D31F722ED244E006AB79F /* marioIcon.png in Resources */,
 				D970394B23E66DFB0014E135 /* GameScene2.sks in Resources */,
 			);

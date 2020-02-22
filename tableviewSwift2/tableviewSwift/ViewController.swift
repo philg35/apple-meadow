@@ -316,6 +316,9 @@ extension ViewController: UITableViewDataSource, UITableViewDelegate {
                 cell.occPicture.image = UIImage(named: "vacant2")
             }
         }
+        else {
+            cell.occPicture.image = nil
+        }
         return cell
     }
 }
