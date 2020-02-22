@@ -53,41 +53,21 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func sceneDidLoad() {
         level = UserDefaults.standard.integer(forKey: "Level")
-        
-        if level == 2
-        {
-            let path = Bundle.main.path(forResource:"honeyHive", ofType: "mp3")
-            do{
-                try playerr = AVAudioPlayer(contentsOf: URL(fileURLWithPath: path!))
-            } catch {
-                print("File is not Loaded")
-            }
-            let session = AVAudioSession.sharedInstance()
-            do{
-                try session.setCategory(AVAudioSession.Category.playback)
-            }
-            catch{
-            }
-            playerr!.play()
+        let musicArray = ["honeyHive", "eggPlanet", "moltenGalaxy", "airShip", "blueSky", "flyingMario", "marioRemix", "spaceAthletic", "finalBowser"]
+        print(level, musicArray[level])
+        let path = Bundle.main.path(forResource:musicArray[Int.random(in: 0..<musicArray.count)], ofType: "mp3")
+        do{
+            try playerr = AVAudioPlayer(contentsOf: URL(fileURLWithPath: path!))
+        } catch {
+            print("File is not Loaded")
         }
-        else //if level == 1
-        {
-            let path = Bundle.main.path(forResource:"eggPlanet", ofType: "mp3")
-            do{
-                try playerr = AVAudioPlayer(contentsOf: URL(fileURLWithPath: path!))
-            } catch {
-                print("File is not Loaded")
-            }
-            let session = AVAudioSession.sharedInstance()
-            do{
-                try session.setCategory(AVAudioSession.Category.playback)
-            }
-            catch{
-            }
-            playerr!.play()
+        let session = AVAudioSession.sharedInstance()
+        do{
+            try session.setCategory(AVAudioSession.Category.playback)
         }
-        
-        
+        catch{
+        }
+        playerr!.play()
         
         self.lastUpdateTime = 0
         
