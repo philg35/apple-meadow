@@ -26,6 +26,9 @@
 		D93D31F322ED1C9A006AB79F /* star3.png in Resources */ = {isa = PBXBuildFile; fileRef = D93D31F222ED1C9A006AB79F /* star3.png */; };
 		D93D31F522ED23FC006AB79F /* WinScene.sks in Resources */ = {isa = PBXBuildFile; fileRef = D93D31F422ED23FC006AB79F /* WinScene.sks */; };
 		D93D31F722ED244E006AB79F /* marioIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = D93D31F622ED244E006AB79F /* marioIcon.png */; };
+		D9633C462401F31700A9926E /* ouch.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9633C452401F31700A9926E /* ouch.mp3 */; };
+		D9633C482401F41900A9926E /* stomp.wav in Resources */ = {isa = PBXBuildFile; fileRef = D9633C472401F41900A9926E /* stomp.wav */; };
+		D9633C4A2401F70600A9926E /* 1up.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9633C492401F70600A9926E /* 1up.mp3 */; };
 		D970394B23E66DFB0014E135 /* GameScene2.sks in Resources */ = {isa = PBXBuildFile; fileRef = D970394A23E66DFB0014E135 /* GameScene2.sks */; };
 		D993B80A22F9245D00260B02 /* vortex.png in Resources */ = {isa = PBXBuildFile; fileRef = D993B80922F9245D00260B02 /* vortex.png */; };
 		D99C300622ED2DBD000EC43B /* WinScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99C300522ED2DBD000EC43B /* WinScene.swift */; };
@@ -38,7 +41,6 @@
 		D9D9940722EC7B090042B219 /* arrow.png in Resources */ = {isa = PBXBuildFile; fileRef = D9D9940622EC7B090042B219 /* arrow.png */; };
 		D9E486D023F03BF20025CE41 /* GameScene3.sks in Resources */ = {isa = PBXBuildFile; fileRef = D9E486CF23F03BF20025CE41 /* GameScene3.sks */; };
 		D9E486D623F0CD9D0025CE41 /* Explosion.sks in Resources */ = {isa = PBXBuildFile; fileRef = D9E486D523F0CD9D0025CE41 /* Explosion.sks */; };
-		D9E486D823F0CDA50025CE41 /* stomp.wav in Resources */ = {isa = PBXBuildFile; fileRef = D9E486D723F0CDA50025CE41 /* stomp.wav */; };
 		D9E486DA23F0CDC20025CE41 /* eggPlanet.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = D9E486D923F0CDC20025CE41 /* eggPlanet.mp3 */; };
 /* End PBXBuildFile section */
 
@@ -64,6 +66,9 @@
 		D93D31F222ED1C9A006AB79F /* star3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = star3.png; sourceTree = "<group>"; };
 		D93D31F422ED23FC006AB79F /* WinScene.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = WinScene.sks; sourceTree = "<group>"; };
 		D93D31F622ED244E006AB79F /* marioIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = marioIcon.png; sourceTree = "<group>"; };
+		D9633C452401F31700A9926E /* ouch.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = ouch.mp3; sourceTree = "<group>"; };
+		D9633C472401F41900A9926E /* stomp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = stomp.wav; sourceTree = "<group>"; };
+		D9633C492401F70600A9926E /* 1up.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 1up.mp3; sourceTree = "<group>"; };
 		D970394A23E66DFB0014E135 /* GameScene2.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene2.sks; sourceTree = "<group>"; };
 		D993B80922F9245D00260B02 /* vortex.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = vortex.png; sourceTree = "<group>"; };
 		D99C300522ED2DBD000EC43B /* WinScene.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WinScene.swift; sourceTree = "<group>"; };
@@ -76,7 +81,6 @@
 		D9D9940622EC7B090042B219 /* arrow.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = arrow.png; sourceTree = "<group>"; };
 		D9E486CF23F03BF20025CE41 /* GameScene3.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; path = GameScene3.sks; sourceTree = "<group>"; };
 		D9E486D523F0CD9D0025CE41 /* Explosion.sks */ = {isa = PBXFileReference; lastKnownFileType = file.sks; name = Explosion.sks; path = ../../marioGame/marioGame/Explosion.sks; sourceTree = "<group>"; };
-		D9E486D723F0CDA50025CE41 /* stomp.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; name = stomp.wav; path = ../../marioGame/marioGame/stomp.wav; sourceTree = "<group>"; };
 		D9E486D923F0CDC20025CE41 /* eggPlanet.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; name = eggPlanet.mp3; path = ../../marioGame/marioGame/eggPlanet.mp3; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -124,6 +128,8 @@
 				D90D4FF324016C6A009CFDDF /* moltenGalaxy.mp3 */,
 				D90D4FF524016C6B009CFDDF /* spaceAthletic.mp3 */,
 				D90D4FFD24016CE0009CFDDF /* finalBowser.mp3 */,
+				D9633C452401F31700A9926E /* ouch.mp3 */,
+				D9633C492401F70600A9926E /* 1up.mp3 */,
 				D99C301022EDE0AE000EC43B /* mario.png */,
 				D99C300D22EDE0A9000EC43B /* peach.png */,
 				D9210A5022EC747E00F1B1D2 /* block.png */,
@@ -131,7 +137,7 @@
 				D93D31F222ED1C9A006AB79F /* star3.png */,
 				D93D31F622ED244E006AB79F /* marioIcon.png */,
 				D9E486D523F0CD9D0025CE41 /* Explosion.sks */,
-				D9E486D723F0CDA50025CE41 /* stomp.wav */,
+				D9633C472401F41900A9926E /* stomp.wav */,
 				D9210A3622EC6F8F00F1B1D2 /* AppDelegate.swift */,
 				D93D31F422ED23FC006AB79F /* WinScene.sks */,
 				D99C300522ED2DBD000EC43B /* WinScene.swift */,
@@ -212,16 +218,17 @@
 				D993B80A22F9245D00260B02 /* vortex.png in Resources */,
 				D90D4FFC24016C6C009CFDDF /* blueSky.mp3 in Resources */,
 				D9210A4222EC6F8F00F1B1D2 /* Main.storyboard in Resources */,
-				D9E486D823F0CDA50025CE41 /* stomp.wav in Resources */,
 				D90D4FF824016C6C009CFDDF /* flyingMario.mp3 in Resources */,
 				D99C300822ED31D0000EC43B /* starMusic.mp3 in Resources */,
 				D90D4FF924016C6C009CFDDF /* moltenGalaxy.mp3 in Resources */,
 				D90D4FFA24016C6C009CFDDF /* marioRemix.mp3 in Resources */,
+				D9633C462401F31700A9926E /* ouch.mp3 in Resources */,
 				D9E486D023F03BF20025CE41 /* GameScene3.sks in Resources */,
 				D9210A5122EC747E00F1B1D2 /* block.png in Resources */,
 				D9301A4222EE56B500A79F8F /* greenplanet.png in Resources */,
 				D9210A3922EC6F8F00F1B1D2 /* GameScene.sks in Resources */,
 				D9D9940722EC7B090042B219 /* arrow.png in Resources */,
+				D9633C482401F41900A9926E /* stomp.wav in Resources */,
 				D90D4FF724016C6C009CFDDF /* airShip.mp3 in Resources */,
 				D9B5188822ECA2E200A452FF /* Assets.xcassets in Resources */,
 				D99C300E22EDE0AE000EC43B /* mario.png in Resources */,
@@ -232,6 +239,7 @@
 				D9210A4722EC6F9000F1B1D2 /* LaunchScreen.storyboard in Resources */,
 				D93D31F322ED1C9A006AB79F /* star3.png in Resources */,
 				D9E486D623F0CD9D0025CE41 /* Explosion.sks in Resources */,
+				D9633C4A2401F70600A9926E /* 1up.mp3 in Resources */,
 				D93D31F722ED244E006AB79F /* marioIcon.png in Resources */,
 				D970394B23E66DFB0014E135 /* GameScene2.sks in Resources */,
 				D90D4FFB24016C6C009CFDDF /* spaceAthletic.mp3 in Resources */,

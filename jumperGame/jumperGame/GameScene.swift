@@ -54,8 +54,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func sceneDidLoad() {
         level = UserDefaults.standard.integer(forKey: "Level")
         let musicArray = ["honeyHive", "eggPlanet", "moltenGalaxy", "airShip", "blueSky", "flyingMario", "marioRemix", "spaceAthletic", "finalBowser"]
-        print(level, musicArray[level])
-        let path = Bundle.main.path(forResource:musicArray[Int.random(in: 0..<musicArray.count)], ofType: "mp3")
+        let music = musicArray[Int.random(in: 0..<musicArray.count)]
+        print(music)
+        let path = Bundle.main.path(forResource: music, ofType: "mp3")
         do{
             try playerr = AVAudioPlayer(contentsOf: URL(fileURLWithPath: path!))
         } catch {
@@ -90,6 +91,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ground?.physicsBody?.collisionBitMask = PhysicsCategories.player | PhysicsCategories.peach
         
         cam = self.childNode(withName: "cameraSprite") as? SKCameraNode
+        
+        if let camera = cam
+        {
+            camera.xScale = 1.6
+            camera.yScale = 1.6
+        }
+            
         self.physicsWorld.contactDelegate = self
         
         
@@ -153,6 +161,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 camera?.xScale = 0.8
                 camera?.yScale = 0.8
             }
+            print("camera scale=", camera?.xScale, camera?.yScale)
         }
         else {
             let pl = player
@@ -187,7 +196,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             firstBody = contact.bodyB
             secondBody = contact.bodyA
         }
-        print("contact", firstBody.categoryBitMask, secondBody.categoryBitMask, Date().timeIntervalSince1970)
+        //print("contact", firstBody.categoryBitMask, secondBody.categoryBitMask, Date().timeIntervalSince1970)
         
         if (firstBody.categoryBitMask & PhysicsCategories.star) != 0 && (secondBody.categoryBitMask & PhysicsCategories.player) != 0 {
             playerr!.stop()
@@ -203,18 +212,34 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 }
             }
         }
-        else if ((firstBody.categoryBitMask & PhysicsCategories.goomba) != 0 && (secondBody.categoryBitMask & PhysicsCategories.player) != 0) {
-                if contact.contactNormal.dy < 0 {
-                    print("got goomba", contact.contactNormal)
-                    if let goombaTest = firstBody.node as! SKSpriteNode? {
-                        if let playerTest = secondBody.node as! SKSpriteNode? {
-                            playerDidCollideWithGoomba(goombaNode: goombaTest, playerNode: playerTest)
-                        }
+        else if ((firstBody.categoryBitMask & PhysicsCategories.goomba) != 0 && (secondBody.categoryBitMask & PhysicsCategories.player) != 0)
+        {
+            if contact.contactNormal.dy < -0.5
+            {
+                if let goombaTest = firstBody.node as! SKSpriteNode?
+                {
+                    if let playerTest = secondBody.node as! SKSpriteNode?
+                    {
+                        print("got goomba", contact.contactNormal)
+                        playerDidCollideWithGoomba(goombaNode: goombaTest, playerNode: playerTest)
                     }
                 }
+            }
+            else
+            {
+                if let goombaTest = firstBody.node as! SKSpriteNode?
+                {
+                    if let playerTest = secondBody.node as! SKSpriteNode?
+                    {
+                        print("goomba got you", contact.contactNormal)
+                        playerTouchedGoomba(goombaNode: goombaTest, playerNode: playerTest)
+                    }
+                }
+            }
+            
         }
         else if ((firstBody.categoryBitMask & PhysicsCategories.ground) != 0 && (secondBody.categoryBitMask & PhysicsCategories.player) != 0) {
-            print("landed")
+            //print("landed")
             jumped = false
             if level == 2 {
                 if hits > highScore {
@@ -248,7 +273,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let explosion = SKEmitterNode(fileNamed: "Explosion")!
         explosion.position = goombaNode.position
         self.addChild(explosion)
-        self.run(SKAction.playSoundFileNamed("stomp.wav", waitForCompletion: false))
+        self.run(SKAction.playSoundFileNamed("1up.mp3", waitForCompletion: false))
         goombaNode.removeFromParent()
         self.run(SKAction.wait(forDuration: 0.9)) {
             explosion.removeFromParent()
@@ -261,7 +286,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         playerNode.physicsBody?.applyImpulse(CGVector(dx: 0, dy: -impulse/3))
     }
     
-    override func update(_ currentTime: TimeInterval) {
+    func playerTouchedGoomba (goombaNode: SKSpriteNode, playerNode: SKSpriteNode) {
+        playerNode.physicsBody?.applyImpulse(CGVector(dx: -10, dy: 5))
+        self.run(SKAction.playSoundFileNamed("ouch.mp3", waitForCompletion: false))
+    }
+    
+    override func update(_ currentTime: TimeInterval)
+    {
         // Called before each frame is rendered
         
         // Initialize _lastUpdateTime if it has not already been
