@@ -19,6 +19,7 @@ enum PhysicsCategories {
     static let radial: UInt32 = 0x1 << 5    // 32
     static let goomba: UInt32 = 0x1 << 6    // 64
     static let fireball: UInt32 = 0x1 << 7  // 128
+    static let bowser: UInt32 = 0x1 << 8    // 256
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -28,6 +29,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var lastUpdateTime : TimeInterval = 0
     var player : SKSpriteNode?
     var peach : SKSpriteNode?
+    var bowser : SKSpriteNode?
     var star : SKSpriteNode?
     var ground : SKSpriteNode?
     var cam : SKCameraNode?
@@ -36,8 +38,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var playerr: AVAudioPlayer?
     
     var level : Int = 0
+    var toggle : Bool = false
     
     var gameTimer: Timer!
+    var gameTimer2: Timer!
     
     var hitsLabel: SKLabelNode!
     var hits: Int = 0 {
@@ -133,7 +137,13 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             gameTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(addGoomba), userInfo: nil, repeats: true)
         }
         else if level == 3 {
+            let bowser = SKSpriteNode(imageNamed: "bowser")
+            bowser.position = CGPoint(x: 1100, y: 320)
+            bowser.physicsBody?.categoryBitMask = PhysicsCategories.bowser
+            bowser.physicsBody?.collisionBitMask = 0 //PhysicsCategories.player
+            //self.addChild(bowser)
             gameTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(addFireball), userInfo: nil, repeats: true)
+            gameTimer2 = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(moveBowser), userInfo: nil, repeats: true)
         }
     }
     
@@ -293,8 +303,10 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     @objc func addFireball() {
+        bowser = self.childNode(withName: "bowser") as? SKSpriteNode
         let fireball = SKSpriteNode(imageNamed: "fireball")
-        fireball.position = CGPoint(x: 1100, y: 120)
+        fireball.position.x = (bowser?.position.x)! - 200
+        fireball.position.y = bowser?.position.y as! CGFloat
         let size = CGSize(width: 100, height: 100)
         fireball.scale(to: size)
         fireball.zRotation = 180
@@ -303,12 +315,27 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         fireball.physicsBody?.allowsRotation = false
         fireball.physicsBody?.categoryBitMask = PhysicsCategories.fireball
         fireball.physicsBody?.contactTestBitMask = PhysicsCategories.player
-        fireball.physicsBody?.collisionBitMask = PhysicsCategories.player | PhysicsCategories.ground | PhysicsCategories.fireball
+        fireball.physicsBody?.collisionBitMask = PhysicsCategories.player | PhysicsCategories.ground
         self.addChild(fireball)
         var actionArray = [SKAction]()
         actionArray.append(SKAction.move(by: CGVector(dx: -5000, dy: 0), duration: 30))
         actionArray.append(SKAction.removeFromParent())
         fireball.run(SKAction.sequence(actionArray))
+    }
+    
+    @objc func moveBowser() {
+        var dir : Int = 0
+        if toggle == true {
+            toggle = false
+            dir = 2000
+        }
+        else {
+            toggle = true
+            dir = -2000
+        }
+        print("moving bowser")
+        bowser = self.childNode(withName: "bowser") as? SKSpriteNode
+        bowser?.physicsBody?.applyImpulse(CGVector(dx: dir, dy: 10000))
     }
 
     func playerDidCollideWithGoomba (goombaNode: SKSpriteNode, playerNode: SKSpriteNode) {
