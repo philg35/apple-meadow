@@ -69,19 +69,25 @@ class ViewController: UIViewController, CBCentralManagerDelegate, UITextFieldDel
         if Int(truncating: RSSI) > rssiNum {
             
             var mfgDataValue = ""
-            print("\nName   : \(peripheral.name ?? "(No name)")")
-            print("RSSI   : \(RSSI)")
+            //print("\nName   : \(peripheral.name ?? "(No name)")")
+            //print("RSSI   : \(RSSI)")
             for ad in advertisementData {
                 if ad.key == "kCBAdvDataManufacturerData"
                 {
                     if let data = ad.value  as? Data {
-                        let dataStr = String(data: data, encoding: .utf8)
+                        let dataStr = String(data: data, encoding: .ascii)
                         mfgDataValue = dataStr ?? "strange nLAir data type"
+//                        if (mfgDataValue != "strange nLAir data type")
+//                        {
+//                            print("not strange")
+//                            print(ad.value)
+//                            print(mfgDataValue)
+//                        }
                     }
                     print(ad.value)
-                    print(mfgDataValue)
+                    //print(mfgDataValue)
+                    //print(ad)
                 }
-                print(ad)
             }
         
             var dev : bleDevice

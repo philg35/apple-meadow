@@ -18,6 +18,7 @@ enum PhysicsCategories {
     static let star: UInt32 = 0x1 << 4      // 16
     static let radial: UInt32 = 0x1 << 5    // 32
     static let goomba: UInt32 = 0x1 << 6    // 64
+    static let fireball: UInt32 = 0x1 << 7  // 128
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
@@ -53,8 +54,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func sceneDidLoad() {
         level = UserDefaults.standard.integer(forKey: "Level")
-        let musicArray = ["honeyHive", "eggPlanet", "moltenGalaxy", "airShip", "blueSky", "flyingMario", "marioRemix", "spaceAthletic", "finalBowser"]
-        let music = musicArray[Int.random(in: 0..<musicArray.count)]
+        let musicArray = ["honeyHive", "eggPlanet", "moltenGalaxy", "airShip", "blueSky", "flyingMario", "marioRemix", "spaceAthletic"]
+        var music = ""
+        if level == 3
+        {
+            music = "finalBowser"
+        }
+        else
+        {
+            music = musicArray[Int.random(in: 0..<musicArray.count)]
+        }
         print(music)
         let path = Bundle.main.path(forResource: music, ofType: "mp3")
         do{
@@ -122,6 +131,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             self.addChild(highScoreLabel)
             
             gameTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(addGoomba), userInfo: nil, repeats: true)
+        }
+        else if level == 3 {
+            gameTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(addFireball), userInfo: nil, repeats: true)
         }
     }
     
@@ -238,6 +250,17 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             }
             
         }
+        else if((firstBody.categoryBitMask & PhysicsCategories.fireball) != 0 && (secondBody.categoryBitMask & PhysicsCategories.player) != 0)
+        {
+            if let fireballTest = firstBody.node as! SKSpriteNode?
+            {
+                if let playerTest = secondBody.node as! SKSpriteNode?
+                {
+                    print("fireball got you", contact.contactNormal)
+                    //playerTouchedGoomba(goombaNode: goombaTest, playerNode: playerTest)
+                }
+            }
+        }
         else if ((firstBody.categoryBitMask & PhysicsCategories.ground) != 0 && (secondBody.categoryBitMask & PhysicsCategories.player) != 0) {
             //print("landed")
             jumped = false
@@ -267,6 +290,25 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         actionArray.append(SKAction.move(by: CGVector(dx: -5000, dy: 0), duration: 30))
         actionArray.append(SKAction.removeFromParent())
         goomba.run(SKAction.sequence(actionArray))
+    }
+    
+    @objc func addFireball() {
+        let fireball = SKSpriteNode(imageNamed: "fireball")
+        fireball.position = CGPoint(x: 1100, y: 120)
+        let size = CGSize(width: 100, height: 100)
+        fireball.scale(to: size)
+        fireball.zRotation = 180
+        fireball.physicsBody = SKPhysicsBody(rectangleOf: fireball.size)
+        fireball.physicsBody?.isDynamic = false
+        fireball.physicsBody?.allowsRotation = false
+        fireball.physicsBody?.categoryBitMask = PhysicsCategories.fireball
+        fireball.physicsBody?.contactTestBitMask = PhysicsCategories.player
+        fireball.physicsBody?.collisionBitMask = PhysicsCategories.player | PhysicsCategories.ground | PhysicsCategories.fireball
+        self.addChild(fireball)
+        var actionArray = [SKAction]()
+        actionArray.append(SKAction.move(by: CGVector(dx: -5000, dy: 0), duration: 30))
+        actionArray.append(SKAction.removeFromParent())
+        fireball.run(SKAction.sequence(actionArray))
     }
 
     func playerDidCollideWithGoomba (goombaNode: SKSpriteNode, playerNode: SKSpriteNode) {
