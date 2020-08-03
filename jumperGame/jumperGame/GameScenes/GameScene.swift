@@ -41,7 +41,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     var toggle : Bool = false
     
     var gameTimer: Timer!
-    var gameTimer2: Timer!
+    var moveBowserTimer: Timer!
     
     var hitsLabel: SKLabelNode!
     var hits: Int = 0 {
@@ -140,10 +140,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             let bowser = SKSpriteNode(imageNamed: "bowser")
             bowser.position = CGPoint(x: 1100, y: 320)
             bowser.physicsBody?.categoryBitMask = PhysicsCategories.bowser
-            bowser.physicsBody?.collisionBitMask = 0 //PhysicsCategories.player
-            //self.addChild(bowser)
-            gameTimer = Timer.scheduledTimer(timeInterval: 2.0, target: self, selector: #selector(addFireball), userInfo: nil, repeats: true)
-            gameTimer2 = Timer.scheduledTimer(timeInterval: 1.5, target: self, selector: #selector(moveBowser), userInfo: nil, repeats: true)
+            bowser.physicsBody?.collisionBitMask = PhysicsCategories.player | PhysicsCategories.ground
+            gameTimer = Timer.scheduledTimer(timeInterval: 3.0, target: self, selector: #selector(addFireball), userInfo: nil, repeats: true)
+            moveBowserTimer = Timer.scheduledTimer(timeInterval: 1.2, target: self, selector: #selector(moveBowser), userInfo: nil, repeats: true)
         }
     }
     
@@ -267,7 +266,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 if let playerTest = secondBody.node as! SKSpriteNode?
                 {
                     print("fireball got you", contact.contactNormal)
-                    //playerTouchedGoomba(goombaNode: goombaTest, playerNode: playerTest)
+                    playerTouchedGoomba(goombaNode: fireballTest, playerNode: playerTest)
                 }
             }
         }
@@ -306,7 +305,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         bowser = self.childNode(withName: "bowser") as? SKSpriteNode
         let fireball = SKSpriteNode(imageNamed: "fireball")
         fireball.position.x = (bowser?.position.x)! - 200
-        fireball.position.y = bowser?.position.y as! CGFloat
+        fireball.position.y = (bowser?.position.y)! - 60
         let size = CGSize(width: 100, height: 100)
         fireball.scale(to: size)
         fireball.zRotation = 180
@@ -356,8 +355,11 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func playerTouchedGoomba (goombaNode: SKSpriteNode, playerNode: SKSpriteNode) {
-        playerNode.physicsBody?.applyImpulse(CGVector(dx: -10, dy: 5))
+        if Int((playerNode.physicsBody?.velocity.dx)!) >= 0 {
+        playerNode.physicsBody?.applyImpulse(CGVector(dx: -200, dy: 100))
         self.run(SKAction.playSoundFileNamed("ouch.mp3", waitForCompletion: false))
+        }
+        goombaNode.removeFromParent()
     }
     
     override func update(_ currentTime: TimeInterval)
