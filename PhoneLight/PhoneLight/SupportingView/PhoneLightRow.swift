@@ -15,38 +15,40 @@ struct PhoneLightRow: View {
     
     
     var phoneLightIndex: Int {
-        userData.phoneLight.firstIndex(where: { $0.id == phoneLight.id})!
+        userData.phoneLight.firstIndex(where: { $0.id == phoneLight.id}) ?? 0
     }
     
     
     
     var body: some View {
+        
         HStack{
             VStack(alignment: .leading){
                 Text(phoneLight.deviceName)
                     .fontWeight(.bold)
-                    
+                
                 Text(phoneLight.productName)
                     .font(.subheadline)
                     .padding(.zero)
             }
-            Spacer()
-            Toggle(isOn: $userData.phoneLight[phoneLightIndex].outputState) {
-                Text("")
-            }.onChange(of: userData.phoneLight[phoneLightIndex].outputState, perform: { value in
-                print("\(userData.phoneLight[phoneLightIndex].deviceName)'s new value is \(userData.phoneLight[phoneLightIndex].outputState)")
-            })
-//            if (userData.phoneLight[phoneLightIndex].outputState) {
-//                Text("ON")
+//            Spacer()
+//            if (userData.phoneLight.indices.contains(phoneLightIndex)) {
+//                
+//                Toggle(isOn: $userData.phoneLight[phoneLightIndex].outputState) {
+//                    Text("")
+//                }.onChange(of: userData.phoneLight[phoneLightIndex].outputState, perform: { value in
+//                    print("\(userData.phoneLight[phoneLightIndex].deviceName)'s new value is \(userData.phoneLight[phoneLightIndex].outputState)")
+//                })
 //            }
-//            else {
-//                Text("OFF")
-//            }
-
             
+            //            if (userData.phoneLight[phoneLightIndex].outputState) {
+            //                Text("ON")
+            //            }
+            //            else {
+            //                Text("OFF")
+            //            }
         }//.background(userData.phoneLight[phoneLightIndex].outputState ? Color.orange : Color.purple)
         
-       
     }
 }
 
