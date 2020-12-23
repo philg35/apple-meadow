@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D95B4B7B2592A78100182B5E /* ParseXml.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95B4B7A2592A78100182B5E /* ParseXml.swift */; };
+		D95B4B7C2592A78100182B5E /* ParseXml.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95B4B7A2592A78100182B5E /* ParseXml.swift */; };
+		D95B4B832592A79E00182B5E /* getXml.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95B4B822592A79E00182B5E /* getXml.swift */; };
+		D95B4B842592A79E00182B5E /* getXml.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95B4B822592A79E00182B5E /* getXml.swift */; };
 		D97F9B362591457600EFAF39 /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97F9B352591457600EFAF39 /* data.swift */; };
 		D97F9B3B2591460600EFAF39 /* phoneLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97F9B3A2591460600EFAF39 /* phoneLight.swift */; };
 		D97F9B44259196D400EFAF39 /* userData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D97F9B43259196D400EFAF39 /* userData.swift */; };
@@ -91,6 +95,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		D95B4B7A2592A78100182B5E /* ParseXml.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseXml.swift; sourceTree = "<group>"; };
+		D95B4B822592A79E00182B5E /* getXml.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getXml.swift; sourceTree = "<group>"; };
 		D97F9B352591457600EFAF39 /* data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data.swift; sourceTree = "<group>"; };
 		D97F9B3A2591460600EFAF39 /* phoneLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = phoneLight.swift; sourceTree = "<group>"; };
 		D97F9B43259196D400EFAF39 /* userData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userData.swift; sourceTree = "<group>"; };
@@ -154,6 +160,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D95B4B792592A70500182B5E /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				D95B4B7A2592A78100182B5E /* ParseXml.swift */,
+				D95B4B822592A79E00182B5E /* getXml.swift */,
+			);
+			path = Devices;
+			sourceTree = "<group>";
+		};
 		D97F9B3F2591473C00EFAF39 /* Data */ = {
 			isa = PBXGroup;
 			children = (
@@ -191,6 +206,7 @@
 		D9C057942591149F00A6E43A /* PhoneLight */ = {
 			isa = PBXGroup;
 			children = (
+				D95B4B792592A70500182B5E /* Devices */,
 				D97F9B3F2591473C00EFAF39 /* Data */,
 				D9C057952591149F00A6E43A /* PhoneLightApp.swift */,
 				D9C057972591149F00A6E43A /* ContentView.swift */,
@@ -460,10 +476,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D95B4B832592A79E00182B5E /* getXml.swift in Sources */,
 				D9C057C42591151900A6E43A /* PhoneLightRow.swift in Sources */,
 				D9C057982591149F00A6E43A /* ContentView.swift in Sources */,
 				D97F9B44259196D400EFAF39 /* userData.swift in Sources */,
 				D9C057962591149F00A6E43A /* PhoneLightApp.swift in Sources */,
+				D95B4B7B2592A78100182B5E /* ParseXml.swift in Sources */,
 				D97F9B3B2591460600EFAF39 /* phoneLight.swift in Sources */,
 				D97F9B362591457600EFAF39 /* data.swift in Sources */,
 			);
@@ -493,11 +511,13 @@
 				D9E5ECD5259256CC00DE3F48 /* NotificationController.swift in Sources */,
 				D9E5ECF72592580C00DE3F48 /* data.swift in Sources */,
 				D9E5ECD3259256CC00DE3F48 /* ContentViewWatch.swift in Sources */,
+				D95B4B842592A79E00182B5E /* getXml.swift in Sources */,
 				D9E5ECF12592580C00DE3F48 /* userData.swift in Sources */,
 				D9E5ECF42592580C00DE3F48 /* phoneLight.swift in Sources */,
 				D9E5ECD9259256CC00DE3F48 /* ComplicationController.swift in Sources */,
 				D9E5ECD1259256CC00DE3F48 /* WatchLightApp.swift in Sources */,
 				D9E5ECD7259256CC00DE3F48 /* NotificationView.swift in Sources */,
+				D95B4B7C2592A78100182B5E /* ParseXml.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
