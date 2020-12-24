@@ -16,7 +16,7 @@ struct ContentViewWatch: View {
             List {
                 // button
                 Button(action: {
-                    userData.phoneLight.removeAll()
+                    //userData.phoneLight.removeAll()
                     
                     let xml = GetXml()
                     xml.read()
