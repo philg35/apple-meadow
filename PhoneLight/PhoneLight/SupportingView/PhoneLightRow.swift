@@ -12,13 +12,9 @@ struct PhoneLightRow: View {
     
     var phoneLight: PhoneLight
     
-    
-    
     var phoneLightIndex: Int {
         userData.phoneLight.firstIndex(where: { $0.id == phoneLight.id}) ?? 0
     }
-    
-    
     
     var body: some View {
         if (userData.phoneLight.count > 0) {

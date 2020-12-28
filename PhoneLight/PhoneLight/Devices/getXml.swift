@@ -23,6 +23,7 @@ class GetXml : NSObject {
     var deviceArray: [PortDevices] = []
     var groupLabels: [DevXml] = []
     var groupDict: [String : String] = [:]
+    var readIsReady: Bool = false
     
     override init() {
         myData = "".data(using: .ascii)!
@@ -36,6 +37,15 @@ class GetXml : NSObject {
         }
         
         myData = data
+    }
+    
+    func startRead() {
+        self.readIsReady = false;
+        
+    }
+    
+    func readReady() -> Bool {
+        return self.readIsReady
     }
     
     func read() {
@@ -98,7 +108,7 @@ class GetXml : NSObject {
             }
 
             self.deviceArray.sort { $0.parentName < $1.parentName}      // sort sections by parentName
-            
+            self.readIsReady = true
         }
         task.resume()
     }
