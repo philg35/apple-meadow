@@ -14,6 +14,10 @@ class UserData : ObservableObject {
     let xml = GetXml()
     typealias FinishedXmlRead = () -> ()
     
+    init() {
+        self.loadData()
+    }
+    
     func readXmlAndCreateList(completed: FinishedXmlRead) {
         self.xml.startRead()
         self.xml.read()

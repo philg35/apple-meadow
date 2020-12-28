@@ -15,24 +15,24 @@ struct ContentViewWatch: View {
         NavigationView {
             List {
                 // button
-                Button(action: {
-                    print("Xml tapped!")
-                    //userData.phoneLight.removeAll()
-                    userData.loadData()
-                }) {
-                    HStack {
-                        Image(systemName: "star.fill")
-                            .font(.title)
-                        Text("Xml")
-                            .fontWeight(.semibold)
-                            .font(.title)
-                    }
-                    .padding()
-                    .frame(maxWidth: 150, maxHeight: 45)
-                    .foregroundColor(.white)
-                    .background(Color.blue)
-                    .cornerRadius(40)
-                }
+//                Button(action: {
+//                    print("Xml tapped!")
+//                    //userData.phoneLight.removeAll()
+//                    userData.loadData()
+//                }) {
+//                    HStack {
+//                        Image(systemName: "star.fill")
+//                            .font(.title)
+//                        Text("Xml")
+//                            .fontWeight(.semibold)
+//                            .font(.title)
+//                    }
+//                    .padding()
+//                    .frame(maxWidth: 150, maxHeight: 45)
+//                    .foregroundColor(.white)
+//                    .background(Color.blue)
+//                    .cornerRadius(40)
+//                }
                 
                 // device row
                 ForEach(userData.phoneLight) { phonelight in

@@ -11,32 +11,28 @@ struct ContentView: View {
     
     @EnvironmentObject var userData: UserData
     
-    init () {
-        //userData.loadData()
-    }
-    
     var body: some View {
         NavigationView {
             VStack {
                 
-                Button(action: {
-                    print("Xml tapped!")
-                    //userData.phoneLight.removeAll()
-                    userData.loadData()
-                    
-                }) {
-                    HStack {
-                        Image(systemName: "star.fill")
-                            .font(.title)
-                        Text("Xml")
-                            .fontWeight(.semibold)
-                            .font(.title)
-                    }
-                    .padding()
-                    .foregroundColor(.white)
-                    .background(Color.blue)
-                    .cornerRadius(40)
-                }
+//                Button(action: {
+//                    print("Xml tapped!")
+//                    //userData.phoneLight.removeAll()
+//                    userData.loadData()
+//                    
+//                }) {
+//                    HStack {
+//                        Image(systemName: "star.fill")
+//                            .font(.title)
+//                        Text("Xml")
+//                            .fontWeight(.semibold)
+//                            .font(.title)
+//                    }
+//                    .padding()
+//                    .foregroundColor(.white)
+//                    .background(Color.blue)
+//                    .cornerRadius(40)
+//                }
                 
                 
                 List(userData.phoneLight) { (phonelight2) -> PhoneLightRow in
