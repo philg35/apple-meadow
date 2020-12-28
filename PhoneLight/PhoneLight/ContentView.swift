@@ -22,7 +22,6 @@ struct ContentView: View {
                 Button(action: {
                     print("Xml tapped!")
                     //userData.phoneLight.removeAll()
-                    
                     userData.loadData()
                     
                 }) {
