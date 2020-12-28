@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		612A68742F582A156D6F0ADB /* Pods_PhoneLight.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E5DB38D33BDC2C78F7D27D1C /* Pods_PhoneLight.framework */; };
 		D95B4B7B2592A78100182B5E /* ParseXml.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95B4B7A2592A78100182B5E /* ParseXml.swift */; };
 		D95B4B7C2592A78100182B5E /* ParseXml.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95B4B7A2592A78100182B5E /* ParseXml.swift */; };
 		D95B4B832592A79E00182B5E /* getXml.swift in Sources */ = {isa = PBXBuildFile; fileRef = D95B4B822592A79E00182B5E /* getXml.swift */; };
@@ -95,6 +96,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		40B5E8F4D572D28437661677 /* Pods-PhoneLight.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhoneLight.debug.xcconfig"; path = "Target Support Files/Pods-PhoneLight/Pods-PhoneLight.debug.xcconfig"; sourceTree = "<group>"; };
+		D5B6D62BA6856738905D6129 /* Pods-PhoneLight.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhoneLight.release.xcconfig"; path = "Target Support Files/Pods-PhoneLight/Pods-PhoneLight.release.xcconfig"; sourceTree = "<group>"; };
 		D95B4B7A2592A78100182B5E /* ParseXml.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseXml.swift; sourceTree = "<group>"; };
 		D95B4B822592A79E00182B5E /* getXml.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getXml.swift; sourceTree = "<group>"; };
 		D97F9B352591457600EFAF39 /* data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data.swift; sourceTree = "<group>"; };
@@ -126,13 +129,22 @@
 		D9E5ECDD259256CC00DE3F48 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D9E5ECDF259256CC00DE3F48 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9E5ECE0259256CC00DE3F48 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		E5DB38D33BDC2C78F7D27D1C /* Pods_PhoneLight.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PhoneLight.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		9A23FBA9570679E2BA8B7142 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		D9C0578F2591149F00A6E43A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				612A68742F582A156D6F0ADB /* Pods_PhoneLight.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -160,6 +172,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2BA7CBB2447134AD6FA52805 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E5DB38D33BDC2C78F7D27D1C /* Pods_PhoneLight.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		75F6937A0B58520677BBB4CE /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				40B5E8F4D572D28437661677 /* Pods-PhoneLight.debug.xcconfig */,
+				D5B6D62BA6856738905D6129 /* Pods-PhoneLight.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		D95B4B792592A70500182B5E /* Devices */ = {
 			isa = PBXGroup;
 			children = (
@@ -188,6 +218,8 @@
 				D9E5ECC3259256CB00DE3F48 /* watchLight */,
 				D9E5ECCF259256CC00DE3F48 /* watchLight Extension */,
 				D9C057932591149F00A6E43A /* Products */,
+				75F6937A0B58520677BBB4CE /* Pods */,
+				2BA7CBB2447134AD6FA52805 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -292,10 +324,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = D9C057B7259114A000A6E43A /* Build configuration list for PBXNativeTarget "PhoneLight" */;
 			buildPhases = (
+				E4BE4D53231DFE7315009F85 /* [CP] Check Pods Manifest.lock */,
 				D9C0578E2591149F00A6E43A /* Sources */,
 				D9C0578F2591149F00A6E43A /* Frameworks */,
 				D9C057902591149F00A6E43A /* Resources */,
 				D9E5ECE4259256CC00DE3F48 /* Embed Watch Content */,
+				BADED0AD744B41561C6102C3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -349,6 +383,7 @@
 			buildPhases = (
 				D9E5ECC0259256CB00DE3F48 /* Resources */,
 				D9E5ECE7259256CC00DE3F48 /* Embed App Extensions */,
+				9A23FBA9570679E2BA8B7142 /* Frameworks */,
 			);
 			buildRules = (
 			);
@@ -470,6 +505,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		BADED0AD744B41561C6102C3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PhoneLight/Pods-PhoneLight-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PhoneLight/Pods-PhoneLight-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PhoneLight/Pods-PhoneLight-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E4BE4D53231DFE7315009F85 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PhoneLight-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		D9C0578E2591149F00A6E43A /* Sources */ = {
@@ -665,6 +742,7 @@
 		};
 		D9C057B8259114A000A6E43A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 40B5E8F4D572D28437661677 /* Pods-PhoneLight.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -687,6 +765,7 @@
 		};
 		D9C057B9259114A000A6E43A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D5B6D62BA6856738905D6129 /* Pods-PhoneLight.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
