@@ -67,6 +67,11 @@ class UserData : ObservableObject {
         print(mqtt.connect())
         mqtt.delegate = self
     }
+    
+    func didPressSwitch(deviceID: String, newState: Bool) {
+        print("switch \(deviceID) goto \(newState)")
+        mqtt.publish("nLight/version/2/control/device/\(deviceID)/pole/1/relay-state", withString: "{\"state\":\(newState)}", qos: .qos1, retained: false, dup: false)
+    }
 }
 
 extension UserData: CocoaMQTTDelegate {

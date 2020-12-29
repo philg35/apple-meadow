@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct ContentView: View {
+    
+    @EnvironmentObject var userData: UserData
+    
     var body: some View {
-        Text("Hello, World!")
-            .padding()
+        VStack {
+            List(userData.phoneLight) { (phonelight2) -> LightRow in
+                LightRow(phoneLight: phonelight2)
+            }
     }
 }
 

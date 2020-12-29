@@ -36,6 +36,7 @@ struct LightRow: View {
                         Text("")
                     }.onChange(of: userData.phoneLight[phoneLightIndex].outputState, perform: { value in
                         print("\(userData.phoneLight[phoneLightIndex].deviceName)'s new value is \(userData.phoneLight[phoneLightIndex].outputState)")
+                        userData.didPressSwitch(deviceID: userData.phoneLight[phoneLightIndex].deviceId, newState: userData.phoneLight[phoneLightIndex].outputState)
                     })
                 }
                 
