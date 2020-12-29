@@ -27,6 +27,7 @@
 		D9F940A7259BC44300911F99 /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F940A6259BC44300911F99 /* data.swift */; };
 		D9F940B1259BC5AC00911F99 /* getXml.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F940AF259BC5AC00911F99 /* getXml.swift */; };
 		D9F940B2259BC5AC00911F99 /* ParseXml.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F940B0259BC5AC00911F99 /* ParseXml.swift */; };
+		D9F940B7259BC88C00911F99 /* LightRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F940B6259BC88C00911F99 /* LightRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -98,6 +99,7 @@
 		D9F940A6259BC44300911F99 /* data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data.swift; sourceTree = "<group>"; };
 		D9F940AF259BC5AC00911F99 /* getXml.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getXml.swift; sourceTree = "<group>"; };
 		D9F940B0259BC5AC00911F99 /* ParseXml.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseXml.swift; sourceTree = "<group>"; };
+		D9F940B6259BC88C00911F99 /* LightRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightRow.swift; sourceTree = "<group>"; };
 		E392DBBD4B424BB97261C1FC /* Pods_Light.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Light.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -176,6 +178,7 @@
 				D9F94058259BC26C00911F99 /* Assets.xcassets */,
 				D9F9405D259BC26C00911F99 /* Info.plist */,
 				D9F9405A259BC26C00911F99 /* Preview Content */,
+				D9F940B6259BC88C00911F99 /* LightRow.swift */,
 			);
 			path = Light;
 			sourceTree = "<group>";
@@ -417,6 +420,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9F94057259BC26C00911F99 /* ContentView.swift in Sources */,
+				D9F940B7259BC88C00911F99 /* LightRow.swift in Sources */,
 				D9F940A2259BC41B00911F99 /* phoneLight.swift in Sources */,
 				D9F94055259BC26C00911F99 /* LightApp.swift in Sources */,
 				D9F940A7259BC44300911F99 /* data.swift in Sources */,
