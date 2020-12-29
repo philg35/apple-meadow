@@ -9,18 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     
-    @EnvironmentObject var userData: UserData
+//    @EnvironmentObject var userData: UserData
     
     var body: some View {
         VStack {
-            List(userData.phoneLight) { (phonelight2) -> LightRow in
-                LightRow(phoneLight: phonelight2)
-            }
+//            List(userData.phoneLight) { (phonelight2) -> LightRow in
+//                LightRow(phoneLight: phonelight2)
+//            }
+        }
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-    }
-}
+//struct ContentView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        ContentView().environmentObject(UserData())
+//    }
+//}

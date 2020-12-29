@@ -12,7 +12,7 @@ struct LightApp: App {
     @SceneBuilder var body: some Scene {
         WindowGroup {
             NavigationView {
-                ContentView().environmentObject(UserData())
+                //ContentView().environmentObject(UserData())
             }
         }
 
