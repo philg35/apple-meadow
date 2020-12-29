@@ -22,6 +22,11 @@
 		D9F9407A259BC26D00911F99 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F94079259BC26D00911F99 /* ComplicationController.swift */; };
 		D9F9407C259BC26E00911F99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9F9407B259BC26E00911F99 /* Assets.xcassets */; };
 		D9F9407F259BC26E00911F99 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9F9407E259BC26E00911F99 /* Preview Assets.xcassets */; };
+		D9F9409D259BC3ED00911F99 /* userData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F9409C259BC3ED00911F99 /* userData.swift */; };
+		D9F940A2259BC41B00911F99 /* phoneLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F940A1259BC41B00911F99 /* phoneLight.swift */; };
+		D9F940A7259BC44300911F99 /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F940A6259BC44300911F99 /* data.swift */; };
+		D9F940B1259BC5AC00911F99 /* getXml.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F940AF259BC5AC00911F99 /* getXml.swift */; };
+		D9F940B2259BC5AC00911F99 /* ParseXml.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F940B0259BC5AC00911F99 /* ParseXml.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -88,6 +93,11 @@
 		D9F9407E259BC26E00911F99 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D9F94080259BC26E00911F99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D9F94081259BC26E00911F99 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
+		D9F9409C259BC3ED00911F99 /* userData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userData.swift; sourceTree = "<group>"; };
+		D9F940A1259BC41B00911F99 /* phoneLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = phoneLight.swift; sourceTree = "<group>"; };
+		D9F940A6259BC44300911F99 /* data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data.swift; sourceTree = "<group>"; };
+		D9F940AF259BC5AC00911F99 /* getXml.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = getXml.swift; sourceTree = "<group>"; };
+		D9F940B0259BC5AC00911F99 /* ParseXml.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ParseXml.swift; sourceTree = "<group>"; };
 		E392DBBD4B424BB97261C1FC /* Pods_Light.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Light.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -159,6 +169,7 @@
 		D9F94053259BC26C00911F99 /* Light */ = {
 			isa = PBXGroup;
 			children = (
+				D9F940AE259BC4ED00911F99 /* Devices */,
 				D9F9409B259BC37700911F99 /* Data */,
 				D9F94054259BC26C00911F99 /* LightApp.swift */,
 				D9F94056259BC26C00911F99 /* ContentView.swift */,
@@ -213,8 +224,20 @@
 		D9F9409B259BC37700911F99 /* Data */ = {
 			isa = PBXGroup;
 			children = (
+				D9F940A6259BC44300911F99 /* data.swift */,
+				D9F940A1259BC41B00911F99 /* phoneLight.swift */,
+				D9F9409C259BC3ED00911F99 /* userData.swift */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		D9F940AE259BC4ED00911F99 /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				D9F940AF259BC5AC00911F99 /* getXml.swift */,
+				D9F940B0259BC5AC00911F99 /* ParseXml.swift */,
+			);
+			path = Devices;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -290,6 +313,7 @@
 					};
 					D9F9405F259BC26C00911F99 = {
 						CreatedOnToolsVersion = 12.3;
+						LastSwiftMigration = 1230;
 					};
 					D9F9406B259BC26D00911F99 = {
 						CreatedOnToolsVersion = 12.3;
@@ -393,7 +417,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				D9F94057259BC26C00911F99 /* ContentView.swift in Sources */,
+				D9F940A2259BC41B00911F99 /* phoneLight.swift in Sources */,
 				D9F94055259BC26C00911F99 /* LightApp.swift in Sources */,
+				D9F940A7259BC44300911F99 /* data.swift in Sources */,
+				D9F940B2259BC5AC00911F99 /* ParseXml.swift in Sources */,
+				D9F940B1259BC5AC00911F99 /* getXml.swift in Sources */,
+				D9F9409D259BC3ED00911F99 /* userData.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -591,14 +620,21 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A44VX47B87;
 				IBSC_MODULE = Light_WatchKit_Extension;
 				INFOPLIST_FILE = "Light WatchKit App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "psg35-icloud.com.Light.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 4;
 				WATCHOS_DEPLOYMENT_TARGET = 7.2;
@@ -611,10 +647,16 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = A44VX47B87;
 				IBSC_MODULE = Light_WatchKit_Extension;
 				INFOPLIST_FILE = "Light WatchKit App/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "psg35-icloud.com.Light.watchkitapp";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = watchos;
