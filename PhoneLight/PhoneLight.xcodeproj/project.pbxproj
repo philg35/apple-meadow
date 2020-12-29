@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -186,7 +186,6 @@
 				40B5E8F4D572D28437661677 /* Pods-PhoneLight.debug.xcconfig */,
 				D5B6D62BA6856738905D6129 /* Pods-PhoneLight.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
