@@ -22,14 +22,20 @@ struct LightRow: View {
                 VStack(alignment: .leading){
                     Text(phoneLight.deviceName)
                         .fontWeight(.bold)
-                    
+                    HStack {
                     Text(phoneLight.productName)
                         .font(.subheadline)
-                        .padding(.zero)
+                        //.padding(.zero)
                     
+                    Text("(" + phoneLight.deviceId + ")")
+                        .font(.subheadline)
+                        //.padding(.zero)
+                    }
                     //Text("ID \(phoneLight.id)")
                 }
+                
                 Spacer()
+                
                 if (userData.phoneLight.indices.contains(phoneLightIndex)) {
                     
                     Toggle(isOn: $userData.phoneLight[phoneLightIndex].outputState) {
@@ -39,13 +45,7 @@ struct LightRow: View {
                         userData.didPressSwitch(deviceID: userData.phoneLight[phoneLightIndex].deviceId, newState: userData.phoneLight[phoneLightIndex].outputState)
                     })
                 }
-                
-                //            if (userData.phoneLight[phoneLightIndex].outputState) {
-                //                Text("ON")
-                //            }
-                //            else {
-                //                Text("OFF")
-                //            }
+            
             }//.background(userData.phoneLight[phoneLightIndex].outputState ? Color.orange : Color.purple)
         }
     }
@@ -56,7 +56,6 @@ struct PhoneLightRow_Previews: PreviewProvider {
         List {
             LightRow(phoneLight: phoneLightData[0]).environmentObject(UserData())
             LightRow(phoneLight: phoneLightData[1]).environmentObject(UserData())
-            LightRow(phoneLight: phoneLightData[2]).environmentObject(UserData())
         }
     }
 }
