@@ -16,7 +16,19 @@ class UserData : ObservableObject {
     @Published var phoneLight = phoneLightData
     let xml = GetXml()
     var mqtt: CocoaMQTT!
+    //var savedImages : [String] = UserDefaults.standard.stringArray(forKey: "SavedImages") ?? [String]()
     typealias FinishedXmlRead = () -> ()
+    
+//    var dictImages = [
+//        "00000020": "026-dining-table",
+//        "00000021": "034-kitchen",
+//        "00000031": "015-sofa"
+//    ]
+    //var dictImages = UserDefaults.standard.dictionaryRepresentation(forKey: "SavedImages") ?? [Dictionary<<#Key: Hashable#>, Any>]()
+    
+    var dictImages: [String:String] = UserDefaults.standard.object(forKey: "SavedImages") as? [String:String] ?? [:]
+
+    
     
     init() {
         self.loadData()
@@ -40,12 +52,28 @@ class UserData : ObservableObject {
             for d in p.devicesOnPort {
                 print("device", d.label, index)
                 
-                self.phoneLight.append(PhoneLight(id: index, deviceId: d.deviceID, deviceName: d.label, productName: d.model, imageName: "014-light-bulb", occState: false, outputState: false, level: 100, hasOcc: false, hasOutput: false))
+                self.phoneLight.append(PhoneLight(id: index, deviceId: d.deviceID, deviceName: d.label, productName: d.model, imageName: self.getImage(deviceId: d.deviceID), occState: false, outputState: false, level: 100, hasOcc: false, hasOutput: false))
                 
                 index += 1
             }
         }
     }
+    
+    func getImage(deviceId: String) -> String {
+        if let val = dictImages[deviceId] {
+            // now val is not nil and the Optional has been unwrapped, so use it
+            return val
+        }
+        else {
+            return "014-light-bulb"
+        }
+    }
+    
+    func saveImage(deviceId: String, imageName: String) {
+        dictImages[deviceId] = imageName
+        UserDefaults.standard.set(dictImages, forKey: "SavedImages")
+    }
+    
     
     func loadData() {
         readXmlAndCreateList { () -> () in

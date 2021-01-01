@@ -66,6 +66,7 @@ struct LightDetail: View {
             Text("Serial number: \(phoneLight.deviceId)").font(.subheadline)
             Button(action: {
                 print("saving", selectedImage, self.items[selectedImage])
+                userData.saveImage(deviceId: phoneLight.deviceId, imageName: self.items[selectedImage])
                 userData.phoneLight[phoneLightIndex].imageName = items[selectedImage]
             }, label: {
                 Text("Save Image")
