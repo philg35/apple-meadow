@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-
-
 struct LightDetail: View {
     
     @EnvironmentObject var userData: UserData
@@ -58,36 +56,33 @@ struct LightDetail: View {
     
     var body: some View {
         
-            VStack {
-                Image(phoneLight.imageName)
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 100, height: 100)
-                Text("\(phoneLight.deviceName)").font(.headline)
-                Text("Product name: \(phoneLight.productName)").font(.subheadline)
-                Text("Serial number: \(phoneLight.deviceId)").font(.subheadline)
-                Button(action: {
-                    print("saving", selectedImage, self.items[selectedImage])
-                    userData.phoneLight[phoneLightIndex].imageName = items[selectedImage]
-                }, label: {
-                    Text("Save Image")
-                })
-                
-                Picker(selection: $selectedImage, label: Text("Select Image")){
-                    ForEach(0 ..< items.count) {
-                        Text(self.items[$0]).tag($0)
-                    }
+        VStack {
+            Image(phoneLight.imageName)
+                .resizable()
+                .scaledToFit()
+                .frame(width: 100, height: 100)
+            Text("\(phoneLight.deviceName)").font(.headline)
+            Text("Product name: \(phoneLight.productName)").font(.subheadline)
+            Text("Serial number: \(phoneLight.deviceId)").font(.subheadline)
+            Button(action: {
+                print("saving", selectedImage, self.items[selectedImage])
+                userData.phoneLight[phoneLightIndex].imageName = items[selectedImage]
+            }, label: {
+                Text("Save Image")
+            })
+            
+            Picker(selection: $selectedImage, label: Text("Select Image")){
+                ForEach(0 ..< items.count) {
+                    Text(self.items[$0]).tag($0)
                 }
-                
-                Text("You selected: \(items[selectedImage])")
-                Image(items[selectedImage])
-                    .resizable()
-                    .scaledToFit()
-                    .frame(width: 50, height: 50)
-                
             }
             
-        
+            Text("You selected: \(items[selectedImage])")
+            Image(items[selectedImage])
+                .resizable()
+                .scaledToFit()
+                .frame(width: 50, height: 50)
+        }
     }
 }
 

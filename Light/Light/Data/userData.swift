@@ -31,7 +31,7 @@ class UserData : ObservableObject {
         }
         completed()
     }
-
+    
     func createDeviceList() {
         var index = 0
         print("createDeviceList")
@@ -39,14 +39,14 @@ class UserData : ObservableObject {
             print("parent", p.parentName)
             for d in p.devicesOnPort {
                 print("device", d.label, index)
-
+                
                 self.phoneLight.append(PhoneLight(id: index, deviceId: d.deviceID, deviceName: d.label, productName: d.model, imageName: "014-light-bulb", occState: false, outputState: false, level: 100, hasOcc: false, hasOutput: false))
-                                
+                
                 index += 1
             }
         }
     }
-
+    
     func loadData() {
         readXmlAndCreateList { () -> () in
             createDeviceList()
@@ -76,7 +76,7 @@ class UserData : ObservableObject {
 
 extension UserData: CocoaMQTTDelegate {
     func mqtt(_ mqtt: CocoaMQTT, didSubscribeTopic topics: [String]) {
-    
+        
     }
     
     // These two methods are all we care about for now
@@ -153,8 +153,8 @@ extension UserData: CocoaMQTTDelegate {
     func findDeviceParentIndexes(device: String) -> (Int) {
         for (index, element) in self.phoneLight.enumerated() {
             if element.deviceId == device {
-                    return (index)
-                }
+                return (index)
+            }
         }
         return (0)
     }

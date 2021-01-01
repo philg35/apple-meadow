@@ -28,15 +28,13 @@ struct LightRow: View {
                     Text(phoneLight.deviceName)
                         .fontWeight(.bold)
                     HStack {
-                    Text(phoneLight.productName)
-                        .font(.system(size: 12))
+                        Text(phoneLight.productName)
+                            .font(.system(size: 12))
                         //.padding(.zero)
-                    
-                    Text("(" + phoneLight.deviceId + ")")
-                        .font(.system(size: 8))
-                        //.padding(.zero)
+                        
+                        Text("(" + phoneLight.deviceId + ")")
+                            .font(.system(size: 8))
                     }
-                    //Text("ID \(phoneLight.id)")
                 }
                 
                 Spacer()
@@ -51,9 +49,7 @@ struct LightRow: View {
                     })
                     .padding(.trailing, 50)
                 }
-                
-            
-            }//.background(userData.phoneLight[phoneLightIndex].outputState ? Color.orange : Color.purple)
+            }
         }
     }
 }
