@@ -18,18 +18,8 @@ class UserData : ObservableObject {
     var mqtt: CocoaMQTT!
     //var savedImages : [String] = UserDefaults.standard.stringArray(forKey: "SavedImages") ?? [String]()
     typealias FinishedXmlRead = () -> ()
-    
-//    var dictImages = [
-//        "00000020": "026-dining-table",
-//        "00000021": "034-kitchen",
-//        "00000031": "015-sofa"
-//    ]
-    //var dictImages = UserDefaults.standard.dictionaryRepresentation(forKey: "SavedImages") ?? [Dictionary<<#Key: Hashable#>, Any>]()
-    
     var dictImages: [String:String] = UserDefaults.standard.object(forKey: "SavedImages") as? [String:String] ?? [:]
 
-    
-    
     init() {
         self.loadData()
         self.setUpMQTT()
