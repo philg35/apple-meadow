@@ -52,6 +52,9 @@ struct LightDetail: View {
         "034-kitchen",
         "035-washing-machine",
         "036-microwave",
+        "fireplace",
+        "lantern",
+        "footprints",
     ]
     
     var body: some View {
