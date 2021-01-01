@@ -19,16 +19,21 @@ struct LightRow: View {
     var body: some View {
         if (userData.phoneLight.count > 0) {
             HStack{
+                Image(phoneLight.imageName)
+                    .resizable()
+                    .scaledToFit()
+                    .frame(width: 40, height: 40)
                 VStack(alignment: .leading){
+                    
                     Text(phoneLight.deviceName)
                         .fontWeight(.bold)
                     HStack {
                     Text(phoneLight.productName)
-                        .font(.subheadline)
+                        .font(.system(size: 12))
                         //.padding(.zero)
                     
                     Text("(" + phoneLight.deviceId + ")")
-                        .font(.subheadline)
+                        .font(.system(size: 8))
                         //.padding(.zero)
                     }
                     //Text("ID \(phoneLight.id)")
@@ -44,7 +49,9 @@ struct LightRow: View {
                         print("\(userData.phoneLight[phoneLightIndex].deviceName)'s new value is \(userData.phoneLight[phoneLightIndex].outputState)")
                         userData.didPressSwitch(deviceID: userData.phoneLight[phoneLightIndex].deviceId, newState: userData.phoneLight[phoneLightIndex].outputState)
                     })
+                    .padding(.trailing, 50)
                 }
+                
             
             }//.background(userData.phoneLight[phoneLightIndex].outputState ? Color.orange : Color.purple)
         }

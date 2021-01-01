@@ -40,7 +40,7 @@ class UserData : ObservableObject {
             for d in p.devicesOnPort {
                 print("device", d.label, index)
 
-                self.phoneLight.append(PhoneLight(id: index, deviceId: d.deviceID, deviceName: d.label, productName: d.model, imageName: "none", occState: false, outputState: false, level: 100, hasOcc: false, hasOutput: false))
+                self.phoneLight.append(PhoneLight(id: index, deviceId: d.deviceID, deviceName: d.label, productName: d.model, imageName: "014-light-bulb", occState: false, outputState: false, level: 100, hasOcc: false, hasOutput: false))
                                 
                 index += 1
             }

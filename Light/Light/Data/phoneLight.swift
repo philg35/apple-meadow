@@ -11,7 +11,7 @@ struct PhoneLight: Hashable, Codable, Identifiable {
     var id: Int
     var deviceName: String
     var productName: String
-    fileprivate var imageName: String
+    var imageName: String
     var occState: Bool
     var outputState: Bool
     var level: UInt
