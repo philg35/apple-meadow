@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		4627385EAEA8D45F1434F1C7 /* Pods_Light.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E392DBBD4B424BB97261C1FC /* Pods_Light.framework */; };
 		D9B2096A259E7AD00021781A /* LightDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B20969259E7AD00021781A /* LightDetail.swift */; };
+		D9E7B45E25A93E1200A8F5AE /* getMqttPubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B45D25A93E1200A8F5AE /* getMqttPubs.swift */; };
 		D9F54706259FF9E8003E2F77 /* LightImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F54705259FF9E8003E2F77 /* LightImage.swift */; };
 		D9F94055259BC26C00911F99 /* LightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F94054259BC26C00911F99 /* LightApp.swift */; };
 		D9F94057259BC26C00911F99 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F94056259BC26C00911F99 /* ContentView.swift */; };
@@ -78,6 +79,7 @@
 		40FBA9A06CC05FB5896A4AF4 /* Pods-Light.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Light.release.xcconfig"; path = "Target Support Files/Pods-Light/Pods-Light.release.xcconfig"; sourceTree = "<group>"; };
 		84BCC60FF98E5F9419C4F85C /* Pods-Light.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Light.debug.xcconfig"; path = "Target Support Files/Pods-Light/Pods-Light.debug.xcconfig"; sourceTree = "<group>"; };
 		D9B20969259E7AD00021781A /* LightDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightDetail.swift; sourceTree = "<group>"; };
+		D9E7B45D25A93E1200A8F5AE /* getMqttPubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getMqttPubs.swift; sourceTree = "<group>"; };
 		D9F54705259FF9E8003E2F77 /* LightImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightImage.swift; sourceTree = "<group>"; };
 		D9F94051259BC26C00911F99 /* Light.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Light.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D9F94054259BC26C00911F99 /* LightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightApp.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 			isa = PBXGroup;
 			children = (
 				D9F940AF259BC5AC00911F99 /* getXml.swift */,
+				D9E7B45D25A93E1200A8F5AE /* getMqttPubs.swift */,
 				D9F940B0259BC5AC00911F99 /* ParseXml.swift */,
 			);
 			path = Devices;
@@ -433,6 +436,7 @@
 				D9F940B2259BC5AC00911F99 /* ParseXml.swift in Sources */,
 				D9F54706259FF9E8003E2F77 /* LightImage.swift in Sources */,
 				D9F940B1259BC5AC00911F99 /* getXml.swift in Sources */,
+				D9E7B45E25A93E1200A8F5AE /* getMqttPubs.swift in Sources */,
 				D9F9409D259BC3ED00911F99 /* userData.swift in Sources */,
 				D9B2096A259E7AD00021781A /* LightDetail.swift in Sources */,
 			);

@@ -34,6 +34,16 @@ struct LightDetail: View {
                 Text("\(phoneLight.deviceName)").font(.headline)
                 Text("Product name: \(phoneLight.productName)").font(.subheadline)
                 Text("Serial number: \(phoneLight.deviceId)").font(.subheadline)
+//                List(phoneLight.mqttPubs) { String in
+//                        Text(String)
+//                    }
+//                }
+                ScrollView {
+                    Text(phoneLight.mqttPubs[0]).font(.system(size: 8))
+                    Text(phoneLight.mqttPubs[1]).font(.system(size: 8))
+                }
+                    
+                //}
             }
             .navigationBarTitle(Text("Light Detail"), displayMode: .inline)
             .navigationBarItems(

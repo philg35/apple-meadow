@@ -17,7 +17,7 @@ struct ContentView: View {
                 NavigationLink(destination: LightDetail(phoneLight: phonelight2)) {
                     LightRow(phoneLight: phonelight2)
                 }
-            }.navigationBarTitle(Text("Lights"), displayMode: .large)
+            }//.navigationBarTitle(Text("Lights"), displayMode: .large)
         }
         
     }

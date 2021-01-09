@@ -15,20 +15,33 @@ var mqttStarted = false
 class UserData : ObservableObject {
     @Published var phoneLight = phoneLightData
     let xml = GetXml()
+    let mqttPubs = GetMqttPubs()
     var mqtt: CocoaMQTT!
-    //var savedImages : [String] = UserDefaults.standard.stringArray(forKey: "SavedImages") ?? [String]()
     typealias FinishedXmlRead = () -> ()
+    typealias FinishedMqttRead = () -> ()
     var dictImages: [String:String] = UserDefaults.standard.object(forKey: "SavedImages") as? [String:String] ?? [:]
 
     init() {
         self.loadData()
         self.setUpMQTT()
+        self.loadMqttPubs()
+        self.insertMqttPubs()
     }
     
     func readXmlAndCreateList(completed: FinishedXmlRead) {
         self.xml.startRead()
         self.xml.read()
         while (!self.xml.readReady()) {
+            // do nothing. just wait
+        }
+        completed()
+    }
+    
+    func readMqttPubs(completed: FinishedMqttRead) {
+        print("doing readMqttPubs()")
+        self.mqttPubs.startRead()
+        self.mqttPubs.read(phoneLightData: self.phoneLight)
+        while (!self.mqttPubs.readReady()) {
             // do nothing. just wait
         }
         completed()
@@ -42,11 +55,15 @@ class UserData : ObservableObject {
             for d in p.devicesOnPort {
                 print("device", d.label, index)
                 
-                self.phoneLight.append(PhoneLight(id: index, deviceId: d.deviceID, deviceName: d.label, productName: d.model, imageName: self.getImage(deviceId: d.deviceID), occState: false, outputState: false, level: 100, hasOcc: false, hasOutput: false))
+                self.phoneLight.append(PhoneLight(id: index, deviceId: d.deviceID, deviceName: d.label, productName: d.model, imageName: self.getImage(deviceId: d.deviceID), occState: false, outputState: false, level: 100, hasOcc: false, hasOutput: false, mqttPubs: []))
                 
                 index += 1
             }
         }
+    }
+    
+    func createMqttPubs() {
+        print("doing createMqttPubs()")
     }
     
     func getImage(deviceId: String) -> String {
@@ -55,7 +72,7 @@ class UserData : ObservableObject {
             return val
         }
         else {
-            return "014-light-bulb"
+            return "light-bulb"
         }
     }
     
@@ -68,6 +85,22 @@ class UserData : ObservableObject {
     func loadData() {
         readXmlAndCreateList { () -> () in
             createDeviceList()
+        }
+    }
+    
+    func loadMqttPubs() {
+        readMqttPubs { () -> () in
+            createMqttPubs()
+        }
+    }
+    
+    func insertMqttPubs() {
+        for (index, element) in self.phoneLight.enumerated() {
+            for d in self.mqttPubs.pubsInfo {
+                if element.deviceId == d.deviceId {
+                    self.phoneLight[index].mqttPubs = d.mqttPubs
+                }
+            }
         }
     }
     
