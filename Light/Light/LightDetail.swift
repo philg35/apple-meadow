@@ -35,8 +35,9 @@ struct LightDetail: View {
                 Text("Product name: \(phoneLight.productName)").font(.subheadline)
                 Text("Serial number: \(phoneLight.deviceId)").font(.subheadline)
                 ScrollView {
-                    Text(phoneLight.mqttPubs[0]).font(.system(size: 8))
-                    Text(phoneLight.mqttPubs[1]).font(.system(size: 8))
+                    ForEach (phoneLight.mqttPubs) { item in
+                        Text(item).font(.system(size: 8))
+                    }
                 }
                     
                
@@ -57,5 +58,11 @@ struct LightDetail: View {
 struct LightDetail_Previews: PreviewProvider {
     static var previews: some View {
         LightDetail(phoneLight: phoneLightData[0]).environmentObject(UserData())
+    }
+}
+
+extension String: Identifiable {            // needed to make list out of array of strings
+    public var id: String {
+        self
     }
 }

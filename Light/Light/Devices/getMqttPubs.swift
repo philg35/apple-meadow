@@ -73,7 +73,10 @@ class GetMqttPubs : NSObject {
             for line in lines {
                 for (index, element) in self.pubsInfo.enumerated() {
                     if line.contains(element.deviceId) {
-                        self.pubsInfo[index].mqttPubs.append(String(line))
+                        let components = line.components(separatedBy: "{")
+                        if (!components[1].contains("measured-light-level") && !components[1].contains("dimming-output-level") && !components[1].contains("occupied")) {
+                            self.pubsInfo[index].mqttPubs.append(String(components[1]))
+                        }
                     }
                 }
             }
