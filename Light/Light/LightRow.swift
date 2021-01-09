@@ -35,19 +35,29 @@ struct LightRow: View {
                         Text("(" + phoneLight.deviceId + ")")
                             .font(.system(size: 8))
                     }
-                }
+                }.frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: 160, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 30, maxHeight: 30, alignment: .leading)
                 
                 Spacer()
-                
+                if (phoneLight.hasOcc == true) {
+                    if (phoneLight.occState == true) {
+                        Image(systemName: "figure.walk")
+                    }
+                    else {
+                        Image(systemName: "zzz")
+                    }
+                }
+                Spacer()
                 if (userData.phoneLight.indices.contains(phoneLightIndex)) {
                     
                     Toggle(isOn: $userData.phoneLight[phoneLightIndex].outputState) {
                         Text("")
-                    }.onChange(of: userData.phoneLight[phoneLightIndex].outputState, perform: { value in
+                    }
+                    .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealWidth: 20, maxWidth: 30, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 30, maxHeight: 30, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .onChange(of: userData.phoneLight[phoneLightIndex].outputState, perform: { value in
                         print("\(userData.phoneLight[phoneLightIndex].deviceName)'s new value is \(userData.phoneLight[phoneLightIndex].outputState)")
                         userData.didPressSwitch(deviceID: userData.phoneLight[phoneLightIndex].deviceId, newState: userData.phoneLight[phoneLightIndex].outputState)
                     })
-                    .padding(.trailing, 50)
+                    .padding(.trailing, 20)
                 }
             }
         }
