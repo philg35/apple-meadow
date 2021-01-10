@@ -75,11 +75,12 @@ class GetMqttPubs : NSObject {
                     if line.contains(element.deviceId) {
                         let components = line.components(separatedBy: "{")
                         if (!components[1].contains("measured-light-level") && !components[1].contains("dimming-output-level") && !components[1].contains("occupied")) {
-                            self.pubsInfo[index].mqttPubs.append(String(components[1]))
+                            self.pubsInfo[index].mqttPubs.append("{" + String(components[1]).replacingOccurrences(of: "-", with: ""))
                         }
                     }
                 }
             }
+            
             self.readIsReady = true
         }
         task.resume()

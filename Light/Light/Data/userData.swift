@@ -94,11 +94,31 @@ class UserData : ObservableObject {
         }
     }
     
+    struct RelayPost: Decodable {
+        let relaystate : Bool?
+        let ts: String?
+    }
+
+        
     func insertMqttPubs() {
         for (index, element) in self.phoneLight.enumerated() {
             for d in self.mqttPubs.pubsInfo {
                 if element.deviceId == d.deviceId {
                     self.phoneLight[index].mqttPubs = d.mqttPubs
+                }
+            }
+            if (element.deviceId == "00000020") {
+                print("**** found ****")
+                
+                let data = self.phoneLight[index].mqttPubs[0]
+                let decoder = JSONDecoder()
+                do {
+                    let somedata = Data(data.utf8)
+                    let relayP = try decoder.decode(RelayPost.self, from: somedata)
+                    print(relayP.relaystate as Any)
+                    print(relayP.ts as Any)
+                } catch {
+                    print("error is json parsing")
                 }
             }
         }
@@ -208,5 +228,19 @@ extension UserData: CocoaMQTTDelegate {
             }
         }
         return (0)
+    }
+}
+
+extension String {
+    subscript(_ range: CountableRange<Int>) -> String {
+        let start = index(startIndex, offsetBy: max(0, range.lowerBound))
+        let end = index(start, offsetBy: min(self.count - range.lowerBound,
+                                             range.upperBound - range.lowerBound))
+        return String(self[start..<end])
+    }
+
+    subscript(_ range: CountablePartialRangeFrom<Int>) -> String {
+        let start = index(startIndex, offsetBy: max(0, range.lowerBound))
+         return String(self[start...])
     }
 }
