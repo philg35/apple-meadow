@@ -34,23 +34,21 @@ struct LightDetail: View {
                 Text("\(phoneLight.deviceName)").font(.headline)
                 Text("Product name: \(phoneLight.productName)").font(.subheadline)
                 Text("Serial number: \(phoneLight.deviceId)").font(.subheadline)
-                ScrollView {
-                    ForEach (phoneLight.mqttPubs) { item in
-                        Text(item).font(.system(size: 8))
-                    }
+                List(phoneLight.mqttPubs) { mqttRow in
+                    RelayPostRow(relayPost: mqttRow)
                 }
                     
                
-            }
+            }.padding()
             .navigationBarTitle(Text("Light Detail"), displayMode: .inline)
-            .navigationBarItems(
-                leading: Button(action: {
-                    // Actions
-                }, label: { Text("Events") }),
-                
-                trailing: Button(action: {
-                    // Actions
-                }, label: { Text("Info") }))
+//            .navigationBarItems(
+//                leading: Button(action: {
+//                    // Actions
+//                }, label: { Text("Events") }),
+//
+//                trailing: Button(action: {
+//                    // Actions
+//                }, label: { Text("Info") }))
         }
     }
 }

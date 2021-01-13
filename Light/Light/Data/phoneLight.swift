@@ -18,10 +18,10 @@ struct PhoneLight: Hashable, Codable, Identifiable {
     var hasOcc: Bool
     var hasOutput: Bool
     var deviceId: String
-    var mqttPubs: [String]
+    var mqttPubs: [RelayPost]
     
     
-    init(id: Int, deviceId: String, deviceName: String, productName: String, imageName: String, occState: Bool, outputState: Bool, level: UInt, hasOcc: Bool, hasOutput: Bool, mqttPubs: [String]) {
+    init(id: Int, deviceId: String, deviceName: String, productName: String, imageName: String, occState: Bool, outputState: Bool, level: UInt, hasOcc: Bool, hasOutput: Bool, mqttPubs: [RelayPost]) {
             
         self.id = id
         self.deviceId = deviceId

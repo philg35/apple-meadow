@@ -14,7 +14,7 @@ class GetMqttPubs : NSObject {
     struct MqttInfo
     {
         var deviceId: String
-        var mqttPubs: [String]
+        var mqttPubs: [RelayPost]
     }
     
     private var myData: Data
@@ -70,12 +70,27 @@ class GetMqttPubs : NSObject {
             }
             //print(self.pubsInfo)
             
-            for line in lines {
+            for (lineIdx, line) in lines.enumerated() {
                 for (index, element) in self.pubsInfo.enumerated() {
                     if line.contains(element.deviceId) {
                         let components = line.components(separatedBy: "{")
                         if (!components[1].contains("measured-light-level") && !components[1].contains("dimming-output-level") && !components[1].contains("occupied")) {
-                            self.pubsInfo[index].mqttPubs.append("{" + String(components[1]).replacingOccurrences(of: "-", with: ""))
+                            let text = "{" + String(components[1]).replacingOccurrences(of: "-", with: "")
+                            let data = Data(text.utf8)
+                            
+                            let decoder = JSONDecoder()
+                            do {
+                                var relayP = try decoder.decode(RelayPost.self, from: data)
+                                print(relayP.relaystate as Any)
+                                print(relayP.ts as Any)
+                                relayP.id = lineIdx
+                                self.pubsInfo[index].mqttPubs.append(relayP)
+                            } catch {
+                                print("error is json parsing")
+                            }
+                            
+                            
+                            
                         }
                     }
                 }

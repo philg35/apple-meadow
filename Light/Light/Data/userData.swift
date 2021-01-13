@@ -94,10 +94,10 @@ class UserData : ObservableObject {
         }
     }
     
-    struct RelayPost: Decodable {
-        let relaystate : Bool?
-        let ts: String?
-    }
+//    struct RelayPost: Decodable {
+//        let relaystate : Bool?
+//        let ts: String?
+//    }
 
         
     func insertMqttPubs() {
@@ -107,20 +107,20 @@ class UserData : ObservableObject {
                     self.phoneLight[index].mqttPubs = d.mqttPubs
                 }
             }
-            if (element.deviceId == "00000020") {
-                print("**** found ****")
-                
-                let data = self.phoneLight[index].mqttPubs[0]
-                let decoder = JSONDecoder()
-                do {
-                    let somedata = Data(data.utf8)
-                    let relayP = try decoder.decode(RelayPost.self, from: somedata)
-                    print(relayP.relaystate as Any)
-                    print(relayP.ts as Any)
-                } catch {
-                    print("error is json parsing")
-                }
-            }
+//            if (element.deviceId == "00000020") {
+//                print("**** found ****")
+//                
+//                let data = self.phoneLight[index].mqttPubs[0]
+//                let decoder = JSONDecoder()
+//                do {
+//                    let somedata = Data(data.utf8)
+//                    let relayP = try decoder.decode(RelayPost.self, from: somedata)
+//                    print(relayP.relaystate as Any)
+//                    print(relayP.ts as Any)
+//                } catch {
+//                    print("error is json parsing")
+//                }
+//            }
         }
     }
     
