@@ -81,7 +81,6 @@ class UserData : ObservableObject {
         UserDefaults.standard.set(dictImages, forKey: "SavedImages")
     }
     
-    
     func loadData() {
         readXmlAndCreateList { () -> () in
             createDeviceList()
@@ -94,12 +93,6 @@ class UserData : ObservableObject {
         }
     }
     
-//    struct RelayPost: Decodable {
-//        let relaystate : Bool?
-//        let ts: String?
-//    }
-
-        
     func insertMqttPubs() {
         for (index, element) in self.phoneLight.enumerated() {
             for d in self.mqttPubs.pubsInfo {
@@ -107,21 +100,42 @@ class UserData : ObservableObject {
                     self.phoneLight[index].mqttPubs = d.mqttPubs
                 }
             }
-//            if (element.deviceId == "00000020") {
-//                print("**** found ****")
-//                
-//                let data = self.phoneLight[index].mqttPubs[0]
-//                let decoder = JSONDecoder()
-//                do {
-//                    let somedata = Data(data.utf8)
-//                    let relayP = try decoder.decode(RelayPost.self, from: somedata)
-//                    print(relayP.relaystate as Any)
-//                    print(relayP.ts as Any)
-//                } catch {
-//                    print("error is json parsing")
-//                }
-//            }
+            if (index == 0) {
+                var firstOnTs = ""
+                var prevState = false
+                for m in self.phoneLight[index].mqttPubs {
+                    let date = m.ts?.prefix(8)
+                    let time = String((m.ts?.suffix(8))!)
+                    print(date as Any, time as Any, m.relaystate as Any)
+                    if (m.relaystate != prevState) {
+                        if (m.relaystate == true) {
+                            firstOnTs = String((m.ts?.suffix(8))!)
+                        } else {
+                            let diff = self.findDateDiff(time1Str: firstOnTs, time2Str: time)
+                            print("diff=", diff)
+                        }
+                    }
+                    prevState = m.relaystate!
+                }
+                print(self.phoneLight[index].mqttPubs[0])
+            }
         }
+    }
+    
+    func findDateDiff(time1Str: String, time2Str: String) -> String {
+        let timeformatter = DateFormatter()
+        timeformatter.dateFormat = "HH:mm:ss"
+        //print("input strings", time1Str, time2Str)
+        guard let time1 = timeformatter.date(from: time1Str),
+            let time2 = timeformatter.date(from: time2Str) else { return "ut oh" }
+
+        //You can directly use from here if you have two dates
+
+        let interval = time2.timeIntervalSince(time1)
+        let hour = interval / 3600;
+        let minute = interval.truncatingRemainder(dividingBy: 3600) / 60
+        let intervalInt = Int(interval)
+        return "\(intervalInt < 0 ? "-" : "+") \(Int(hour)) Hours \(Int(minute)) Minutes"
     }
     
     func setUpMQTT() {

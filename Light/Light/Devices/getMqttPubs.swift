@@ -46,7 +46,7 @@ class GetMqttPubs : NSObject {
     
     func read(phoneLightData: [PhoneLight]) {
         var contents = ""
-        let urlField = "https:" + ipAddress + "/ngw/mqtt_pubs.txt"
+        let urlField = "https:" + ipAddress + "/ngw/mqtt_pubs.0.txt"
         let url = URL(string: urlField)!
         let request = URLRequest(url: url)
         
@@ -60,7 +60,7 @@ class GetMqttPubs : NSObject {
                 //contents = contents.replacingOccurrences(of: "\r", with: "\n")
             }
             
-            print("*** printing contents")
+            //print("*** printing contents")
             let lines = contents.split(whereSeparator: \.isNewline)
             
     
@@ -81,21 +81,17 @@ class GetMqttPubs : NSObject {
                             let decoder = JSONDecoder()
                             do {
                                 var relayP = try decoder.decode(RelayPost.self, from: data)
-                                print(relayP.relaystate as Any)
-                                print(relayP.ts as Any)
+                                //print(relayP.relaystate as Any)
+                                //print(relayP.ts as Any)
                                 relayP.id = lineIdx
                                 self.pubsInfo[index].mqttPubs.append(relayP)
                             } catch {
                                 print("error is json parsing")
                             }
-                            
-                            
-                            
                         }
                     }
                 }
             }
-            
             self.readIsReady = true
         }
         task.resume()
