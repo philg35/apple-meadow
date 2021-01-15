@@ -19,9 +19,10 @@ struct PhoneLight: Hashable, Codable, Identifiable {
     var hasOutput: Bool
     var deviceId: String
     var mqttPubs: [RelayPost]
+    var onTime: [String: Float]
     
     
-    init(id: Int, deviceId: String, deviceName: String, productName: String, imageName: String, occState: Bool, outputState: Bool, level: UInt, hasOcc: Bool, hasOutput: Bool, mqttPubs: [RelayPost]) {
+    init(id: Int, deviceId: String, deviceName: String, productName: String, imageName: String, occState: Bool, outputState: Bool, level: UInt, hasOcc: Bool, hasOutput: Bool, mqttPubs: [RelayPost], onTime: [String: Float]) {
             
         self.id = id
         self.deviceId = deviceId
@@ -34,5 +35,6 @@ struct PhoneLight: Hashable, Codable, Identifiable {
         self.hasOcc = hasOcc
         self.hasOutput = hasOutput
         self.mqttPubs = mqttPubs
+        self.onTime = onTime
     }
 }

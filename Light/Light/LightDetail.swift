@@ -16,6 +16,10 @@ struct LightDetail: View {
         userData.phoneLight.firstIndex(where: { $0.id == phoneLight.id}) ?? 0
     }
     
+    var onTime: Float {
+        userData.calcAvgOntime(dict: phoneLight.onTime)
+    }
+    
     var body: some View {
         
         NavigationView {
@@ -34,6 +38,7 @@ struct LightDetail: View {
                 Text("\(phoneLight.deviceName)").font(.headline)
                 Text("Product name: \(phoneLight.productName)").font(.subheadline)
                 Text("Serial number: \(phoneLight.deviceId)").font(.subheadline)
+                Text("Average on time per day: \(onTime)").font(.headline)
                 List(phoneLight.mqttPubs) { mqttRow in
                     RelayPostRow(relayPost: mqttRow)
                 }

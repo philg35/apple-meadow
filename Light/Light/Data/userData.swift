@@ -55,7 +55,7 @@ class UserData : ObservableObject {
             for d in p.devicesOnPort {
                 print("device", d.label, index)
                 
-                self.phoneLight.append(PhoneLight(id: index, deviceId: d.deviceID, deviceName: d.label, productName: d.model, imageName: self.getImage(deviceId: d.deviceID), occState: false, outputState: false, level: 100, hasOcc: false, hasOutput: false, mqttPubs: []))
+                self.phoneLight.append(PhoneLight(id: index, deviceId: d.deviceID, deviceName: d.label, productName: d.model, imageName: self.getImage(deviceId: d.deviceID), occState: false, outputState: false, level: 100, hasOcc: false, hasOutput: false, mqttPubs: [], onTime: [ : ]))
                 
                 index += 1
             }
@@ -101,35 +101,39 @@ class UserData : ObservableObject {
                     self.phoneLight[index].mqttPubs = d.mqttPubs
                 }
             }
-            if (index == 0) {
-                var firstOnTs = ""
-                
-                var prevState = false
-                
-                for m in self.phoneLight[index].mqttPubs {
+            
+            var firstOnTs = ""
+            
+            var prevState = false
+            
+            for m in self.phoneLight[index].mqttPubs {
+                if (m.relaystate != nil) {
+                    //print(m.ts as Any)
                     let date = m.ts?.prefix(8)
                     let time = String((m.ts?.suffix(8))!)
-                    print(date as Any, time as Any, m.relaystate as Any)
+                    //print(date as Any, time as Any, m.relaystate as Any)
                     if (m.relaystate != prevState) {
                         if (m.relaystate == true) {
                             firstOnTs = String((m.ts?.suffix(8))!)
                         } else {
                             let diff = self.findDateDiff(time1Str: firstOnTs, time2Str: time)
-                            if let val = dict[String(date!)] {
-                                // now val is not nil and the Optional has been unwrapped, so use it
-                                let new = val + diff
-                                dict.updateValue(new, forKey: String(date!))
-                            } else {
-                                dict[String(date!)] = diff
+                            if (diff > 0) {
+                                if let val = dict[String(date!)] {
+                                    // now val is not nil and the Optional has been unwrapped, so use it
+                                    let new = val + diff
+                                    dict.updateValue(new, forKey: String(date!))
+                                } else {
+                                    dict[String(date!)] = diff
+                                }
+                                //print("diff=", diff)
                             }
-                            print("diff=", diff)
                         }
                     }
                     prevState = m.relaystate!
                 }
-                print("dict=", dict)
-                print(self.phoneLight[index].mqttPubs[0])
             }
+            //print("dict=", dict)
+            self.phoneLight[index].onTime = dict
         }
     }
     
@@ -168,6 +172,15 @@ class UserData : ObservableObject {
     func didPressSwitch(deviceID: String, newState: Bool) {
         print("switch \(deviceID) goto \(newState)")
         mqtt.publish("nLight/version/2/control/device/\(deviceID)/pole/1/relay-state", withString: "{\"state\":\(newState)}", qos: .qos1, retained: false, dup: false)
+    }
+    
+    func calcAvgOntime(dict: [String: Float]) -> Float {
+        let keys = dict.keys
+        var total = Float(0.0)
+        for k in keys {
+            total += dict[k]!
+        }
+        return Float(total / Float(keys.count))
     }
 }
 
