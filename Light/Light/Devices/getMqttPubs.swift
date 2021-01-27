@@ -45,8 +45,10 @@ class GetMqttPubs : NSObject {
     }
     
     func read(phoneLightData: [PhoneLight]) {
+        NSLog("***************read")
         var contents = ""
-        let urlField = "https:" + ipAddress + "/ngw/mqtt_pubs.0.txt"
+        let urlField = "https:" + ipAddress + "/ngw/mqtt_pubs.txt"
+        //let urlField = "https:" + ipAddress + "/ngw/mqtt_pubs.0.txt"
         let url = URL(string: urlField)!
         let request = URLRequest(url: url)
         
@@ -57,19 +59,19 @@ class GetMqttPubs : NSObject {
             
             if data != nil {
                 contents = (String(data: data!, encoding: String.Encoding.utf8) as String?)!
-                //contents = contents.replacingOccurrences(of: "\r", with: "\n")
             }
             
             //print("*** printing contents")
             let lines = contents.split(whereSeparator: \.isNewline)
             
-    
+            NSLog("**************loading mqtt1")
+            
             for d in phoneLightData {
                 let entry: MqttInfo = MqttInfo(deviceId: d.deviceId, mqttPubs: [])
                 self.pubsInfo.append(entry)
             }
             //print(self.pubsInfo)
-            
+            NSLog("**************loading mqtt2")
             for (lineIdx, line) in lines.enumerated() {
                 for (index, element) in self.pubsInfo.enumerated() {
                     if line.contains(element.deviceId) {
@@ -92,6 +94,7 @@ class GetMqttPubs : NSObject {
                     }
                 }
             }
+            NSLog("**************finished now")
             self.readIsReady = true
         }
         task.resume()

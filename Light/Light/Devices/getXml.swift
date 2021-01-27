@@ -49,6 +49,7 @@ class GetXml : NSObject {
     }
     
     func read() {
+        NSLog("***************get xml")
         var contents = ""
         let urlField = "https:" + ipAddress + "/ngw/devices.xml"
         let url = URL(string: urlField)!
@@ -63,11 +64,11 @@ class GetXml : NSObject {
                 contents = (String(data: data!, encoding: String.Encoding.utf8) as String?)!
                 contents = contents.replacingOccurrences(of: "\r", with: "\n")
             }
-            
+            NSLog("***************get xml2")
             let p = ParseXml()
             p.setData(data: data)
             p.parse()
-
+            NSLog("***************get xml3")
             for item in p.items {
                 let parentPort = item.parentPort
                 if !self.parentList.contains(parentPort) {
@@ -109,6 +110,7 @@ class GetXml : NSObject {
 
             self.deviceArray.sort { $0.parentName < $1.parentName}      // sort sections by parentName
             self.readIsReady = true
+            NSLog("***************get xml end")
         }
         task.resume()
     }
