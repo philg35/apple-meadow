@@ -11,15 +11,20 @@ struct ContentView: View {
     
     @EnvironmentObject var userData: UserData
     
+    init(){
+            UITableView.appearance().backgroundColor = .clear
+        }
+    
     var body: some View {
         NavigationView {
             List(userData.phoneLight) { phonelight2 in
                 NavigationLink(destination: LightDetail(phoneLight: phonelight2)) {
-                    LightRow(phoneLight: phonelight2)
-                }
-            }//.navigationBarTitle(Text("Lights"), displayMode: .large)
+                    LightRow(phoneLight: phonelight2).background(Color("RowBackground"))
+                }.background(Color("RowBackground"))
+                
+            }
+            .navigationBarTitle(Text("Lights"), displayMode: .large)
         }
-        
     }
 }
 
