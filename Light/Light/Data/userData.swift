@@ -24,6 +24,11 @@ class UserData : ObservableObject {
     init() {
         self.loadData()
         self.setUpMQTT()
+        //self.loadMqttPubs()
+        //self.insertMqttPubs()
+    }
+    
+    func getMqtt() {
         self.loadMqttPubs()
         self.insertMqttPubs()
     }
