@@ -11,8 +11,7 @@ public var ipAddress = "10.0.0.251"
 
 class GetXml : NSObject {
     
-    struct PortDevices
-    {
+    struct PortDevices {
         var parentPort: String
         var parentName: String
         var devicesOnPort: [DevXml]
@@ -29,13 +28,10 @@ class GetXml : NSObject {
         myData = "".data(using: .ascii)!
     }
     
-    func setData(data: Data!) -> Void
-    {
-        if data == nil
-        {
+    func setData(data: Data!) -> Void {
+        if data == nil {
             return
         }
-        
         myData = data
     }
     
@@ -117,14 +113,11 @@ class GetXml : NSObject {
 }
 
 class SessionDelegate:NSObject, URLSessionDelegate {
-    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void)
-    {
-        if(challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust)
-        {
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        if(challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust) {
             print("in session delegate")
             print(challenge.protectionSpace.host)
-            if(challenge.protectionSpace.host == ipAddress)
-            {
+            if(challenge.protectionSpace.host == ipAddress) {
                 let credential = URLCredential(trust: challenge.protectionSpace.serverTrust!)
                 completionHandler(URLSession.AuthChallengeDisposition.useCredential, credential)
             }

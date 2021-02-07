@@ -41,7 +41,6 @@ func convertTimestamp(timestamp: String) -> String {
     dateFormatter.locale = Locale(identifier: "en_US_POSIX") // set locale to reliable US_POSIX
     dateFormatter.dateFormat = "yyyyMMdd'T'HH:mm:ss"
     let date = dateFormatter.date(from: string)
-    //print("date=", date)
     dateFormatter.dateFormat = "E MM-dd-yyyy, hh:mm:ss a"
     dateFormatter.locale = tempLocale // reset the locale
     let dateString = dateFormatter.string(from: date!)

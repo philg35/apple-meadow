@@ -42,18 +42,8 @@ struct LightDetail: View {
                 List(phoneLight.mqttPubs) { mqttRow in
                     RelayPostRow(relayPost: mqttRow)
                 }
-                    
-               
             }.padding()
             .navigationBarTitle(Text("Light Detail"), displayMode: .inline)
-//            .navigationBarItems(
-//                leading: Button(action: {
-//                    // Actions
-//                }, label: { Text("Events") }),
-//
-//                trailing: Button(action: {
-//                    // Actions
-//                }, label: { Text("Info") }))
         }
     }
 }

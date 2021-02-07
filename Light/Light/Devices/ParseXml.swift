@@ -35,16 +35,14 @@ class ParseXml: NSObject, XMLParserDelegate
     var items: [DevXml]
     
     
-    override init()
-    {
+    override init() {
         myData = "".data(using: .ascii)!
         header = DevXml(deviceID: "", model: "", label: "", parentPort: "", groupLabel: "", hasOutput: false, outputState: false, hasOccupany: false, occupiedState: false)
         items = []
         item = header
     }
     
-    func setData(data: Data!) -> Void
-    {
+    func setData(data: Data!) -> Void {
         if data == nil
         {
             return
@@ -53,97 +51,76 @@ class ParseXml: NSObject, XMLParserDelegate
         myData = data
     }
     
-    func parse() -> Void
-    {
+    func parse() -> Void {
         let parser = XMLParser(data: myData)
         parser.delegate = self
         parser.parse()
     }
     
-    // -----------------------
-    
-    func parserDidEndDocument(_ parser: XMLParser)
-    {
+    func parserDidEndDocument(_ parser: XMLParser) {
         ready = true
     }
     
-    func parserDidStartDocument(_ parser: XMLParser)
-    {
+    func parserDidStartDocument(_ parser: XMLParser) {
         ready = false
     }
     
-    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?)
-    {
+    func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
         currentElementName = elementName
-        if elementName == "Device"
-        {
+        if elementName == "Device" {
             inItemDevice = false
             items.append(item)
         }
-        else if elementName == "Group"
-        {
+        else if elementName == "Group" {
             inItemGroup = false
             items.append(item)
         }
     }
     
-    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:])
-    {
+    func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String : String] = [:]) {
         currentElementName = elementName
-        if elementName == "Device"
-        {
+        if elementName == "Device" {
             inItemDevice = true
             item = DevXml(deviceID: attributeDict["ID"] ?? "", model: attributeDict["Model"] ?? "", label: "", parentPort: "", groupLabel: "", hasOutput: false, outputState: false, hasOccupany: false, occupiedState: false)
         }
-        else if elementName == "Group"
-        {
+        else if elementName == "Group" {
             inItemGroup = true
             item = DevXml(deviceID: "", model: "", label: "", parentPort: (attributeDict["ID"] ?? "") + ":" + (attributeDict["Port"] ?? ""), groupLabel: "", hasOutput: false, outputState: false, hasOccupany: false, occupiedState: false)
         }
         
-        if elementName == "Parent"
-        {
+        if elementName == "Parent" {
             item.parentPort = (attributeDict["ID"] ?? "") + ":" + (attributeDict["Port"] ?? "")
         }
         
     }
     
-    func parser(_ parser: XMLParser, foundCDATA CDATABlock: Data)
-    {
-        if !inItemDevice
-        {
+    func parser(_ parser: XMLParser, foundCDATA CDATABlock: Data) {
+        if !inItemDevice {
             return
         }
         
-        switch currentElementName.lowercased()
-        {
+        switch currentElementName.lowercased() {
         default:
             break
         }
     }
     
-    func parser(_ parser: XMLParser, foundCharacters string: String)
-    {
-        if !inItemDevice && !inItemGroup
-        {
+    func parser(_ parser: XMLParser, foundCharacters string: String) {
+        if !inItemDevice && !inItemGroup {
             return
         }
         
-        switch currentElementName.lowercased()
-        {
+        switch currentElementName.lowercased() {
         case "label":
-            if inItemDevice == true
-            {
+            if inItemDevice == true {
                 item.label += string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             }
-            else if inItemGroup == true
-            {
+            else if inItemGroup == true {
                 item.groupLabel += string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             }
             break
         default:
             break
         }
-        
     }
 }

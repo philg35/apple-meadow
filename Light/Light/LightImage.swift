@@ -62,23 +62,18 @@ struct LightImage: View {
         ScrollView {
             VStack {
                 Text(phoneLight.deviceName)
-                    //.font(.headline)
                     .font(.system(size: 35, weight: .bold, design: .default))
-                
-                
                 Picker(selection: $selectedImage, label: Text("Select Image")){
                     ForEach(0 ..< items.count) {
                         Text(self.items[$0]).tag($0)
                     }
                 }
-                
                 Text("You selected: \(items[selectedImage])")
                 Image(items[selectedImage])
                     .resizable()
                     .scaledToFit()
                     .frame(width: 50, height: 50)
                 Button(action: {
-                    print("saving", selectedImage, self.items[selectedImage])
                     userData.phoneLight[phoneLightIndex].imageName = items[selectedImage]
                     userData.saveImage(deviceId: phoneLight.deviceId, imageName: self.items[selectedImage])
                 }, label: {

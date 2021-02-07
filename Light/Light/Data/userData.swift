@@ -24,8 +24,6 @@ class UserData : ObservableObject {
     init() {
         self.loadData()
         self.setUpMQTT()
-        //self.loadMqttPubs()
-        //self.insertMqttPubs()
     }
     
     func getMqtt() {
@@ -113,7 +111,6 @@ class UserData : ObservableObject {
             
             for m in self.phoneLight[index].mqttPubs {
                 if (m.relaystate != nil) {
-                    //print(m.ts as Any)
                     let date = m.ts?.prefix(8)
                     let time = String((m.ts?.suffix(8))!)
                     //print(date as Any, time as Any, m.relaystate as Any)
@@ -130,14 +127,12 @@ class UserData : ObservableObject {
                                 } else {
                                     dict[String(date!)] = diff
                                 }
-                                //print("diff=", diff)
                             }
                         }
                     }
                     prevState = m.relaystate!
                 }
             }
-            //print("dict=", dict)
             self.phoneLight[index].onTime = dict
         }
     }
@@ -145,17 +140,11 @@ class UserData : ObservableObject {
     func findDateDiff(time1Str: String, time2Str: String) -> Float {
         let timeformatter = DateFormatter()
         timeformatter.dateFormat = "HH:mm:ss"
-        //print("input strings", time1Str, time2Str)
         guard let time1 = timeformatter.date(from: time1Str),
               let time2 = timeformatter.date(from: time2Str) else { return 0.0 }
-
-        //You can directly use from here if you have two dates
-
         let interval = time2.timeIntervalSince(time1)
         let hour = interval / 3600;
         let minute = interval.truncatingRemainder(dividingBy: 3600) / 60
-//        let intervalInt = Int(interval)
-//        return "\(intervalInt < 0 ? "-" : "+") \(Int(hour)) Hours \(Int(minute)) Minutes"
         return Float(Int(hour)) + (Float(Int(minute)) / 60)
     }
     
@@ -167,9 +156,7 @@ class UserData : ObservableObject {
         mqtt.willMessage = CocoaMQTTWill(topic: "/will", message: "dieout")
         mqtt.keepAlive = 60
         mqtt.enableSSL = true
-        
         mqtt.allowUntrustCACertificate = true
-        
         print(mqtt.connect())
         mqtt.delegate = self
     }
@@ -194,21 +181,18 @@ extension UserData: CocoaMQTTDelegate {
         
     }
     
-    // These two methods are all we care about for now
     func mqtt(_ mqtt: CocoaMQTT, didConnect host: String, port: Int) {
         print("didConnect, yay")
         mqtt.subscribe("nLight/version/2/status/device/#", qos: CocoaMQTTQOS.qos1)
     }
     
     func mqtt(_ mqtt: CocoaMQTT, didReceiveMessage message: CocoaMQTTMessage, id: UInt16 ) {
-        print(message.topic, message.string as Any)
+        //print(message.topic, message.string as Any)
         if let msgString = message.string {
-            //textview.text?.append("***" + message.topic + " = " + msgString + "\r\n")
             processMqttMessage(topic: message.topic, message: msgString)
         }
     }
     
-    // Other required methods for CocoaMQTTDelegate
     func mqtt(_ mqtt: CocoaMQTT, didReceive trust: SecTrust, completionHandler: @escaping (Bool) -> Void) {
         print("didReceive trust!!!")
         completionHandler(true)
@@ -261,7 +245,6 @@ extension UserData: CocoaMQTTDelegate {
             let (pIndex) = findDeviceParentIndexes(device: t[5])
             self.phoneLight[pIndex].hasOcc = true
             self.phoneLight[pIndex].occState = message.contains("true")
-            //self.tableview.reloadData()
         }
     }
     

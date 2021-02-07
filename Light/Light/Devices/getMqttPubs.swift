@@ -11,8 +11,7 @@ import Foundation
 
 class GetMqttPubs : NSObject {
     
-    struct MqttInfo
-    {
+    struct MqttInfo {
         var deviceId: String
         var mqttPubs: [RelayPost]
     }
@@ -25,13 +24,11 @@ class GetMqttPubs : NSObject {
         myData = "".data(using: .ascii)!
     }
     
-    func setData(data: Data!) -> Void
-    {
+    func setData(data: Data!) -> Void {
         if data == nil
         {
             return
         }
-        
         myData = data
     }
     
@@ -102,14 +99,11 @@ class GetMqttPubs : NSObject {
 }
 
 class SessionDelegate2:NSObject, URLSessionDelegate {
-    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void)
-    {
-        if(challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust)
-        {
+    func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+        if(challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust) {
             print("in session delegate")
             print(challenge.protectionSpace.host)
-            if(challenge.protectionSpace.host == ipAddress)
-            {
+            if(challenge.protectionSpace.host == ipAddress) {
                 let credential = URLCredential(trust: challenge.protectionSpace.serverTrust!)
                 completionHandler(URLSession.AuthChallengeDisposition.useCredential, credential)
             }
