@@ -16,6 +16,10 @@ struct LightRow: View {
         userData.phoneLight.firstIndex(where: { $0.id == phoneLight.id}) ?? 0
     }
     
+    var onTime: Float {
+        userData.calcAvgOntime(dict: phoneLight.onTime)
+    }
+    
     var body: some View {
         if (userData.phoneLight.count > 0) {
             HStack{
@@ -36,6 +40,11 @@ struct LightRow: View {
                     }
                 }.frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: 160, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 20, maxHeight: 20, alignment: .leading)
                 
+                Spacer()
+                let formattedFloat = String(format: "%.2f", onTime)
+                if (!onTime.isNaN) {
+                Text("\(formattedFloat)").font(.headline)
+                }
                 Spacer()
                 if (phoneLight.hasOcc == true) {
                     if (phoneLight.occState == true) {

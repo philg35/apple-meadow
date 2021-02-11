@@ -38,7 +38,11 @@ struct LightDetail: View {
                 Text("\(phoneLight.deviceName)").font(.headline)
                 Text("Product name: \(phoneLight.productName)").font(.subheadline)
                 Text("Serial number: \(phoneLight.deviceId)").font(.subheadline)
-                Text("Average on time per day: \(onTime)").font(.headline)
+                //Text("Average on time per day: \(onTime)").font(.headline)
+                let formattedFloat = String(format: "%.2f", onTime)
+                if (!onTime.isNaN) {
+                Text("Average on time per day: \(formattedFloat)").font(.headline)
+                }
                 List(phoneLight.mqttPubs) { mqttRow in
                     RelayPostRow(relayPost: mqttRow)
                 }
