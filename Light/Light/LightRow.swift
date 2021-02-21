@@ -27,7 +27,7 @@ struct LightRow: View {
                     .resizable()
                     .scaledToFit()
                     .frame(width: 40, height: 40)
-                VStack(alignment: .leading){
+                VStack(alignment: .leading, spacing: 0){
                     
                     Text(phoneLight.deviceName)
                         .fontWeight(.bold)
@@ -41,10 +41,13 @@ struct LightRow: View {
                 }.frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: 160, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 20, maxHeight: 20, alignment: .leading)
                 
                 Spacer()
+                
                 let formattedFloat = String(format: "%.2f", onTime)
                 if (!onTime.isNaN) {
-                Text("\(formattedFloat)").font(.headline)
+                Text("\(formattedFloat)")
+                    .font(.headline)
                 }
+                
                 Spacer()
                 if (phoneLight.hasOcc == true) {
                     if (phoneLight.occState == true) {
@@ -76,7 +79,7 @@ struct PhoneLightRow_Previews: PreviewProvider {
     static var previews: some View {
         List {
             LightRow(phoneLight: phoneLightData[0]).environmentObject(UserData())
-//            LightRow(phoneLight: phoneLightData[1]).environmentObject(UserData())
+            LightRow(phoneLight: phoneLightData[1]).environmentObject(UserData())
         }
     }
 }
