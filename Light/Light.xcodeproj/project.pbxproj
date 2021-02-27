@@ -11,6 +11,7 @@
 		D940DE5325AD1B61008F39A8 /* ParseMqttPubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D940DE5225AD1B61008F39A8 /* ParseMqttPubs.swift */; };
 		D940DE5E25AD25C6008F39A8 /* RelayPostRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D940DE5D25AD25C6008F39A8 /* RelayPostRow.swift */; };
 		D946051A25C23668001F9E3C /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D946051925C23668001F9E3C /* Colors.xcassets */; };
+		D98FE98E25EB0392004E8A82 /* LightConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = D98FE98D25EB0392004E8A82 /* LightConfig.swift */; };
 		D9B2096A259E7AD00021781A /* LightDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9B20969259E7AD00021781A /* LightDetail.swift */; };
 		D9E7B45E25A93E1200A8F5AE /* getMqttPubs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9E7B45D25A93E1200A8F5AE /* getMqttPubs.swift */; };
 		D9F54706259FF9E8003E2F77 /* LightImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F54705259FF9E8003E2F77 /* LightImage.swift */; };
@@ -84,6 +85,7 @@
 		D940DE5225AD1B61008F39A8 /* ParseMqttPubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseMqttPubs.swift; sourceTree = "<group>"; };
 		D940DE5D25AD25C6008F39A8 /* RelayPostRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RelayPostRow.swift; sourceTree = "<group>"; };
 		D946051925C23668001F9E3C /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		D98FE98D25EB0392004E8A82 /* LightConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightConfig.swift; sourceTree = "<group>"; };
 		D9B20969259E7AD00021781A /* LightDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightDetail.swift; sourceTree = "<group>"; };
 		D9E7B45D25A93E1200A8F5AE /* getMqttPubs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = getMqttPubs.swift; sourceTree = "<group>"; };
 		D9F54705259FF9E8003E2F77 /* LightImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightImage.swift; sourceTree = "<group>"; };
@@ -195,6 +197,7 @@
 				D940DE5D25AD25C6008F39A8 /* RelayPostRow.swift */,
 				D9B20969259E7AD00021781A /* LightDetail.swift */,
 				D9F54705259FF9E8003E2F77 /* LightImage.swift */,
+				D98FE98D25EB0392004E8A82 /* LightConfig.swift */,
 			);
 			path = Light;
 			sourceTree = "<group>";
@@ -448,6 +451,7 @@
 				D940DE5E25AD25C6008F39A8 /* RelayPostRow.swift in Sources */,
 				D9F54706259FF9E8003E2F77 /* LightImage.swift in Sources */,
 				D9F940B1259BC5AC00911F99 /* getXml.swift in Sources */,
+				D98FE98E25EB0392004E8A82 /* LightConfig.swift in Sources */,
 				D9E7B45E25A93E1200A8F5AE /* getMqttPubs.swift in Sources */,
 				D9F9409D259BC3ED00911F99 /* userData.swift in Sources */,
 				D9B2096A259E7AD00021781A /* LightDetail.swift in Sources */,

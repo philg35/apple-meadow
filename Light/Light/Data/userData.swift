@@ -58,7 +58,7 @@ class UserData : ObservableObject {
             for d in p.devicesOnPort {
                 print("device", d.label, index)
                 
-                self.phoneLight.append(PhoneLight(id: index, deviceId: d.deviceID, deviceName: d.label, productName: d.model, imageName: self.getImage(deviceId: d.deviceID), occState: false, outputState: false, level: 100, hasOcc: false, hasOutput: false, mqttPubs: [], onTime: [ : ]))
+                self.phoneLight.append(PhoneLight(id: index, deviceId: d.deviceID, deviceName: d.label, productName: d.model, imageName: self.getImage(deviceId: d.deviceID), occState: false, outputState: false, level: 100, hasOcc: false, hasOutput: false, mqttPubs: [], onTime: [ : ], hasDim: false, stateReason: ""))
                 
                 index += 1
             }
@@ -239,12 +239,24 @@ extension UserData: CocoaMQTTDelegate {
             let (pIndex) = findDeviceParentIndexes(device: t[5])
             self.phoneLight[pIndex].hasOutput = true
             self.phoneLight[pIndex].outputState = message.contains("true")
+            let m = message.components(separatedBy: ",")
+            let s = m[1].components(separatedBy: ":")
+            //print(s[1])
+            self.phoneLight[pIndex].stateReason = s[1]
             //self.tableview.reloadData()
         } else if topic.contains("pole/1/occupied") {
             let t = topic.components(separatedBy: "/")
             let (pIndex) = findDeviceParentIndexes(device: t[5])
             self.phoneLight[pIndex].hasOcc = true
             self.phoneLight[pIndex].occState = message.contains("true")
+        }
+        else if topic.contains("pole/1/dimming-output-level"){
+            let m = message.components(separatedBy: ",")
+            let l = m[0].components(separatedBy: ":")
+            let t = topic.components(separatedBy: "/")
+            let (pIndex) = findDeviceParentIndexes(device: t[5])
+            self.phoneLight[pIndex].hasDim = true
+            self.phoneLight[pIndex].level = Int(l[1]) ?? 0
         }
     }
     

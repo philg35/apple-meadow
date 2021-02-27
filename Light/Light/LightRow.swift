@@ -35,7 +35,8 @@ struct LightRow: View {
                         Text(phoneLight.productName)
                             .font(.system(size: 12))
                         
-                        Text("(" + phoneLight.deviceId + ")")
+                        //Text("(" + phoneLight.deviceId + ")")
+                        Text(phoneLight.stateReason)
                             .font(.system(size: 8))
                     }
                 }.frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: 160, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 20, maxHeight: 20, alignment: .leading)
@@ -69,6 +70,10 @@ struct LightRow: View {
                         userData.didPressSwitch(deviceID: userData.phoneLight[phoneLightIndex].deviceId, newState: userData.phoneLight[phoneLightIndex].outputState)
                     })
                     .padding(.trailing, 20)
+                }
+                Spacer()
+                if (phoneLight.hasDim) {
+                    Text(String(phoneLight.level))
                 }
             }
         }
