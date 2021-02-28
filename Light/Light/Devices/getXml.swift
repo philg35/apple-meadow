@@ -7,7 +7,7 @@
 
 import Foundation
 
-public var ipAddress = "10.0.0.251"
+
 
 class GetXml : NSObject {
     

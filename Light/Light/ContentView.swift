@@ -7,7 +7,6 @@
 
 import SwiftUI
 
-var ipAddr = "10.0.0.251"
 struct ContentView: View {
     
     @EnvironmentObject var userData: UserData
@@ -23,10 +22,9 @@ struct ContentView: View {
                     LightRow(phoneLight: phonelight2)
                 }.background(Color("RowBackground"))
                 .frame(height: 25)
-                //.padding(-15.0)
             }//.navigationBarTitle(Text("\(ipAddr)"), displayMode: .inline)
             .navigationBarItems(leading: HStack {
-                    NavigationLink(destination: LightConfig(ipAddress: ipAddr)) {
+                    NavigationLink(destination: LightConfig()) {
                         Text("Config IP")
                     }
             },                  trailing: HStack {

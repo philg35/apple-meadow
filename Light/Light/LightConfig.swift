@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LightConfig: View {
     @EnvironmentObject var userData: UserData
-    var ipAddress: String
+    //var ipAddress: String
     @State private var name: String = ""
     
     var body: some View {
@@ -26,6 +26,8 @@ struct LightConfig: View {
                     .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
                 Button("Add") {
                    print("adding ipaddress", name)
+                    ipAddress = name
+                    userData.startOver()
                 }
                 .padding(.trailing, 50)
             })
@@ -41,6 +43,6 @@ struct LightConfig: View {
 
 struct LightConfig_Previews: PreviewProvider {
     static var previews: some View {
-        LightConfig(ipAddress: "10.0.0.251")
+        LightConfig()
     }
 }

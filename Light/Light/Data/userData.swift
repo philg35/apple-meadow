@@ -11,17 +11,25 @@ import Combine
 import CocoaMQTT
 
 var mqttStarted = false
+public var ipAddress = "10.0.0.251"
 
 class UserData : ObservableObject {
     @Published var phoneLight = phoneLightData
-    let xml = GetXml()
-    let mqttPubs = GetMqttPubs()
+    var xml = GetXml()
+    var mqttPubs = GetMqttPubs()
     var mqtt: CocoaMQTT!
     typealias FinishedXmlRead = () -> ()
     typealias FinishedMqttRead = () -> ()
     var dictImages: [String:String] = UserDefaults.standard.object(forKey: "SavedImages") as? [String:String] ?? [:]
 
     init() {
+        self.startOver()
+    }
+    
+    func startOver() {
+        phoneLight.removeAll()
+        xml = GetXml()
+        mqttPubs = GetMqttPubs()
         self.loadData()
         self.setUpMQTT()
     }
