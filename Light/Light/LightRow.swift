@@ -22,49 +22,57 @@ struct LightRow: View {
     
     var body: some View {
         if (userData.phoneLight.count > 0) {
-            HStack{
+            HStack {
                 Image(phoneLight.imageName)
                     .resizable()
                     .scaledToFit()
                     .frame(width: 40, height: 40)
                 VStack(alignment: .leading, spacing: 0){
-                    
                     Text(phoneLight.deviceName)
                         .fontWeight(.bold)
+                        .frame(width: 135, alignment: .leading)
                     HStack {
                         Text(phoneLight.productName)
                             .font(.system(size: 12))
-                        
-                        //Text("(" + phoneLight.deviceId + ")")
+                        let formattedFloat = String(format: "%.2f", onTime)
+                        if (!onTime.isNaN) {
+                            Text("\(formattedFloat)")
+                                .font(.system(size: 12))
+                        }
+                    }
                         Text(phoneLight.stateReason)
                             .font(.system(size: 8))
-                    }
-                }.frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealWidth: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, maxWidth: 160, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 20, maxHeight: 20, alignment: .leading)
+                }.frame(width: 135, alignment: .leading)
                 
                 Spacer()
                 
-                let formattedFloat = String(format: "%.2f", onTime)
-                if (!onTime.isNaN) {
-                Text("\(formattedFloat)")
-                    .font(.headline)
-                }
-                
-                Spacer()
+                HStack {
                 if (phoneLight.hasOcc == true) {
                     if (phoneLight.occState == true) {
-                        Image(systemName: "figure.walk").foregroundColor(.green)
+                        Image(systemName: "figure.walk")
+                            .foregroundColor(.green)
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                            .frame(width: 20)
                     }
                     else {
-                        Image(systemName: "zzz").foregroundColor(.red)
+                        Image(systemName: "zzz")
+                            .foregroundColor(.red)
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                            .frame(width: 20)
                     }
+                }
+                else {
+                    Text("")
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        .frame(width: 20)
+                        
                 }
                 Spacer()
                 if (userData.phoneLight.indices.contains(phoneLightIndex)) {
-                    
                     Toggle(isOn: $userData.phoneLight[phoneLightIndex].outputState) {
                         Text("")
                     }
-                    .frame(minWidth: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealWidth: 20, maxWidth: 30, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 20, maxHeight: 20, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                    .frame(minWidth: 0, idealWidth: 20, maxWidth: 30, minHeight: /*@START_MENU_TOKEN@*/0/*@END_MENU_TOKEN@*/, idealHeight: 20, maxHeight: 20, alignment: .center)
                     .onChange(of: userData.phoneLight[phoneLightIndex].outputState, perform: { value in
                         print("\(userData.phoneLight[phoneLightIndex].deviceName)'s new value is \(userData.phoneLight[phoneLightIndex].outputState)")
                         userData.didPressSwitch(deviceID: userData.phoneLight[phoneLightIndex].deviceId, newState: userData.phoneLight[phoneLightIndex].outputState)
@@ -74,6 +82,14 @@ struct LightRow: View {
                 Spacer()
                 if (phoneLight.hasDim) {
                     Text(String(phoneLight.level))
+                        .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                        .frame(width: 30)
+                }
+                else {
+                    Text("")
+                        .padding(EdgeInsets(top: 0, leading: 30, bottom: 0, trailing: 0))
+                        .frame(width: 30)
+                }
                 }
             }
         }
@@ -85,6 +101,7 @@ struct PhoneLightRow_Previews: PreviewProvider {
         List {
             LightRow(phoneLight: phoneLightData[0]).environmentObject(UserData())
             LightRow(phoneLight: phoneLightData[1]).environmentObject(UserData())
+            LightRow(phoneLight: phoneLightData[2]).environmentObject(UserData())
         }
     }
 }

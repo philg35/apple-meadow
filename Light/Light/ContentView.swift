@@ -23,11 +23,11 @@ struct ContentView: View {
                     LightRow(phoneLight: phonelight2)
                 }.background(Color("RowBackground"))
                 .frame(height: 25)
-                .padding(-15.0)
-            }.navigationBarTitle(Text("\(ipAddr)"), displayMode: .large)
+                //.padding(-15.0)
+            }//.navigationBarTitle(Text("\(ipAddr)"), displayMode: .inline)
             .navigationBarItems(leading: HStack {
                     NavigationLink(destination: LightConfig(ipAddress: ipAddr)) {
-                        Text("Config IP") 
+                        Text("Config IP")
                     }
             },                  trailing: HStack {
                 Button("Load") {
