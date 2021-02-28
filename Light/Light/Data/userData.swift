@@ -235,28 +235,35 @@ extension UserData: CocoaMQTTDelegate {
     
     func processMqttMessage(topic: String, message: String) {
         if topic.contains("pole/1/relay-state") {
+            print(topic, message)
             let t = topic.components(separatedBy: "/")
             let (pIndex) = findDeviceParentIndexes(device: t[5])
-            self.phoneLight[pIndex].hasOutput = true
-            self.phoneLight[pIndex].outputState = message.contains("true")
-            let m = message.components(separatedBy: ",")
-            let s = m[1].components(separatedBy: ":")
-            //print(s[1])
-            self.phoneLight[pIndex].stateReason = s[1]
-            //self.tableview.reloadData()
+            if (pIndex < self.phoneLight.count) {
+                self.phoneLight[pIndex].hasOutput = true
+                self.phoneLight[pIndex].outputState = message.contains("true")
+                let m = message.components(separatedBy: ",")
+                let s = m[1].components(separatedBy: ":")
+                //print(s[1])
+                self.phoneLight[pIndex].stateReason = s[1]
+                //self.tableview.reloadData()
+            }
         } else if topic.contains("pole/1/occupied") {
             let t = topic.components(separatedBy: "/")
             let (pIndex) = findDeviceParentIndexes(device: t[5])
-            self.phoneLight[pIndex].hasOcc = true
-            self.phoneLight[pIndex].occState = message.contains("true")
+            if (pIndex < self.phoneLight.count) {
+                self.phoneLight[pIndex].hasOcc = true
+                self.phoneLight[pIndex].occState = message.contains("true")
+            }
         }
         else if topic.contains("pole/1/dimming-output-level"){
             let m = message.components(separatedBy: ",")
             let l = m[0].components(separatedBy: ":")
             let t = topic.components(separatedBy: "/")
             let (pIndex) = findDeviceParentIndexes(device: t[5])
-            self.phoneLight[pIndex].hasDim = true
-            self.phoneLight[pIndex].level = Int(l[1]) ?? 0
+            if (pIndex < self.phoneLight.count) {
+                self.phoneLight[pIndex].hasDim = true
+                self.phoneLight[pIndex].level = Int(l[1]) ?? 0
+            }
         }
     }
     
@@ -266,7 +273,7 @@ extension UserData: CocoaMQTTDelegate {
                 return (index)
             }
         }
-        return (0)
+        return (999)
     }
 }
 
