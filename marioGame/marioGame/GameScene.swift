@@ -11,11 +11,14 @@ import GameplayKit
 
 enum PhysicsCategories {
     static let none: UInt32 = 0
-    static let player: UInt32 = 2
-    static let ground: UInt32 = 4
-    static let peach: UInt32 = 8
-    static let star: UInt32 = 16
-    static let goomba: UInt32 = 32
+    static let player: UInt32 = 0x1 << 1    // 2
+    static let ground: UInt32 = 0x1 << 2    // 4
+    static let peach: UInt32 = 0x1 << 3     // 8
+    static let star: UInt32 = 0x1 << 4      // 16
+    static let radial: UInt32 = 0x1 << 5    // 32
+    static let goomba: UInt32 = 0x1 << 6    // 64
+    static let fireball: UInt32 = 0x1 << 7  // 128
+    static let bowser: UInt32 = 0x1 << 8    // 256
 }
 
 class GameScene: SKScene, SKPhysicsContactDelegate {
