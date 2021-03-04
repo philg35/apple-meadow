@@ -27,11 +27,15 @@ class UserData : ObservableObject {
     }
     
     func startOver() {
+        if (mqttStarted) {
+            mqtt.disconnect()
+        }
         phoneLight.removeAll()
         xml = GetXml()
         mqttPubs = GetMqttPubs()
         self.loadData()
         self.setUpMQTT()
+        mqttStarted = true
     }
     
     func getMqtt() {
