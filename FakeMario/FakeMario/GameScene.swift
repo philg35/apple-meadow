@@ -23,10 +23,15 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     private var playerWalkingFrames: [SKTexture] = []
     var ground : SKSpriteNode?
     var jumped = false
+    var cam : SKCameraNode?
+    var lastUpdateTime : TimeInterval = 0
+    var entities = [GKEntity]()
     
     override func sceneDidLoad() {
+        self.lastUpdateTime = 0
         buildGround()
         buildPlayer()
+        buildCamera()
         self.physicsWorld.contactDelegate = self
     }
     
@@ -64,6 +69,20 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         ground?.physicsBody?.collisionBitMask = PhysicsCategories.player | PhysicsCategories.peach
     }
     
+    func buildCamera() {
+        cam = self.childNode(withName: "cameraSprite") as? SKCameraNode
+        
+        if let camera = cam
+        {
+            camera.xScale = 1.6
+            camera.yScale = 1.6
+            print("camera ok!!!")
+        }
+        else {
+            print("no camera!!!")
+        }
+    }
+    
     func animatePlayer() {
         player.run(SKAction.repeatForever(
                     SKAction.animate(with: playerWalkingFrames,
@@ -74,11 +93,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     override func didMove(to view: SKView) {
-        
-        
-        
-        
-        
         
     }
     
@@ -115,18 +129,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         let touch:UITouch = touches.first!
         let positionInScene = touch.location(in: self)
-//        let touchedNode = self.atPoint(positionInScene)
-        //        if touchedNode.name == "player"{
-        //            if Int(camera!.xScale) < 2 {
-        //                camera?.xScale += 0.2
-        //                camera?.yScale += 0.2
-        //            }
-        //            else {
-        //                camera?.xScale = 0.8
-        //                camera?.yScale = 0.8
-        //            }
-        //        }
-        //        else {
         let pl = player
         let deltaX = positionInScene.x - (pl.position.x)
         let deltaY = positionInScene.y - (pl.position.y)
@@ -142,7 +144,6 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
                 jumpPlayer()
             }
         }
-        //        }
     }
     
     func jumpPlayer () {
@@ -174,7 +175,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
             firstBody = contact.bodyB
             secondBody = contact.bodyA
         }
-        print("contact", firstBody.categoryBitMask, secondBody.categoryBitMask, Date().timeIntervalSince1970)
+//        print("contact", firstBody.categoryBitMask, secondBody.categoryBitMask, Date().timeIntervalSince1970)
         
         if ((firstBody.categoryBitMask & PhysicsCategories.ground) != 0 && (secondBody.categoryBitMask & PhysicsCategories.player) != 0) {
             print("landed")
@@ -185,5 +186,24 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     override func update(_ currentTime: TimeInterval) {
         // Called before each frame is rendered
+        // Initialize _lastUpdateTime if it has not already been
+        if (self.lastUpdateTime == 0) {
+            self.lastUpdateTime = currentTime
+        }
+        
+        // Calculate time since last update
+        let dt = currentTime - self.lastUpdateTime
+        
+        // Update entities
+        for entity in self.entities {
+            entity.update(deltaTime: dt)
+        }
+        
+        if let camera = cam {
+            camera.position.x = player.position.x + 100
+            camera.position.y = player.position.y + 100
+            print(camera.position.y, player.position.y, ground?.position.y as Any)
+        }
+        self.lastUpdateTime = currentTime
     }
 }
