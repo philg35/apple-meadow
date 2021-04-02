@@ -71,7 +71,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     
     func buildCamera() {
         cam = self.childNode(withName: "cameraSprite") as? SKCameraNode
-        
+        self.camera = cam
         if let camera = cam
         {
             camera.xScale = 1.6
@@ -200,10 +200,9 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         }
         
         if let camera = cam {
-            camera.position.x = player.position.x + 100
-            camera.position.y = player.position.y + 100
-            print(camera.position.y, player.position.y, ground?.position.y as Any)
+            camera.position = player.position
         }
+        
         self.lastUpdateTime = currentTime
     }
 }
