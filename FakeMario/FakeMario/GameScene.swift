@@ -132,15 +132,16 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let pl = player
         let deltaX = positionInScene.x - (pl.position.x)
         let deltaY = positionInScene.y - (pl.position.y)
-        if (deltaX > frame.maxX / 2) {
+        print("x=\(deltaX),y=\(deltaY)", frame.maxX/2, frame.maxY/2)
+        if (deltaX > frame.maxY / 2) {
             startMovingPlayerRight()
-            if (deltaY > frame.maxY / 2) {
+            if (deltaY > frame.maxX / 2) {
                 jumpPlayer()
             }
         }
         else {
             startMovingPlayerLeft()
-            if (deltaY > frame.maxY / 2) {
+            if (deltaY > frame.maxX / 2) {
                 jumpPlayer()
             }
         }
