@@ -75,14 +75,9 @@ class ViewController: UIViewController, CBCentralManagerDelegate, UITextFieldDel
                 if ad.key == "kCBAdvDataManufacturerData"
                 {
                     if let data = ad.value  as? Data {
-                        let dataStr = String(data: data, encoding: .ascii)
-                        mfgDataValue = dataStr ?? "strange nLAir data type"
-//                        if (mfgDataValue != "strange nLAir data type")
-//                        {
-//                            print("not strange")
-//                            print(ad.value)
-//                            print(mfgDataValue)
-//                        }
+                        let dataStr = String(data: data, encoding: .utf8)
+                        print("utf8", dataStr ?? "help")
+                        mfgDataValue = dataStr ?? "me"
                     }
                     print(ad.value)
                     //print(mfgDataValue)

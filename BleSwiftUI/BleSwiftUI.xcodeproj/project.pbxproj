@@ -13,6 +13,7 @@
 		D99305A723D50DFB00852586 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D99305A623D50DFB00852586 /* Assets.xcassets */; };
 		D99305AA23D50DFB00852586 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D99305A923D50DFB00852586 /* Preview Assets.xcassets */; };
 		D99305AD23D50DFB00852586 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D99305AB23D50DFB00852586 /* LaunchScreen.storyboard */; };
+		D9D67A5C2687851A00104663 /* blemanager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D67A5B2687851A00104663 /* blemanager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		D99305A923D50DFB00852586 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D99305AC23D50DFB00852586 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D99305AE23D50DFB00852586 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D9D67A5B2687851A00104663 /* blemanager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = blemanager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 				D99305A023D50DFA00852586 /* AppDelegate.swift */,
 				D99305A223D50DFA00852586 /* SceneDelegate.swift */,
 				D99305A423D50DFA00852586 /* ContentView.swift */,
+				D9D67A5B2687851A00104663 /* blemanager.swift */,
 				D99305A623D50DFB00852586 /* Assets.xcassets */,
 				D99305AB23D50DFB00852586 /* LaunchScreen.storyboard */,
 				D99305AE23D50DFB00852586 /* Info.plist */,
@@ -102,7 +105,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1130;
-				LastUpgradeCheck = 1130;
+				LastUpgradeCheck = 1250;
 				ORGANIZATIONNAME = "Philip Gross";
 				TargetAttributes = {
 					D993059C23D50DFA00852586 = {
@@ -147,6 +150,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				D99305A123D50DFA00852586 /* AppDelegate.swift in Sources */,
+				D9D67A5C2687851A00104663 /* blemanager.swift in Sources */,
 				D99305A323D50DFA00852586 /* SceneDelegate.swift in Sources */,
 				D99305A523D50DFA00852586 /* ContentView.swift in Sources */,
 			);
@@ -192,6 +196,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -252,6 +257,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
