@@ -15,9 +15,10 @@ struct Peripheral: Identifiable {
     let name: String
     let rssi: Int
     let manufData: String
+    let cbperiph: CBPeripheral
 }
 
-class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
+class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     var myCentral: CBCentralManager!
     @Published var isSwitchedOn = false
@@ -32,80 +33,76 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
 
 
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-         if central.state == .poweredOn {
+        print("central state=", central.state.rawValue)
+        if central.state == .poweredOn {
+            print("powered on")
              isSwitchedOn = true
          }
          else {
+            print("not powered on")
              isSwitchedOn = false
          }
     }
+    
+    func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
+        print("connected")
+        peripheral.discoverServices(nil)
+    }
+    
+    func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
+        print(error ?? "no errors")
+    }
+    
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
 
+       if let charac = service.characteristics {
+        for characteristic in charac {
+            print(characteristic)
+          }
+        }
+      }
+
+    func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
+
+           if let services = peripheral.services {
+
+           //discover characteristics of services
+           for service in services {
+            print("service=", service)
+            peripheral.discoverCharacteristics(nil, for: service)
+          }
+        }
+    }
 
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         var peripheralName: String!
         var peripheralManufData: String = "not"
-        //peripheralManufData = "not"
         if let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
             peripheralName = name
         }
         else {
             peripheralName = "Unknown"
         }
-       
-//        if let txPower = advertisementData[CBAdvertisementDataManufacturerDataKey] as? String {
-//            peripheralTxPower = txPower
-//        }
-//        else {
-//            peripheralTxPower = "-99"
-//        }
-//        print("tx power", peripheralTxPower!)
-        
-        
-//        for ad in advertisementData {
-//            if ad.key == "kCBAdvDataManufacturerData"
-//            {
-//                print(ad.value, peripheralName ?? "none")
-//
-//            }
-////            if ad.key == "kCBAdvDataTxPowerLevel"
-////            {
-////                peripheralTxPower = ad.value as? String
-////                print("tx power", ad.value, peripheralName ?? "none")
-////            }
-//        }
         
         if let manufacturerData = advertisementData["kCBAdvDataManufacturerData"] as? Data {
-            //assert(manufacturerData.count >= 7)
-            //0d00 - TI manufacturer ID
-            //Constructing 2-byte data as little endian (as TI's manufacturer ID is 000D)
             if manufacturerData.count == 20
             {
                 print("NLAIR", manufacturerData[0], manufacturerData[1], manufacturerData[2], manufacturerData[3], manufacturerData[4], manufacturerData[5], manufacturerData[6], manufacturerData[7], manufacturerData[8], manufacturerData[9], manufacturerData[10], manufacturerData[11], manufacturerData[12], manufacturerData[13], manufacturerData[14], manufacturerData[15], manufacturerData[16], manufacturerData[17], manufacturerData[18], manufacturerData[19])
                 
-            let manufactureID = UInt16(manufacturerData[0]) + UInt16(manufacturerData[1]) << 8
+            let manufactureID = UInt16(manufacturerData[3]) + UInt16(manufacturerData[2]) << 8
             print(String(format: "%04X", manufactureID))
-            let nodeID = manufacturerData[2]
-            print(String(format: "%02X", nodeID)) 
-//            let state = manufacturerData[3]
-//            print(String(format: "%02X", state)) //->05
-//            //c6f - is the sensor tag battery voltage
-//            //Constructing 2-byte data as big endian (as shown in the Java code)
-//            let batteryVoltage = UInt16(manufacturerData[4]) << 8 + UInt16(manufacturerData[5])
-//            print(String(format: "%04X", batteryVoltage)) //->0C6F
-//            //32- is the BLE packet counter.
-//            let packetCounter = manufacturerData[6]
-//            print(String(format: "%02X", packetCounter)) //->32
-            print("manufData", manufacturerData)
+            
+//            print("manufData", manufacturerData)
             peripheralManufData = String(manufactureID)
+            }
         }
-        }
-        
     
     
-        let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, manufData: peripheralManufData)
-        //print(newPeripheral)
+        let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, manufData: peripheralManufData, cbperiph: peripheral)
         peripherals.append(newPeripheral)
         peripherals.sort(by: { $0.rssi > $1.rssi})
+//        myCentral.connect(peripheral, options: nil)
+        
     }
     
     func startScanning() {
@@ -116,6 +113,13 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate {
     func stopScanning() {
         print("stopScanning")
         myCentral.stopScan()
+    }
+    
+    func connect(periphConn : Peripheral) {
+        periphConn.cbperiph.delegate = self
+        print("connect detail")
+        myCentral.connect(periphConn.cbperiph, options: nil)
+        print("after connect detail")
     }
     
 }

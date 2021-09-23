@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D9188C9626ED33BA00EF5DD5 /* PeriphDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9188C9526ED33BA00EF5DD5 /* PeriphDetail.swift */; };
+		D9188C9826ED356F00EF5DD5 /* periphRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9188C9726ED356F00EF5DD5 /* periphRow.swift */; };
 		D99305A123D50DFA00852586 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99305A023D50DFA00852586 /* AppDelegate.swift */; };
 		D99305A323D50DFA00852586 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99305A223D50DFA00852586 /* SceneDelegate.swift */; };
 		D99305A523D50DFA00852586 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D99305A423D50DFA00852586 /* ContentView.swift */; };
@@ -17,6 +19,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		D9188C9526ED33BA00EF5DD5 /* PeriphDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PeriphDetail.swift; sourceTree = "<group>"; };
+		D9188C9726ED356F00EF5DD5 /* periphRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = periphRow.swift; sourceTree = "<group>"; };
 		D993059D23D50DFA00852586 /* BleSwiftUI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BleSwiftUI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D99305A023D50DFA00852586 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D99305A223D50DFA00852586 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +65,8 @@
 				D99305A023D50DFA00852586 /* AppDelegate.swift */,
 				D99305A223D50DFA00852586 /* SceneDelegate.swift */,
 				D99305A423D50DFA00852586 /* ContentView.swift */,
+				D9188C9726ED356F00EF5DD5 /* periphRow.swift */,
+				D9188C9526ED33BA00EF5DD5 /* PeriphDetail.swift */,
 				D9D67A5B2687851A00104663 /* blemanager.swift */,
 				D99305A623D50DFB00852586 /* Assets.xcassets */,
 				D99305AB23D50DFB00852586 /* LaunchScreen.storyboard */,
@@ -153,6 +159,8 @@
 				D9D67A5C2687851A00104663 /* blemanager.swift in Sources */,
 				D99305A323D50DFA00852586 /* SceneDelegate.swift in Sources */,
 				D99305A523D50DFA00852586 /* ContentView.swift in Sources */,
+				D9188C9826ED356F00EF5DD5 /* periphRow.swift in Sources */,
+				D9188C9626ED33BA00EF5DD5 /* PeriphDetail.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

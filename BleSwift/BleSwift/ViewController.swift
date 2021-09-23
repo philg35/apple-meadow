@@ -71,19 +71,25 @@ class ViewController: UIViewController, CBCentralManagerDelegate, UITextFieldDel
             var mfgDataValue = ""
             //print("\nName   : \(peripheral.name ?? "(No name)")")
             //print("RSSI   : \(RSSI)")
-            for ad in advertisementData {
-                if ad.key == "kCBAdvDataManufacturerData"
-                {
-                    if let data = ad.value  as? Data {
-                        let dataStr = String(data: data, encoding: .utf8)
-                        print("utf8", dataStr ?? "help")
-                        mfgDataValue = dataStr ?? "me"
-                    }
-                    print(ad.value)
-                    //print(mfgDataValue)
-                    //print(ad)
-                }
+            if let name = advertisementData["kCBAdvDataLocalName"] {
+                print(name)
             }
+            if let manuf = advertisementData["kCBAdvDataManufacturerData"] as? Data {
+                print(manuf[0], manuf[1], String(manuf[2], radix: 16), String(manuf[3], radix: 16))
+            }
+//            print(advertisementData)
+//            for ad in advertisementData {
+//                if ad.key == "kCBAdvDataManufacturerData"
+//                {
+//                    if let data = ad.value  as? Data {
+//                        let dataStr = String(data: data, encoding: .utf8)
+//                        print("utf8", dataStr ?? "help")
+//                        mfgDataValue = dataStr ?? "me"
+//                    }
+//                    print(ad.value)
+//
+//                }
+//            }
         
             var dev : bleDevice
             dev = bleDevice(bleName: peripheral.name ?? "(No name)", bleIdentifier: peripheral.identifier.uuidString, bleRssi: RSSI.stringValue, mfgData: mfgDataValue, perif: peripheral)

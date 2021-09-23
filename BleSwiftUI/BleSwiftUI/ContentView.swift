@@ -10,22 +10,23 @@ import SwiftUI
  
 struct ContentView: View {
     
-    @ObservedObject var bleManager = BLEManager()
- 
+    @StateObject var bleManager = BLEManager()
+    
     var body: some View {
         VStack (spacing: 10) {
  
             Text("Bluetooth Devices")
                 .font(.largeTitle)
                 .frame(maxWidth: .infinity, alignment: .center)
-            List(bleManager.peripherals) { peripheral in
-                HStack {
-                    Text(peripheral.name)
-                    Text(peripheral.manufData)
-                    Spacer()
-                    Text(String(peripheral.rssi))
+            
+            NavigationView {
+                List(bleManager.peripherals) { peripheral in
+                    NavigationLink(destination: PeriphDetail(periph: peripheral, bleManager: bleManager)) {
+                        PeriphRow(periph: peripheral)
+                    }.background(Color("RowBackground"))
+                    .frame(height: 25)
                 }
-            }.frame(height: 300)
+            }.padding(-15.0)
  
             Spacer()
  

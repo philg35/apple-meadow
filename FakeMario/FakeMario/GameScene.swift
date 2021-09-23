@@ -97,14 +97,14 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
     }
     
     func startMovingPlayerLeft () {
-        let moveAction = SKAction.move(by: CGVector(dx: -1000, dy: 0), duration: 2)
+        let moveAction = SKAction.move(by: CGVector(dx: -10000, dy: 0), duration: 20)
         player.xScale = -3
         player.run(moveAction)
         animatePlayer()
     }
     
     func startMovingPlayerRight() {
-        let moveAction = SKAction.move(by: CGVector(dx: 1000, dy: 0), duration: 2)
+        let moveAction = SKAction.move(by: CGVector(dx: 10000, dy: 0), duration: 20)
         player.xScale = 3
         player.run(moveAction)
         animatePlayer()
@@ -132,7 +132,7 @@ class GameScene: SKScene, SKPhysicsContactDelegate {
         let pl = player
         let deltaX = positionInScene.x - (pl.position.x)
         let deltaY = positionInScene.y - (pl.position.y)
-        print("x=\(deltaX),y=\(deltaY)", frame.maxX/2, frame.maxY/2)
+        print("x=\(positionInScene.x),y=\(positionInScene.y)")
         if (deltaX > frame.maxY / 2) {
             startMovingPlayerRight()
             if (deltaY > frame.maxX / 2) {
