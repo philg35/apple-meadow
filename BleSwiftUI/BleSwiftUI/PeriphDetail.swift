@@ -21,6 +21,10 @@ struct PeriphDetail: View {
         Button(action: {self.bleManager.connect(periphConn: periph)}, label: {
             Text("Connect")
         })
+        Text("Services:")
+        Text("\(periph.serviceList)")
+        Text("Characteristics:")
+        Text("\(periph.characteristicList)")
     }
 }
 

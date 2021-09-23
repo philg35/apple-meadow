@@ -16,6 +16,8 @@ struct Peripheral: Identifiable {
     let rssi: Int
     let manufData: String
     let cbperiph: CBPeripheral
+    var serviceList: String
+    var characteristicList: String
 }
 
 class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
@@ -56,8 +58,12 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
 
        if let charac = service.characteristics {
+        var perifIndex: Int {
+            peripherals.firstIndex(where: { $0.cbperiph == peripheral}) ?? 0
+        }
         for characteristic in charac {
             print(characteristic)
+            peripherals[perifIndex].characteristicList += characteristic.uuid.uuidString + ", "
           }
         }
       }
@@ -65,10 +71,13 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
 
            if let services = peripheral.services {
-
+            var perifIndex: Int {
+                peripherals.firstIndex(where: { $0.cbperiph == peripheral}) ?? 0
+            }
            //discover characteristics of services
            for service in services {
             print("service=", service)
+            peripherals[perifIndex].serviceList += service.uuid.uuidString + ", "
             peripheral.discoverCharacteristics(nil, for: service)
           }
         }
@@ -98,7 +107,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         }
     
     
-        let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, manufData: peripheralManufData, cbperiph: peripheral)
+        let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, manufData: peripheralManufData, cbperiph: peripheral, serviceList: "", characteristicList: "")
         peripherals.append(newPeripheral)
         peripherals.sort(by: { $0.rssi > $1.rssi})
 //        myCentral.connect(peripheral, options: nil)
