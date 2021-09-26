@@ -20,6 +20,31 @@ struct Peripheral: Identifiable {
     var characteristicList: String
 }
 
+class BLEPerifManager : NSObject, ObservableObject, CBPeripheralManagerDelegate {
+    var myPerif: CBPeripheralManager!
+    
+    override init() {
+        super.init()
+ 
+        myPerif = CBPeripheralManager(delegate: self, queue: nil)
+        myPerif.delegate = self
+    }
+    func peripheralManagerDidUpdateState(_ peripheral: CBPeripheralManager) {
+        print("periph state", peripheral.state.rawValue)
+    }
+    
+    func peripheralManagerDidStartAdvertising(_ peripheral: CBPeripheralManager, error: Error?) {
+        print("started advertising")
+    }
+    
+    func startAdvertising()
+    {
+        let advertisementData = [CBAdvertisementDataLocalNameKey: "Test Device", CBAdvertisementDataServiceUUIDsKey: "1804"]
+        myPerif.startAdvertising(advertisementData)
+    }
+    
+}
+
 class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
     
     var myCentral: CBCentralManager!
@@ -130,6 +155,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         myCentral.connect(periphConn.cbperiph, options: nil)
         print("after connect detail")
     }
+    
     
 }
 

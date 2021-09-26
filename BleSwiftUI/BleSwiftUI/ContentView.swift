@@ -7,10 +7,11 @@
 //
 
 import SwiftUI
- 
+
 struct ContentView: View {
     
     @StateObject var bleManager = BLEManager()
+    @StateObject var perifManager = BLEPerifManager()
     
     var body: some View {
         VStack (spacing: 10) {
@@ -64,11 +65,13 @@ struct ContentView: View {
                 VStack (spacing: 10) {
                     Button(action: {
                         print("Start Advertising")
+                        self.perifManager.startAdvertising()
                     }) {
                         Text("Start Advertising")
                     }
                     Button(action: {
                         print("Stop Advertising")
+                        self.perifManager.myPerif.stopAdvertising()
                     }) {
                         Text("Stop Advertising")
                     }
