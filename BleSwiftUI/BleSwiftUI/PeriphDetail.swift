@@ -17,14 +17,22 @@ struct PeriphDetail: View {
         Text("\(periph.name)").font(.headline)
         Text("\(periph.rssi)")
         Text("\(periph.id)")
-        Text("\(periph.manufData)")
+        HStack {
         Button(action: {self.bleManager.connect(periphConn: periph)}, label: {
             Text("Connect")
         })
+            Button(action: {self.bleManager.disconnect(periphConn: periph)}, label: {
+                Text("Disconnect")
+            })
+        }
         Text("Services:")
         Text("\(periph.serviceList)")
+            .multilineTextAlignment(.leading)
+            .padding(.leading, 10)
         Text("Characteristics:")
         Text("\(periph.characteristicList)")
+            .multilineTextAlignment(.leading)
+            .padding(.leading, 10)
     }
 }
 

@@ -14,7 +14,6 @@ struct Peripheral: Identifiable {
     let id: Int
     let name: String
     let rssi: Int
-    let manufData: String
     let cbperiph: CBPeripheral
     var serviceList: String
     var characteristicList: String
@@ -39,7 +38,8 @@ class BLEPerifManager : NSObject, ObservableObject, CBPeripheralManagerDelegate 
     
     func startAdvertising()
     {
-        let advertisementData = [CBAdvertisementDataLocalNameKey: "Test Device", CBAdvertisementDataServiceUUIDsKey: "1804"]
+        let exampleUuid = [CBUUID(string: "879D048E-E0AA-4CA2-B686-F3B4B0E67A93")]
+        let advertisementData = [CBAdvertisementDataLocalNameKey: "DELC", CBAdvertisementDataServiceUUIDsKey: exampleUuid] as [String : Any] as [String : Any]
         myPerif.startAdvertising(advertisementData)
     }
     
@@ -88,7 +88,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         }
         for characteristic in charac {
             print(characteristic)
-            peripherals[perifIndex].characteristicList += characteristic.uuid.uuidString + ", "
+            peripherals[perifIndex].characteristicList += characteristic.uuid.uuidString + ", \r\n"
           }
         }
       }
@@ -102,7 +102,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
            //discover characteristics of services
            for service in services {
             print("service=", service)
-            peripherals[perifIndex].serviceList += service.uuid.uuidString + ", "
+            peripherals[perifIndex].serviceList += service.uuid.uuidString + ", \r\n"
             peripheral.discoverCharacteristics(nil, for: service)
           }
         }
@@ -110,7 +110,6 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
 
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         var peripheralName: String!
-        var peripheralManufData: String = "not"
         if let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
             peripheralName = name
         }
@@ -122,17 +121,11 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             if manufacturerData.count == 20
             {
                 print("NLAIR", manufacturerData[0], manufacturerData[1], manufacturerData[2], manufacturerData[3], manufacturerData[4], manufacturerData[5], manufacturerData[6], manufacturerData[7], manufacturerData[8], manufacturerData[9], manufacturerData[10], manufacturerData[11], manufacturerData[12], manufacturerData[13], manufacturerData[14], manufacturerData[15], manufacturerData[16], manufacturerData[17], manufacturerData[18], manufacturerData[19])
-                
-            let manufactureID = UInt16(manufacturerData[3]) + UInt16(manufacturerData[2]) << 8
-            print(String(format: "%04X", manufactureID))
-            
-//            print("manufData", manufacturerData)
-            peripheralManufData = String(manufactureID)
             }
         }
     
     
-        let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, manufData: peripheralManufData, cbperiph: peripheral, serviceList: "", characteristicList: "")
+        let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, cbperiph: peripheral, serviceList: "", characteristicList: "")
         peripherals.append(newPeripheral)
         peripherals.sort(by: { $0.rssi > $1.rssi})
 //        myCentral.connect(peripheral, options: nil)
@@ -156,6 +149,9 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         print("after connect detail")
     }
     
+    func disconnect(periphConn : Peripheral) {
+        myCentral.cancelPeripheralConnection(periphConn.cbperiph)
+    }
     
 }
 
