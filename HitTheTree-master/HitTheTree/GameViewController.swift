@@ -87,6 +87,10 @@ class GameViewController: UIViewController {
             let result = hitResults.first
             if let node = result?.node {
                 if node.name == "ball" {
+                    
+                    ballNode.position = SCNVector3(x: 0, y: 0, z: 0)
+                }
+                else {
                     let jumpSound = sounds["jump"]!
                     ballNode.runAction(SCNAction.playAudio(jumpSound, waitForCompletion: false))
                     let xVel = (ballNode.physicsBody?.velocity.x)!
@@ -94,21 +98,20 @@ class GameViewController: UIViewController {
                     print(xVel, zVel)
                     if abs(xVel) > abs(zVel) {
                         if xVel > 0 {
-                            ballNode.physicsBody?.applyForce(SCNVector3(x: 2, y:4, z: 0), asImpulse: true)
+                            ballNode.physicsBody?.applyForce(SCNVector3(x: 0.5, y:2, z: 0), asImpulse: true)
                         }
                         else {
-                            ballNode.physicsBody?.applyForce(SCNVector3(x: -2, y:4, z: 0), asImpulse: true)
+                            ballNode.physicsBody?.applyForce(SCNVector3(x: -0.5, y:2, z: 0), asImpulse: true)
                         }
                     }
                     else {
                         if zVel > 0 {
-                            ballNode.physicsBody?.applyForce(SCNVector3(x: 0, y:4, z: 2), asImpulse: true)
+                            ballNode.physicsBody?.applyForce(SCNVector3(x: 0, y:2, z: 0.5), asImpulse: true)
                         }
                         else {
-                            ballNode.physicsBody?.applyForce(SCNVector3(x: 0, y:4, z: -2), asImpulse: true)
+                            ballNode.physicsBody?.applyForce(SCNVector3(x: 0, y:2, z: -0.5), asImpulse: true)
                         }
                     }
-                    
                 }
             }
         }
