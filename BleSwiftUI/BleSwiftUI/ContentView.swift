@@ -12,6 +12,7 @@ struct ContentView: View {
     
     @StateObject var bleManager = BLEManager()
     @StateObject var perifManager = BLEPerifManager()
+    @State var onlyLocalConnect : Bool = true
     
     var body: some View {
         VStack (spacing: 10) {
@@ -30,20 +31,35 @@ struct ContentView: View {
             }.padding(-15.0)
  
             Spacer()
- 
-            Text("STATUS")
-                .font(.headline)
- 
-            // Status goes here
-            if bleManager.isSwitchedOn {
-                Text("Bluetooth is switched on")
-                    .foregroundColor(.green)
+            
+            HStack {
+                VStack {
+                    Text("STATUS")
+                        .font(.headline)
+         
+                    // Status goes here
+                    if bleManager.isSwitchedOn {
+                        Text("Bluetooth is switched on")
+                            .foregroundColor(.green)
+                    }
+                    else {
+                        Text("Bluetooth is NOT switched on")
+                            .foregroundColor(.red)
+                    }
+                }
+                if #available(iOS 14.0, *) {
+                    Toggle(isOn: $onlyLocalConnect) {
+                        Text("Delc only")
+                            .frame(maxWidth: .infinity, alignment: .trailing)
+                    }.onChange(of: onlyLocalConnect) { value in
+                        self.bleManager.isLocalConnChange(newValue: value)
+                    }.padding()
+                } else {
+                    // Fallback on earlier versions
+                }
+                
             }
-            else {
-                Text("Bluetooth is NOT switched on")
-                    .foregroundColor(.red)
-            }
- 
+            
             Spacer()
  
             HStack {
@@ -57,6 +73,11 @@ struct ContentView: View {
                         self.bleManager.stopScanning()
                     }) {
                         Text("Stop Scanning")
+                    }
+                    Button(action: {
+                        self.bleManager.clearScan()
+                    }) {
+                        Text("Clear Scan")
                     }
                 }.padding()
  

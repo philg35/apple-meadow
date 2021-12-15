@@ -22,6 +22,7 @@ struct Peripheral: Identifiable {
 class BLEPerifManager : NSObject, ObservableObject, CBPeripheralManagerDelegate {
     var myPerif: CBPeripheralManager!
     
+    
     override init() {
         super.init()
  
@@ -50,7 +51,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     var myCentral: CBCentralManager!
     @Published var isSwitchedOn = false
     @Published var peripherals = [Peripheral]()
-    
+    var isLocalConnOnly : Bool = true
         override init() {
             super.init()
      
@@ -135,7 +136,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             }
         }
     
-        if (isLocalConnect) {
+        if (isLocalConnect || !isLocalConnOnly) {
             let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, cbperiph: peripheral, serviceList: "", characteristicList: "")
             peripherals.append(newPeripheral)
             peripherals.sort(by: { $0.rssi > $1.rssi})
@@ -161,6 +162,14 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     
     func disconnect(periphConn : Peripheral) {
         myCentral.cancelPeripheralConnection(periphConn.cbperiph)
+    }
+    
+    func isLocalConnChange(newValue: Bool){
+        isLocalConnOnly = newValue
+    }
+    
+    func clearScan() {
+        peripherals.removeAll()
     }
     
 }
