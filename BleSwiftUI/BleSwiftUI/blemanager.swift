@@ -116,20 +116,30 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         else {
             peripheralName = "Unknown"
         }
-        
+        var isLocalConnect = false
         if let manufacturerData = advertisementData["kCBAdvDataManufacturerData"] as? Data {
-            if manufacturerData.count == 20
-            {
-                print("NLAIR", manufacturerData[0], manufacturerData[1], manufacturerData[2], manufacturerData[3], manufacturerData[4], manufacturerData[5], manufacturerData[6], manufacturerData[7], manufacturerData[8], manufacturerData[9], manufacturerData[10], manufacturerData[11], manufacturerData[12], manufacturerData[13], manufacturerData[14], manufacturerData[15], manufacturerData[16], manufacturerData[17], manufacturerData[18], manufacturerData[19])
+            if manufacturerData[0] == 0x46 && manufacturerData[1] == 0x03 && manufacturerData[2] == 0x20 {
+                isLocalConnect = true
+//                for (index, element) in manufacturerData.enumerated() {
+//                    let hexValue = String(element, radix: 16)
+//                  print("Item \(index): \(hexValue)")
+//                }
+            
+                let org_id_slice = manufacturerData[3...8]
+                let org_id = Array(org_id_slice)
+                print("org_id=", org_id)
+                
+                let asset_id_slice = manufacturerData[9...14]
+                let asset_id = Array(asset_id_slice)
+                print("asset_id=", asset_id)
             }
         }
     
-    
-        let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, cbperiph: peripheral, serviceList: "", characteristicList: "")
-        peripherals.append(newPeripheral)
-        peripherals.sort(by: { $0.rssi > $1.rssi})
-//        myCentral.connect(peripheral, options: nil)
-        
+        if (isLocalConnect) {
+            let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, cbperiph: peripheral, serviceList: "", characteristicList: "")
+            peripherals.append(newPeripheral)
+            peripherals.sort(by: { $0.rssi > $1.rssi})
+        }
     }
     
     func startScanning() {
