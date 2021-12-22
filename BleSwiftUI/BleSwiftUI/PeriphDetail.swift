@@ -18,6 +18,10 @@ struct PeriphDetail: View {
         Text("\(periph.rssi)")
         Text("\(periph.id)")
         HStack {
+            Text("FC reading =")
+        Text("\(periph.reading)")
+        }
+        HStack {
             Button(action: {self.bleManager.connect(periphConn: periph)}, label: {
                 Text("Connect")
             })

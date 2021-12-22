@@ -17,6 +17,7 @@ struct Peripheral: Identifiable {
     let cbperiph: CBPeripheral
     var serviceList: String
     var characteristicList: String
+    var reading: UInt32
 }
 
 class BLEPerifManager : NSObject, ObservableObject, CBPeripheralManagerDelegate {
@@ -90,8 +91,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             print(characteristic)
             peripherals[perifIndex].characteristicList += characteristic.uuid.uuidString + ", \r\n"
             if (characteristic.uuid.uuidString == "2A1C") {
-            //if (characteristic.uuid.uuidString == "2A29") {
-                print("*****found health temperatrure char*****")
+                print("*****found health temperature char*****")
                 peripheral.readValue(for: characteristic)
                 peripheral.setNotifyValue(true, for: characteristic)
             }
@@ -101,8 +101,16 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         print("Characteristic read: \(characteristic)\n ")
-        if let charData = characteristic.value(forKey: "value") {
-            print(charData)
+        
+        if let charData = characteristic.value(forKey: "value") as? Data {
+            let reading = (UInt32(charData[2]) * 256 + UInt32(charData[1])) / 1000
+            print(reading)
+            for p in peripherals {
+                if p.cbperiph == peripheral {
+                    print("found peripheral to put data in, index=\(p.id), data= \(reading)")
+                    peripherals[p.id].reading = reading
+                }
+            }
         }
     }
 
@@ -157,7 +165,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         }
     
         if (isLocalConnect || !isLocalConnOnly) {
-            let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, cbperiph: peripheral, serviceList: "", characteristicList: "")
+            let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, cbperiph: peripheral, serviceList: "", characteristicList: "", reading: 0)
             peripherals.append(newPeripheral)
             peripherals.sort(by: { $0.rssi > $1.rssi})
         }
