@@ -26,13 +26,18 @@ struct PeriphDetail: View {
             })
         }
         Text("Services:")
+        ScrollView {
         Text("\(periph.serviceList)")
             .multilineTextAlignment(.leading)
-            .padding(.leading, 10)
+            //.padding(.leading, 10)
+        }
+        
         Text("Characteristics:")
+        ScrollView {
         Text("\(periph.characteristicList)")
             .multilineTextAlignment(.leading)
-            .padding(.leading, 10)
+            //.padding(.leading, 10)
+        }
     }
 }
 
