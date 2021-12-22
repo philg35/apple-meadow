@@ -18,7 +18,7 @@ struct PeriphDetail: View {
         Text("\(periph.rssi)")
         Text("\(periph.id)")
         HStack {
-            Text("FC reading =")
+            Text("FC reading = ")
         Text("\(periph.reading)")
         }
         HStack {
@@ -27,9 +27,6 @@ struct PeriphDetail: View {
             })
             Button(action: {self.bleManager.disconnect(periphConn: periph)}, label: {
                 Text("Disconnect")
-            })
-            Button(action: {self.bleManager.disconnect(periphConn: periph)}, label: {
-                Text("Read")
             })
         }
         Text("Services:")

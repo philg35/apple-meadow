@@ -102,6 +102,8 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         print("Characteristic read: \(characteristic)\n ")
         
+        
+            
         if let charData = characteristic.value(forKey: "value") as? Data {
             let reading = (UInt32(charData[2]) * 256 + UInt32(charData[1])) / 1000
             print(reading)
