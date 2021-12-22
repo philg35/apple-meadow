@@ -43,7 +43,6 @@ class BLEPerifManager : NSObject, ObservableObject, CBPeripheralManagerDelegate 
         let advertisementData = [CBAdvertisementDataLocalNameKey: "DELC", CBAdvertisementDataServiceUUIDsKey: exampleUuid] as [String : Any] as [String : Any]
         myPerif.startAdvertising(advertisementData)
     }
-    
 }
 
 class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeripheralDelegate {
@@ -90,10 +89,29 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         for characteristic in charac {
             print(characteristic)
             peripherals[perifIndex].characteristicList += characteristic.uuid.uuidString + ", \r\n"
+            if (characteristic.uuid.uuidString == "2A1C") {
+            //if (characteristic.uuid.uuidString == "2A29") {
+                print("*****found health temperatrure char*****")
+                peripheral.readValue(for: characteristic)
+                peripheral.setNotifyValue(true, for: characteristic)
+            }
           }
         }
       }
+    
+    func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
+        print("Characteristic read: \(characteristic)\n ")
+        
+    }
 
+    func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
+            print("didUpdateNotificationStateFor", characteristic)
+            if error == nil {
+                print("TRUE")
+                
+            }
+        }
+    
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
 
            if let services = peripheral.services {
@@ -162,6 +180,10 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     
     func disconnect(periphConn : Peripheral) {
         myCentral.cancelPeripheralConnection(periphConn.cbperiph)
+    }
+    
+    func read(periphConn : Peripheral) {
+        //periphConn.cbperiph.readValue(for: 0x2a1c)
     }
     
     func isLocalConnChange(newValue: Bool){

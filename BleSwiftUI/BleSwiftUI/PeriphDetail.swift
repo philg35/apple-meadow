@@ -18,11 +18,14 @@ struct PeriphDetail: View {
         Text("\(periph.rssi)")
         Text("\(periph.id)")
         HStack {
-        Button(action: {self.bleManager.connect(periphConn: periph)}, label: {
-            Text("Connect")
-        })
+            Button(action: {self.bleManager.connect(periphConn: periph)}, label: {
+                Text("Connect")
+            })
             Button(action: {self.bleManager.disconnect(periphConn: periph)}, label: {
                 Text("Disconnect")
+            })
+            Button(action: {self.bleManager.disconnect(periphConn: periph)}, label: {
+                Text("Read")
             })
         }
         Text("Services:")
