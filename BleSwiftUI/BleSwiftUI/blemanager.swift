@@ -20,6 +20,8 @@ struct Peripheral: Identifiable {
     var reading: UInt32
 }
 
+let temperatureMeasurementCBUUID = CBUUID(string: "2A1C")
+
 class BLEPerifManager : NSObject, ObservableObject, CBPeripheralManagerDelegate {
     var myPerif: CBPeripheralManager!
     
@@ -90,7 +92,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         for characteristic in charac {
             print(characteristic)
             peripherals[perifIndex].characteristicList += characteristic.uuid.uuidString + ", \r\n"
-            if (characteristic.uuid.uuidString == "2A1C") {
+            if (characteristic.uuid.uuidString == temperatureMeasurementCBUUID.uuidString) {
                 print("*****found health temperature char*****")
                 peripheral.readValue(for: characteristic)
                 peripheral.setNotifyValue(true, for: characteristic)
@@ -101,16 +103,12 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
         print("Characteristic read: \(characteristic)\n ")
-        
-        
-            
         if let charData = characteristic.value(forKey: "value") as? Data {
             let reading = (UInt32(charData[2]) * 256 + UInt32(charData[1])) / 1000
             print(reading)
-            for p in peripherals {
+            for (index, p) in peripherals.enumerated() {
                 if p.cbperiph == peripheral {
-                    print("found peripheral to put data in, index=\(p.id), data= \(reading)")
-                    peripherals[p.id].reading = reading
+                    peripherals[index].reading = reading
                 }
             }
         }
@@ -118,10 +116,6 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
 
     func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
             print("didUpdateNotificationStateFor", characteristic)
-            if error == nil {
-                print("TRUE")
-                
-            }
         }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
@@ -130,7 +124,6 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             var perifIndex: Int {
                 peripherals.firstIndex(where: { $0.cbperiph == peripheral}) ?? 0
             }
-           //discover characteristics of services
            for service in services {
             print("service=", service)
             peripherals[perifIndex].serviceList += service.uuid.uuidString + ", \r\n"
