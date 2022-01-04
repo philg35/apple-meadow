@@ -40,10 +40,17 @@ class BLEPerifManager : NSObject, ObservableObject, CBPeripheralManagerDelegate 
         print("started advertising")
     }
     
+    
+    
     func startAdvertising()
     {
         let exampleUuid = [CBUUID(string: "879D048E-E0AA-4CA2-B686-F3B4B0E67A93")]
-        let advertisementData = [CBAdvertisementDataLocalNameKey: "DELC", CBAdvertisementDataServiceUUIDsKey: exampleUuid] as [String : Any] as [String : Any]
+//        let advertisementData = [CBAdvertisementDataLocalNameKey: "DELC", CBAdvertisementDataServiceUUIDsKey: exampleUuid] as [String : Any] as [String : Any]
+//        let testString = hexStringtoAscii("070a573d1e55")
+        let testString = hexStringtoAscii("551e3d570a07")
+        print("test=", testString)
+//        let advertisementData = [CBAdvertisementDataLocalNameKey: 0xedc77ede0000, CBAdvertisementDataServiceUUIDsKey: exampleUuid] as [String : Any] as [String : Any]
+        let advertisementData = [CBAdvertisementDataLocalNameKey: testString, CBAdvertisementDataServiceUUIDsKey: exampleUuid] as [String : Any] as [String : Any]
         myPerif.startAdvertising(advertisementData)
     }
 }
@@ -207,3 +214,14 @@ extension Data {
     }
 }
 
+func hexStringtoAscii(_ hexString : String) -> String {
+
+    let pattern = "(0x)?([0-9a-f]{2})"
+    let regex = try! NSRegularExpression(pattern: pattern, options: .caseInsensitive)
+    let nsString = hexString as NSString
+    let matches = regex.matches(in: hexString, options: [], range: NSMakeRange(0, nsString.length))
+    let characters = matches.map {
+        Character(UnicodeScalar(UInt32(nsString.substring(with: $0.range(at: 2)), radix: 16)!)!)
+    }
+    return String(characters)
+}
