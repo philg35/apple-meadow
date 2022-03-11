@@ -44,12 +44,10 @@ class BLEPerifManager : NSObject, ObservableObject, CBPeripheralManagerDelegate 
     
     func startAdvertising()
     {
-        let exampleUuid = [CBUUID(string: "879D048E-E0AA-4CA2-B686-F3B4B0E67A93")]
+        let exampleUuid = [CBUUID(string: "d2d8cd40-6b76-41eb-a60e-b8d62a9a5fb0")]
 //        let advertisementData = [CBAdvertisementDataLocalNameKey: "DELC", CBAdvertisementDataServiceUUIDsKey: exampleUuid] as [String : Any] as [String : Any]
-//        let testString = hexStringtoAscii("070a573d1e55")
         let testString = hexStringtoAscii("551e3d570a07")
         print("test=", testString)
-//        let advertisementData = [CBAdvertisementDataLocalNameKey: 0xedc77ede0000, CBAdvertisementDataServiceUUIDsKey: exampleUuid] as [String : Any] as [String : Any]
         let advertisementData = [CBAdvertisementDataLocalNameKey: testString, CBAdvertisementDataServiceUUIDsKey: exampleUuid] as [String : Any] as [String : Any]
         myPerif.startAdvertising(advertisementData)
     }

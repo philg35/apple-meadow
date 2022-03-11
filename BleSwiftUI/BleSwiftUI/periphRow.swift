@@ -12,7 +12,7 @@ struct PeriphRow: View {
     var periph : Peripheral
     var body: some View {
         HStack {
-        Text("\(periph.name)")
+            Text("\(periph.name)")
             Text("\(periph.rssi)")
         }
     }
