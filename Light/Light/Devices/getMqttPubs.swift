@@ -7,8 +7,6 @@
 
 import Foundation
 
-//public var ipAddress = "10.0.0.251"
-
 class GetMqttPubs : NSObject {
     
     struct MqttInfo {

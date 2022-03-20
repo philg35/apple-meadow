@@ -23,6 +23,7 @@ class UserData : ObservableObject {
     var dictImages: [String:String] = UserDefaults.standard.object(forKey: "SavedImages") as? [String:String] ?? [:]
 
     init() {
+        ipAddress = UserDefaults.standard.string(forKey: "defaultIP") ?? "10.0.0.251"
         self.startOver()
     }
     

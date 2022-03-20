@@ -26,6 +26,8 @@ struct LightConfig: View {
                     .border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
                 Button("Add") {
                    print("adding ipaddress", name)
+                    let defaults = UserDefaults.standard
+                    defaults.set(ipAddress, forKey: "defaultIP")
                     ipAddress = name
                     userData.startOver()
                 }
