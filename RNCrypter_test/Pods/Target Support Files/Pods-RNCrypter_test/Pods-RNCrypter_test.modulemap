@@ -1,0 +1,6 @@
+framework module Pods_RNCrypter_test {
+  umbrella header "Pods-RNCrypter_test-umbrella.h"
+
+  export *
+  module * { export * }
+}

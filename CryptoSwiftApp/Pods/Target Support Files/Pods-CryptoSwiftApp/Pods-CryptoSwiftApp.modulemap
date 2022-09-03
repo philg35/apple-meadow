@@ -1,0 +1,6 @@
+framework module Pods_CryptoSwiftApp {
+  umbrella header "Pods-CryptoSwiftApp-umbrella.h"
+
+  export *
+  module * { export * }
+}
