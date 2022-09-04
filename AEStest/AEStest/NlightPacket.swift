@@ -27,7 +27,19 @@ class NlightPacket: NSObject {
         let ck2 = ~itemsAtOddIndices.reduce(0, {$0^$1})
         let chk1 = String(format:"%02X", ck1).suffix(2)
         let chk2 = String(format:"%02X", ck2).suffix(2)
-        return packet + chk1 + chk2
+        var final = packet + chk1 + chk2
+        print("final", final.count)
+        if final.count <= 32 {
+            final = final.padding(toLength: 32, withPad: "0", startingAt: 0)
+        } else if final.count <= 64 {
+            final = final.padding(toLength: 64, withPad: "0", startingAt: 0)
+        } else if final.count <= 96 {
+            final = final.padding(toLength: 96, withPad: "0", startingAt: 0)
+        } else if final.count <= 128 {
+            final = final.padding(toLength: 128, withPad: "0", startingAt: 0)
+        }
+        print("final packet", final)
+        return final
     }
     
     func toPairsOfChars(pairs: [String], string: String) -> [String] {

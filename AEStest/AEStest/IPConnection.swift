@@ -52,14 +52,29 @@ class IPConnection : NSObject, ObservableObject {
         let key = "sensorswitch1234".data(using: .utf8)!
         //print("key: \(key as NSData)")
         
-        let dataInStr = nonceStr + nlightString
+        var dataInStr = nonceStr + nlightString
+        let packetLength = dataInStr.count / 2
+        var packetLengthMod = packetLength
+//        if packetLength <= 32 {
+//            packetLengthMod = 32
+//        }
+//        else if packetLength <= 48 {
+//            packetLengthMod = 48
+//        }
+//        else if packetLength <= 64 {
+//            packetLengthMod = 64
+//        }
+        
+        let packetLengthString = String(format:"%02X", packetLengthMod)
+        print("packet length string=", packetLengthString, packetLength)
         let dataIn = dataInStr.data(using: .hexadecimal)!
         //print("dataIn: \(dataIn as NSData)")
         
         guard let ciphertext = self.crypt(operation: kCCEncrypt, algorithm: kCCAlgorithmAES, options: kCCOptionPKCS7Padding, key: key, initializationVector: iv, dataIn: dataIn) else { return }
         //print("cipher text: \(ciphertext as NSData)")
         
-        let headerString = "0001000000" + "20" + "000000010000"
+        let headerString = "0001000000" + packetLengthString + "000000010000"
+        print("header=", headerString)
         let headerData = headerString.data(using: .hexadecimal)!
         //print("header=", headerString.count)
         let client = TCPClient(address: self.ipaddress, port: 5551)

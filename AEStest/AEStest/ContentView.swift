@@ -78,6 +78,14 @@ struct ContentView: View {
                     
                 }
                 
+                Spacer()
+                
+                Button("curtsy fan") {
+                    let p = np.CreatePacket(dest: "00000402", src: "00fb031b", subj: "BA", payload: "")
+                    print("packet=", p)
+                    ipConn.send(nlightString: p)
+                }
+                .buttonStyle(BlueButton())
                 
                 
             }
