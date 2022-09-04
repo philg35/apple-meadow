@@ -13,6 +13,7 @@
 		D9959B7B28BAA924001B0932 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9959B7A28BAA924001B0932 /* Assets.xcassets */; };
 		D9959B7E28BAA924001B0932 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9959B7D28BAA924001B0932 /* Preview Assets.xcassets */; };
 		D9959B8528BAB0DE001B0932 /* IPConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9959B8428BAB0DE001B0932 /* IPConnection.swift */; };
+		D9A4D40228C41D2F00594EAA /* NlightPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D40128C41D2F00594EAA /* NlightPacket.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -25,6 +26,7 @@
 		D9959B7A28BAA924001B0932 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D9959B7D28BAA924001B0932 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D9959B8428BAB0DE001B0932 /* IPConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPConnection.swift; sourceTree = "<group>"; };
+		D9A4D40128C41D2F00594EAA /* NlightPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NlightPacket.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +82,7 @@
 				D9959B7628BAA923001B0932 /* AEStestApp.swift */,
 				D9959B7828BAA923001B0932 /* ContentView.swift */,
 				D9959B8428BAB0DE001B0932 /* IPConnection.swift */,
+				D9A4D40128C41D2F00594EAA /* NlightPacket.swift */,
 				D9959B7A28BAA924001B0932 /* Assets.xcassets */,
 				D9959B7C28BAA924001B0932 /* Preview Content */,
 			);
@@ -211,6 +214,7 @@
 				D9959B8528BAB0DE001B0932 /* IPConnection.swift in Sources */,
 				D9959B7928BAA923001B0932 /* ContentView.swift in Sources */,
 				D9959B7728BAA923001B0932 /* AEStestApp.swift in Sources */,
+				D9A4D40228C41D2F00594EAA /* NlightPacket.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

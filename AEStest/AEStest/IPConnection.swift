@@ -36,11 +36,15 @@ extension String {
 
 class IPConnection : NSObject, ObservableObject {
     
-    override init() {
-        super.init()
-        
-        
+    var ipaddress : String
+    
+    init(ipaddress: String) {
+        self.ipaddress = ipaddress
     }
+    
+//    override init() {
+//        super.init()
+//    }
      
     func send(nlightString : String) -> Void {
         let iv = "00000000000000000000000000000001".data(using: .hexadecimal)!
@@ -51,8 +55,6 @@ class IPConnection : NSObject, ObservableObject {
         let key = "sensorswitch1234".data(using: .utf8)!
         print("key: \(key as NSData)")
               
-//            let dataInStr = nonceStr + "a5000003fa00fb031b10790102003bee" // OFF
-//        let dataInStr = nonceStr + "a5000003fa00fb031b107901010038ee"   // ON
         let dataInStr = nonceStr + nlightString
         let dataIn = dataInStr.data(using: .hexadecimal)!
         print("dataIn: \(dataIn as NSData)")
@@ -60,11 +62,10 @@ class IPConnection : NSObject, ObservableObject {
         guard let ciphertext = self.crypt(operation: kCCEncrypt, algorithm: kCCAlgorithmAES, options: kCCOptionPKCS7Padding, key: key, initializationVector: iv, dataIn: dataIn) else { return }
         print("cipher text: \(ciphertext as NSData)")
         
-        
         let headerString = "0001000000" + "20" + "000000010000"
         let headerData = headerString.data(using: .hexadecimal)!
         print("header=", headerString.count)
-        let client = TCPClient(address: "10.0.0.251", port: 5551)
+        let client = TCPClient(address: self.ipaddress, port: 5551)
         switch client.connect(timeout: 10) {
           case .success:
             switch client.send(data: headerData + ciphertext  ) {

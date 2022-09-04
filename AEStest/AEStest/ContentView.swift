@@ -22,35 +22,63 @@ struct BlueButton: ButtonStyle {
 }
 
 struct ContentView: View {
-    @StateObject var ipConn = IPConnection()
-    
+    @StateObject var ipConn = IPConnection(ipaddress: "10.0.0.251")
+    var np = NlightPacket()
     var body: some View {
         GeometryReader { geometry in
             
             VStack {
-                Text("AES test")
+                Text("Fan")
                     .padding()
                     .foregroundColor(Color.blue)
                 
                 HStack {
-                    
                     Spacer()
                     
                     Button("On") {
-                        ipConn.send(nlightString: "a5000003fa00fb031b107901010038ee")
+                        let p = np.CreatePacket(dest: "00000402", src: "00fb031b", subj: "79", payload: "010100")
+                        ipConn.send(nlightString: p)
                     }
                     .buttonStyle(BlueButton())
                     
                     Spacer()
                     
                     Button("Off") {
-                        ipConn.send(nlightString: "a5000003fa00fb031b10790102003bee")
+                        let p = np.CreatePacket(dest: "00000402", src: "00fb031b", subj: "79", payload: "010200")
+                        ipConn.send(nlightString: p)
                     }
                     .buttonStyle(BlueButton())
                     
                     Spacer()
                     
                 }
+                
+                Text("Kitchen Table")
+                    .padding()
+                    .foregroundColor(Color.blue)
+                
+                HStack {
+                    Spacer()
+                    
+                    Button("On") {
+                        let p = np.CreatePacket(dest: "00000406", src: "00fb031b", subj: "79", payload: "010100")
+                        ipConn.send(nlightString: p)
+                    }
+                    .buttonStyle(BlueButton())
+                    
+                    Spacer()
+                    
+                    Button("Off") {
+                        let p = np.CreatePacket(dest: "00000406", src: "00fb031b", subj: "79", payload: "010200")
+                        ipConn.send(nlightString: p)
+                    }
+                    .buttonStyle(BlueButton())
+                    
+                    Spacer()
+                    
+                }
+                
+                
                 
             }
         }
