@@ -34,6 +34,12 @@ extension String {
     }
 }
 
+extension Data {
+    func hexEncodedString() -> String {
+        return map { String(format: "%02hhx", $0) }.joined()
+    }
+}
+
 class IPConnection : NSObject, ObservableObject {
     
     var ipaddress : String
@@ -44,7 +50,8 @@ class IPConnection : NSObject, ObservableObject {
     
     
     func send(nlightString : String) -> Void {
-        let iv = "00000000000000000000000000000001".data(using: .hexadecimal)!
+//        let iv = "00000000000000000000000000000000".data(using: .hexadecimal)!
+        let iv = "00".data(using: .hexadecimal)!
         //print("iv: \(iv as NSData)")
         
         let nonceStr = "4102030405060708090a0b0c0de00f00"
@@ -52,46 +59,35 @@ class IPConnection : NSObject, ObservableObject {
         let key = "sensorswitch1234".data(using: .utf8)!
         //print("key: \(key as NSData)")
         
-        var dataInStr = nonceStr + nlightString
+        let dataInStr = nonceStr + nlightString
         let packetLength = dataInStr.count / 2
-        var packetLengthMod = packetLength
-//        if packetLength <= 32 {
-//            packetLengthMod = 32
-//        }
-//        else if packetLength <= 48 {
-//            packetLengthMod = 48
-//        }
-//        else if packetLength <= 64 {
-//            packetLengthMod = 64
-//        }
+        let packetLengthMod = packetLength
         
         let packetLengthString = String(format:"%02X", packetLengthMod)
-        print("packet length string=", packetLengthString, packetLength)
         let dataIn = dataInStr.data(using: .hexadecimal)!
-        //print("dataIn: \(dataIn as NSData)")
-        
+//        print("dataIn=", dataIn)
         guard let ciphertext = self.crypt(operation: kCCEncrypt, algorithm: kCCAlgorithmAES, options: kCCOptionPKCS7Padding, key: key, initializationVector: iv, dataIn: dataIn) else { return }
-        //print("cipher text: \(ciphertext as NSData)")
         
         let headerString = "0001000000" + packetLengthString + "000000010000"
-        print("header=", headerString)
         let headerData = headerString.data(using: .hexadecimal)!
-        //print("header=", headerString.count)
         let client = TCPClient(address: self.ipaddress, port: 5551)
         switch client.connect(timeout: 10) {
         case .success:
             switch client.send(data: headerData + ciphertext  ) {
             case .success:
-                guard let dataReturnCrypt = client.read(2) else {
-                    //print("nothing returned??")
+                guard let dataReturnCrypt = client.read(100, timeout: 1) else {
+                    print("nothing returned??")
                     return }
                 
-                print("dataReturnCrypt text: \(dataReturnCrypt)")
-                //                    guard let plaintext = self.crypt(operation: kCCDecrypt, algorithm: kCCAlgorithmAES, options: kCCOptionPKCS7Padding, key: key, initializationVector: iv, dataIn: dataReturnCrypt) else { return }
-                //
-                //                    print("plain text: \(plaintext as NSData)")
+//                print("dataReturnCrypt text: \(dataReturnCrypt)")
+                let packetOnly = dataReturnCrypt[11...]
+//                print("packetOnly=", packetOnly)
+                guard let plaintext = self.crypt(operation: kCCDecrypt, algorithm: kCCAlgorithmAES, options: kCCOptionPKCS7Padding, key: key, initializationVector: iv, dataIn: Data(packetOnly)) else { return }
                 
-                
+                let str = plaintext.hexEncodedString()
+                let index = str.index(str.startIndex, offsetBy: 32)
+                print("response =", str.suffix(from: index))
+                      
             case .failure(let error):
                 print(error)
             }

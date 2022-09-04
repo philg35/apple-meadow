@@ -28,64 +28,113 @@ struct ContentView: View {
         GeometryReader { geometry in
             
             VStack {
-                Text("Fan")
-                    .padding()
-                    .foregroundColor(Color.blue)
                 
-                HStack {
-                    Spacer()
+                VStack {
+                    Text("Fan")
+                        .padding()
+                        .foregroundColor(Color.blue)
                     
-                    Button("On") {
-                        let p = np.CreatePacket(dest: "00000402", src: "00fb031b", subj: "79", payload: "010100")
-                        ipConn.send(nlightString: p)
+                    HStack {
+                        Spacer()
+                        
+                        Button("On") {
+                            let p = np.CreatePacket(dest: "00000402", src: "00fb031b", subj: "79", payload: "010100")
+                            ipConn.send(nlightString: p)
+                        }
+                        .buttonStyle(BlueButton())
+                        
+                        Spacer()
+                        
+                        Button("Off") {
+                            let p = np.CreatePacket(dest: "00000402", src: "00fb031b", subj: "79", payload: "010200")
+                            ipConn.send(nlightString: p)
+                        }
+                        .buttonStyle(BlueButton())
+                        
+                        Spacer()
+                        
                     }
-                    .buttonStyle(BlueButton())
-                    
-                    Spacer()
-                    
-                    Button("Off") {
-                        let p = np.CreatePacket(dest: "00000402", src: "00fb031b", subj: "79", payload: "010200")
-                        ipConn.send(nlightString: p)
-                    }
-                    .buttonStyle(BlueButton())
-                    
-                    Spacer()
-                    
                 }
                 
-                Text("Kitchen Table")
-                    .padding()
-                    .foregroundColor(Color.blue)
+                VStack {
+                    Text("Kitchen Table")
+                        .padding()
+                        .foregroundColor(Color.blue)
+                    
+                    HStack {
+                        Spacer()
+                        
+                        Button("On") {
+                            let p = np.CreatePacket(dest: "00000406", src: "00fb031b", subj: "79", payload: "010100")
+                            ipConn.send(nlightString: p)
+                        }
+                        .buttonStyle(BlueButton())
+                        
+                        Spacer()
+                        
+                        Button("Off") {
+                            let p = np.CreatePacket(dest: "00000406", src: "00fb031b", subj: "79", payload: "010200")
+                            ipConn.send(nlightString: p)
+                        }
+                        .buttonStyle(BlueButton())
+                        
+                        Spacer()
+                        
+                    }
+                }
                 
-                HStack {
-                    Spacer()
+                VStack {
+                    Text("Kitchen Island")
+                        .padding()
+                        .foregroundColor(Color.blue)
                     
-                    Button("On") {
-                        let p = np.CreatePacket(dest: "00000406", src: "00fb031b", subj: "79", payload: "010100")
-                        ipConn.send(nlightString: p)
+                    HStack {
+                        Spacer()
+                        
+                        Button("On") {
+                            let p = np.CreatePacket(dest: "00000405", src: "00fb031b", subj: "79", payload: "010100")
+                            ipConn.send(nlightString: p)
+                        }
+                        .buttonStyle(BlueButton())
+                        
+                        Spacer()
+                        
+                        Button("Off") {
+                            let p = np.CreatePacket(dest: "00000405", src: "00fb031b", subj: "79", payload: "010200")
+                            ipConn.send(nlightString: p)
+                        }
+                        .buttonStyle(BlueButton())
+                        
+                        Spacer()
+                        
                     }
-                    .buttonStyle(BlueButton())
-                    
-                    Spacer()
-                    
-                    Button("Off") {
-                        let p = np.CreatePacket(dest: "00000406", src: "00fb031b", subj: "79", payload: "010200")
-                        ipConn.send(nlightString: p)
-                    }
-                    .buttonStyle(BlueButton())
-                    
-                    Spacer()
-                    
                 }
                 
                 Spacer()
                 
-                Button("curtsy fan") {
-                    let p = np.CreatePacket(dest: "00000402", src: "00fb031b", subj: "BA", payload: "")
-                    print("packet=", p)
-                    ipConn.send(nlightString: p)
+                VStack {
+                    
+                    Button("curtsy fan") {
+                        let p = np.CreatePacket(dest: "00000402", src: "00fb031b", subj: "BA", payload: "")
+                        ipConn.send(nlightString: p)
+                    }
+                    .buttonStyle(BlueButton())
+                    
+                    
+                    Button("curtsy table") {
+                        let p = np.CreatePacket(dest: "00000406", src: "00fb031b", subj: "BA", payload: "")
+                        ipConn.send(nlightString: p)
+                    }
+                    .buttonStyle(BlueButton())
+                    
+                    Button("curtsy island") {
+                        let p = np.CreatePacket(dest: "00000405", src: "00fb031b", subj: "BA", payload: "")
+                        ipConn.send(nlightString: p)
+                    }
+                    .buttonStyle(BlueButton())
+                    
                 }
-                .buttonStyle(BlueButton())
+                
                 
                 
             }
