@@ -9,6 +9,7 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var ipConn = IPConnection(ipaddress: "10.0.0.251")
+    let serialNums : [String] = ["00000402", "00000406", "00000405"]
     let timer = Timer.publish(every: 0.5, tolerance: 0.1, on: .main, in: .common).autoconnect()
     @State private var counter = 5
     
@@ -145,9 +146,11 @@ struct ContentView: View {
             if counter > 0 {
                 counter -= 1
                 //print("The time is now \(time)")
-                let p = np.CreatePacket(dest: "00000402", src: "00fb031b", subj: "74", payload: "15")
-                let r = ipConn.send(nlightString: p)
-                print(r)
+                for s in serialNums {
+                    let p = np.CreatePacket(dest: s, src: "00fb031b", subj: "74", payload: "15")
+                    let r = ipConn.send(nlightString: p)
+                    print(r)
+                }
             }
         }
     }

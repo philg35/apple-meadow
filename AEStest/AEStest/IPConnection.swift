@@ -56,10 +56,10 @@ class IPConnection : NSObject, ObservableObject {
                 //print("response =", response)
                       
             case .failure(let error):
-                print(error)
+                print(error, "fail1")
             }
         case .failure(let error):
-            print(error)
+            print(error, "fail2")
         }
         return response
     }
