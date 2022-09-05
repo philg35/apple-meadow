@@ -9,37 +9,6 @@ import Foundation
 import CommonCrypto
 import SwiftSocket
 
-extension String {
-    enum ExtendedEncoding {
-        case hexadecimal
-    }
-
-    func data(using encoding:ExtendedEncoding) -> Data? {
-        let hexStr = self.dropFirst(self.hasPrefix("0x") ? 2 : 0)
-
-        guard hexStr.count % 2 == 0 else { return nil }
-
-        var newData = Data(capacity: hexStr.count/2)
-
-        var indexIsEven = true
-        for i in hexStr.indices {
-            if indexIsEven {
-                let byteRange = i...hexStr.index(after: i)
-                guard let byte = UInt8(hexStr[byteRange], radix: 16) else { return nil }
-                newData.append(byte)
-            }
-            indexIsEven.toggle()
-        }
-        return newData
-    }
-}
-
-extension Data {
-    func hexEncodedString() -> String {
-        return map { String(format: "%02hhx", $0) }.joined()
-    }
-}
-
 class IPConnection : NSObject, ObservableObject {
     
     var ipaddress : String
@@ -51,15 +20,16 @@ class IPConnection : NSObject, ObservableObject {
     
     func send(nlightString : String) -> Void {
 //        let iv = "00000000000000000000000000000000".data(using: .hexadecimal)!
-        let iv = "00".data(using: .hexadecimal)!
-        //print("iv: \(iv as NSData)")
+        let iv = randomGenerateBytes(count: 16)!
+        print("iv: \(iv as NSData)")
         
-        let nonceStr = "4102030405060708090a0b0c0de00f00"
+        let nonceRandomString = randomGenerateBytes(count: 16)!.hexEncodedString()
+        print("nonceRandomString=", nonceRandomString)
         
         let key = "sensorswitch1234".data(using: .utf8)!
         //print("key: \(key as NSData)")
         
-        let dataInStr = nonceStr + nlightString
+        let dataInStr = nonceRandomString + nlightString
         let packetLength = dataInStr.count / 2
         let packetLengthMod = packetLength
         
@@ -128,7 +98,36 @@ class IPConnection : NSObject, ObservableObject {
         return Data(bytes: bytes, count: count)
     }
     
-    
 }
 
 
+extension String {
+    enum ExtendedEncoding {
+        case hexadecimal
+    }
+
+    func data(using encoding:ExtendedEncoding) -> Data? {
+        let hexStr = self.dropFirst(self.hasPrefix("0x") ? 2 : 0)
+
+        guard hexStr.count % 2 == 0 else { return nil }
+
+        var newData = Data(capacity: hexStr.count/2)
+
+        var indexIsEven = true
+        for i in hexStr.indices {
+            if indexIsEven {
+                let byteRange = i...hexStr.index(after: i)
+                guard let byte = UInt8(hexStr[byteRange], radix: 16) else { return nil }
+                newData.append(byte)
+            }
+            indexIsEven.toggle()
+        }
+        return newData
+    }
+}
+
+extension Data {
+    func hexEncodedString() -> String {
+        return map { String(format: "%02hhx", $0) }.joined()
+    }
+}
