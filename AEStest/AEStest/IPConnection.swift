@@ -18,7 +18,8 @@ class IPConnection : NSObject, ObservableObject {
     }
     
     
-    func send(nlightString : String) -> Void {
+    func send(nlightString : String) -> String {
+        var response : String = ""
         let iv = randomGenerateBytes(count: 16)!
         //print("iv: \(iv as NSData)")
         
@@ -33,7 +34,7 @@ class IPConnection : NSObject, ObservableObject {
         
         let packetLengthString = String(format:"%02X", packetLengthMod)
         let dataIn = dataInStr.data(using: .hexadecimal)!
-        guard let ciphertext = self.crypt(operation: kCCEncrypt, algorithm: kCCAlgorithmAES, options: kCCOptionPKCS7Padding, key: key, initializationVector: iv, dataIn: dataIn) else { return }
+        guard let ciphertext = self.crypt(operation: kCCEncrypt, algorithm: kCCAlgorithmAES, options: kCCOptionPKCS7Padding, key: key, initializationVector: iv, dataIn: dataIn) else { return "error 1"}
         
         let headerString = "0001000000" + packetLengthString + "000000010000"
         let headerData = headerString.data(using: .hexadecimal)!
@@ -44,14 +45,15 @@ class IPConnection : NSObject, ObservableObject {
             case .success:
                 guard let dataReturnCrypt = client.read(100, timeout: 1) else {
                     print("nothing returned??")
-                    return }
+                    return "error 2"}
                 
                 let packetOnly = dataReturnCrypt[11...]
-                guard let plaintext = self.crypt(operation: kCCDecrypt, algorithm: kCCAlgorithmAES, options: kCCOptionPKCS7Padding, key: key, initializationVector: iv, dataIn: Data(packetOnly)) else { return }
+                guard let plaintext = self.crypt(operation: kCCDecrypt, algorithm: kCCAlgorithmAES, options: kCCOptionPKCS7Padding, key: key, initializationVector: iv, dataIn: Data(packetOnly)) else { return "error 3"}
                 
                 let str = plaintext.hexEncodedString()
                 let index = str.index(str.startIndex, offsetBy: 32)
-                print("response =", str.suffix(from: index))
+                response = String(str.suffix(from: index))
+                //print("response =", response)
                       
             case .failure(let error):
                 print(error)
@@ -59,6 +61,7 @@ class IPConnection : NSObject, ObservableObject {
         case .failure(let error):
             print(error)
         }
+        return response
     }
     
     func crypt(operation: Int, algorithm: Int, options: Int, key: Data,
