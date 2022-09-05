@@ -19,15 +19,13 @@ class IPConnection : NSObject, ObservableObject {
     
     
     func send(nlightString : String) -> Void {
-//        let iv = "00000000000000000000000000000000".data(using: .hexadecimal)!
         let iv = randomGenerateBytes(count: 16)!
-        print("iv: \(iv as NSData)")
+        //print("iv: \(iv as NSData)")
         
         let nonceRandomString = randomGenerateBytes(count: 16)!.hexEncodedString()
-        print("nonceRandomString=", nonceRandomString)
+        //print("nonceRandomString=", nonceRandomString)
         
         let key = "sensorswitch1234".data(using: .utf8)!
-        //print("key: \(key as NSData)")
         
         let dataInStr = nonceRandomString + nlightString
         let packetLength = dataInStr.count / 2
@@ -35,7 +33,6 @@ class IPConnection : NSObject, ObservableObject {
         
         let packetLengthString = String(format:"%02X", packetLengthMod)
         let dataIn = dataInStr.data(using: .hexadecimal)!
-//        print("dataIn=", dataIn)
         guard let ciphertext = self.crypt(operation: kCCEncrypt, algorithm: kCCAlgorithmAES, options: kCCOptionPKCS7Padding, key: key, initializationVector: iv, dataIn: dataIn) else { return }
         
         let headerString = "0001000000" + packetLengthString + "000000010000"
@@ -49,9 +46,7 @@ class IPConnection : NSObject, ObservableObject {
                     print("nothing returned??")
                     return }
                 
-//                print("dataReturnCrypt text: \(dataReturnCrypt)")
                 let packetOnly = dataReturnCrypt[11...]
-//                print("packetOnly=", packetOnly)
                 guard let plaintext = self.crypt(operation: kCCDecrypt, algorithm: kCCAlgorithmAES, options: kCCOptionPKCS7Padding, key: key, initializationVector: iv, dataIn: Data(packetOnly)) else { return }
                 
                 let str = plaintext.hexEncodedString()

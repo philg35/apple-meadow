@@ -23,6 +23,9 @@ struct BlueButton: ButtonStyle {
 
 struct ContentView: View {
     @StateObject var ipConn = IPConnection(ipaddress: "10.0.0.251")
+    let timer = Timer.publish(every: 0.5, tolerance: 0.1, on: .main, in: .common).autoconnect()
+    @State private var counter = 5
+    
     var np = NlightPacket()
     var body: some View {
         GeometryReader { geometry in
@@ -40,6 +43,7 @@ struct ContentView: View {
                         Button("On") {
                             let p = np.CreatePacket(dest: "00000402", src: "00fb031b", subj: "79", payload: "010100")
                             ipConn.send(nlightString: p)
+                            counter = 5
                         }
                         .buttonStyle(BlueButton())
                         
@@ -48,6 +52,8 @@ struct ContentView: View {
                         Button("Off") {
                             let p = np.CreatePacket(dest: "00000402", src: "00fb031b", subj: "79", payload: "010200")
                             ipConn.send(nlightString: p)
+                            counter = 5
+                            
                         }
                         .buttonStyle(BlueButton())
                         
@@ -138,6 +144,18 @@ struct ContentView: View {
                 
                 
             }
+            
+        }
+        .onReceive(timer) { time in
+            if counter > 0 {
+                counter -= 1
+                print("The time is now \(time)")
+                //timer.upstream.connect().cancel()
+            } //else {
+                //print("The time is now \(time)")
+            //}
+            
+            //counter += 1
         }
     }
 }
