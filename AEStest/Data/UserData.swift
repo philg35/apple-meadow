@@ -15,20 +15,19 @@ class UserData : ObservableObject {
     var xml : GetXml
     
     init() {
-        self.ipaddress = UserDefaults.standard.string(forKey: "defaultIP") ?? "10.0.0.0"
+        self.ipaddress = UserDefaults.standard.string(forKey: "defaultIP") ?? "10.0.0.251"
         print("self.ipaddress=", self.ipaddress)
         self.xml = GetXml(ipaddress: ipaddress)
+        self.changeIpAddress()
     }
-//    init(ipaddress: String) {
-//
-//        self.xml = GetXml(ipaddress: self.ipaddress)
-//    }
+
     
     typealias FinishedXmlRead = () -> ()
     
-//    init() {
-//        //ipAddress = UserDefaults.standard.string(forKey: "defaultIP") ?? "10.0.0.251"
-//    }
+    func changeIpAddress() {
+        self.xml = GetXml(ipaddress: ipaddress)
+        self.loadData()
+    }
     
     func readXmlAndCreateList(completed: FinishedXmlRead) {
         self.xml.startRead()
