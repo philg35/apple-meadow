@@ -58,6 +58,11 @@ class UserData : ObservableObject {
             createDeviceList()
         }
     }
+    
+    func didPressSwitch(deviceID: String, newState: Bool) {
+        print("switch \(deviceID) goto \(newState)")
+        
+    }
 
 }
 

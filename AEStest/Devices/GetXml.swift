@@ -56,6 +56,8 @@ class GetXml : NSObject {
         
         let sessionDelegate = SessionDelegate(ipaddress: self.ipaddress)
         let session = URLSession(configuration: .default, delegate: sessionDelegate, delegateQueue: nil)
+        session.configuration.timeoutIntervalForRequest = 1
+        session.configuration.timeoutIntervalForResource = 2
         let task = session.dataTask(with: request) {
             (data, response, error) in
             

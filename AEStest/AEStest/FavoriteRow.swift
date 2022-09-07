@@ -9,9 +9,11 @@ import SwiftUI
 
 struct FavoriteRow: View {
     @EnvironmentObject var userData: UserData
+    @StateObject var ipConn = IPConnection(ipaddress: "10.0.0.251")
     
     var deviceData: DeviceDataStruct
     
+    var np = NlightPacket()
     var body: some View {
         if (userData.allDeviceData.count > 0) {
             HStack {
@@ -29,6 +31,24 @@ struct FavoriteRow: View {
                 Spacer()
                 
                 HStack {
+                    Spacer()
+                    Button("On") {
+                        let p = np.CreatePacket(dest: deviceData.deviceId, src: "00fb031b", subj: "79", payload: "010100")
+                        let r = self.ipConn.send(nlightString: p)
+                        print(r)
+                        //counter = 5
+                    }
+                    .buttonStyle(BlueButton())
+                    
+                    Spacer()
+                    
+                    Button("Off") {
+                        let p = np.CreatePacket(dest: deviceData.deviceId, src: "00fb031b", subj: "79", payload: "010200")
+                        let r = self.ipConn.send(nlightString: p)
+                        print(r)
+                        //counter = 5
+                    }
+                    .buttonStyle(BlueButton())
                     
 //                    Spacer()
 //                    if (userData.phoneLight.indices.contains(phoneLightIndex)) {
@@ -56,6 +76,21 @@ struct FavoriteRow: View {
                 }
             }
         }
+    }
+}
+
+struct BlueButton: ButtonStyle {
+    func makeBody(configuration: Configuration) -> some View {
+        configuration.label
+            .padding()
+            .frame(minWidth: 50, maxWidth: 60)
+            .font(.system(size: 12))
+            .background(configuration.isPressed ? Color.yellow : Color.blue)
+            .foregroundColor(.white)
+            .clipShape(RoundedRectangle(cornerRadius: 5, style: .continuous))
+            .scaleEffect(configuration.isPressed ? 1.2 : 1)
+            .animation(.easeOut(duration: 0.2), value: configuration.isPressed)
+
     }
 }
 
