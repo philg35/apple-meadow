@@ -11,7 +11,7 @@ import SwiftUI
 struct AEStestApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            ContentView().environmentObject(UserData())
         }
     }
 }

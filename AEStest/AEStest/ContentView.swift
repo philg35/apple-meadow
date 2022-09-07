@@ -9,15 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     @StateObject var ipConn = IPConnection(ipaddress: "10.0.0.251")
+    //@StateObject var ipConn = IPConnection(ipaddress: "73.142.174.55")
     let serialNums : [String] = ["00000402", "00000406", "00000405"]
     let timer = Timer.publish(every: 0.5, tolerance: 0.1, on: .main, in: .common).autoconnect()
     @State private var counter = 5
     
     var np = NlightPacket()
     var body: some View {
-        GeometryReader { geometry in
             
             VStack {
+                Button("Config IP") {
+                    
+                }
+                .buttonStyle(BlueButton())
                 
                 VStack {
                     Text("Fan")
@@ -25,6 +29,7 @@ struct ContentView: View {
                         .foregroundColor(Color.blue)
                     
                     HStack {
+                        
                         Spacer()
                         
                         Button("On") {
@@ -63,6 +68,7 @@ struct ContentView: View {
                             let p = np.CreatePacket(dest: "00000406", src: "00fb031b", subj: "79", payload: "010100")
                             let r = ipConn.send(nlightString: p)
                             print(r)
+                            counter = 5
                         }
                         .buttonStyle(BlueButton())
                         
@@ -72,6 +78,7 @@ struct ContentView: View {
                             let p = np.CreatePacket(dest: "00000406", src: "00fb031b", subj: "79", payload: "010200")
                             let r = ipConn.send(nlightString: p)
                             print(r)
+                            counter = 5
                         }
                         .buttonStyle(BlueButton())
                         
@@ -92,6 +99,7 @@ struct ContentView: View {
                             let p = np.CreatePacket(dest: "00000405", src: "00fb031b", subj: "79", payload: "010100")
                             let r = ipConn.send(nlightString: p)
                             print(r)
+                            counter = 5
                         }
                         .buttonStyle(BlueButton())
                         
@@ -101,6 +109,7 @@ struct ContentView: View {
                             let p = np.CreatePacket(dest: "00000405", src: "00fb031b", subj: "79", payload: "010200")
                             let r = ipConn.send(nlightString: p)
                             print(r)
+                            counter = 5
                         }
                         .buttonStyle(BlueButton())
                         
@@ -141,7 +150,7 @@ struct ContentView: View {
                 
             }
             
-        }
+        
         .onReceive(timer) { time in
             if counter > 0 {
                 counter -= 1

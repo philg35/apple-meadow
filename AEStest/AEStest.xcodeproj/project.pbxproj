@@ -14,6 +14,10 @@
 		D9959B7E28BAA924001B0932 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9959B7D28BAA924001B0932 /* Preview Assets.xcassets */; };
 		D9959B8528BAB0DE001B0932 /* IPConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9959B8428BAB0DE001B0932 /* IPConnection.swift */; };
 		D9A4D40228C41D2F00594EAA /* NlightPacket.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D40128C41D2F00594EAA /* NlightPacket.swift */; };
+		D9A4D40428C80AAA00594EAA /* ConfigIp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D40328C80AAA00594EAA /* ConfigIp.swift */; };
+		D9A4D40628C80DD900594EAA /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D40528C80DD900594EAA /* UserData.swift */; };
+		D9A4D40A28C810EB00594EAA /* GetXml.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D40928C810EB00594EAA /* GetXml.swift */; };
+		D9A4D40C28C8111B00594EAA /* ParseXml.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D40B28C8111B00594EAA /* ParseXml.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +31,10 @@
 		D9959B7D28BAA924001B0932 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D9959B8428BAB0DE001B0932 /* IPConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IPConnection.swift; sourceTree = "<group>"; };
 		D9A4D40128C41D2F00594EAA /* NlightPacket.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NlightPacket.swift; sourceTree = "<group>"; };
+		D9A4D40328C80AAA00594EAA /* ConfigIp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigIp.swift; sourceTree = "<group>"; };
+		D9A4D40528C80DD900594EAA /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		D9A4D40928C810EB00594EAA /* GetXml.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetXml.swift; sourceTree = "<group>"; };
+		D9A4D40B28C8111B00594EAA /* ParseXml.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParseXml.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +69,8 @@
 		D9959B6A28BAA922001B0932 = {
 			isa = PBXGroup;
 			children = (
+				D9A4D40828C810CE00594EAA /* Devices */,
+				D9A4D40728C810AD00594EAA /* Data */,
 				D9959B7528BAA923001B0932 /* AEStest */,
 				D9959B7428BAA923001B0932 /* Products */,
 				435589359D9AF3C004BEF1BB /* Pods */,
@@ -81,6 +91,7 @@
 			children = (
 				D9959B7628BAA923001B0932 /* AEStestApp.swift */,
 				D9959B7828BAA923001B0932 /* ContentView.swift */,
+				D9A4D40328C80AAA00594EAA /* ConfigIp.swift */,
 				D9959B8428BAB0DE001B0932 /* IPConnection.swift */,
 				D9A4D40128C41D2F00594EAA /* NlightPacket.swift */,
 				D9959B7A28BAA924001B0932 /* Assets.xcassets */,
@@ -95,6 +106,23 @@
 				D9959B7D28BAA924001B0932 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		D9A4D40728C810AD00594EAA /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				D9A4D40528C80DD900594EAA /* UserData.swift */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
+		D9A4D40828C810CE00594EAA /* Devices */ = {
+			isa = PBXGroup;
+			children = (
+				D9A4D40928C810EB00594EAA /* GetXml.swift */,
+				D9A4D40B28C8111B00594EAA /* ParseXml.swift */,
+			);
+			path = Devices;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -211,8 +239,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D9A4D40628C80DD900594EAA /* UserData.swift in Sources */,
 				D9959B8528BAB0DE001B0932 /* IPConnection.swift in Sources */,
 				D9959B7928BAA923001B0932 /* ContentView.swift in Sources */,
+				D9A4D40428C80AAA00594EAA /* ConfigIp.swift in Sources */,
+				D9A4D40A28C810EB00594EAA /* GetXml.swift in Sources */,
+				D9A4D40C28C8111B00594EAA /* ParseXml.swift in Sources */,
 				D9959B7728BAA923001B0932 /* AEStestApp.swift in Sources */,
 				D9A4D40228C41D2F00594EAA /* NlightPacket.swift in Sources */,
 			);

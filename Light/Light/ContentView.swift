@@ -21,12 +21,12 @@ struct ContentView: View {
                 NavigationLink(destination: LightDetail(phoneLight: phonelight2)) {
                     LightRow(phoneLight: phonelight2)
                 }.background(Color("RowBackground"))
-                .frame(height: 25)
+                    .frame(height: 25)
             }//.navigationBarTitle(Text("\(ipAddr)"), displayMode: .inline)
             .navigationBarItems(leading: HStack {
-                    NavigationLink(destination: LightConfig()) {
-                        Text("Config IP")
-                    }
+                NavigationLink(destination: LightConfig()) {
+                    Text("Config IP")
+                }
             },                  trailing: HStack {
                 Button("Load") {
                     userData.getMqtt()
