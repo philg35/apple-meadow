@@ -10,7 +10,7 @@ import SwiftUI
 import Combine
 
 class UserData : ObservableObject {
-    //@Published var phoneLight = phoneLightData
+    @Published var allDeviceData = AllDeviceData
     var ipaddress : String
     var xml : GetXml
     
@@ -46,7 +46,7 @@ class UserData : ObservableObject {
             for d in p.devicesOnPort {
                 print("device", d.label, index)
                 
-//                self.phoneLight.append(PhoneLight(id: index, deviceId: d.deviceID, deviceName: d.label, productName: d.model, imageName: self.getImage(deviceId: d.deviceID), occState: false, outputState: false, level: 100, hasOcc: false, hasOutput: false, mqttPubs: [], onTime: [ : ], hasDim: false, stateReason: ""))
+                self.allDeviceData.append(DeviceDataStruct(id: index, deviceId: d.deviceID, deviceName: d.label, productName: d.model, imageName: "", occState: false, outputState: false, level: 100, hasOcc: false, hasOutput: false, hasDim: false, stateReason: ""))
                 
                 index += 1
             }
