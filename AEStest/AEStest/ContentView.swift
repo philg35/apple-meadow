@@ -19,25 +19,26 @@ struct ContentView: View {
     var np = NlightPacket()
     var body: some View {
         
-            NavigationView {
-                List(userData.allDeviceData) { phonelight2 in
-                    NavigationLink(destination: FavoriteDetail(deviceData: phonelight2)) {
-                        FavoriteRow(deviceData: phonelight2)
-                    }.background(Color("RowBackground"))
-                        .frame(height: 25)
-                }//.navigationBarTitle(Text("\(ipAddr)"), displayMode: .inline)
-                .navigationBarItems(leading: HStack {
-                    NavigationLink(destination: ConfigIp()) {
-                        Text("Config IP")
-                    }
-                },                  trailing: HStack {
-                    Button("Config Favs") {
-                        
-                    }
+        NavigationView {
+            List(userData.allDeviceData) { phonelight2 in
+                //NavigationLink(destination: FavoriteDetail(deviceData: phonelight2)) {
+                    FavoriteRow(deviceData: phonelight2)
+                //}.background(Color("RowBackground"))
+                //.frame(height: 25)
+                
+            }//.navigationBarTitle(Text("\(ipAddr)"), displayMode: .inline)
+            .navigationBarItems(leading: HStack {
+                NavigationLink(destination: ConfigIp()) {
+                    Text("Config IP")
                 }
-                )
-            }.padding(-15.0)
-        }
+            },                  trailing: HStack {
+                NavigationLink(destination: ConfigIp()) {
+                    Text("Config Favs")
+                }
+            }
+            )
+        }.padding(-15.0)
+    }
     
     
 //    var body: some View {
@@ -170,11 +171,7 @@ struct ContentView: View {
 //                    .buttonStyle(BlueButton())
 //
 //                }
-//
-//
-//
 //            }
-//
 //
 //        .onReceive(timer) { time in
 //            if counter > 0 {
