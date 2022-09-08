@@ -13,11 +13,15 @@ class UserData : ObservableObject {
     @Published var allDeviceData = AllDeviceData
     var ipaddress : String
     var xml : GetXml
+    var np : NlightPacket
+    var ipConn : IPConnection
     
     init() {
         self.ipaddress = UserDefaults.standard.string(forKey: "defaultIP") ?? "10.0.0.251"
         print("self.ipaddress=", self.ipaddress)
         self.xml = GetXml(ipaddress: ipaddress)
+        self.np = NlightPacket()
+        self.ipConn = IPConnection(ipaddress: self.ipaddress)
         self.changeIpAddress()
     }
 
@@ -61,6 +65,16 @@ class UserData : ObservableObject {
     
     func didPressSwitch(deviceID: String, newState: Bool) {
         print("switch \(deviceID) goto \(newState)")
+        var pay : String
+        if newState {
+            pay = "010100"
+        }
+        else {
+            pay = "010200"
+        }
+        let p = self.np.CreatePacket(dest: deviceID, src: "00fb031b", subj: "79", payload: pay)
+        let r = self.ipConn.send(nlightString: p)
+        print(r)
         
     }
 

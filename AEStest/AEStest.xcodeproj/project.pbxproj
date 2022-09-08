@@ -23,6 +23,7 @@
 		D9A4D41228C830EE00594EAA /* FavoriteRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D41128C830EE00594EAA /* FavoriteRow.swift */; };
 		D9A4D41428C8338800594EAA /* FavoriteDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D41328C8338800594EAA /* FavoriteDetail.swift */; };
 		D9A4D41628C977C000594EAA /* ConfigFavs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D41528C977C000594EAA /* ConfigFavs.swift */; };
+		D9A4D41928C979BF00594EAA /* ConfigFavsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D41828C979BF00594EAA /* ConfigFavsRow.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -45,6 +46,7 @@
 		D9A4D41128C830EE00594EAA /* FavoriteRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRow.swift; sourceTree = "<group>"; };
 		D9A4D41328C8338800594EAA /* FavoriteDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDetail.swift; sourceTree = "<group>"; };
 		D9A4D41528C977C000594EAA /* ConfigFavs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigFavs.swift; sourceTree = "<group>"; };
+		D9A4D41828C979BF00594EAA /* ConfigFavsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigFavsRow.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 		D9959B6A28BAA922001B0932 = {
 			isa = PBXGroup;
 			children = (
+				D9A4D41728C9797D00594EAA /* Views */,
 				D9A4D40828C810CE00594EAA /* Devices */,
 				D9A4D40728C810AD00594EAA /* Data */,
 				D9959B7528BAA923001B0932 /* AEStest */,
@@ -100,15 +103,10 @@
 			isa = PBXGroup;
 			children = (
 				D9959B7628BAA923001B0932 /* AEStestApp.swift */,
-				D9959B7828BAA923001B0932 /* ContentView.swift */,
-				D9A4D40328C80AAA00594EAA /* ConfigIp.swift */,
 				D9959B8428BAB0DE001B0932 /* IPConnection.swift */,
 				D9A4D40128C41D2F00594EAA /* NlightPacket.swift */,
 				D9959B7A28BAA924001B0932 /* Assets.xcassets */,
 				D9959B7C28BAA924001B0932 /* Preview Content */,
-				D9A4D41128C830EE00594EAA /* FavoriteRow.swift */,
-				D9A4D41328C8338800594EAA /* FavoriteDetail.swift */,
-				D9A4D41528C977C000594EAA /* ConfigFavs.swift */,
 			);
 			path = AEStest;
 			sourceTree = "<group>";
@@ -138,6 +136,19 @@
 				D9A4D40B28C8111B00594EAA /* ParseXml.swift */,
 			);
 			path = Devices;
+			sourceTree = "<group>";
+		};
+		D9A4D41728C9797D00594EAA /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				D9959B7828BAA923001B0932 /* ContentView.swift */,
+				D9A4D41128C830EE00594EAA /* FavoriteRow.swift */,
+				D9A4D41328C8338800594EAA /* FavoriteDetail.swift */,
+				D9A4D41528C977C000594EAA /* ConfigFavs.swift */,
+				D9A4D40328C80AAA00594EAA /* ConfigIp.swift */,
+				D9A4D41828C979BF00594EAA /* ConfigFavsRow.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +267,7 @@
 			files = (
 				D9A4D41228C830EE00594EAA /* FavoriteRow.swift in Sources */,
 				D9A4D40628C80DD900594EAA /* UserData.swift in Sources */,
+				D9A4D41928C979BF00594EAA /* ConfigFavsRow.swift in Sources */,
 				D9A4D41028C82D4600594EAA /* Data.swift in Sources */,
 				D9959B8528BAB0DE001B0932 /* IPConnection.swift in Sources */,
 				D9A4D40E28C82C6D00594EAA /* DeviceDataStruct.swift in Sources */,
