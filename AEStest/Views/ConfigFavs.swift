@@ -15,7 +15,7 @@ struct ConfigFavs: View {
         NavigationView {
             List(userData.allDeviceData) { phonelight2 in
                 
-                    FavoriteRow(deviceData: phonelight2)
+                ConfigFavsRow(deviceData: phonelight2)
                 //}.background(Color("RowBackground"))
                 //.frame(height: 25)
                 
