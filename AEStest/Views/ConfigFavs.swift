@@ -11,20 +11,32 @@ struct ConfigFavs: View {
     @EnvironmentObject var userData: UserData
     
     var body: some View {
-        
-        NavigationView {
-            List(userData.allDeviceData) { phonelight2 in
+        VStack {
+            Button("Save") {
+                print("save favorites now")
+                var favoriteList : [String] = []
+                for d in userData.allDeviceData {
+                    if d.hasOutput {
+                        favoriteList.append(d.deviceId)
+                    }
+                }
+                let defaults = UserDefaults.standard
+                defaults.set(favoriteList, forKey: "favoriteList")
+                userData.favoritesList = favoriteList
+                print("saving favoriteList=", userData.favoritesList)
+            }
+            .buttonStyle(BlueButton())
+            NavigationView {
+                List(userData.allDeviceData) { phonelight2 in
+                    
+                    ConfigFavsRow(deviceData: phonelight2)
+                    //}.background(Color("RowBackground"))
+                    //.frame(height: 25)
+                    
+                }//.navigationBarTitle(Text("Config Favs"), displayMode: .inline)
                 
-                ConfigFavsRow(deviceData: phonelight2)
-                //}.background(Color("RowBackground"))
-                //.frame(height: 25)
-                
-            }.navigationBarTitle(Text("Config Favs"), displayMode: .inline)
-            
-        }.padding(-15.0)
-        
-        
-        
+            }.padding(-15.0)
+        }
     }
 }
 

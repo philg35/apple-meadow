@@ -41,7 +41,7 @@ struct ConfigFavsRow: View {
                     
                     Spacer()
                     
-                    Toggle("Fav", isOn: $userData.allDeviceData[allDeviceDataIndex].outputState)
+                    Toggle("Fav", isOn: $userData.allDeviceData[allDeviceDataIndex].hasOutput)
                         .toggleStyle(CheckToggleStyle())
                     
                     Spacer()

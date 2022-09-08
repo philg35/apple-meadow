@@ -15,6 +15,7 @@ class UserData : ObservableObject {
     var xml : GetXml
     var np : NlightPacket
     var ipConn : IPConnection
+    @Published var favoritesList : [String]
     
     init() {
         self.ipaddress = UserDefaults.standard.string(forKey: "defaultIP") ?? "10.0.0.251"
@@ -22,6 +23,8 @@ class UserData : ObservableObject {
         self.xml = GetXml(ipaddress: ipaddress)
         self.np = NlightPacket()
         self.ipConn = IPConnection(ipaddress: self.ipaddress)
+        self.favoritesList = UserDefaults.standard.object(forKey: "favoriteList") as? [String] ?? [""]
+        print("self.favoritesList=", self.favoritesList)
         self.changeIpAddress()
     }
 

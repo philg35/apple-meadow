@@ -14,44 +14,46 @@ struct FavoriteRow: View {
     
     var body: some View {
         if (userData.allDeviceData.count > 0) {
-            HStack {
-                
-                VStack(alignment: .leading, spacing: 0){
-                    Text(deviceData.deviceName)
-                        .fontWeight(.bold)
-                        .frame(width: 135, alignment: .leading)
-                    
-                    Text(deviceData.productName)
-                        .font(.system(size: 12))
-                    
-                }.frame(width: 135, alignment: .leading)
-                
-                Spacer()
-                
-                VStack {
-                    if (deviceData.outputState) {
-                        Image(systemName: "lightbulb")
-                            .foregroundColor(.yellow)
-                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
-                            .frame(width: 20)
-                    }
-                }.frame(width: 20, alignment: .leading)
-                
-                Spacer()
-                
+            if (userData.favoritesList.contains(deviceData.deviceId)) {
                 HStack {
-                    Spacer()
-                    Button("On") {
-                        userData.didPressSwitch(deviceID: deviceData.deviceId, newState: true)
-                    }
-                    .buttonStyle(BlueButton())
+                    
+                    VStack(alignment: .leading, spacing: 0){
+                        Text(deviceData.deviceName)
+                            .fontWeight(.bold)
+                            .frame(width: 135, alignment: .leading)
+                        
+                        Text(deviceData.productName)
+                            .font(.system(size: 12))
+                        
+                    }.frame(width: 135, alignment: .leading)
                     
                     Spacer()
                     
-                    Button("Off") {
-                        userData.didPressSwitch(deviceID: deviceData.deviceId, newState: false)
+                    VStack {
+                        if (deviceData.outputState) {
+                            Image(systemName: "lightbulb")
+                                .foregroundColor(.yellow)
+                                .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                                .frame(width: 20)
+                        }
+                    }.frame(width: 20, alignment: .leading)
+                    
+                    Spacer()
+                    
+                    HStack {
+                        Spacer()
+                        Button("On") {
+                            userData.didPressSwitch(deviceID: deviceData.deviceId, newState: true)
+                        }
+                        .buttonStyle(BlueButton())
+                        
+                        Spacer()
+                        
+                        Button("Off") {
+                            userData.didPressSwitch(deviceID: deviceData.deviceId, newState: false)
+                        }
+                        .buttonStyle(BlueButton())
                     }
-                    .buttonStyle(BlueButton())
                 }
             }
         }
