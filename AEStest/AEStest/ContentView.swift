@@ -32,7 +32,7 @@ struct ContentView: View {
                     Text("Config IP")
                 }
             },                  trailing: HStack {
-                NavigationLink(destination: ConfigIp()) {
+                NavigationLink(destination: ConfigFavs()) {
                     Text("Config Favs")
                 }
             }

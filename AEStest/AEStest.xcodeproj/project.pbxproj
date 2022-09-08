@@ -22,6 +22,7 @@
 		D9A4D41028C82D4600594EAA /* Data.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D40F28C82D4600594EAA /* Data.swift */; };
 		D9A4D41228C830EE00594EAA /* FavoriteRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D41128C830EE00594EAA /* FavoriteRow.swift */; };
 		D9A4D41428C8338800594EAA /* FavoriteDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D41328C8338800594EAA /* FavoriteDetail.swift */; };
+		D9A4D41628C977C000594EAA /* ConfigFavs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D41528C977C000594EAA /* ConfigFavs.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		D9A4D40F28C82D4600594EAA /* Data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Data.swift; sourceTree = "<group>"; };
 		D9A4D41128C830EE00594EAA /* FavoriteRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteRow.swift; sourceTree = "<group>"; };
 		D9A4D41328C8338800594EAA /* FavoriteDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDetail.swift; sourceTree = "<group>"; };
+		D9A4D41528C977C000594EAA /* ConfigFavs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigFavs.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +108,7 @@
 				D9959B7C28BAA924001B0932 /* Preview Content */,
 				D9A4D41128C830EE00594EAA /* FavoriteRow.swift */,
 				D9A4D41328C8338800594EAA /* FavoriteDetail.swift */,
+				D9A4D41528C977C000594EAA /* ConfigFavs.swift */,
 			);
 			path = AEStest;
 			sourceTree = "<group>";
@@ -257,6 +260,7 @@
 				D9959B8528BAB0DE001B0932 /* IPConnection.swift in Sources */,
 				D9A4D40E28C82C6D00594EAA /* DeviceDataStruct.swift in Sources */,
 				D9959B7928BAA923001B0932 /* ContentView.swift in Sources */,
+				D9A4D41628C977C000594EAA /* ConfigFavs.swift in Sources */,
 				D9A4D41428C8338800594EAA /* FavoriteDetail.swift in Sources */,
 				D9A4D40428C80AAA00594EAA /* ConfigIp.swift in Sources */,
 				D9A4D40A28C810EB00594EAA /* GetXml.swift in Sources */,
