@@ -64,7 +64,6 @@ class UserData : ObservableObject {
     }
     
     func didPressSwitch(deviceID: String, newState: Bool) {
-        print("switch \(deviceID) goto \(newState)")
         var pay : String
         if newState {
             pay = "010100"
@@ -78,6 +77,12 @@ class UserData : ObservableObject {
         
     }
 
+    func didPressCurtsy(deviceID: String) {
+        let p = self.np.CreatePacket(dest: deviceID, src: "00fb031b", subj: "BA", payload: "")
+        let r = self.ipConn.send(nlightString: p)
+        print(r)
+        
+    }
 }
 
 extension UserData {

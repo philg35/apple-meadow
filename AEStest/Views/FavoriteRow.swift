@@ -28,6 +28,17 @@ struct FavoriteRow: View {
                 
                 Spacer()
                 
+                VStack {
+                    if (deviceData.outputState) {
+                        Image(systemName: "lightbulb")
+                            .foregroundColor(.yellow)
+                            .padding(EdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0))
+                            .frame(width: 20)
+                    }
+                }.frame(width: 20, alignment: .leading)
+                
+                Spacer()
+                
                 HStack {
                     Spacer()
                     Button("On") {

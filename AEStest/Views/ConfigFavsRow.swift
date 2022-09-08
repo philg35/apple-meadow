@@ -35,7 +35,7 @@ struct ConfigFavsRow: View {
                 HStack {
                     Spacer()
                     Button("ID") {
-                        userData.didPressSwitch(deviceID: deviceData.deviceId, newState: true)
+                        userData.didPressCurtsy(deviceID: deviceData.deviceId)
                     }
                     .buttonStyle(BlueButton())
                     
