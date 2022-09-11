@@ -72,13 +72,12 @@ class NlightPacket: NSObject {
     
     func checkOutputOn(payload : String) -> Bool {
         print(payload)
-        let strCheck = "1501000280"
-        let length = strCheck.count
-        if payload.prefix(length) == strCheck {
-            return true
+        let strCheck = "0200"
+        if getSubstring(str: payload, start: 6, end: 10) == strCheck {
+            return false
         }
         else {
-            return false
+            return true
         }
     }
     

@@ -112,18 +112,18 @@ class UserData : ObservableObject {
             let p = np.CreatePacket(dest: s, src: "00fb031b", subj: "74", payload: "15")
             let r = self.ipConn.send(nlightString: p)
             let s : NlightPacketStruct = self.np.parseStatus(packet: r)
-            print(r)
-            print(s)
+            //print(r)
+            //print(s)
             let pIndex = findDeviceParentIndexes(device: s.source)
             self.allDeviceData[pIndex].outputState = self.np.checkOutputOn(payload: s.payload)
         }
         
         runCount += 1
-        print("runCount=", runCount)
+        //print("runCount=", runCount)
         if runCount >= 2 {
             timer?.invalidate()
             self.timer = nil
-            print("tried to invalidate....did it work?")
+            //print("tried to invalidate....did it work?")
         }
     }
     
