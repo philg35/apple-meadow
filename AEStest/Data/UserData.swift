@@ -74,6 +74,7 @@ class UserData : ObservableObject {
         readXmlAndCreateList { () -> () in
             createDeviceList()
         }
+        ReadStatus()
     }
     
     func didPressSwitch(deviceID: String, newState: Bool) {
@@ -88,10 +89,14 @@ class UserData : ObservableObject {
         let r = self.ipConn.send(nlightString: p)
         print(r)
         
+        ReadStatus()
+    }
+    
+    func ReadStatus() {
         if self.timer == nil {
-            self.timer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+            self.timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
         }
-            runCount = 0
+        runCount = 0
     }
 
     func didPressCurtsy(deviceID: String) {
@@ -111,18 +116,6 @@ class UserData : ObservableObject {
             print(s)
             let pIndex = findDeviceParentIndexes(device: s.source)
             self.allDeviceData[pIndex].outputState = self.np.checkOutputOn(payload: s.payload)
-//            for d in self.allDeviceData {
-//                if d.deviceId == s.source {
-//                    if self.np.checkOutputOn(payload: s.payload) {
-//                        //d.outputState = true
-//                        print("on")
-//                    }
-//                    else {
-//                        //d.outputState = false
-//                        print("off")
-//                    }
-//                }
-//            }
         }
         
         runCount += 1
@@ -149,15 +142,6 @@ extension UserData {
     
     func _console(_ info: String) {
     }
-    
-//    func findDeviceParentIndexes(device: String) -> (Int) {
-//        for (index, element) in self.phoneLight.enumerated() {
-//            if element.deviceId == device {
-//                return (index)
-//            }
-//        }
-//        return (999)
-//    }
 }
 
 extension String {
