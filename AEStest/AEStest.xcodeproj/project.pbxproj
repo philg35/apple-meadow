@@ -24,6 +24,7 @@
 		D9A4D41428C8338800594EAA /* FavoriteDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D41328C8338800594EAA /* FavoriteDetail.swift */; };
 		D9A4D41628C977C000594EAA /* ConfigFavs.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D41528C977C000594EAA /* ConfigFavs.swift */; };
 		D9A4D41928C979BF00594EAA /* ConfigFavsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D41828C979BF00594EAA /* ConfigFavsRow.swift */; };
+		D9A4D46028CAD60600594EAA /* NlightPacketStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9A4D45F28CAD60600594EAA /* NlightPacketStruct.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		D9A4D41328C8338800594EAA /* FavoriteDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteDetail.swift; sourceTree = "<group>"; };
 		D9A4D41528C977C000594EAA /* ConfigFavs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigFavs.swift; sourceTree = "<group>"; };
 		D9A4D41828C979BF00594EAA /* ConfigFavsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfigFavsRow.swift; sourceTree = "<group>"; };
+		D9A4D45F28CAD60600594EAA /* NlightPacketStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NlightPacketStruct.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				D9A4D40528C80DD900594EAA /* UserData.swift */,
 				D9A4D40D28C82C6D00594EAA /* DeviceDataStruct.swift */,
 				D9A4D40F28C82D4600594EAA /* Data.swift */,
+				D9A4D45F28CAD60600594EAA /* NlightPacketStruct.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -276,6 +279,7 @@
 				D9A4D41428C8338800594EAA /* FavoriteDetail.swift in Sources */,
 				D9A4D40428C80AAA00594EAA /* ConfigIp.swift in Sources */,
 				D9A4D40A28C810EB00594EAA /* GetXml.swift in Sources */,
+				D9A4D46028CAD60600594EAA /* NlightPacketStruct.swift in Sources */,
 				D9A4D40C28C8111B00594EAA /* ParseXml.swift in Sources */,
 				D9959B7728BAA923001B0932 /* AEStestApp.swift in Sources */,
 				D9A4D40228C41D2F00594EAA /* NlightPacket.swift in Sources */,

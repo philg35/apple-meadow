@@ -27,6 +27,7 @@ struct ConfigIp: View {
                     print("adding ipaddress", newIP)
                     let defaults = UserDefaults.standard
                     defaults.set(newIP, forKey: "defaultIP")
+                    userData.changeIpAddress(ipaddr: newIP)
                 }
                 .padding(.trailing, 50)
             })

@@ -55,4 +55,39 @@ class NlightPacket: NSObject {
         return pairs.map { UInt8($0, radix: 16)! }
     }
     
+    func parseStatus(packet : String) -> NlightPacketStruct {
+        let length = String(getSubstring(str: packet, start: 18, end: 20))
+        let l2 = Int(length, radix: 16)
+        //print(length, l2!)
+        let payloadEndIndex = 22 + (2 * l2!) - 26
+        let parsed = NlightPacketStruct(header: String(packet.prefix(2)),
+                                        dest: getSubstring(str: packet, start: 2, end: 10),
+                                        source: getSubstring(str: packet, start: 10, end: 18),
+                                        length: getSubstring(str: packet, start: 18, end: 20),
+                                        subject: getSubstring(str: packet, start: 20, end: 22),
+                                        payload: getSubstring(str: packet, start: 22, end: payloadEndIndex),
+                                        ck: getSubstring(str: packet, start: payloadEndIndex, end: payloadEndIndex + 4))
+        return parsed
+    }
+    
+    func checkOutputOn(payload : String) -> Bool {
+        print(payload)
+        let strCheck = "1501000280"
+        let length = strCheck.count
+        if payload.prefix(length) == strCheck {
+            return true
+        }
+        else {
+            return false
+        }
+    }
+    
+    func getSubstring(str : String, start: Int, end: Int) -> String {
+        let start = str.index(str.startIndex, offsetBy: start)
+        let end = str.index(str.startIndex, offsetBy: end)
+        let range = start..<end
+
+        let mySubstring = String(str[range])
+        return mySubstring.uppercased()
+    }
 }

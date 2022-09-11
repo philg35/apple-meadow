@@ -17,6 +17,9 @@ class UserData : ObservableObject {
     var ipConn : IPConnection
     @Published var favoritesList : [String]
     
+    var timer: Timer?
+    var runCount = 0
+    
     init() {
         self.ipaddress = UserDefaults.standard.string(forKey: "defaultIP") ?? "10.0.0.251"
         print("self.ipaddress=", self.ipaddress)
@@ -25,15 +28,16 @@ class UserData : ObservableObject {
         self.ipConn = IPConnection(ipaddress: self.ipaddress)
         self.favoritesList = UserDefaults.standard.object(forKey: "favoriteList") as? [String] ?? [""]
         print("self.favoritesList=", self.favoritesList)
-        self.changeIpAddress()
+        self.changeIpAddress(ipaddr: self.ipaddress)
     }
 
     
     typealias FinishedXmlRead = () -> ()
     
-    func changeIpAddress() {
-        self.xml = GetXml(ipaddress: ipaddress)
+    func changeIpAddress(ipaddr: String) {
+        self.xml = GetXml(ipaddress: ipaddr)
         self.loadData()
+        self.ipConn = IPConnection(ipaddress: ipaddr)
     }
     
     func readXmlAndCreateList(completed: FinishedXmlRead) {
@@ -43,6 +47,7 @@ class UserData : ObservableObject {
             // do nothing. just wait
         }
         completed()
+        
     }
     
     func createDeviceList() {
@@ -51,9 +56,14 @@ class UserData : ObservableObject {
         for p in self.xml.deviceArray {
             print("parent", p.parentName)
             for d in p.devicesOnPort {
+                var hasOutput = false
                 print("device", d.label, index)
-                
-                self.allDeviceData.append(DeviceDataStruct(id: index, deviceId: d.deviceID, deviceName: d.label, productName: d.model, imageName: "", occState: false, outputState: false, level: 100, hasOcc: false, hasOutput: false, hasDim: false, stateReason: ""))
+                for f in self.favoritesList {
+                    if f == d.deviceID {
+                        hasOutput = true
+                    }
+                }
+                self.allDeviceData.append(DeviceDataStruct(id: index, deviceId: d.deviceID, deviceName: d.label, productName: d.model, imageName: "", occState: false, outputState: false, level: 100, hasOcc: false, hasOutput: hasOutput, hasDim: false, stateReason: ""))
                 
                 index += 1
             }
@@ -78,14 +88,61 @@ class UserData : ObservableObject {
         let r = self.ipConn.send(nlightString: p)
         print(r)
         
+        if self.timer == nil {
+            self.timer = Timer.scheduledTimer(timeInterval: 0.4, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: true)
+        }
+            runCount = 0
     }
 
     func didPressCurtsy(deviceID: String) {
         let p = self.np.CreatePacket(dest: deviceID, src: "00fb031b", subj: "BA", payload: "")
         let r = self.ipConn.send(nlightString: p)
         print(r)
-        
     }
+    
+    @objc func fireTimer() {
+        print("Timer fired!")
+        
+        for s in self.favoritesList {
+            let p = np.CreatePacket(dest: s, src: "00fb031b", subj: "74", payload: "15")
+            let r = self.ipConn.send(nlightString: p)
+            let s : NlightPacketStruct = self.np.parseStatus(packet: r)
+            print(r)
+            print(s)
+            let pIndex = findDeviceParentIndexes(device: s.source)
+            self.allDeviceData[pIndex].outputState = self.np.checkOutputOn(payload: s.payload)
+//            for d in self.allDeviceData {
+//                if d.deviceId == s.source {
+//                    if self.np.checkOutputOn(payload: s.payload) {
+//                        //d.outputState = true
+//                        print("on")
+//                    }
+//                    else {
+//                        //d.outputState = false
+//                        print("off")
+//                    }
+//                }
+//            }
+        }
+        
+        runCount += 1
+        print("runCount=", runCount)
+        if runCount >= 2 {
+            timer?.invalidate()
+            self.timer = nil
+            print("tried to invalidate....did it work?")
+        }
+    }
+    
+    func findDeviceParentIndexes(device: String) -> (Int) {
+        for (index, element) in self.allDeviceData.enumerated() {
+            if element.deviceId == device {
+                return (index)
+            }
+        }
+        return (999)
+    }
+    
 }
 
 extension UserData {
