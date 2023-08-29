@@ -145,6 +145,11 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             peripheralName = "Unknown"
         }
         var isLocalConnect = false
+        print("adv data=", advertisementData)
+        if let uuids = advertisementData["kCBAdvDataServiceUUIDs"] as? Data {
+            print("uuids=", uuids)
+        }
+        
         if let manufacturerData = advertisementData["kCBAdvDataManufacturerData"] as? Data {
             if manufacturerData[0] == 0x46 && manufacturerData[1] == 0x03 && manufacturerData[2] == 0x20 {
                 isLocalConnect = true

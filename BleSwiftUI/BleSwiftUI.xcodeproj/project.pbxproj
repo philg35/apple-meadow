@@ -305,6 +305,7 @@
 				DEVELOPMENT_TEAM = A44VX47B87;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = BleSwiftUI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -325,6 +326,7 @@
 				DEVELOPMENT_TEAM = A44VX47B87;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = BleSwiftUI/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
