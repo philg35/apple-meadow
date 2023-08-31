@@ -226,6 +226,34 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             }
         }
     }
+    
+    func writeCharacteristicFromInt8(charString: String, payload: UInt8) -> Void {
+        for s in conn_periph?.services ?? [] {
+            //print("s=", s)
+            for c in s.characteristics ?? [] {
+                if c.uuid.uuidString == charString {
+                    print("found char again...")
+                    conn_periph.writeValue(Data([payload]), for: c, type: .withoutResponse)
+                    break
+                }
+            }
+        }
+    }
+    
+    func writeCharacteristicFromInt32(charString: String, payload: UInt32) -> Void {
+        for s in conn_periph?.services ?? [] {
+            //print("s=", s)
+            for c in s.characteristics ?? [] {
+                if c.uuid.uuidString == charString {
+                    print("found char again...")
+                    var u32BE = payload.bigEndian // or simply value
+                    let dataBE = Data(bytes: &u32BE, count: 4)
+                    conn_periph.writeValue(dataBE, for: c, type: .withoutResponse)
+                    break
+                }
+            }
+        }
+    }
 }
 
 extension Data {

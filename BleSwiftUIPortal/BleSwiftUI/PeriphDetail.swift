@@ -12,7 +12,8 @@ struct PeriphDetail: View {
     
     var periph : Peripheral
     @ObservedObject var bleManager: BLEManager
-    @State private var portalname: String = "Phils portal"
+    @State private var portalname: String = ""
+    @State private var lcOfInterest: String = ""
     
     var body: some View {
         Text("\(periph.name), \(periph.rssi)").font(.headline)
@@ -47,14 +48,32 @@ struct PeriphDetail: View {
                 }.frame(height: 70)
             }
         }
-        Button(action: {self.bleManager.readCharacteristicFromString(charString: "B0730002-6604-4CA1-A5A4-98864F059E4A")}, label: { Text("Read Name")})
-        Button(action: {self.bleManager.writeCharacteristicFromString(charString: "B0730002-6604-4CA1-A5A4-98864F059E4A", textString: portalname)}, label: { Text("Write Name")})
-        
-        TextField("PortalName", text: $portalname)
-            .multilineTextAlignment(.center)
-            .textFieldStyle(.roundedBorder)
-            .frame(width: 250)
+        HStack {
+            Button(action: {self.bleManager.readCharacteristicFromString(charString: "B0730002-6604-4CA1-A5A4-98864F059E4A")}, label: { Text("Read")})
             
+            
+            TextField("PortalName", text: $portalname)
+                .multilineTextAlignment(.center)
+                .textFieldStyle(.roundedBorder)
+                .frame(width: 150)
+            
+            Button(action: {self.bleManager.writeCharacteristicFromString(charString: "B0730002-6604-4CA1-A5A4-98864F059E4A", textString: portalname)}, label: { Text("Write")})
+        }
+        
+        HStack {
+            Button(action: {self.bleManager.readCharacteristicFromString(charString: "674F0002-8B40-11EC-A8A3-0242AC120002")}, label: { Text("Read")})
+            
+            
+            TextField("LCofInterest", text: $lcOfInterest)
+                .multilineTextAlignment(.center)
+                .textFieldStyle(.roundedBorder)
+                .frame(width: 150)
+            
+            Button(action: {self.bleManager.writeCharacteristicFromInt32(charString: "674F0002-8B40-11EC-A8A3-0242AC120002", payload: UInt32(lcOfInterest, radix: 16) ?? 0)}, label: { Text("Write")})
+        }
+        
+        Button(action: {self.bleManager.writeCharacteristicFromInt8(charString: "674F0006-8B40-11EC-A8A3-0242AC120002", payload: 1)}, label: { Text("Toggle")})
+        
         VStack {
             ScrollViewReader { proxy in
                    ScrollView {
