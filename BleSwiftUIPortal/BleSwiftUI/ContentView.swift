@@ -25,7 +25,7 @@ struct ContentView: View {
                 List(bleManager.peripherals) { peripheral in
                     NavigationLink(destination: PeriphDetail(periph: peripheral, bleManager: bleManager)) {
                         PeriphRow(periph: peripheral)
-                    }//.background(Color("RowBackground"))
+                    }
                     .frame(height: 25)
                 }
             }.padding(-15.0)
@@ -63,7 +63,6 @@ struct ContentView: View {
             Spacer()
  
             HStack {
-                //VStack (spacing: 10) {
                     Spacer()
                     Button(action: {
                         self.bleManager.startScanning()

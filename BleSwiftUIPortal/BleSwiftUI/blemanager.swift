@@ -19,6 +19,7 @@ struct Peripheral: Identifiable {
     var characteristicList: String
     var reading: UInt32
     var readOutput: String
+    var lcOfInterest: String
 }
 
 let temperatureMeasurementCBUUID = CBUUID(string: "2A1C")
@@ -60,6 +61,8 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     @Published var peripherals = [Peripheral]()
     var isLocalConnOnly : Bool = true
     var conn_periph : CBPeripheral!
+    @Published public var global = Params.global
+    
         override init() {
             super.init()
      
@@ -120,9 +123,22 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         var perifIndex: Int {
             peripherals.firstIndex(where: { $0.cbperiph == peripheral}) ?? 0
         }
-        let outString = "\(uuid) = \(stringFromData ?? ""), \(characteristic.value?.hexEncodedString() ?? "")"
+        let hexString = characteristic.value?.hexEncodedString() ?? ""
+        let asciiString = stringFromData ?? ""
+        let outString = "\(uuid) = \(asciiString), \(hexString)"
         print(outString)
         peripherals[perifIndex].readOutput += outString + ", \r\n"
+        
+        switch (uuid){
+        case "B0730002":
+            global.portalName = asciiString
+            break
+        case "674F0002":
+            global.lcOfInterest = hexString
+            break
+        default:
+            break
+        }
     }
 
     func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
@@ -162,7 +178,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             }
     
         if (isLocalConnect || !isLocalConnOnly) {
-            let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, cbperiph: peripheral, serviceList: "", characteristicList: "", reading: 0, readOutput: "")
+            let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, cbperiph: peripheral, serviceList: "", characteristicList: "", reading: 0, readOutput: "", lcOfInterest: "")
             peripherals.append(newPeripheral)
             peripherals.sort(by: { $0.rssi > $1.rssi})
         }
