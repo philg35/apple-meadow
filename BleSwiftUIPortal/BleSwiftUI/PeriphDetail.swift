@@ -17,11 +17,6 @@ struct PeriphDetail: View {
     var body: some View {
         Text("\(periph.name), \(periph.rssi)").font(.headline)
         
-//        Text("\(periph.id)")
-//        HStack {
-//            Text("FC reading = ")
-//        Text("\(periph.reading)")
-//        }
         HStack {
             Spacer()
             Button(action: {self.bleManager.connect(periphConn: periph)}, label: {
@@ -54,7 +49,26 @@ struct PeriphDetail: View {
         }
         Button(action: {self.bleManager.readCharacteristicFromString(charString: "B0730002-6604-4CA1-A5A4-98864F059E4A")}, label: { Text("Read Name")})
         Button(action: {self.bleManager.writeCharacteristicFromString(charString: "B0730002-6604-4CA1-A5A4-98864F059E4A", textString: portalname)}, label: { Text("Write Name")})
-        TextField("PortalName", text: $portalname).multilineTextAlignment(.center)
+        
+        TextField("PortalName", text: $portalname)
+            .multilineTextAlignment(.center)
+            .textFieldStyle(.roundedBorder)
+            .frame(width: 250)
+            
+        VStack {
+            ScrollViewReader { proxy in
+                   ScrollView {
+                       Text("\(periph.readOutput)")
+                           .id(1)            // this is where to add an id
+                           .multilineTextAlignment(.leading)
+                           .font(.system(size: 10, weight: .light, design: .default))
+                           .padding()
+                   }
+                   .onChange(of: periph.readOutput) { _ in
+                        proxy.scrollTo(1, anchor: .bottom)
+                   }
+                }
+        }
         Spacer()
     }
 }

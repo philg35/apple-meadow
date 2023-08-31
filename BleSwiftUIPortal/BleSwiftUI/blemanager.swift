@@ -18,6 +18,7 @@ struct Peripheral: Identifiable {
     var serviceList: String
     var characteristicList: String
     var reading: UInt32
+    var readOutput: String
 }
 
 let temperatureMeasurementCBUUID = CBUUID(string: "2A1C")
@@ -110,13 +111,18 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         guard let cVal = characteristic.value else {
             return
         }
-        var stringFromData = String(data: cVal, encoding: String.Encoding.ascii)
+        let stringFromData = String(data: cVal, encoding: String.Encoding.ascii)
         let uuid = characteristic.uuid.uuidString.prefix(8)
 //            if stringFromData != "" {
 //                let textArray = stringFromData!.components(separatedBy: "\0")
 //                print("textArray", textArray)
 //            }
-        print("\(uuid) = \(stringFromData), \(characteristic.value?.hexEncodedString())")
+        var perifIndex: Int {
+            peripherals.firstIndex(where: { $0.cbperiph == peripheral}) ?? 0
+        }
+        let outString = "\(uuid) = \(stringFromData ?? ""), \(characteristic.value?.hexEncodedString() ?? "")"
+        print(outString)
+        peripherals[perifIndex].readOutput += outString + ", \r\n"
     }
 
     func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
@@ -156,7 +162,7 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             }
     
         if (isLocalConnect || !isLocalConnOnly) {
-            let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, cbperiph: peripheral, serviceList: "", characteristicList: "", reading: 0)
+            let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, cbperiph: peripheral, serviceList: "", characteristicList: "", reading: 0, readOutput: "")
             peripherals.append(newPeripheral)
             peripherals.sort(by: { $0.rssi > $1.rssi})
         }
