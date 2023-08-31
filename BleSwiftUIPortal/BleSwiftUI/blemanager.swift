@@ -136,6 +136,9 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         case "674F0002":
             global.lcOfInterest = hexString
             break
+        case "674F0003":
+            global.lcData = hexString
+            break
         default:
             break
         }

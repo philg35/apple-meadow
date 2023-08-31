@@ -11,8 +11,9 @@ import SwiftUI
 final class Params: ObservableObject {
   static let global = Params()
 
-  var lcOfInterest = ""
-  var portalName = ""
+    var lcOfInterest = ""
+    var portalName = ""
+    var lcData = ""
 }
 
 struct PeriphDetail: View {
@@ -79,6 +80,19 @@ struct PeriphDetail: View {
         }
         
         Button(action: {self.bleManager.writeCharacteristicFromInt8(charString: "674F0006-8B40-11EC-A8A3-0242AC120002", payload: 1)}, label: { Text("Toggle")})
+        
+        
+        HStack {
+            Button(action: {self.bleManager.readCharacteristicFromString(charString: "674F0003-8B40-11EC-A8A3-0242AC120002")}, label: { Text("Read")})
+            
+            
+            TextField("LcData", text: $global.lcData)
+                .multilineTextAlignment(.center)
+                .textFieldStyle(.roundedBorder)
+                .frame(width: 150)
+            
+            Button(action: {self.bleManager.writeCharacteristicFromInt8(charString: "674F0003-8B40-11EC-A8A3-0242AC120002", payload: UInt8(global.lcData, radix: 16) ?? 0)}, label: { Text("Write")})
+        }
         
         VStack {
             ScrollViewReader { proxy in
