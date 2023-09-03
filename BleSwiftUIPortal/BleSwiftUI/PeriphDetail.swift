@@ -94,6 +94,8 @@ struct PeriphDetail: View {
             Button(action: {self.bleManager.writeCharacteristicFromInt8(charString: "674F0003-8B40-11EC-A8A3-0242AC120002", payload: UInt8(global.lcData, radix: 16) ?? 0)}, label: { Text("Write")})
         }
         
+        Button(action: {self.bleManager.writeCharacteristicFromInt8(charString: "674F0003-8B40-11EC-A8A3-0242AC120002", payload: 4)}, label: { Text("LC Sync")})
+            
         VStack {
             ScrollViewReader { proxy in
                    ScrollView {
