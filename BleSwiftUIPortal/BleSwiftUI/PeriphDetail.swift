@@ -14,6 +14,7 @@ final class Params: ObservableObject {
     var lcOfInterest = ""
     var portalName = ""
     var lcData = ""
+    var lcList: [String] = []
 }
 
 struct PeriphDetail: View {
@@ -21,6 +22,7 @@ struct PeriphDetail: View {
     var periph : Peripheral
     @ObservedObject var bleManager: BLEManager
     @ObservedObject public var global = Params.global
+    @State private var selection = ""
     
     var body: some View {
         Text("\(periph.name), \(periph.rssi)").font(.headline)
@@ -35,6 +37,19 @@ struct PeriphDetail: View {
                 Text("Disconnect")
             })
             Spacer()
+        }
+        VStack {
+            Button(action: {self.bleManager.readCharacteristicFromString(charString: "B0730013-6604-4CA1-A5A4-98864F059E4A")}, label: { Text("Read LCs")})
+            Picker("Select LC", selection: $selection) {
+                ForEach(global.lcList, id: \.self) {
+                    Text($0)
+                }
+            }
+            .pickerStyle(.menu)
+            .onChange(of: selection) { value in
+                self.bleManager.writeCharacteristicFromInt32(charString: "674F0002-8B40-11EC-A8A3-0242AC120002", payload: UInt32(value, radix: 16) ?? 0)
+        }
+            Text("Selected LC: \(selection)")
         }
         
         //        HStack {
@@ -58,7 +73,6 @@ struct PeriphDetail: View {
         //        }
         
         ScrollView {
-            Button(action: {self.bleManager.readCharacteristicFromString(charString: "B0730013-6604-4CA1-A5A4-98864F059E4A")}, label: { Text("Read LCs")})
             HStack {
                 Button(action: {self.bleManager.readCharacteristicFromString(charString: "B0730002-6604-4CA1-A5A4-98864F059E4A")}, label: { Text("Read")})
                 

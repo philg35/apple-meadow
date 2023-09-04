@@ -136,8 +136,11 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         case "B0730013":
             print("length=", hexString.count, hexString.count/4)
             let components = hexString.components(withLength: 52)
+            global.lcList = []
             for x in components {
-                print("lc = ", x[0..<8])
+                let lc = x[0..<8]
+                print("lc = ", lc)
+                global.lcList.append(lc)
             }
             break
         case "674F0002":
