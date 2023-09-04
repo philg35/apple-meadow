@@ -133,12 +133,20 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         case "B0730002":
             global.portalName = asciiString
             break
+        case "B0730013":
+            print("length=", hexString.count, hexString.count/4)
+            let components = hexString.components(withLength: 52)
+            for x in components {
+                print("lc = ", x[0..<8])
+            }
+            break
         case "674F0002":
             global.lcOfInterest = hexString
             break
         case "674F0003":
             global.lcData = hexString
             break
+            
         default:
             break
         }
@@ -293,4 +301,26 @@ func hexStringtoAscii(_ hexString : String) -> String {
     return String(characters)
 }
 
+                  extension String {
+                subscript(_ range: CountableRange<Int>) -> String {
+                    let start = index(startIndex, offsetBy: max(0, range.lowerBound))
+                    let end = index(start, offsetBy: min(self.count - range.lowerBound,
+                                                         range.upperBound - range.lowerBound))
+                    return String(self[start..<end])
+                }
+                
+                subscript(_ range: CountablePartialRangeFrom<Int>) -> String {
+                    let start = index(startIndex, offsetBy: max(0, range.lowerBound))
+                    return String(self[start...])
+                }
+            }
 
+extension String {
+    func components(withLength length: Int) -> [String] {
+        return stride(from: 0, to: count, by: length).map {
+            let start = index(startIndex, offsetBy: $0)
+            let end = index(start, offsetBy: length, limitedBy: endIndex) ?? endIndex
+            return String(self[start..<end])
+        }
+    }
+}
