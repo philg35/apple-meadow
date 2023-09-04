@@ -28,37 +28,26 @@ struct ContentView: View {
                     }
                     .frame(height: 25)
                 }
-            }.padding(-15.0)
+            }//.padding(-15.0)
  
             Spacer()
             
-            HStack {
-                VStack {
-                    Text("STATUS")
-                        .font(.headline)
-         
-                    // Status goes here
-                    if bleManager.isSwitchedOn {
-                        Text("Bluetooth is switched on")
-                            .foregroundColor(.green)
-                    }
-                    else {
-                        Text("Bluetooth is NOT switched on")
-                            .foregroundColor(.red)
-                    }
-                }
-                if #available(iOS 14.0, *) {
-                    Toggle(isOn: $onlyLocalConnect) {
-                        Text("Portal Only")
-                            .frame(maxWidth: .infinity, alignment: .trailing)
-                    }.onChange(of: onlyLocalConnect) { value in
-                        self.bleManager.isLocalConnChange(newValue: value)
-                    }.padding()
-                } else {
-                    // Fallback on earlier versions
-                }
-                
-            }
+//            HStack {
+//                VStack {
+//                    Text("STATUS")
+//                        .font(.headline)
+//
+//                    // Status goes here
+//                    if bleManager.isSwitchedOn {
+//                        Text("Bluetooth is switched on")
+//                            .foregroundColor(.green)
+//                    }
+//                    else {
+//                        Text("Bluetooth is NOT switched on")
+//                            .foregroundColor(.red)
+//                    }
+//                }
+//            }
             
             Spacer()
  
@@ -67,23 +56,30 @@ struct ContentView: View {
                     Button(action: {
                         self.bleManager.startScanning()
                     }) {
-                        Text("Start Scan")
+                        Text("Start")
                     }
                     Spacer()
                     Button(action: {
                         self.bleManager.stopScanning()
                     }) {
-                        Text("Stop Scan")
+                        Text("Stop")
                     }
                     Spacer()
                     Button(action: {
                         self.bleManager.clearScan()
                     }) {
-                        Text("Clear Scan")
+                        Text("Clear")
                     }
                     Spacer()
+                    VStack() {
+                        Text("Portal Only").font(.system(size: 12))
+                        Toggle("", isOn: $onlyLocalConnect).labelsHidden()
+                            .onChange(of: onlyLocalConnect) { value in
+                            self.bleManager.isLocalConnChange(newValue: value)
+                        }
+                    }
+                Spacer()
             }
-            Spacer()
         }
     }
 }
