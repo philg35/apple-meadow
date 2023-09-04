@@ -30,7 +30,7 @@ class BLEPerifManager : NSObject, ObservableObject, CBPeripheralManagerDelegate 
     
     override init() {
         super.init()
- 
+        
         myPerif = CBPeripheralManager(delegate: self, queue: nil)
         myPerif.delegate = self
     }
@@ -63,23 +63,23 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     var conn_periph : CBPeripheral!
     @Published public var global = Params.global
     
-        override init() {
-            super.init()
-     
-            myCentral = CBCentralManager(delegate: self, queue: nil)
-            myCentral.delegate = self
-        }
-
+    override init() {
+        super.init()
+        
+        myCentral = CBCentralManager(delegate: self, queue: nil)
+        myCentral.delegate = self
+    }
+    
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         print("central state=", central.state.rawValue)
         if central.state == .poweredOn {
             print("powered on")
-             isSwitchedOn = true
-         }
-         else {
+            isSwitchedOn = true
+        }
+        else {
             print("not powered on")
-             isSwitchedOn = false
-         }
+            isSwitchedOn = false
+        }
     }
     
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
@@ -93,33 +93,27 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverCharacteristicsFor service: CBService, error: Error?) {
-
-       if let charac = service.characteristics {
-        var perifIndex: Int {
-            peripherals.firstIndex(where: { $0.cbperiph == peripheral}) ?? 0
-        }
-        for characteristic in charac {
-            //print("characteristic=", characteristic)
-            peripherals[perifIndex].characteristicList += characteristic.uuid.uuidString.prefix(8) + ", "
-            if (!characteristic.isNotifying) {
-                peripheral.setNotifyValue(true, for: characteristic)
-                peripheral.readValue(for: characteristic)
+        
+        if let charac = service.characteristics {
+            var perifIndex: Int {
+                peripherals.firstIndex(where: { $0.cbperiph == peripheral}) ?? 0
             }
-          }
+            for characteristic in charac {
+                peripherals[perifIndex].characteristicList += characteristic.uuid.uuidString.prefix(8) + ", "
+                if (!characteristic.isNotifying) {
+                    peripheral.setNotifyValue(true, for: characteristic)
+                    peripheral.readValue(for: characteristic)
+                }
+            }
         }
-      }
+    }
     
     func peripheral(_ peripheral: CBPeripheral, didUpdateValueFor characteristic: CBCharacteristic, error: Error?) {
-        //print("Characteristic read: \(characteristic.uuid), \(characteristic.description)\n ")
         guard let cVal = characteristic.value else {
             return
         }
         let stringFromData = String(data: cVal, encoding: String.Encoding.ascii)
         let uuid = characteristic.uuid.uuidString.prefix(8)
-//            if stringFromData != "" {
-//                let textArray = stringFromData!.components(separatedBy: "\0")
-//                print("textArray", textArray)
-//            }
         var perifIndex: Int {
             peripherals.firstIndex(where: { $0.cbperiph == peripheral}) ?? 0
         }
@@ -154,28 +148,28 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             break
         }
     }
-
+    
     func peripheral(_ peripheral: CBPeripheral, didUpdateNotificationStateFor characteristic: CBCharacteristic, error: Error?) {
-            if (characteristic.isNotifying)
-            {
-                print("didUpdateNotificationStateFor ", characteristic.uuid.uuidString)
-            }
+        if (characteristic.isNotifying)
+        {
+            print("didUpdateNotificationStateFor ", characteristic.uuid.uuidString)
         }
+    }
     
     func peripheral(_ peripheral: CBPeripheral, didDiscoverServices error: Error?) {
-
-           if let services = peripheral.services {
+        
+        if let services = peripheral.services {
             var perifIndex: Int {
                 peripherals.firstIndex(where: { $0.cbperiph == peripheral}) ?? 0
             }
-           for service in services {
-            print("service=", service)
-               peripherals[perifIndex].serviceList += service.uuid.uuidString.prefix(8) + ", "
-            peripheral.discoverCharacteristics(nil, for: service)
-          }
+            for service in services {
+                print("service=", service)
+                peripherals[perifIndex].serviceList += service.uuid.uuidString.prefix(8) + ", "
+                peripheral.discoverCharacteristics(nil, for: service)
+            }
         }
     }
-
+    
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         var peripheralName: String!
         if let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
@@ -185,12 +179,12 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             peripheralName = "Unknown"
         }
         var isLocalConnect = false
-
+        
         if let list = advertisementData["kCBAdvDataServiceUUIDs"] as? [AnyObject], (list.contains { ($0 as? CBUUID)?.uuidString == "B0730001-6604-4CA1-A5A4-98864F059E4A" }) {
-                print("Found new portal.")
-                isLocalConnect = true
-            }
-    
+            print("Found new portal.")
+            isLocalConnect = true
+        }
+        
         if (isLocalConnect || !isLocalConnOnly) {
             let newPeripheral = Peripheral(id: peripherals.count, name: peripheralName, rssi: RSSI.intValue, cbperiph: peripheral, serviceList: "", characteristicList: "", reading: 0, readOutput: "", lcOfInterest: "")
             peripherals.append(newPeripheral)
@@ -199,9 +193,9 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
     }
     
     func startScanning() {
-         print("startScanning")
-         myCentral.scanForPeripherals(withServices: nil, options: nil)
-     }
+        print("startScanning")
+        myCentral.scanForPeripherals(withServices: nil, options: nil)
+    }
     
     func stopScanning() {
         print("stopScanning")
@@ -293,7 +287,7 @@ extension Data {
 }
 
 func hexStringtoAscii(_ hexString : String) -> String {
-
+    
     let pattern = "(0x)?([0-9a-f]{2})"
     let regex = try! NSRegularExpression(pattern: pattern, options: .caseInsensitive)
     let nsString = hexString as NSString
@@ -304,19 +298,19 @@ func hexStringtoAscii(_ hexString : String) -> String {
     return String(characters)
 }
 
-                  extension String {
-                subscript(_ range: CountableRange<Int>) -> String {
-                    let start = index(startIndex, offsetBy: max(0, range.lowerBound))
-                    let end = index(start, offsetBy: min(self.count - range.lowerBound,
-                                                         range.upperBound - range.lowerBound))
-                    return String(self[start..<end])
-                }
-                
-                subscript(_ range: CountablePartialRangeFrom<Int>) -> String {
-                    let start = index(startIndex, offsetBy: max(0, range.lowerBound))
-                    return String(self[start...])
-                }
-            }
+extension String {
+    subscript(_ range: CountableRange<Int>) -> String {
+        let start = index(startIndex, offsetBy: max(0, range.lowerBound))
+        let end = index(start, offsetBy: min(self.count - range.lowerBound,
+                                             range.upperBound - range.lowerBound))
+        return String(self[start..<end])
+    }
+    
+    subscript(_ range: CountablePartialRangeFrom<Int>) -> String {
+        let start = index(startIndex, offsetBy: max(0, range.lowerBound))
+        return String(self[start...])
+    }
+}
 
 extension String {
     func components(withLength length: Int) -> [String] {

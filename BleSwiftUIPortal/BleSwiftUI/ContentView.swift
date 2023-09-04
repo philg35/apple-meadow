@@ -31,25 +31,6 @@ struct ContentView: View {
             }//.padding(-15.0)
  
             Spacer()
-            
-//            HStack {
-//                VStack {
-//                    Text("STATUS")
-//                        .font(.headline)
-//
-//                    // Status goes here
-//                    if bleManager.isSwitchedOn {
-//                        Text("Bluetooth is switched on")
-//                            .foregroundColor(.green)
-//                    }
-//                    else {
-//                        Text("Bluetooth is NOT switched on")
-//                            .foregroundColor(.red)
-//                    }
-//                }
-//            }
-            
-            Spacer()
  
             HStack {
                     Spacer()
