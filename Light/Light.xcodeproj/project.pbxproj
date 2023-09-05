@@ -19,16 +19,6 @@
 		D9F94057259BC26C00911F99 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F94056259BC26C00911F99 /* ContentView.swift */; };
 		D9F94059259BC26C00911F99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9F94058259BC26C00911F99 /* Assets.xcassets */; };
 		D9F9405C259BC26C00911F99 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9F9405B259BC26C00911F99 /* Preview Assets.xcassets */; };
-		D9F94061259BC26C00911F99 /* Light WatchKit App.app in Embed Watch Content */ = {isa = PBXBuildFile; fileRef = D9F94060259BC26C00911F99 /* Light WatchKit App.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		D9F94066259BC26D00911F99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9F94065259BC26D00911F99 /* Assets.xcassets */; };
-		D9F9406D259BC26D00911F99 /* Light WatchKit Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = D9F9406C259BC26D00911F99 /* Light WatchKit Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
-		D9F94072259BC26D00911F99 /* LightApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F94071259BC26D00911F99 /* LightApp.swift */; };
-		D9F94074259BC26D00911F99 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F94073259BC26D00911F99 /* ContentView.swift */; };
-		D9F94076259BC26D00911F99 /* NotificationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F94075259BC26D00911F99 /* NotificationController.swift */; };
-		D9F94078259BC26D00911F99 /* NotificationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F94077259BC26D00911F99 /* NotificationView.swift */; };
-		D9F9407A259BC26D00911F99 /* ComplicationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F94079259BC26D00911F99 /* ComplicationController.swift */; };
-		D9F9407C259BC26E00911F99 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9F9407B259BC26E00911F99 /* Assets.xcassets */; };
-		D9F9407F259BC26E00911F99 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9F9407E259BC26E00911F99 /* Preview Assets.xcassets */; };
 		D9F9409D259BC3ED00911F99 /* userData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F9409C259BC3ED00911F99 /* userData.swift */; };
 		D9F940A2259BC41B00911F99 /* phoneLight.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F940A1259BC41B00911F99 /* phoneLight.swift */; };
 		D9F940A7259BC44300911F99 /* data.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F940A6259BC44300911F99 /* data.swift */; };
@@ -37,42 +27,13 @@
 		D9F940B7259BC88C00911F99 /* LightRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9F940B6259BC88C00911F99 /* LightRow.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		D9F94062259BC26C00911F99 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D9F94049259BC26C00911F99 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D9F9405F259BC26C00911F99;
-			remoteInfo = "Light WatchKit App";
-		};
-		D9F9406E259BC26D00911F99 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = D9F94049259BC26C00911F99 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = D9F9406B259BC26D00911F99;
-			remoteInfo = "Light WatchKit Extension";
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXCopyFilesBuildPhase section */
-		D9F94087259BC26E00911F99 /* Embed App Extensions */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "";
-			dstSubfolderSpec = 13;
-			files = (
-				D9F9406D259BC26D00911F99 /* Light WatchKit Extension.appex in Embed App Extensions */,
-			);
-			name = "Embed App Extensions";
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D9F9408B259BC26E00911F99 /* Embed Watch Content */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "$(CONTENTS_FOLDER_PATH)/Watch";
 			dstSubfolderSpec = 16;
 			files = (
-				D9F94061259BC26C00911F99 /* Light WatchKit App.app in Embed Watch Content */,
 			);
 			name = "Embed Watch Content";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -95,19 +56,6 @@
 		D9F94058259BC26C00911F99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D9F9405B259BC26C00911F99 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		D9F9405D259BC26C00911F99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D9F94060259BC26C00911F99 /* Light WatchKit App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Light WatchKit App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D9F94065259BC26D00911F99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D9F94067259BC26D00911F99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D9F9406C259BC26D00911F99 /* Light WatchKit Extension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = "Light WatchKit Extension.appex"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D9F94071259BC26D00911F99 /* LightApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LightApp.swift; sourceTree = "<group>"; };
-		D9F94073259BC26D00911F99 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
-		D9F94075259BC26D00911F99 /* NotificationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationController.swift; sourceTree = "<group>"; };
-		D9F94077259BC26D00911F99 /* NotificationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationView.swift; sourceTree = "<group>"; };
-		D9F94079259BC26D00911F99 /* ComplicationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComplicationController.swift; sourceTree = "<group>"; };
-		D9F9407B259BC26E00911F99 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		D9F9407E259BC26E00911F99 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		D9F94080259BC26E00911F99 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D9F94081259BC26E00911F99 /* PushNotificationPayload.apns */ = {isa = PBXFileReference; lastKnownFileType = text; path = PushNotificationPayload.apns; sourceTree = "<group>"; };
 		D9F9409C259BC3ED00911F99 /* userData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = userData.swift; sourceTree = "<group>"; };
 		D9F940A1259BC41B00911F99 /* phoneLight.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = phoneLight.swift; sourceTree = "<group>"; };
 		D9F940A6259BC44300911F99 /* data.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = data.swift; sourceTree = "<group>"; };
@@ -118,25 +66,11 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		C61B439220EBC694CEAAA938 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 		D9F9404E259BC26C00911F99 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				4627385EAEA8D45F1434F1C7 /* Pods_Light.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D9F94069259BC26D00911F99 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,8 +98,6 @@
 			isa = PBXGroup;
 			children = (
 				D9F94053259BC26C00911F99 /* Light */,
-				D9F94064259BC26C00911F99 /* Light WatchKit App */,
-				D9F94070259BC26D00911F99 /* Light WatchKit Extension */,
 				D9F94052259BC26C00911F99 /* Products */,
 				A8503A1C45C7B170430D8718 /* Pods */,
 				8AC750DF31C08468295AF385 /* Frameworks */,
@@ -176,8 +108,6 @@
 			isa = PBXGroup;
 			children = (
 				D9F94051259BC26C00911F99 /* Light.app */,
-				D9F94060259BC26C00911F99 /* Light WatchKit App.app */,
-				D9F9406C259BC26D00911F99 /* Light WatchKit Extension.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -206,39 +136,6 @@
 			isa = PBXGroup;
 			children = (
 				D9F9405B259BC26C00911F99 /* Preview Assets.xcassets */,
-			);
-			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		D9F94064259BC26C00911F99 /* Light WatchKit App */ = {
-			isa = PBXGroup;
-			children = (
-				D9F94065259BC26D00911F99 /* Assets.xcassets */,
-				D9F94067259BC26D00911F99 /* Info.plist */,
-			);
-			path = "Light WatchKit App";
-			sourceTree = "<group>";
-		};
-		D9F94070259BC26D00911F99 /* Light WatchKit Extension */ = {
-			isa = PBXGroup;
-			children = (
-				D9F94071259BC26D00911F99 /* LightApp.swift */,
-				D9F94073259BC26D00911F99 /* ContentView.swift */,
-				D9F94075259BC26D00911F99 /* NotificationController.swift */,
-				D9F94077259BC26D00911F99 /* NotificationView.swift */,
-				D9F94079259BC26D00911F99 /* ComplicationController.swift */,
-				D9F9407B259BC26E00911F99 /* Assets.xcassets */,
-				D9F94080259BC26E00911F99 /* Info.plist */,
-				D9F94081259BC26E00911F99 /* PushNotificationPayload.apns */,
-				D9F9407D259BC26E00911F99 /* Preview Content */,
-			);
-			path = "Light WatchKit Extension";
-			sourceTree = "<group>";
-		};
-		D9F9407D259BC26E00911F99 /* Preview Content */ = {
-			isa = PBXGroup;
-			children = (
-				D9F9407E259BC26E00911F99 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
 			sourceTree = "<group>";
@@ -281,47 +178,11 @@
 			buildRules = (
 			);
 			dependencies = (
-				D9F94063259BC26C00911F99 /* PBXTargetDependency */,
 			);
 			name = Light;
 			productName = Light;
 			productReference = D9F94051259BC26C00911F99 /* Light.app */;
 			productType = "com.apple.product-type.application";
-		};
-		D9F9405F259BC26C00911F99 /* Light WatchKit App */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D9F94088259BC26E00911F99 /* Build configuration list for PBXNativeTarget "Light WatchKit App" */;
-			buildPhases = (
-				D9F9405E259BC26C00911F99 /* Resources */,
-				D9F94087259BC26E00911F99 /* Embed App Extensions */,
-				C61B439220EBC694CEAAA938 /* Frameworks */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				D9F9406F259BC26D00911F99 /* PBXTargetDependency */,
-			);
-			name = "Light WatchKit App";
-			productName = "Light WatchKit App";
-			productReference = D9F94060259BC26C00911F99 /* Light WatchKit App.app */;
-			productType = "com.apple.product-type.application.watchapp2";
-		};
-		D9F9406B259BC26D00911F99 /* Light WatchKit Extension */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = D9F94084259BC26E00911F99 /* Build configuration list for PBXNativeTarget "Light WatchKit Extension" */;
-			buildPhases = (
-				D9F94068259BC26D00911F99 /* Sources */,
-				D9F94069259BC26D00911F99 /* Frameworks */,
-				D9F9406A259BC26D00911F99 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = "Light WatchKit Extension";
-			productName = "Light WatchKit Extension";
-			productReference = D9F9406C259BC26D00911F99 /* Light WatchKit Extension.appex */;
-			productType = "com.apple.product-type.watchkit2-extension";
 		};
 /* End PBXNativeTarget section */
 
@@ -333,13 +194,6 @@
 				LastUpgradeCheck = 1230;
 				TargetAttributes = {
 					D9F94050259BC26C00911F99 = {
-						CreatedOnToolsVersion = 12.3;
-					};
-					D9F9405F259BC26C00911F99 = {
-						CreatedOnToolsVersion = 12.3;
-						LastSwiftMigration = 1230;
-					};
-					D9F9406B259BC26D00911F99 = {
 						CreatedOnToolsVersion = 12.3;
 					};
 				};
@@ -358,8 +212,6 @@
 			projectRoot = "";
 			targets = (
 				D9F94050259BC26C00911F99 /* Light */,
-				D9F9405F259BC26C00911F99 /* Light WatchKit App */,
-				D9F9406B259BC26D00911F99 /* Light WatchKit Extension */,
 			);
 		};
 /* End PBXProject section */
@@ -372,23 +224,6 @@
 				D946051A25C23668001F9E3C /* Colors.xcassets in Resources */,
 				D9F9405C259BC26C00911F99 /* Preview Assets.xcassets in Resources */,
 				D9F94059259BC26C00911F99 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D9F9405E259BC26C00911F99 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D9F94066259BC26D00911F99 /* Assets.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		D9F9406A259BC26D00911F99 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D9F9407F259BC26E00911F99 /* Preview Assets.xcassets in Resources */,
-				D9F9407C259BC26E00911F99 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -458,32 +293,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D9F94068259BC26D00911F99 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				D9F94076259BC26D00911F99 /* NotificationController.swift in Sources */,
-				D9F94074259BC26D00911F99 /* ContentView.swift in Sources */,
-				D9F9407A259BC26D00911F99 /* ComplicationController.swift in Sources */,
-				D9F94072259BC26D00911F99 /* LightApp.swift in Sources */,
-				D9F94078259BC26D00911F99 /* NotificationView.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		D9F94063259BC26C00911F99 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D9F9405F259BC26C00911F99 /* Light WatchKit App */;
-			targetProxy = D9F94062259BC26C00911F99 /* PBXContainerItemProxy */;
-		};
-		D9F9406F259BC26D00911F99 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = D9F9406B259BC26D00911F99 /* Light WatchKit Extension */;
-			targetProxy = D9F9406E259BC26D00911F99 /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		D9F94082259BC26E00911F99 /* Debug */ = {
@@ -597,109 +407,6 @@
 			};
 			name = Release;
 		};
-		D9F94085259BC26E00911F99 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Light WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = A44VX47B87;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Light WatchKit Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "psg35-icloud.com.Light.watchkitapp.watchkitextension";
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.2;
-			};
-			name = Debug;
-		};
-		D9F94086259BC26E00911F99 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ASSETCATALOG_COMPILER_COMPLICATION_NAME = Complication;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_ASSET_PATHS = "\"Light WatchKit Extension/Preview Content\"";
-				DEVELOPMENT_TEAM = A44VX47B87;
-				ENABLE_PREVIEWS = YES;
-				INFOPLIST_FILE = "Light WatchKit Extension/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/Frameworks",
-					"@executable_path/../../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "psg35-icloud.com.Light.watchkitapp.watchkitextension";
-				PRODUCT_NAME = "${TARGET_NAME}";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 7.2;
-			};
-			name = Release;
-		};
-		D9F94089259BC26E00911F99 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A44VX47B87;
-				IBSC_MODULE = Light_WatchKit_Extension;
-				INFOPLIST_FILE = "Light WatchKit App/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "psg35-icloud.com.Light.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				WATCHOS_DEPLOYMENT_TARGET = 7.2;
-			};
-			name = Debug;
-		};
-		D9F9408A259BC26E00911F99 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				CLANG_ENABLE_MODULES = YES;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = A44VX47B87;
-				IBSC_MODULE = Light_WatchKit_Extension;
-				INFOPLIST_FILE = "Light WatchKit App/Info.plist";
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"@executable_path/../Frameworks",
-					"@loader_path/../Frameworks",
-				);
-				PRODUCT_BUNDLE_IDENTIFIER = "psg35-icloud.com.Light.watchkitapp";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = watchos;
-				SKIP_INSTALL = YES;
-				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = 4;
-				VALIDATE_PRODUCT = YES;
-				WATCHOS_DEPLOYMENT_TARGET = 7.2;
-			};
-			name = Release;
-		};
 		D9F9408D259BC26E00911F99 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 84BCC60FF98E5F9419C4F85C /* Pods-Light.debug.xcconfig */;
@@ -757,24 +464,6 @@
 			buildConfigurations = (
 				D9F94082259BC26E00911F99 /* Debug */,
 				D9F94083259BC26E00911F99 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D9F94084259BC26E00911F99 /* Build configuration list for PBXNativeTarget "Light WatchKit Extension" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D9F94085259BC26E00911F99 /* Debug */,
-				D9F94086259BC26E00911F99 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		D9F94088259BC26E00911F99 /* Build configuration list for PBXNativeTarget "Light WatchKit App" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				D9F94089259BC26E00911F99 /* Debug */,
-				D9F9408A259BC26E00911F99 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
