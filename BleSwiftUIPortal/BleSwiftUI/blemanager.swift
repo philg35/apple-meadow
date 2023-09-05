@@ -127,6 +127,12 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         case "B0730002":
             global.portalName = asciiString
             break
+        case "B073000B":
+            global.zoneOfInterest = asciiString
+            break
+        case "B073000E":
+            global.lastPressed = hexString
+            break
         case "B0730013":
             print("length=", hexString.count, hexString.count/4)
             let components = hexString.components(withLength: 52)

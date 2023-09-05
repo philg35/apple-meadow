@@ -15,6 +15,8 @@ final class Params: ObservableObject {
     var portalName = ""
     var lcData = ""
     var lcList: [String] = []
+    var zoneOfInterest = ""
+    var lastPressed = ""
 }
 
 struct PeriphDetail: View {
@@ -31,12 +33,12 @@ struct PeriphDetail: View {
             Spacer()
             Button(action: {self.bleManager.connect(periphConn: periph)}, label: {
                 Text("Connect")
-            })
+            }).buttonStyle(.borderedProminent)
             Text("\(periph.name), \(periph.rssi)")
                 .font(.system(size: 12, weight: .light, design: .default))
             Button(action: {self.bleManager.disconnect(periphConn: periph)}, label: {
                 Text("Disconnect")
-            })
+            }).buttonStyle(.borderedProminent)
             Spacer()
         }
         
@@ -57,7 +59,43 @@ struct PeriphDetail: View {
                 
                 Button(action: {self.bleManager.writeCharacteristicFromString(charString: "B0730002-6604-4CA1-A5A4-98864F059E4A", textString: global.portalName)}, label: { Text("Write")})
             }
-            Button(action: {self.bleManager.readCharacteristicFromString(charString: "B0730013-6604-4CA1-A5A4-98864F059E4A")}, label: { Text("Read LCs")})
+            
+            HStack {
+                Button(action: {self.bleManager.writeCharacteristicFromInt8(charString: "B0730007-6604-4CA1-A5A4-98864F059E4A", payload: 1)}, label: { Text("Disc. LCs")})
+                    .buttonStyle(.bordered)
+                Button(action: {self.bleManager.readCharacteristicFromString(charString: "B0730013-6604-4CA1-A5A4-98864F059E4A")}, label: { Text("Read LCs")})
+                    .buttonStyle(.bordered)
+            }
+            
+            HStack {
+                Text("Last Pressed")
+                TextField("PortalName", text: $global.lastPressed)
+                    .multilineTextAlignment(.center)
+                    .textFieldStyle(.roundedBorder)
+                    .frame(width: 150)
+            }
+            
+// Zone Names
+//            HStack{
+//                Button(action: {self.bleManager.readCharacteristicFromString(charString: "B073000A-6604-4CA1-A5A4-98864F059E4A")}, label: { Text("Read ZoneNames")})
+//                Button(action: {self.bleManager.writeCharacteristicFromInt8(charString: "B073000C-6604-4CA1-A5A4-98864F059E4A", payload: 1)}, label: { Text("Start ZoneLC")})
+//                Button(action: {self.bleManager.readCharacteristicFromString(charString: "B073000D-6604-4CA1-A5A4-98864F059E4A")}, label: { Text("Read ZoneLC")})
+//            }
+            
+// Zone of Interest
+//            HStack {
+//                Button(action: {self.bleManager.readCharacteristicFromString(charString: "B073000B-6604-4CA1-A5A4-98864F059E4A")}, label: { Text("Read ZOI")})
+//
+//                TextField("ZoneOfInterest", text: $global.zoneOfInterest)
+//                    .multilineTextAlignment(.center)
+//                    .textFieldStyle(.roundedBorder)
+//                    .frame(width: 150)
+//
+//                Button(action: {self.bleManager.writeCharacteristicFromString(charString: "B073000B-6604-4CA1-A5A4-98864F059E4A", textString: global.zoneOfInterest)}, label: { Text("Write ZOI")})
+//            }
+            
+            
+            
             
             HStack {
                 Text("LC Service:")
@@ -65,7 +103,7 @@ struct PeriphDetail: View {
                 Spacer()
             }
             HStack {
-                Button(action: {self.bleManager.writeCharacteristicFromInt8(charString: "674F0006-8B40-11EC-A8A3-0242AC120002", payload: 1)}, label: { Text("Toggle")})
+                Button(action: {self.bleManager.writeCharacteristicFromInt8(charString: "674F0006-8B40-11EC-A8A3-0242AC120002", payload: 1)}, label: { Text("Toggle")}).buttonStyle(.bordered)
                 Picker("Select LC", selection: $selection) {
                     ForEach(global.lcList, id: \.self) {
                         Text($0)
@@ -75,7 +113,7 @@ struct PeriphDetail: View {
                 .onChange(of: selection) { value in
                     self.bleManager.writeCharacteristicFromInt32(charString: "674F0002-8B40-11EC-A8A3-0242AC120002", payload: UInt32(value, radix: 16) ?? 0)
                 }
-                Button(action: {self.bleManager.writeCharacteristicFromInt8(charString: "674F0003-8B40-11EC-A8A3-0242AC120002", payload: 4)}, label: { Text("LCSync")})
+                Button(action: {self.bleManager.writeCharacteristicFromInt8(charString: "674F0003-8B40-11EC-A8A3-0242AC120002", payload: 4)}, label: { Text("LCSync")}).buttonStyle(.bordered)
             }
             
             
