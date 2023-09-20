@@ -14,9 +14,10 @@ final class Params: ObservableObject {
     var lcOfInterest = ""
     var portalName = ""
     var lcData = ""
-    var lcList: [String] = []
+    var lcList: [String] = ["pick"]
     var zoneOfInterest = ""
     var lastPressed = ""
+    var lastType = ""
 }
 
 struct PeriphDetail: View {
@@ -69,10 +70,14 @@ struct PeriphDetail: View {
             
             HStack {
                 Text("Last Pressed")
-                TextField("PortalName", text: $global.lastPressed)
+                TextField("LastPressed", text: $global.lastPressed)
                     .multilineTextAlignment(.center)
                     .textFieldStyle(.roundedBorder)
                     .frame(width: 150)
+                TextField("LastType", text: $global.lastType)
+                    .multilineTextAlignment(.center)
+                    .textFieldStyle(.roundedBorder)
+                    .frame(width: 100)
             }
             
 // Zone Names

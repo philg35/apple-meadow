@@ -131,7 +131,35 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
             global.zoneOfInterest = asciiString
             break
         case "B073000E":
-            global.lastPressed = hexString
+            global.lastPressed = hexString[0..<8]
+            let typeSeen = hexString[8..<12]
+            var typeString = "???"
+            switch (typeSeen) {
+            case "0001":
+                typeString = "occ"
+                break
+            case "0002":
+                typeString = "pcell"
+                break
+            case "0003":
+                typeString = "occpcell"
+                break
+            case "0004":
+                typeString = "switch"
+                break
+            case "0005":
+                typeString = "occswitch"
+                break
+            case "0006":
+                typeString = "pcswitch"
+                break
+            case "0007":
+                typeString = "occpcsw"
+                break
+            default:
+                break
+            }
+            global.lastType = typeString
             break
         case "B0730013":
             print("length=", hexString.count, hexString.count/4)
