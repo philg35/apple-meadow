@@ -18,6 +18,7 @@ final class Params: ObservableObject {
     var zoneOfInterest = ""
     var lastPressed = ""
     var lastType = ""
+    var kvpData = ""
 }
 
 struct PeriphDetail: View {
@@ -78,6 +79,15 @@ struct PeriphDetail: View {
                     .multilineTextAlignment(.center)
                     .textFieldStyle(.roundedBorder)
                     .frame(width: 100)
+            }
+            
+            HStack {
+                Button(action: {self.bleManager.writeCharacteristicFromHexString(charString: "B0730014-6604-4CA1-A5A4-98864F059E4A", hexString: global.kvpData)}, label: { Text("Write Kvp")})
+                    .buttonStyle(.bordered)
+                TextField("Kvp data", text: $global.kvpData)
+                    .multilineTextAlignment(.center)
+                    .textFieldStyle(.roundedBorder)
+                    .frame(width: 150)
             }
             
 // Zone Names

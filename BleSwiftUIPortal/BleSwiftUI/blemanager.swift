@@ -285,6 +285,21 @@ class BLEManager: NSObject, ObservableObject, CBCentralManagerDelegate, CBPeriph
         }
     }
     
+    func writeCharacteristicFromHexString(charString: String, hexString: String) -> Void {
+        for s in conn_periph?.services ?? [] {
+            for c in s.characteristics ?? [] {
+                if c.uuid.uuidString == charString {
+                    print("found char again...")
+                    let hexdata = hexString.hexaData
+                    let hexbytes = hexString.hexaBytes
+                    print("hexbytes = ", hexbytes)
+                    conn_periph.writeValue(Data(hexbytes), for: c, type: .withoutResponse)
+                    break
+                }
+            }
+        }
+    }
+    
     func writeCharacteristicFromInt8(charString: String, payload: UInt8) -> Void {
         for s in conn_periph?.services ?? [] {
             //print("s=", s)
@@ -352,6 +367,19 @@ extension String {
             let start = index(startIndex, offsetBy: $0)
             let end = index(start, offsetBy: length, limitedBy: endIndex) ?? endIndex
             return String(self[start..<end])
+        }
+    }
+}
+
+extension StringProtocol {
+    var hexaData: Data { .init(hexa) }
+    var hexaBytes: [UInt8] { .init(hexa) }
+    private var hexa: UnfoldSequence<UInt8, Index> {
+        sequence(state: startIndex) { startIndex in
+            guard startIndex < self.endIndex else { return nil }
+            let endIndex = self.index(startIndex, offsetBy: 2, limitedBy: self.endIndex) ?? self.endIndex
+            defer { startIndex = endIndex }
+            return UInt8(self[startIndex..<endIndex], radix: 16)
         }
     }
 }
